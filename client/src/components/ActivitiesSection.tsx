@@ -88,7 +88,7 @@ export default function ActivitiesSection() {
             {profiles.map((profile, index) => (
               <motion.a 
                 key={index}
-                href="#" 
+                href={profile.url} 
                 className="bg-background p-4 rounded-lg flex flex-col items-center hover:border border-primary transition-all"
                 whileHover={{ y: -5, scale: 1.05 }}
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -96,7 +96,7 @@ export default function ActivitiesSection() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
               >
-                <div className="text-primary text-2xl mb-2"><i className={profile.icon}></i></div>
+                <div className="text-2xl mb-2" style={{ color: profile.color }}><i className={profile.icon}></i></div>
                 <span className="text-sm">{profile.name}</span>
               </motion.a>
             ))}

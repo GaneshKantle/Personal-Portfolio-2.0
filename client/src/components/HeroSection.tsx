@@ -60,6 +60,13 @@ export default function HeroSection() {
               >
                 <i className="fas fa-envelope mr-2"></i> Contact Me
               </Button>
+              <Button 
+                variant="secondary"
+                size="lg"
+                className="bg-secondary hover:bg-secondary/90 text-secondary-foreground font-bold transition-all transform hover:scale-105 hover:shadow-lg flex items-center"
+              >
+                <i className="fas fa-file-alt mr-2"></i> Download Resume
+              </Button>
             </div>
             
             <div className="flex flex-wrap gap-3">

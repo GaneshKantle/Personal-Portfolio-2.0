@@ -13,9 +13,9 @@ import Footer from "@/components/Footer";
 import { useEffect } from "react";
 
 export default function Home() {
-  // Apply matrix-like background effect
+  // Apply matrix-like background effect and custom styles
   useEffect(() => {
-    const addMatrixEffect = () => {
+    const addCustomStyles = () => {
       const style = document.createElement('style');
       style.textContent = `
         .matrix-bg::before {
@@ -25,8 +25,15 @@ export default function Home() {
           left: 0;
           width: 100%;
           height: 100%;
-          background: linear-gradient(rgba(15,23,42,0.9), rgba(15,23,42,0.99));
           z-index: 1;
+        }
+        
+        .dark .matrix-bg::before {
+          background: linear-gradient(rgba(15,23,42,0.9), rgba(15,23,42,0.99));
+        }
+        
+        .light .matrix-bg::before {
+          background: linear-gradient(rgba(255,255,255,0.92), rgba(255,255,255,0.98));
         }
 
         /* Custom scrollbar */
@@ -34,19 +41,28 @@ export default function Home() {
           width: 8px;
         }
         
-        ::-webkit-scrollbar-track {
+        .dark ::-webkit-scrollbar-track {
           background: rgba(30,41,59,0.5);
         }
         
-        ::-webkit-scrollbar-thumb {
+        .dark ::-webkit-scrollbar-thumb {
           background: rgba(59,130,246,0.7);
+          border-radius: 4px;
+        }
+        
+        .light ::-webkit-scrollbar-track {
+          background: rgba(220,220,220,0.5);
+        }
+        
+        .light ::-webkit-scrollbar-thumb {
+          background: rgba(59,130,246,0.5);
           border-radius: 4px;
         }
       `;
       document.head.appendChild(style);
     };
 
-    addMatrixEffect();
+    addCustomStyles();
   }, []);
 
   return (

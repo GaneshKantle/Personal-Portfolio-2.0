@@ -41,7 +41,13 @@ export default function Navbar() {
   };
 
   const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
+    const newTheme = theme === "dark" ? "light" : "dark";
+    setTheme(newTheme);
+    // Add a small animation to the body when theme changes
+    document.body.classList.add('theme-transition');
+    setTimeout(() => {
+      document.body.classList.remove('theme-transition');
+    }, 500);
   };
 
   return (
@@ -77,12 +83,13 @@ export default function Navbar() {
               variant="ghost" 
               size="icon"
               onClick={toggleTheme}
-              className="rounded-full bg-secondary/20 text-muted-foreground hover:text-primary transition-colors"
+              className="rounded-full bg-secondary/20 hover:text-primary transition-colors"
+              aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
             >
               {theme === "dark" ? (
-                <Sun className="h-5 w-5" />
+                <Sun className="h-5 w-5 text-secondary" />
               ) : (
-                <Moon className="h-5 w-5" />
+                <Moon className="h-5 w-5 text-primary" />
               )}
             </Button>
             

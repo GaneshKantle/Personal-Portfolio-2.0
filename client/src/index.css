@@ -58,6 +58,19 @@
   }
 
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    @apply font-sans antialiased bg-background text-foreground transition-colors duration-300;
+  }
+  
+  .theme-transition {
+    animation: theme-fade 0.5s ease;
+  }
+  
+  @keyframes theme-fade {
+    0% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 }
