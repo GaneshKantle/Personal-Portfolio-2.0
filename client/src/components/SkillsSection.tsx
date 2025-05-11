@@ -142,7 +142,7 @@ export default function SkillsSection() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
               >
-                <i className={`${tech.icon} text-4xl text-primary`}></i>
+                <i className={`${tech.icon} text-4xl`} style={{ color: tech.color }}></i>
               </motion.div>
             ))}
           </div>

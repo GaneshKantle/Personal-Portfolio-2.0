@@ -63,7 +63,7 @@ export default function ExperienceSection() {
                   </div>
                 </div>
                 <div className="md:text-right mt-4 md:mt-0">
-                  <span className="bg-background text-muted-foreground px-4 py-2 rounded-lg font-mono">
+                  <span className="bg-background text-muted-foreground px-4 py-2 rounded-lg font-mono inline-block whitespace-nowrap">
                     {exp.period}
                   </span>
                 </div>

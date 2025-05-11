@@ -28,12 +28,12 @@ const activities = [
 ];
 
 const profiles = [
-  { name: "Behance", icon: "fab fa-behance" },
-  { name: "Unstop", icon: "fas fa-briefcase" },
-  { name: "Internshala", icon: "fas fa-laptop-code" },
-  { name: "Bento", icon: "fas fa-th" },
-  { name: "Stack Overflow", icon: "fab fa-stack-overflow" },
-  { name: "Dev.to", icon: "fab fa-dev" },
+  { name: "Behance", icon: "fab fa-behance", color: "#1769FF", url: "#" },
+  { name: "Unstop", icon: "fas fa-briefcase", color: "#FF5722", url: "#" },
+  { name: "Internshala", icon: "fas fa-laptop-code", color: "#00A5EC", url: "#" },
+  { name: "Bento", icon: "fas fa-th", color: "#6B66FF", url: "#" },
+  { name: "Stack Overflow", icon: "fab fa-stack-overflow", color: "#F48024", url: "#" },
+  { name: "Dev.to", icon: "fab fa-dev", color: "#0A0A0A", url: "#" },
 ];
 
 export default function ActivitiesSection() {

@@ -28,16 +28,8 @@ const projects = [
             <div className="text-sm font-bold">Portfolio Value</div>
             <div className="text-primary font-bold">$12,450.83</div>
           </div>
-          <div className="w-full h-32 bg-card rounded-lg mb-4"></div>
-          <div className="grid grid-cols-2 gap-2">
-            <div className="bg-card p-3 rounded-lg">
-              <div className="text-xs text-muted-foreground">ETH</div>
-              <div className="font-bold">2.45 ETH</div>
-            </div>
-            <div className="bg-card p-3 rounded-lg">
-              <div className="text-xs text-muted-foreground">BTC</div>
-              <div className="font-bold">0.18 BTC</div>
-            </div>
+          <div className="w-full h-48 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-lg mb-4 flex items-center justify-center">
+            <div className="text-lg font-bold">Project Screenshot</div>
           </div>
         </div>
       </div>
@@ -63,21 +55,10 @@ const projects = [
           </div>
         </div>
         <div className="p-4">
-          <div className="space-y-3">
-            <div className="p-3 bg-card rounded-lg flex items-center">
-              <input type="checkbox" className="mr-3" />
-              <span>Update portfolio website</span>
-            </div>
-            <div className="p-3 bg-card rounded-lg flex items-center">
-              <input type="checkbox" className="mr-3" />
-              <span>Research Web3 technologies</span>
-            </div>
-            <div className="p-3 bg-card rounded-lg flex items-center">
-              <input type="checkbox" className="mr-3" />
-              <span>Prepare for tech conference</span>
-            </div>
+          <div className="w-full h-48 bg-gradient-to-r from-secondary/20 to-accent/20 rounded-lg mb-4 flex items-center justify-center">
+            <div className="text-lg font-bold">Project Screenshot</div>
           </div>
-          <button className="mt-4 w-full bg-[#10B981] text-white py-2 rounded-lg">Add Task</button>
+          <button className="w-full bg-secondary text-secondary-foreground py-2 rounded-lg">View Project</button>
         </div>
       </div>
     ),
@@ -104,9 +85,12 @@ const projects = [
               3.2 ETH
             </div>
           </div>
-          <div className="mt-4 flex space-x-2">
-            <button className="flex-1 bg-[#8B5CF6] text-white py-2 rounded-lg">Buy Now</button>
-            <button className="flex-1 bg-card text-white py-2 rounded-lg">Place Bid</button>
+          <div className="w-full h-48 bg-gradient-to-r from-accent/20 to-primary/20 rounded-lg mb-4 flex items-center justify-center">
+            <div className="text-lg font-bold">Project Screenshot</div>
+          </div>
+          <div className="flex space-x-2">
+            <button className="flex-1 bg-accent text-accent-foreground py-2 rounded-lg">View NFT</button>
+            <button className="flex-1 bg-card py-2 rounded-lg">Details</button>
           </div>
         </div>
       </div>
@@ -131,9 +115,9 @@ export default function ProjectsSection() {
       case 'primary':
         return 'bg-primary/10 text-primary';
       case 'secondary':
-        return 'bg-[#10B981]/10 text-[#10B981]';
+        return 'bg-secondary/10 text-secondary';
       case 'accent':
-        return 'bg-[#8B5CF6]/10 text-[#8B5CF6]';
+        return 'bg-accent/10 text-accent';
       default:
         return 'bg-primary/10 text-primary';
     }
