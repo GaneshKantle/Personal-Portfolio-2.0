@@ -11,26 +11,26 @@ const technicalSkills = [
 ];
 
 const softSkills = [
-  { name: "Teamwork", rating: 5, icon: "fas fa-users" },
-  { name: "Communication", rating: 4.5, icon: "fas fa-comments" },
-  { name: "Problem Solving", rating: 5, icon: "fas fa-lightbulb" },
-  { name: "Time Management", rating: 4, icon: "fas fa-clock" },
-  { name: "Adaptability", rating: 4.5, icon: "fas fa-chart-line" },
-  { name: "Leadership", rating: 4, icon: "fas fa-tasks" },
+  { name: "Teamwork", rating: 5, icon: "fas fa-users", color: "text-accent" },
+  { name: "Communication", rating: 4.5, icon: "fas fa-comments", color: "text-primary" },
+  { name: "Problem Solving", rating: 5, icon: "fas fa-lightbulb", color: "text-secondary" },
+  { name: "Time Management", rating: 4, icon: "fas fa-clock", color: "text-accent" },
+  { name: "Adaptability", rating: 4.5, icon: "fas fa-chart-line", color: "text-success" },
+  { name: "Leadership", rating: 4, icon: "fas fa-tasks", color: "text-primary" },
 ];
 
 const technologies = [
-  { name: "React", icon: "fab fa-react" },
-  { name: "JavaScript", icon: "fab fa-js" },
-  { name: "HTML5", icon: "fab fa-html5" },
-  { name: "CSS3", icon: "fab fa-css3-alt" },
-  { name: "Node.js", icon: "fab fa-node-js" },
-  { name: "Java", icon: "fab fa-java" },
-  { name: "Git", icon: "fab fa-git-alt" },
-  { name: "Ethereum", icon: "fab fa-ethereum" },
+  { name: "React", icon: "fab fa-react", color: "#61DAFB" },
+  { name: "JavaScript", icon: "fab fa-js", color: "#F7DF1E" },
+  { name: "HTML5", icon: "fab fa-html5", color: "#E34F26" },
+  { name: "CSS3", icon: "fab fa-css3-alt", color: "#1572B6" },
+  { name: "Node.js", icon: "fab fa-node-js", color: "#339933" },
+  { name: "Java", icon: "fab fa-java", color: "#007396" },
+  { name: "Git", icon: "fab fa-git-alt", color: "#F05032" },
+  { name: "Ethereum", icon: "fab fa-ethereum", color: "#3C3C3D" },
 ];
 
-const StarRating = ({ rating }: { rating: number }) => {
+const StarRating = ({ rating, color = "text-secondary" }: { rating: number, color?: string }) => {
   return (
     <div className="flex">
       {[1, 2, 3, 4, 5].map((star) => (
@@ -40,7 +40,7 @@ const StarRating = ({ rating }: { rating: number }) => {
             ${star <= Math.floor(rating) ? "fas fa-star" : ""}
             ${star > Math.floor(rating) && star - 0.5 <= rating ? "fas fa-star-half-alt" : ""}
             ${star > Math.ceil(rating) ? "far fa-star" : ""}
-            text-[#10B981]
+            ${color}
           `}
         ></i>
       ))}
@@ -99,7 +99,7 @@ export default function SkillsSection() {
             transition={{ duration: 0.5 }}
           >
             <h3 className="text-2xl font-bold mb-6 font-display flex items-center">
-              <span className="mr-3 text-[#10B981]"><i className="fas fa-brain"></i></span>
+              <span className="mr-3 text-success"><i className="fas fa-brain"></i></span>
               Soft Skills
             </h3>
             
@@ -107,18 +107,18 @@ export default function SkillsSection() {
               {softSkills.map((skill, index) => (
                 <motion.div 
                   key={index}
-                  className="bg-background p-4 rounded-xl border border-border hover:border-[#10B981] transition-colors"
+                  className={`bg-background p-4 rounded-xl border border-border hover:border-${skill.color.replace("text-", "")} transition-colors`}
                   whileHover={{ y: -5 }}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-[#10B981]/20 text-[#10B981] mb-3">
+                  <div className={`flex items-center justify-center w-12 h-12 rounded-full bg-${skill.color.replace("text-", "")}/20 ${skill.color} mb-3`}>
                     <i className={skill.icon}></i>
                   </div>
                   <h4 className="font-bold mb-1">{skill.name}</h4>
-                  <StarRating rating={skill.rating} />
+                  <StarRating rating={skill.rating} color={skill.color} />
                 </motion.div>
               ))}
             </div>

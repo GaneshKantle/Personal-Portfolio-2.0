@@ -3,49 +3,54 @@
 @tailwind utilities;
 
 :root {
-      --background: 0 0% 100%;
---foreground: 20 14.3% 4.1%;
---muted: 60 4.8% 95.9%;
---muted-foreground: 25 5.3% 44.7%;
---popover: 0 0% 100%;
---popover-foreground: 20 14.3% 4.1%;
---card: 0 0% 100%;
---card-foreground: 20 14.3% 4.1%;
---border: 20 5.9% 90%;
---input: 20 5.9% 90%;
---primary: 207 90% 54%;
---primary-foreground: 211 100% 99%;
---secondary: 60 4.8% 95.9%;
---secondary-foreground: 24 9.8% 10%;
---accent: 60 4.8% 95.9%;
---accent-foreground: 24 9.8% 10%;
---destructive: 0 84.2% 60.2%;
---destructive-foreground: 60 9.1% 97.8%;
---ring: 20 14.3% 4.1%;
---radius: 0.5rem;
-  }
-  .dark {
-      --background: 240 10% 3.9%;
---foreground: 0 0% 98%;
---muted: 240 3.7% 15.9%;
---muted-foreground: 240 5% 64.9%;
---popover: 240 10% 3.9%;
---popover-foreground: 0 0% 98%;
---card: 240 10% 3.9%;
---card-foreground: 0 0% 98%;
---border: 240 3.7% 15.9%;
---input: 240 3.7% 15.9%;
---primary: 207 90% 54%;
---primary-foreground: 211 100% 99%;
---secondary: 240 3.7% 15.9%;
---secondary-foreground: 0 0% 98%;
---accent: 240 3.7% 15.9%;
---accent-foreground: 0 0% 98%;
---destructive: 0 62.8% 30.6%;
---destructive-foreground: 0 0% 98%;
---ring: 240 4.9% 83.9%;
---radius: 0.5rem;
-  }
+  /* Google theme-inspired colors for light mode */
+  --background: 0 0% 100%;
+  --foreground: 220 10% 20%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 216 12% 45%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 220 10% 20%;
+  --card: 0 0% 100%;
+  --card-foreground: 220 10% 20%;
+  --border: 214 32% 91%;
+  --input: 214 32% 91%;
+  --primary: 214 90% 52%; /* Google blue */
+  --primary-foreground: 210 40% 98%;
+  --secondary: 36 100% 50%; /* Google yellow */
+  --secondary-foreground: 220 10% 20%;
+  --accent: 6 78% 57%;     /* Google red */
+  --accent-foreground: 210 40% 98%;
+  --success: 137 87% 40%;  /* Google green */
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --ring: 214 90% 52%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  /* Google dark theme-inspired colors */
+  --background: 220 10% 10%;
+  --foreground: 210 40% 98%;
+  --muted: 217 10% 18%;
+  --muted-foreground: 215 20% 65%;
+  --popover: 220 10% 10%;
+  --popover-foreground: 210 40% 98%;
+  --card: 222 12% 15%;
+  --card-foreground: 210 40% 98%;
+  --border: 216 14% 20%;
+  --input: 216 14% 20%;
+  --primary: 210 100% 66%; /* Google blue lighter for dark mode */
+  --primary-foreground: 210 40% 98%;
+  --secondary: 45 100% 58%; /* Google yellow for dark mode */
+  --secondary-foreground: 210 40% 98%;
+  --accent: 6 78% 62%;     /* Google red for dark mode */
+  --accent-foreground: 210 40% 98%;
+  --success: 142 76% 48%;  /* Google green for dark mode */
+  --destructive: 0 74% 54%;
+  --destructive-foreground: 210 40% 98%;
+  --ring: 210 100% 66%;
+  --radius: 0.5rem;
+}
 
 @layer base {
   * {
