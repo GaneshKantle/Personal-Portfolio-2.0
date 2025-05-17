@@ -1,19 +1,20 @@
+import React from "react";
 import { motion } from "framer-motion";
 
 const certificates = [
   {
     id: 1,
-    title: "Advanced React Development",
-    issuer: "Meta (Facebook)",
-    year: "2022",
+    title: "Data Structures and Algorithms",
+    issuer: "Infosys",
+    year: "2024",
     icon: "fas fa-certificate",
     color: "text-primary",
   },
   {
     id: 2,
     title: "Blockchain Fundamentals",
-    issuer: "Coursera",
-    year: "2021",
+    issuer: "101 Blockchain",
+    year: "2025",
     icon: "fas fa-certificate",
     color: "text-[#10B981]",
   },
@@ -21,7 +22,7 @@ const certificates = [
     id: 3,
     title: "Full-Stack Web Development",
     issuer: "Udemy",
-    year: "2020",
+    year: "2025",
     icon: "fas fa-certificate",
     color: "text-[#8B5CF6]",
   },

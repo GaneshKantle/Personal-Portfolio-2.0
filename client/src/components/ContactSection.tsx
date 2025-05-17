@@ -1,17 +1,11 @@
+import React from "react";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { isValidEmail } from "@/lib/utils";
-import { useToast } from "@/hooks/use-toast";
-
-const socialProfiles = [
-  { name: "LinkedIn", icon: "fab fa-linkedin-in", url: "#" },
-  { name: "GitHub", icon: "fab fa-github", url: "#" },
-  { name: "Twitter", icon: "fab fa-twitter", url: "#" },
-  { name: "Medium", icon: "fab fa-medium", url: "#" },
-];
+import { Button } from "../components/ui/button";
+import { Input } from "../components/ui/input";
+import { Textarea } from "../components/ui/textarea";
+import { isValidEmail } from "../lib/utils";
+import { useToast } from "../hooks/use-toast";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -30,7 +24,7 @@ export default function ContactSection() {
     }));
   };
 
-  const validateForm = () => {
+  const validateEmailForm = () => {
     if (!formData.name.trim()) {
       toast({
         title: "Name is required",
@@ -61,15 +55,37 @@ export default function ContactSection() {
     return true;
   };
 
+  const validateWhatsAppForm = () => {
+    if (!formData.name.trim()) {
+      toast({
+        title: "Name is required",
+        description: "Please enter your name",
+        variant: "destructive",
+      });
+      return false;
+    }
+
+    if (!formData.message.trim()) {
+      toast({
+        title: "Message is required",
+        description: "Please enter your message",
+        variant: "destructive",
+      });
+      return false;
+    }
+
+    return true;
+  };
+
   const handleSendEmail = async () => {
-    if (!validateForm()) return;
+    if (!validateEmailForm()) return;
 
     setIsSubmitting(true);
     
     try {
       // In a real implementation, this would send an email via API
       // For this demo, we'll open the mail client
-      const mailtoLink = `mailto:contact@yourname.dev?subject=Message from ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(formData.message)}%0A%0AFrom: ${encodeURIComponent(formData.name)}%0AEmail: ${encodeURIComponent(formData.email)}`;
+      const mailtoLink = `mailto:ganeshkantle@gmail.com?subject=Message from ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(formData.message)}%0A%0AFrom: ${encodeURIComponent(formData.name)}%0AEmail: ${encodeURIComponent(formData.email)}`;
       window.open(mailtoLink);
       
       toast({
@@ -88,13 +104,13 @@ export default function ContactSection() {
   };
 
   const handleSendWhatsApp = () => {
-    if (!validateForm()) return;
+    if (!validateWhatsAppForm()) return;
     
     setIsSubmitting(true);
     
     try {
       // In a real implementation, you would put your actual WhatsApp number here
-      const whatsappNumber = '1234567890';
+      const whatsappNumber = '8861435167';
       const whatsappText = `Hi, I'm ${formData.name}. ${formData.message}`;
       const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}`;
       window.open(whatsappLink);
@@ -123,7 +139,7 @@ export default function ContactSection() {
           </h2>
           <div className="w-20 h-1 bg-primary mx-auto rounded-full"></div>
           <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
-            Have a project in mind or want to collaborate? Feel free to reach out to me through any of these channels.
+            Hey Human feel free to reach me!.
           </p>
         </div>
         
@@ -218,7 +234,7 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-bold mb-1">Email</h4>
-                    <p className="text-muted-foreground">contact@yourname.dev</p>
+                    <p className="text-muted-foreground">ganeshkantle@gmail.com</p>
                   </div>
                 </div>
                 
@@ -228,31 +244,10 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <h4 className="font-bold mb-1">Location</h4>
-                    <p className="text-muted-foreground">San Francisco, California</p>
+                    <p className="text-muted-foreground">Karnataka, India</p>
                   </div>
                 </div>
-                
-                <div className="flex items-start">
-                  <div className="bg-primary/20 p-3 rounded-full text-primary mr-4">
-                    <i className="fas fa-globe"></i>
-                  </div>
-                  <div>
-                    <h4 className="font-bold mb-1">Social Profiles</h4>
-                    <div className="flex space-x-3 mt-2">
-                      {socialProfiles.map((profile, index) => (
-                        <motion.a 
-                          key={index}
-                          href={profile.url} 
-                          className="bg-card p-2 rounded-full hover:bg-primary/20 transition-colors"
-                          whileHover={{ y: -3 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          <i className={profile.icon}></i>
-                        </motion.a>
-                      ))}
-                    </div>
-                  </div>
-                </div>
+           
               </div>
             </div>
             

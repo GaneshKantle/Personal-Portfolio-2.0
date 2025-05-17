@@ -1,12 +1,14 @@
+import React from "react";
+
 import { motion } from "framer-motion";
-import { scrollToElement } from "@/lib/utils";
+import { scrollToElement } from "../lib/utils";
 
 const socialLinks = [
-  { icon: "fab fa-linkedin-in", url: "#", label: "LinkedIn" },
-  { icon: "fab fa-github", url: "#", label: "GitHub" },
-  { icon: "fab fa-twitter", url: "#", label: "Twitter" },
-  { icon: "fab fa-medium", url: "#", label: "Medium" },
-  { icon: "fab fa-instagram", url: "#", label: "Instagram" },
+  { icon: "fab fa-linkedin-in", url: "https://www.linkedin.com/in/ganesh-kantle", label: "LinkedIn" },
+  { icon: "fab fa-github", url: "https://www.github.com/ganeshkantle", label: "GitHub" },
+  { icon: "fab fa-twitter", url: "https://www.x.com/ganeshkantle", label: "Twitter" },
+  { icon: "fas fa-code", url: "https://leetcode.com/u/ganeshkantle/", label: "Leet Code" },
+  { icon: "fab fa-instagram", url: "https://www.instagram.com/_.ganesshhh_", label: "Instagram" },
 ];
 
 export default function Footer() {
@@ -17,7 +19,7 @@ export default function Footer() {
           <div className="mb-6 md:mb-0">
             <div className="flex items-center">
               <span className="text-xl font-bold font-mono text-primary mr-1">&lt;</span>
-              <span className="text-xl font-bold font-mono">DevPortfolio</span>
+              <span className="text-xl font-bold font-mono">GaneshKantle</span>
               <span className="text-xl font-bold font-mono text-primary ml-1">/&gt;</span>
             </div>
             <p className="text-muted-foreground mt-2 text-sm">Frontend Developer • Web3 Explorer • Tech Writer</p>
@@ -39,7 +41,7 @@ export default function Footer() {
           </div>
           
           <div className="text-muted-foreground text-sm">
-            &copy; {new Date().getFullYear()} Your Name. All rights reserved.
+            &copy; {new Date().getFullYear()} Ganesh Kantle. All rights reserved.
           </div>
         </div>
       </div>

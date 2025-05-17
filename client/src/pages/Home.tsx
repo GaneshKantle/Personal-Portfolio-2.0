@@ -1,15 +1,16 @@
-import Navbar from "@/components/Navbar";
-import HeroSection from "@/components/HeroSection";
-import AboutSection from "@/components/AboutSection";
-import EducationSection from "@/components/EducationSection";
-import SkillsSection from "@/components/SkillsSection";
-import ExperienceSection from "@/components/ExperienceSection";
-import ProjectsSection from "@/components/ProjectsSection";
-import BlogSection from "@/components/BlogSection";
-import CertificatesSection from "@/components/CertificatesSection";
-import ActivitiesSection from "@/components/ActivitiesSection";
-import ContactSection from "@/components/ContactSection";
-import Footer from "@/components/Footer";
+import React from "react";
+import Navbar from "../components/Navbar";
+import HeroSection from "../components/HeroSection";
+import AboutSection from "../components/AboutSection";
+import EducationSection from "../components/EducationSection";
+import SkillsSection from "../components/SkillsSection";
+import ExperienceSection from "../components/ExperienceSection";
+import ProjectsSection from "../components/ProjectsSection";
+// import BlogSection from "../components/BlogSection";
+import CertificatesSection from "../components/CertificatesSection";
+import ActivitiesSection from "../components/ActivitiesSection";
+import ContactSection from "../components/ContactSection";
+import Footer from "../components/Footer";
 import { useEffect } from "react";
 
 export default function Home() {
@@ -74,7 +75,7 @@ export default function Home() {
       <SkillsSection />
       <ExperienceSection />
       <ProjectsSection />
-      <BlogSection />
+      {/* <BlogSection /> */}
       <CertificatesSection />
       <ActivitiesSection />
       <ContactSection />

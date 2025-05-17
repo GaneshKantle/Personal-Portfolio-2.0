@@ -1,19 +1,20 @@
+import React from "react";
 import { motion } from "framer-motion";
 
 const educationData = [
   {
     id: 1,
-    title: "University Degree",
-    institution: "Computer Science & Engineering",
-    period: "2018 - 2022",
+    title: "Computer Science & Engineering",
+    institution: "SDM Institute of Technology, Karnataka",
+    period: "2022 - 2026",
     icon: "fas fa-graduation-cap",
     position: "right",
   },
   {
     id: 2,
     title: "High Secondary School",
-    institution: "Science & Mathematics",
-    period: "2016 - 2018",
+    institution: "Vidya Nidhi PUC, Karnataka",
+    period: "2020 - 2022",
     icon: "fas fa-school",
     position: "left",
   },

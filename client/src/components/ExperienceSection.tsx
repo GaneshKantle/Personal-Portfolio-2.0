@@ -1,28 +1,32 @@
+import React from "react";
 import { motion } from "framer-motion";
-import { Badge } from "@/components/ui/badge";
+import { Badge } from "../components/ui/badge";
 
 const experiences = [
-  {
-    title: "Senior Frontend Developer",
-    company: "TechCorp Inc.",
-    period: "2021 - Present",
-    description: "Led the development of responsive web applications using React.js. Collaborated with UX/UI designers to implement pixel-perfect interfaces. Optimized application performance and mentored junior developers.",
-    skills: ["React.js", "Redux", "TypeScript", "Tailwind CSS"],
-  },
-  {
-    title: "Frontend Developer",
-    company: "WebInnovate Solutions",
-    period: "2019 - 2021",
-    description: "Developed and maintained multiple client websites and web applications. Implemented responsive design principles and ensured cross-browser compatibility. Participated in code reviews and team planning sessions.",
-    skills: ["JavaScript", "React.js", "HTML5/CSS3", "SASS"],
-  },
-  {
-    title: "Web Development Intern",
-    company: "StartUp Launch",
-    period: "2018 - 2019",
-    description: "Assisted in developing web applications using modern JavaScript frameworks. Created responsive UI components and integrated with backend APIs. Participated in daily stand-ups and sprint planning.",
-    skills: ["JavaScript", "HTML/CSS", "jQuery", "Bootstrap"],
-  },
+{
+  title: "Freelance Frontend Developer",
+  company: "Self-Employed",
+  period: "Nov 2024 – Present",
+  description: "Built and maintained 3+ responsive client websites, including a video editor portfolio that increased engagement 60%. Integrated WhatsApp API chatbot, cutting response time by 70%, deployed via Vercel.",
+
+  skills: ["React.js", "TypeScript", "Tailwind CSS", "Vercel", "API Integration"],
+},
+{
+  title: "Python Programming Intern",
+  company: "VaultofCodes",
+  period: "Nov – Dec 2023",
+  description: "Completed a 1-month Python internship, delivering 3+ functional scripts with 95% code efficiency. Recognized for strong problem-solving and technical precision.",
+  skills: ["Python", "Problem Solving", "Git", "Teamwork"],
+},
+
+{
+  title: "Web Development Intern",
+  company: "Motion Cut",
+  period: "Oct – Nov 2023",
+  description: "Developed a Netflix clone and Weather UI with 30% faster load times. Designed and launched a portfolio that boosted visitor engagement by 40%.",
+  skills: ["JavaScript", "HTML5/CSS3",, "GitHub", "Responsive Design"],
+},
+
 ];
 
 export default function ExperienceSection() {
@@ -35,10 +39,10 @@ export default function ExperienceSection() {
           </h2>
           <div className="w-20 h-1 bg-primary mx-auto rounded-full"></div>
         </div>
-        
+
         <div className="max-w-4xl mx-auto space-y-12">
           {experiences.map((exp, index) => (
-            <motion.div 
+            <motion.div
               key={index}
               className="bg-card p-6 rounded-2xl shadow-lg border border-border hover:border-primary transition-colors"
               initial={{ opacity: 0, y: 50 }}
@@ -56,7 +60,11 @@ export default function ExperienceSection() {
                   </p>
                   <div className="flex flex-wrap gap-2 mb-4">
                     {exp.skills.map((skill, skillIndex) => (
-                      <Badge key={skillIndex} variant="outline" className="bg-primary/20 text-primary">
+                      <Badge
+                        key={skillIndex}
+                        variant="outline"
+                        className="bg-primary/20 text-primary"
+                      >
                         {skill}
                       </Badge>
                     ))}

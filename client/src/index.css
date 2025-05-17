@@ -74,3 +74,34 @@
     }
   }
 }
+
+.water-fill {
+  height: 100%;
+  width: var(--progress-value);
+  background: linear-gradient(
+    270deg,
+    #4f9aff,
+    #1c6ef2,
+    #4f9aff
+  );
+  background-size: 600% 600%;
+  animation: water-flow 3s ease-in-out infinite;
+  border-radius: 0.375rem; /* match rounded-md */
+  transition: width 1.5s ease-in-out;
+}
+
+@keyframes water-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.no-hover-orange:hover {
+  background-color: transparent !important; /* Prevent bg color change */
+}

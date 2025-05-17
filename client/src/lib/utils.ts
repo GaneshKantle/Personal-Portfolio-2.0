@@ -34,7 +34,7 @@ export function setupTypewriterEffect(
   let i = 0;
   
   function typeWriter() {
-    if (i < text.length) {
+    if (i < text.length && element) {
       element.textContent += text.charAt(i);
       i++;
       setTimeout(typeWriter, delay);
