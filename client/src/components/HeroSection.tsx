@@ -108,7 +108,7 @@ export default function HeroSection() {
               animate={{ y: [0, -10, 0] }}
               transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
             >
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary to-[#8B5CF6] blur-lg opacity-30 animate-pulse"></div>
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary to-[#8B5CF6] blur-md opacity-20 animate-pulse-slow"></div>
               <div className="relative bg-card border-4 border-primary/30 rounded-full w-full h-full overflow-hidden flex items-center justify-center">
                 {/* Replace icon with image */}
                 <img
