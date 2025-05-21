@@ -21,7 +21,7 @@ const technologies = [
   { name: "Figma", icon: "fab fa-figma", color: "#F24E1E" },
   { name: "Docker", icon: "fab fa-docker", color: "#2496ED" }, // No official TS icon; use code icon
   { name: "Bootstrap", icon: "fab fa-bootstrap", color: "#7952B3" }, // Official Bootstrap icon  // No official Tailwind icon; use wind icon as a proxy
-  { name: "Smart Contracts", icon: "fas fa-file-contract", color: "#29B6AF" },
+{ name: "Blockchain", icon: "fab fa-bitcoin", color: "#FFD700" },
   { name: "Ethereum", icon: "fab fa-ethereum", color: "silver" },
   { name: "Java", icon: "fab fa-java", color: "#007396" },
   { name: "Postman", icon: "fas fa-paper-plane", color: "#FF6C37" },
