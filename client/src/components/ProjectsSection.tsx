@@ -333,7 +333,6 @@ export default function ProjectsSection() {
                             } hover:text-opacity-80 transition-colors`}
                           >
                             <i className="fas fa-external-link-alt"></i> Live
-                            Demo
                           </a>
                         </div>
                       </div>
