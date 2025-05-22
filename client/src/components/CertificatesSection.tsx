@@ -5,7 +5,7 @@ const certificates = [
   {
     id: 1,
     title: "Data Structures and Algorithms",
-    issuer: "Infosys",
+    issuer: "Springboard",
     year: "2024",
     icon: "fas fa-certificate",
     color: "text-primary",
