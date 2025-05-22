@@ -38,7 +38,7 @@ const projects = [
         {/* Full photo taking all remaining space */}
         <img
           src={Project1} // Replace with your image path
-          alt="DeFi Dashboard Screenshot"
+          alt="Video Editor Portfolio Screenshot"
           className="w-full h-64 object-cover rounded-b-xl"
         />
       </div>
@@ -76,7 +76,7 @@ const projects = [
         {/* Full photo taking all remaining space */}
         <img
           src={Project2} // Replace with your image path
-          alt="DeFi Dashboard Screenshot"
+          alt="Stroke Risk Prediction System Screenshot"
           className="w-full h-64 object-cover rounded-b-xl"
         />
       </div>
@@ -112,7 +112,7 @@ const projects = [
         {/* Full photo taking all remaining space */}
         <img
           src={Project3} // Replace with your image path
-          alt="DeFi Dashboard Screenshot"
+          alt="Google AI Chatbot Screenshot"
           className="w-full h-64 object-cover rounded-b-xl"
         />
       </div>
