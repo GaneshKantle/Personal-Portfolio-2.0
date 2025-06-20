@@ -1,25 +1,24 @@
 <div align="center">
-  <h1>Personal-Portfolio-2.0</h1>
-  <p>🚀 A cutting-edge project by GaneshKantle</p>
-  <p>
-    <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=24&pause=1000&color=00F260&repeat=false&width=435&lines=Professional+Portfolios+for+Devs;Showcase+Your+Work+with+Ease;TypeScript+Powered+Project" alt="Typing SVG">
-  </p>
+  <h1>🚀 Personal-Portfolio-2.0</h1>
+  <p>A cutting-edge project by <strong>GaneshKantle</strong></p>
+  
+  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&weight=600&size=24&pause=1000&color=00F260&repeat=false&width=435&lines=Professional+Portfolios+for+Devs;Showcase+Your+Work+with+Ease;TypeScript+Powered+Project" alt="Typing SVG">
+
   <p>
     <a href="https://github.com/GaneshKantle/Personal-Portfolio-2.0/stargazers">
-      <img src="https://img.shields.io/github/stars/GaneshKantle/Personal-Portfolio-2.0?style=flat-square&color=00F260" alt="Stars Badge">
+      <img src="https://img.shields.io/github/stars/GaneshKantle/Personal-Portfolio-2.0?style=for-the-badge&color=00F260" alt="Stars">
     </a>
     <a href="https://github.com/GaneshKantle/Personal-Portfolio-2.0/network/members">
-      <img src="https://img.shields.io/github/forks/GaneshKantle/Personal-Portfolio-2.0?style=flat-square&color=00F260" alt="Forks Badge">
+      <img src="https://img.shields.io/github/forks/GaneshKantle/Personal-Portfolio-2.0?style=for-the-badge&color=00F260" alt="Forks">
     </a>
-      
     <a href="https://github.com/GaneshKantle/Personal-Portfolio-2.0/actions">
-      <img src="https://img.shields.io/github/actions/workflow/status/GaneshKantle/Personal-Portfolio-2.0/main.yml?style=flat-square&color=00F260" alt="Build Status Badge">
+      <img src="https://img.shields.io/github/actions/workflow/status/GaneshKantle/Personal-Portfolio-2.0/main.yml?style=for-the-badge&color=00F260" alt="Build Status">
     </a>
     <a href="https://github.com/GaneshKantle/Personal-Portfolio-2.0/blob/main/LICENSE">
-      <img src="https://img.shields.io/github/license/GaneshKantle/Personal-Portfolio-2.0?style=flat-square&color=00F260" alt="License Badge">
+      <img src="https://img.shields.io/github/license/GaneshKantle/Personal-Portfolio-2.0?style=for-the-badge&color=00F260" alt="License">
     </a>
     <a href="https://github.com/GaneshKantle/Personal-Portfolio-2.0/releases">
-      <img src="https://img.shields.io/github/release/GaneshKantle/Personal-Portfolio-2.0?style=flat-square&color=00F260" alt="Release Badge">
+      <img src="https://img.shields.io/github/release/GaneshKantle/Personal-Portfolio-2.0?style=for-the-badge&color=00F260" alt="Release">
     </a>
   </p>
 </div>
@@ -131,3 +130,13 @@ const App = () => {
 export default App;
 ```
 ---
+
+## Contributing
+If you'd like to contribute, please fork the repository and submit a pull request. All contributions are welcome!
+
+## Contact
+For any queries, feel free to reach out:
+- **Email:** ganeshkantle@gmail.com
+- **My Portfolio:** https://ganesh-portfolio-dusky.vercel.app/
+- **LinkedIn:** https://www.linkedin.com/in/ganesh-kantle
+
