@@ -129,24 +129,4 @@ const App = () => {
 
 export default App;
 ```
-
 ---
-
-## 🤝 Contributing
-We welcome contributions from the community. Please follow these guidelines:
-
-- **Development Setup:** Follow the [Quick Start](#quick-start) section.
-- **Code of Conduct:** Please adhere to our [Code of Conduct](CODE_OF_CONDUCT.md).
-
----
-
-## 📄 License & Credits
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
-### Acknowledgments
-- Special thanks to all contributors and the open-source community.
-
-### Contact Information
-For any queries, please open an issue or contact us at [contact@example.com](mailto:contact@example.com).
-
-This README.md file is designed to render perfectly on GitHub, using only GitHub-compatible markdown, shields.io badges, and simple HTML elements. The content is structured to provide a professional, modern appearance suitable for business and enterprise contexts.
