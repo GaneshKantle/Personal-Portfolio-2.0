@@ -32,7 +32,7 @@ Welcome to **Personal-Portfolio-2.0**, a modern and professional solution for de
   - **Modern Design:** Sleek, professional, and responsive layout.
   - **TypeScript Powered:** Built with TypeScript for robustness and maintainability.
   - **Customizable:** Easily adaptable to fit your personal branding.
-  - **Live Demo:** [Check it out here](https://your-live-demo-link.com)
+  - **Live Demo:** [Check it out here](https://ganesh-portfolio-dusky.vercel.app/)
 
 ---
 
