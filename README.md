@@ -10,7 +10,8 @@
     </a>
     <a href="https://github.com/GaneshKantle/Personal-Portfolio-2.0/network/members">
       <img src="https://img.shields.io/github/forks/GaneshKantle/Personal-Portfolio-2.0?style=flat-square&color=00F260" alt="Forks Badge">
-    </a>
+    </a
+      
     <a href="https://github.com/GaneshKantle/Personal-Portfolio-2.0/actions">
       <img src="https://img.shields.io/github/actions/workflow/status/GaneshKantle/Personal-Portfolio-2.0/main.yml?style=flat-square&color=00F260" alt="Build Status Badge">
     </a>
