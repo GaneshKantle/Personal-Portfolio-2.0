@@ -1,4 +1,3 @@
-```markdown
 # Personal-Portfolio-2.0
 
 ![Typing SVG](https://readme-typing-svg.herokuapp.com/?lines=Personal-Portfolio-2.0;An+Innovative+Professional+Portfolio;Featuring+Premium+Features;Designed+for+Modern+Web+Development)
@@ -122,4 +121,3 @@ Acknowledgments:
 
 Contact:
 - Ganesh Kantle - [@ganeshkantle](https://twitter.com/ganeshkantle)
-```
