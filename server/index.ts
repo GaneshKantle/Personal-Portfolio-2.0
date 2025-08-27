@@ -1,6 +1,8 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
+import { connectionManager } from "./connectionManager";
+import { initializeBackends, shutdownBackends } from "./backendConfig";
 
 const app = express();
 app.use(express.json());
@@ -39,6 +41,16 @@ app.use((req, res, next) => {
 (async () => {
   const server = await registerRoutes(app);
 
+  // Setup backend connections
+  if (process.env.ENABLE_AUTO_CONNECT !== 'false') {
+    try {
+      await initializeBackends();
+    } catch (error) {
+      log(`⚠️  Failed to initialize backends: ${error.message}`);
+      // Continue running even if some backends fail to connect
+    }
+  }
+
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
     const status = err.status || err.statusCode || 500;
     const message = err.message || "Internal Server Error";
@@ -57,5 +69,15 @@ app.use((req, res, next) => {
   const port = 5000;
   server.listen(port, () => {
     log(`🚀 Server running locally at http://localhost:${port}`);
+  });
+
+  // Graceful shutdown
+  process.on('SIGTERM', async () => {
+    log('SIGTERM received, shutting down gracefully...');
+    await shutdownBackends();
+    server.close(() => {
+      log('Server closed');
+      process.exit(0);
+    });
   });
 })();

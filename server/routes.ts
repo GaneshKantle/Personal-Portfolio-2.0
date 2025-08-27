@@ -1,8 +1,43 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
+import { connectionManager } from "./connectionManager";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Health check endpoint
+  app.get("/api/health", (_req, res) => {
+    res.json({ 
+      status: "ok", 
+      timestamp: new Date().toISOString(),
+      uptime: process.uptime()
+    });
+  });
+
+  // Backend connections status endpoint
+  app.get("/api/connections", (_req, res) => {
+    const statuses = connectionManager.getStatuses();
+    const allConnected = statuses.every(s => s.status === 'connected');
+    
+    res.json({
+      status: allConnected ? 'healthy' : 'degraded',
+      connections: statuses,
+      timestamp: new Date().toISOString()
+    });
+  });
+
+  // Individual backend health check
+  app.get("/api/connections/:name/health", async (req, res) => {
+    const { name } = req.params;
+    const statuses = connectionManager.getStatuses();
+    const status = statuses.find(s => s.name === name);
+    
+    if (!status) {
+      return res.status(404).json({ error: "Backend not found" });
+    }
+    
+    res.json(status);
+  });
+
   // API routes for contact form
   app.post("/api/contact", async (req, res) => {
     try {
