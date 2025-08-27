@@ -1,7 +1,7 @@
-import openDraft from "../img/openDraft.png";
-import eyeDentify from "../img/eye-dentify.png";
-import Project1 from "../img/project1.png";
-import Project2 from "../img/project2.png";
+import openDraft from "../../img/opendraft.png";
+import eyeDentify from "../../img/eye-dentify.png";
+import Project1 from "../../img/project1.png";
+import Project2 from "../../img/project2.png";
 
 // Unified project data structure with both basic and detailed information
 export const projectsData = [
