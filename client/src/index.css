@@ -59,6 +59,7 @@
 
   body {
     @apply font-sans antialiased bg-background text-foreground transition-colors duration-300;
+    scroll-behavior: smooth;
   }
   
   .theme-transition {
@@ -104,4 +105,105 @@
 
 .no-hover-orange:hover {
   background-color: transparent !important; /* Prevent bg color change */
+}
+
+/* Marquee effect for SkillsSection */
+.marquee-row {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+  height: 110px;
+  /* Responsive height */
+}
+.marquee-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: marquee-left 40s linear infinite;
+}
+.marquee-row.reverse .marquee-track {
+  animation: marquee-right 40s linear infinite;
+}
+.marquee-row.paused .marquee-track {
+  animation-play-state: paused;
+}
+.marquee-icon {
+  min-width: 90px;
+  max-width: 120px;
+  flex: 0 0 auto;
+  /* Responsive min/max width */
+}
+.marquee-icon-inner {
+  height: 80px;
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media (max-width: 640px) {
+  .marquee-row {
+    height: 100px;
+  }
+  .marquee-icon {
+    min-width: 60px;
+    max-width: 70px;
+  }
+  .marquee-icon-inner {
+    height: 48px;
+    width: 48px;
+  }
+  .marquee-icon i {
+    font-size: 1.5rem !important;
+  }
+  .marquee-icon .text-sm {
+    margin-top: 4px !important;
+  }
+}
+@media (min-width: 641px) and (max-width: 1024px) {
+  .marquee-row {
+    height: 90px;
+  }
+  .marquee-icon {
+    min-width: 70px;
+    max-width: 90px;
+  }
+  .marquee-icon-inner {
+    height: 60px;
+    width: 60px;
+  }
+  .marquee-icon i {
+    font-size: 2rem !important;
+  }
+}
+@media (min-width: 1025px) {
+  .marquee-row {
+    height: 110px;
+  }
+  .marquee-icon {
+    min-width: 90px;
+    max-width: 120px;
+  }
+  .marquee-icon-inner {
+    height: 80px;
+    width: 80px;
+  }
+  .marquee-icon i {
+    font-size: 2.5rem !important;
+  }
+}
+@keyframes marquee-left {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+@keyframes marquee-right {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
 }

@@ -22,7 +22,7 @@ export default function Footer() {
               <span className="text-xl font-bold font-mono">GaneshKantle</span>
               <span className="text-xl font-bold font-mono text-primary ml-1">/&gt;</span>
             </div>
-            <p className="text-muted-foreground mt-2 text-sm">Frontend Developer • Web3 Explorer • Tech Writer</p>
+            <p className="text-muted-foreground mt-2 text-sm">AI Web Developer • Web3 Explorer • Tech Writer</p>
           </div>
           
           <div className="flex space-x-6 mb-6 md:mb-0">

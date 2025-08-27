@@ -1,7 +1,8 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { color, motion } from "framer-motion";
 import { Progress } from "../components/ui/progress";
-import "../index.css"; // Ensure you have the correct path to your CSS file
+import "../index.css";
+import { Icon } from '@iconify/react';
 
 const technicalSkills = [
   { name: "React.js", percentage: 80 },
@@ -13,64 +14,66 @@ const technicalSkills = [
 ];
 
 const technologies = [
-  { name: "ReactJS", icon: "fab fa-react", color: "#61DAFB" },
-  { name: "JavaScript", icon: "fab fa-js", color: "#F7DF1E" },
-  { name: "Solidity", icon: "fas fa-code", color: "lightblue" },
-  { name: "Python", icon: "fab fa-python", color: "#3776AB" },
-  { name: "GitHub", icon: "fab fa-github", color: "#ffffff" },
-  { name: "Figma", icon: "fab fa-figma", color: "#F24E1E" },
-  { name: "Docker", icon: "fab fa-docker", color: "#2496ED" }, // No official TS icon; use code icon
-  { name: "Bootstrap", icon: "fab fa-bootstrap", color: "#7952B3" }, // Official Bootstrap icon  // No official Tailwind icon; use wind icon as a proxy
-{ name: "Blockchain", icon: "fab fa-bitcoin", color: "#FFD700" },
-  { name: "Ethereum", icon: "fab fa-ethereum", color: "silver" },
-  { name: "Java", icon: "fab fa-java", color: "#007396" },
-  { name: "Postman", icon: "fas fa-paper-plane", color: "#FF6C37" },
+  // Core Languages
+  { name: "JavaScript",  icon: "logos:javascript" },
+  { name: "Python",      icon: "logos:python" },
+  { name: "Java",        icon: "logos:java" },
+  { name: "HTML5",       icon: "logos:html-5" },
+  { name: "CSS3",        icon: "logos:css-3" },
+
+  // Frontend & UI
+  { name: "ReactJS",     icon: "logos:react" },
+  { name: "Bootstrap",   icon: "logos:bootstrap" },
+
+  // Blockchain & Web3
+  { name: "Solidity",    icon: "logos:solidity" },
+  { name: "Ethereum",    icon: "logos:ethereum" },
+
+  // Dev Tools & Platforms
+  { name: "GitHub",      icon: "simple-icons:github", color: "#6e5494" }, // purple for demo
+  { name: "Docker",      icon: "logos:docker-icon" },
+  { name: "VS Code",     icon: "logos:visual-studio-code" },
+  { name: "Cursor IDE",  icon: "fas fa-terminal", color: "#CCCCCC", fallback: true },
+  { name: "Replit",      icon: "logos:replit-icon" },
+  { name: "Vercel",      icon: "simple-icons:vercel", color: "#0070f3" }, // blue for demo
+  { name: "Postman",     icon: "logos:postman-icon" },
+
+  // AI & ML Ecosystem
+  { name: "ChatGPT", icon: "logos:openai-icon", color: "#fff" },
+  { name: "Grok",            icon: "fas fa-comment-dots", color: "#FF4500", fallback: true },
+  { name: "Claude AI",       icon: "fas fa-cloud", color: "#5A5A5A", fallback: true },
+  { name: "Copilot",         icon: "logos:github-copilot", color: "#fff" },
+  { name: "Runway ML",       icon: "fas fa-film", color: "#00FFB2", fallback: true },
+  { name: "Gemini",          icon: "logos:google-gemini" },
+  { name: "Llama Coder",     icon: "fas fa-hippo", color: "#A07F5F", fallback: true },
+  { name: "Blackbox AI",     icon: "fas fa-box", color: "#3E64FF", fallback: true },
+  { name: "Julius AI",       icon: "fas fa-robot", color: "#9ACD32", fallback: true },
+
+  // Design & Creative
+  { name: "Figma",       icon: "logos:figma" },
+  { name: "Canva",       icon: "simple-icons:canva", color: "#00C4CC" },
+  { name: "Gamma",       icon: "fas fa-lightbulb", color: "#FFD700", fallback: true },
+  { name: "Napkin AI",   icon: "fas fa-note-sticky", color: "#FFDE00", fallback: true },
+
+  // CMS & Site Builders
+  { name: "WordPress",   icon: "simple-icons:wordpress", color: "#21759B" },
+  { name: "Wix",         icon: "simple-icons:wix", color: "#FAAD4D" },
+
+  // Learning & Docs
+  { name: "LeetCode",    icon: "simple-icons:leetcode", color: "#FFA116" },
+  { name: "W3Schools",   icon: "fas fa-graduation-cap", color: "#04AA6D", fallback: true },
+  { name: "LaTeX",       icon: "fas fa-file-code", color: "#00A78E", fallback: true }
 ];
 
-const Technologies = () => {
-  return (
-    <div style={styles.grid}>
-      {technologies.map((tech) => (
-        <div key={tech.name} style={styles.item}>
-          <i
-            className={tech.icon}
-            style={{ ...styles.icon, color: tech.color }}
-          ></i>
-          <div style={styles.label}>{tech.name}</div>
-        </div>
-      ))}
-    </div>
-  );
-};
-
-const styles = {
-  grid: {
-    display: "flex",
-    flexWrap: "wrap" as "wrap",
-    gap: "30px",
-    justifyContent: "center",
-    alignItems: "center",
-    padding: "40px",
-    fontFamily: "Arial, sans-serif",
-  },
-  item: {
-    display: "flex",
-    flexDirection: "column" as const,
-    alignItems: "center",
-    width: "100px",
-  },
-  icon: {
-    fontSize: "48px",
-    marginBottom: "8px",
-  },
-  label: {
-    fontSize: "14px",
-    textAlign: "center" as const,
-    marginTop: "4px",
-  },
-};
-
 export default function SkillsSection() {
+  // Split technologies into two unique rows (no overlap)
+  const mid = Math.ceil(technologies.length / 2);
+  const row1 = technologies.slice(0, mid);
+  const row2 = technologies.slice(mid, technologies.length);
+
+  // Shared hover state for both rows
+  const [isPaused, setIsPaused] = useState(false);
+
   return (
     <section id="skills" className="py-20 bg-card">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -112,11 +115,9 @@ export default function SkillsSection() {
                 <div className="w-full bg-background h-3 rounded-md overflow-hidden">
                   <div
                     className="water-fill"
-                    style={
-                      {
-                        "--progress-value": `${skill.percentage}%`,
-                      } as React.CSSProperties
-                    }
+                    style={{
+                      "--progress-value": `${skill.percentage}%`,
+                    } as React.CSSProperties}
                   ></div>
                 </div>
               </motion.div>
@@ -124,34 +125,68 @@ export default function SkillsSection() {
           </div>
         </motion.div>
 
-        {/* Tools & Technologies below */}
+        {/* Tools & Technologies Marquee */}
         <div className="mt-16">
           <h3 className="text-2xl font-bold mb-8 font-display text-center">
             Tools & Technologies
           </h3>
 
-          <div className="flex flex-wrap justify-center gap-8">
-            {technologies.map((tech, index) => (
-              <motion.div
-                key={index}
-                className="flex flex-col items-center space-y-2"
-                whileHover={{ scale: 1.05, y: -5 }}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
+          <div className="space-y-8">
+            {/* Row 1: left to right, seamless - Full Screen */}
+            <div className="relative w-screen left-1/2 -translate-x-1/2">
+              <div
+                className={`marquee-row${isPaused ? " paused" : ""}`}
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
               >
-                <div className="bg-background p-4 rounded-full h-20 w-20 flex items-center justify-center border border-border hover:border-primary transition-all">
-                  <i
-                    className={`${tech.icon} text-4xl`}
-                    style={{ color: tech.color }}
-                  ></i>
+                <div className="marquee-track">
+                  {[...row1, ...row1].map((tech, index) => (
+                    <div
+                      key={tech.name + index}
+                      className="marquee-icon flex flex-col items-center mx-4 cursor-pointer"
+                    >
+                      <div className="bg-background p-4 rounded-full flex items-center justify-center border border-border hover:border-primary transition-all marquee-icon-inner">
+                        {tech.fallback
+                          ? <i className={`${tech.icon} text-4xl`} style={{ color: tech.color }}></i>
+                          : <Icon icon={tech.icon} width="32" height="32" color={tech.color} />
+                        }
+                      </div>
+                      <div className="text-sm font-medium text-center mt-2">
+                        {tech.name}
+                      </div>
+                    </div>
+                  ))}
                 </div>
-                <div className="text-sm font-medium text-center">
-                  {tech.name}
+              </div>
+            </div>
+            
+            {/* Row 2: right to left, seamless - Full Screen */}
+            <div className="relative w-screen left-1/2 -translate-x-1/2">
+              <div
+                className={`marquee-row reverse${isPaused ? " paused" : ""}`}
+                onMouseEnter={() => setIsPaused(true)}
+                onMouseLeave={() => setIsPaused(false)}
+              >
+                <div className="marquee-track">
+                  {[...row2, ...row2].map((tech, index) => (
+                    <div
+                      key={tech.name + index}
+                      className="marquee-icon flex flex-col items-center mx-4 cursor-pointer"
+                    >
+                      <div className="bg-background p-4 rounded-full flex items-center justify-center border border-border hover:border-primary transition-all marquee-icon-inner">
+                        {tech.fallback
+                          ? <i className={`${tech.icon} text-4xl`} style={{ color: tech.color }}></i>
+                          : <Icon icon={tech.icon} width="32" height="32" color={tech.color} />
+                        }
+                      </div>
+                      <div className="text-sm font-medium text-center mt-2">
+                        {tech.name}
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              </motion.div>
-            ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>

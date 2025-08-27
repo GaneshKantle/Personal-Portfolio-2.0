@@ -12,8 +12,12 @@ import ActivitiesSection from "../components/ActivitiesSection";
 import ContactSection from "../components/ContactSection";
 import Footer from "../components/Footer";
 import { useEffect } from "react";
+import { useScrollRouting } from "../hooks/useScrollRouting";
 
 export default function Home() {
+  // Use scroll-based routing
+  useScrollRouting();
+  
   // Apply matrix-like background effect and custom styles
   useEffect(() => {
     const addCustomStyles = () => {

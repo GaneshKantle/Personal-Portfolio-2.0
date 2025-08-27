@@ -3,17 +3,25 @@ import { motion } from "framer-motion";
 import { Badge } from "../components/ui/badge";
 
 const experiences = [
+  {
+    title: "AI Web Developer",
+    company: "@WI Thinkers",
+    period: "July 2025 – Present",
+    description: "I manage multiple production websites end-to-end, from development to deployment, and recently delivered a new production project that improved performance by 30% and reduced downtime to under 1%.",
+  
+    skills: ["TypeScript", "Cursor",  "REST API", "Production", "WIX", "Tailwind CSS"],
+  },
 {
   title: "Freelance Frontend Developer",
-  company: "Self-Employed",
-  period: "Nov 2024 – Present",
+  company: "@Self-Employed",
+  period: "Nov 2024 – July 2025",
   description: "Built and maintained 3+ responsive client websites, including a video editor portfolio that increased engagement 60%. Integrated WhatsApp API chatbot, cutting response time by 70%, deployed via Vercel.",
 
   skills: ["React.js", "TypeScript", "Tailwind CSS", "Vercel", "API Integration"],
 },
 {
   title: "Python Programming Intern",
-  company: "VaultofCodes",
+  company: "@VaultofCodes",
   period: "Nov – Dec 2023",
   description: "Completed a 1-month Python internship, delivering 3+ functional scripts with 95% code efficiency. Recognized for strong problem-solving and technical precision.",
   skills: ["Python", "Problem Solving", "Git", "Teamwork"],
@@ -21,7 +29,7 @@ const experiences = [
 
 {
   title: "Web Development Intern",
-  company: "Motion Cut",
+  company: "@Motion Cut",
   period: "Oct – Nov 2023",
   description: "Developed a Netflix clone and Weather UI with 30% faster load times. Designed and launched a portfolio that boosted visitor engagement by 40%.",
   skills: ["JavaScript", "HTML5/CSS3",, "GitHub", "Responsive Design"],

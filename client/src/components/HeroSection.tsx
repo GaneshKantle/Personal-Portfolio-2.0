@@ -29,7 +29,7 @@ export default function HeroSection() {
   useEffect(() => {
     setupTypewriterEffect(
       typingTextRef.current,
-      "ReactJS • JavaScript • Java • Web3 • Blockchain",
+      "ReactJS • JavaScript • Java • Web3 • Blockchain • Typescript",
       100
     );
   }, []);
@@ -51,7 +51,7 @@ export default function HeroSection() {
             transition={{ duration: 0.5 }}
           >
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold font-display mb-4">
-              I'm <span className="text-primary">Frontend Developer</span>
+              I'm <span className="text-primary">AI Web Developer</span>
             </h1>
 
             <p
