@@ -132,10 +132,10 @@ export default function SkillsSection() {
           </h3>
 
           <div className="space-y-8">
-            {/* Row 1: left to right, seamless - Full Screen */}
+            {/* Row 1: right to left, seamless - Full Screen */}
             <div className="relative w-screen left-1/2 -translate-x-1/2">
               <div
-                className={`marquee-row${isPaused ? " paused" : ""}`}
+                className={`marquee-row reverse${isPaused ? " paused" : ""}`}
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}
               >
@@ -160,10 +160,10 @@ export default function SkillsSection() {
               </div>
             </div>
             
-            {/* Row 2: right to left, seamless - Full Screen */}
+            {/* Row 2: left to right, seamless - Full Screen */}
             <div className="relative w-screen left-1/2 -translate-x-1/2">
               <div
-                className={`marquee-row reverse${isPaused ? " paused" : ""}`}
+                className={`marquee-row${isPaused ? " paused" : ""}`}
                 onMouseEnter={() => setIsPaused(true)}
                 onMouseLeave={() => setIsPaused(false)}
               >
