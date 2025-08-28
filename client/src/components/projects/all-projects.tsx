@@ -74,14 +74,14 @@ const additionalProjects: Project[] = [
         githubUrl: "https://github.com/GaneshKantle/Loan-Calculator",
         liveUrl: "https://loan-calcii.vercel.app/",
     image: (
-      <div className="bg-card rounded-xl overflow-hidden shadow-lg w-full max-w-md border border-border">
-        <div className="p-4 bg-card border-b border-border flex justify-between items-center">
+      <div className="bg-white rounded-xl overflow-hidden shadow-sm w-full max-w-md border border-gray-200">
+        <div className="p-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
           <div className="flex space-x-2">
             <div className="w-3 h-3 rounded-full bg-red-500"></div>
             <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
             <div className="w-3 h-3 rounded-full bg-green-500"></div>
           </div>
-              <div className="text-xs font-mono text-muted-foreground">{`Loan Calculator`}</div>
+              <div className="text-xs font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-600">{`Loan Calculator`}</div>
         </div>
                 <img
           src={LoanCalculator}
@@ -107,14 +107,14 @@ const additionalProjects: Project[] = [
         githubUrl: "https://github.com/GaneshKantle/Recipe-Skeleton-Master",
         liveUrl: "https://recipe-skeleton-master.vercel.app/",
     image: (
-      <div className="bg-card rounded-xl overflow-hidden shadow-lg w-full max-w-md border border-border">
-        <div className="p-4 bg-card border-b border-border flex justify-between items-center">
+      <div className="bg-white rounded-xl overflow-hidden shadow-sm w-full max-w-md border border-gray-200">
+        <div className="p-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
           <div className="flex space-x-2">
             <div className="w-3 h-3 rounded-full bg-red-500"></div>
             <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
             <div className="w-3 h-3 rounded-full bg-green-500"></div>
           </div>
-              <div className="text-xs font-mono text-muted-foreground">{`Recipe Book`}</div>
+              <div className="text-xs font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-600">{`Recipe Book`}</div>
         </div>
                 <img
           src={RecipeBook}
@@ -140,15 +140,15 @@ const additionalProjects: Project[] = [
         githubUrl: "https://github.com/GaneshKantle/Pothole-Portal",
         liveUrl: "https://pothole-portal.vercel.app/",
         image: (
-          <div className="bg-card rounded-xl overflow-hidden shadow-lg w-full max-w-md border border-border">
+          <div className="bg-white rounded-xl overflow-hidden shadow-sm w-full max-w-md border border-gray-200">
             {/* Top Bar */}
-            <div className="p-4 bg-card border-b border-border flex justify-between items-center">
+            <div className="p-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
               <div className="flex space-x-2">
                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-              <div className="text-xs font-mono text-muted-foreground">{`Pothole‑Portal`}</div>
+              <div className="text-xs font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-600">{`Pothole‑Portal`}</div>
             </div>
       
             {/* Preview image */}
@@ -177,14 +177,14 @@ const additionalProjects: Project[] = [
         githubUrl: "https://github.com/GaneshKantle/My-Non-Fungible-Token-DApp",
         liveUrl: "https://non-fungible-token-dapp.vercel.app",
         image: (
-          <div className="bg-card rounded-xl overflow-hidden shadow-lg w-full max-w-md border border-border">
-            <div className="p-4 bg-card border-b border-border flex justify-between items-center">
+          <div className="bg-white rounded-xl overflow-hidden shadow-sm w-full max-w-md border border-gray-200">
+            <div className="p-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
               <div className="flex space-x-2">
                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-              <div className="text-xs font-mono text-muted-foreground">{`MyNFT DApp`}</div>
+              <div className="text-xs font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-600">{`MyNFT DApp`}</div>
             </div>
                     <img
           src={MyNFT}
@@ -210,14 +210,14 @@ const additionalProjects: Project[] = [
         githubUrl: "https://github.com/GaneshKantle/Smart-Safety-Ring",
         liveUrl: "https://smart-safety-ring.vercel.app/",
         image: (
-          <div className="bg-card rounded-xl overflow-hidden shadow-lg w-full max-w-md border border-border">
-            <div className="p-4 bg-card border-b border-border flex justify-between items-center">
+          <div className="bg-white rounded-xl overflow-hidden shadow-sm w-full max-w-md border border-gray-200">
+            <div className="p-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
               <div className="flex space-x-2">
                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-              <div className="text-xs font-mono text-muted-foreground">{`Smart-Safety-Ring`}</div>
+              <div className="text-xs font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-600">{`Smart-Safety-Ring`}</div>
             </div>
                     <img
           src={SmartSafetyRing}
@@ -244,14 +244,14 @@ const additionalProjects: Project[] = [
         githubUrl: "https://github.com/GaneshKantle/Ethereum-Voting-DApp",
         liveUrl: "https://votewise-dapp.vercel.app/",
         image: (
-          <div className="bg-card rounded-xl overflow-hidden shadow-lg w-full max-w-md border border-border">
-            <div className="p-4 bg-card border-b border-border flex justify-between items-center">
+          <div className="bg-white rounded-xl overflow-hidden shadow-sm w-full max-w-md border border-gray-200">
+            <div className="p-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
               <div className="flex space-x-2">
                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-              <div className="text-xs font-mono text-muted-foreground">{`VoteWise`}</div>
+              <div className="text-xs font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-600">{`VoteWise`}</div>
             </div>
                     <img
           src={VoteWise}
@@ -277,14 +277,14 @@ const additionalProjects: Project[] = [
         githubUrl: "https://github.com/GaneshKantle/KANTLE-Wardrobe",
         liveUrl: "https://kantles-wardrobe.vercel.app/",
         image: (
-          <div className="bg-card rounded-xl overflow-hidden shadow-lg w-full max-w-md border border-border">
-            <div className="p-4 bg-card border-b border-border flex justify-between items-center">
+          <div className="bg-white rounded-xl overflow-hidden shadow-sm w-full max-w-md border border-gray-200">
+            <div className="p-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
               <div className="flex space-x-2">
                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-              <div className="text-xs font-mono text-muted-foreground">{`Kantle's Wardrobe`}</div>
+              <div className="text-xs font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-600">{`Kantle's Wardrobe`}</div>
             </div>
                     <img
           src={KantlesWardrobe}
@@ -311,14 +311,14 @@ const additionalProjects: Project[] = [
         githubUrl: "https://github.com/GaneshKantle/Freelance-Work-Portfolio",
         liveUrl: "https://ganeshkantle.github.io/Freelance-Work-Portfolio/",
         image: (
-          <div className="bg-card rounded-xl overflow-hidden shadow-lg w-full max-w-md border border-border">
-            <div className="p-4 bg-card border-b border-border flex justify-between items-center">
+          <div className="bg-white rounded-xl overflow-hidden shadow-sm w-full max-w-md border border-gray-200">
+            <div className="p-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
               <div className="flex space-x-2">
                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-              <div className="text-xs font-mono text-muted-foreground">{`Freelance-Work-Portfolio`}</div>
+              <div className="text-xs font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-600">{`Freelance-Work-Portfolio`}</div>
             </div>
                     <img
           src={ClientPortfolio}
@@ -343,14 +343,14 @@ const additionalProjects: Project[] = [
         githubUrl: "https://github.com/GaneshKantle/Image-Gallery",
         liveUrl: "https://ganeshkantle.github.io/Image-Gallery/",
         image: (
-          <div className="bg-card rounded-xl overflow-hidden shadow-lg w-full max-w-md border border-border">
-            <div className="p-4 bg-card border-b border-border flex justify-between items-center">
+          <div className="bg-white rounded-xl overflow-hidden shadow-sm w-full max-w-md border border-gray-200">
+            <div className="p-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
               <div className="flex space-x-2">
                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-              <div className="text-xs font-mono text-muted-foreground">{`Image Gallery`}</div>
+              <div className="text-xs font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-600">{`Image Gallery`}</div>
             </div>
                     <img
           src={ImageGallery}
@@ -377,14 +377,14 @@ const additionalProjects: Project[] = [
         githubUrl: "https://github.com/GaneshKantle/AI-Job-Management-Portal",
         liveUrl: "https://ai-job-management-portal.vercel.app",
         image: (
-          <div className="bg-card rounded-xl overflow-hidden shadow-lg w-full max-w-md border border-border">
-            <div className="p-4 bg-card border-b border-border flex justify-between items-center">
+          <div className="bg-white rounded-xl overflow-hidden shadow-sm w-full max-w-md border border-gray-200">
+            <div className="p-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
               <div className="flex space-x-2">
                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-              <div className="text-xs font-mono text-muted-foreground">{`AI-Job-Portal`}</div>
+              <div className="text-xs font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-600">{`AI-Job-Portal`}</div>
             </div>
                     <img
           src={JobPortal}
@@ -410,14 +410,14 @@ const additionalProjects: Project[] = [
         githubUrl: "https://github.com/GaneshKantle/Farm-Direct",
         liveUrl: "https://farm-directs.vercel.app/",
         image: (
-          <div className="bg-card rounded-xl overflow-hidden shadow-lg w-full max-w-md border border-border">
-            <div className="p-4 bg-card border-b border-border flex justify-between items-center">
+          <div className="bg-white rounded-xl overflow-hidden shadow-sm w-full max-w-md border border-gray-200">
+            <div className="p-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
               <div className="flex space-x-2">
                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-              <div className="text-xs font-mono text-muted-foreground">{`Farm Direct`}</div>
+              <div className="text-xs font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-600">{`Farm Direct`}</div>
             </div>
                     <img
           src={FarmDirect}
@@ -442,14 +442,14 @@ const additionalProjects: Project[] = [
         githubUrl: "https://github.com/GaneshKantle/Netflix-Clone",
         liveUrl: "https://ganeshkantle.github.io/Netflix-Clone/",
         image: (
-          <div className="bg-card rounded-xl overflow-hidden shadow-lg w-full max-w-md border border-border">
-            <div className="p-4 bg-card border-b border-border flex justify-between items-center">
+          <div className="bg-white rounded-xl overflow-hidden shadow-sm w-full max-w-md border border-gray-200">
+            <div className="p-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
               <div className="flex space-x-2">
                 <div className="w-3 h-3 rounded-full bg-red-500"></div>
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-              <div className="text-xs font-mono text-muted-foreground">{`Netflix Clone`}</div>
+              <div className="text-xs font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-600">{`Netflix Clone`}</div>
             </div>
                     <img
           src={NetflixClone}
@@ -475,14 +475,14 @@ const additionalProjects: Project[] = [
         githubUrl: "https://github.com/GaneshKantle/Figma-Smart-Home-Controller",
         liveUrl: "https://ganeshkantle.github.io/Figma-Smart-Home-Controller/",
     image: (
-      <div className="bg-card rounded-xl overflow-hidden shadow-lg w-full max-w-md border border-border">
-        <div className="p-4 bg-card border-b border-border flex justify-between items-center">
+      <div className="bg-white rounded-xl overflow-hidden shadow-sm w-full max-w-md border border-gray-200">
+        <div className="p-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
           <div className="flex space-x-2">
             <div className="w-3 h-3 rounded-full bg-red-500"></div>
             <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
             <div className="w-3 h-3 rounded-full bg-green-500"></div>
           </div>
-              <div className="text-xs font-mono text-muted-foreground">{`Figma Smart Home`}</div>
+              <div className="text-xs font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-600">{`Figma Smart Home`}</div>
         </div>
                 <img
           src={FigmaSmartHome}
@@ -501,14 +501,14 @@ const convertMainProjectsToJSX = (projects: any[]) => {
   return projects.map(project => ({
     ...project,
     image: (
-      <div className="bg-card rounded-xl overflow-hidden shadow-lg w-full max-w-md border border-border">
-        <div className="p-4 bg-card border-b border-border flex justify-between items-center">
+      <div className="bg-white rounded-xl overflow-hidden shadow-sm w-full max-w-md border border-gray-200">
+        <div className="p-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
           <div className="flex space-x-2">
             <div className="w-3 h-3 rounded-full bg-red-500"></div>
             <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
             <div className="w-3 h-3 rounded-full bg-green-500"></div>
           </div>
-          <div className="text-xs font-mono text-muted-foreground">{project.title}</div>
+          <div className="text-xs font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-600">{project.title}</div>
         </div>
         <img
           src={project.image}
@@ -527,7 +527,7 @@ export default function AllProjects() {
   const [, setLocation] = useLocation();
   
   return (
-    <div className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-white text-gray-900">
       <Navbar />
       
       <section className="py-20 px-4 sm:px-6 lg:px-8">
@@ -535,15 +535,15 @@ export default function AllProjects() {
           {/* Header Section */}
           <div className="text-center mb-16">
             <motion.h1
-              className="text-3xl md:text-2xl lg:text-4xl font-bold font-display mb-6 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent"
+              className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 mb-6 font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif]"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
             >
-              All Projects
+              All <span className="text-blue-600">Projects</span>
             </motion.h1>
             <motion.p
-              className="text-lg text-muted-foreground max-w-2xl mx-auto"
+              className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif]"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 1, 0.5, 1] }}
@@ -557,40 +557,40 @@ export default function AllProjects() {
             {allProjects.map((project: Project, index: number) => (
               <motion.div
                 key={project.id}
-                className="project-card bg-background rounded-xl shadow-lg overflow-hidden border border-border hover:border-primary transition-all h-full hover:shadow-xl min-w-0"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                className="project-card bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-200 hover:shadow-md transition-all duration-300 ease-in-out hover:scale-[1.02] h-full min-w-0"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{
-                  duration: 0.3,
-                  delay: index * 0.05,
+                  duration: 0.2,
+                  delay: index * 0.03,
                   ease: "easeOut",
                 }}
                 whileHover={{ y: -3 }}
               >
                 <div className="flex flex-col h-full">
-                  <div className="bg-card flex items-center justify-center p-3 sm:p-4 lg:p-5">
+                  <div className="bg-gray-50 flex items-center justify-center p-3 sm:p-4 lg:p-5">
                     {/* Render the project image directly since it's already JSX.Element */}
                     {project.image}
                   </div>
                   <div className="p-3 sm:p-4 md:p-5 lg:p-6 flex-1 flex flex-col">
-                    <h3 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3 font-display">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3 text-gray-900 font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif]">
                       {project.title}
                     </h3>
-                    <p className="text-muted-foreground mb-3 sm:mb-4 flex-1 text-xs sm:text-sm lg:text-base">
+                    <p className="text-gray-600 mb-3 sm:mb-4 flex-1 text-xs sm:text-sm lg:text-base leading-relaxed">
                       {project.description}
                     </p>
                     <div className="flex flex-wrap gap-1 sm:gap-2 mb-3 sm:mb-4">
                       {project.technologies.slice(0, 6).map((tech: string, techIndex: number) => (
                         <span
                           key={techIndex}
-                          className="bg-card px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-xs border border-border"
+                          className="bg-gray-100 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-xs text-gray-700 border border-gray-200"
                         >
                            {tech}
                         </span>
                       ))}
                       {project.technologies.length > 6 && (
-                        <span className="bg-card px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-xs border border-border text-muted-foreground">
+                        <span className="bg-gray-100 px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-xs text-gray-700 border border-gray-200">
                           +{project.technologies.length - 6}
                         </span>
                       )}
@@ -602,7 +602,7 @@ export default function AllProjects() {
                           href={project.githubUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex-1 bg-card hover:bg-card/80 text-primary hover:text-primary/80 border border-border hover:border-primary transition-all duration-200 py-2 px-3 rounded-lg text-sm font-medium text-center flex items-center justify-center"
+                          className="flex-1 bg-white hover:bg-gray-50 text-blue-600 hover:text-blue-700 border border-gray-200 hover:border-blue-300 transition-all duration-300 ease-in-out py-2 px-3 rounded-lg text-sm font-medium text-center flex items-center justify-center"
                         >
                           <i className="fab fa-github mr-2"></i> 
                           <span className="hidden sm:inline">Source</span>
@@ -612,7 +612,7 @@ export default function AllProjects() {
                           href={project.liveUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex-1 bg-card hover:bg-card/80 text-primary hover:text-primary/80 border border-border hover:border-primary transition-all duration-200 py-2 px-3 rounded-lg text-sm font-medium text-center flex items-center justify-center"
+                          className="flex-1 bg-white hover:bg-gray-50 text-blue-600 hover:text-blue-700 border border-gray-200 hover:border-blue-300 transition-all duration-300 ease-in-out py-2 px-3 rounded-lg text-sm font-medium text-center flex items-center justify-center"
                         >
                           <i className="fas fa-external-link-alt mr-2"></i> 
                           <span className="hidden sm:inline">Live</span>
@@ -630,7 +630,7 @@ export default function AllProjects() {
           <div className="text-center mt-16">
             <button
               onClick={() => setLocation("/")}
-              className="inline-block bg-card hover:bg-card/80 text-primary hover:text-primary/80 border border-border hover:border-primary transition-all duration-200 py-3 px-6 rounded-lg text-lg font-medium transform hover:scale-105 hover:shadow-lg"
+              className="inline-block bg-blue-600 hover:bg-blue-700 text-white border border-blue-600 hover:border-blue-700 transition-all duration-300 ease-in-out py-3 px-6 rounded-full text-lg font-semibold transform hover:scale-[1.02] hover:shadow-md font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif]"
             >
               ← Back to Home
             </button>

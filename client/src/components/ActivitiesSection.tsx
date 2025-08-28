@@ -10,8 +10,8 @@ const activities = [
     description:
       "Regular participant in local and academic hackathons. Top 3 at the 2025 AquaTech Hackathon.",
     icon: "fas fa-code",
-    color: "text-primary",
-    gradient: "from-primary/30 to-[#8B5CF6]/30",
+    color: "text-blue-600",
+    gradient: "from-blue-100 to-purple-100",
   },
   {
     id: 2,
@@ -19,8 +19,8 @@ const activities = [
     description:
       "Organizing blood donation camps and spreading awareness about health and safety.",
     icon: "fas fa-users",
-    color: "text-[#10B981]",
-    gradient: "from-[#10B981]/30 to-primary/30",
+    color: "text-green-600",
+    gradient: "from-green-100 to-blue-100",
   },
   {
     id: 3,
@@ -28,8 +28,8 @@ const activities = [
     description:
       "Secured a position in the top 50, competing against 700+ skilled players.",
     icon: "fas fa-basketball-ball",
-    color: "text-[#8B5CF6]",
-    gradient: "from-[#8B5CF6]/30 to-[#10B981]/30",
+    color: "text-purple-600",
+    gradient: "from-purple-100 to-green-100",
   },
 ];
 
@@ -90,79 +90,86 @@ const profiles = [
 
 export default function ActivitiesSection() {
   return (
-    <section id="activities" className="py-20 bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl font-bold font-display mb-4">
-            Extracurricular <span className="text-primary">Activities</span>
-          </h2>
-          <div className="w-20 h-1 bg-primary mx-auto rounded-full"></div>
-        </div>
+    <>
+      <section id="activities" className="py-12 sm:py-16 md:py-20 bg-white">
+        <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+          <div className="text-center mb-12 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 mb-3 sm:mb-4 font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif]">
+              Extracurricular <span className="text-blue-600">Activities</span>
+            </h2>
+            <div className="w-16 sm:w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>
+          </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {activities.map((activity, index) => (
-            <motion.div
-              key={activity.id}
-              className="bg-card rounded-xl overflow-hidden shadow-lg border border-border hover:border-primary transition-all"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ y: -10 }}
-            >
-              <div
-                className={`h-40 bg-gradient-to-r ${activity.gradient}`}
-              ></div>
-              <div className="p-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
+              {activities.map((activity) => (
                 <motion.div
-                  className="flex items-center justify-center -mt-16 mb-6"
-                  whileHover={{ scale: 1.1, rotate: 5 }}
-                  whileTap={{ scale: 0.9 }}
+                  key={activity.id}
+                  className="bg-white p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-sm border border-gray-200 hover:shadow-md transition-all duration-300 ease-in-out hover:scale-[1.02] group"
+                  whileHover={{ y: -5 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
                 >
-                  <div
-                    className={`bg-background w-20 h-20 rounded-full border-4 border-card flex items-center justify-center text-3xl ${activity.color}`}
-                  >
-                    <i className={activity.icon}></i>
+                  <div className={`w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br ${activity.gradient} rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
+                    <i className={`${activity.icon} ${activity.color} text-lg sm:text-2xl`}></i>
                   </div>
+                  <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-gray-900">
+                    {activity.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                    {activity.description}
+                  </p>
                 </motion.div>
-                <h3 className="text-xl font-bold text-center mb-4">
-                  {activity.title}
-                </h3>
-                <p className="text-muted-foreground text-center">
-                  {activity.description}
-                </p>
+              ))}
+            </div>
+
+            <div className="text-center">
+              <h3 className="text-2xl sm:text-3xl font-semibold mb-6 sm:mb-8 text-gray-900 font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif]">
+                Connect with me on
+              </h3>
+              <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-3 sm:gap-4 max-w-4xl mx-auto">
+                {profiles.map((profile, index) => (
+                  <motion.a
+                    key={index}
+                    href={profile.url}
+                    target={profile.target || "_self"}
+                    rel={profile.rel || ""}
+                    className="bg-white p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 ease-in-out hover:scale-[1.02] group flex flex-col items-center"
+                    whileHover={{ y: -5 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 mb-2 sm:mb-3 flex items-center justify-center">
+                      <i 
+                        className={`${profile.icon} text-lg sm:text-xl`} 
+                        style={{ color: profile.color }}
+                      ></i>
+                    </div>
+                    <span className="text-xs sm:text-sm font-medium text-gray-700 text-center">
+                      {profile.name}
+                    </span>
+                  </motion.a>
+                ))}
               </div>
-            </motion.div>
-          ))}
+            </div>
+          </div>
         </div>
-
-        {/* Other Profiles */}
-        <div className="mt-16 max-w-4xl mx-auto">
-          <h3 className="text-2xl font-bold mb-8 text-center font-display">
-            Other <span className="text-primary">Profiles</span>
-          </h3>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4">
-            {profiles.map((profile, index) => (
-              <motion.a
-                key={index}
-                href={profile.url}
-                className="bg-background p-4 rounded-lg flex flex-col items-center hover:border border-primary transition-all"
-                whileHover={{ y: -5, scale: 1.05 }}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-              >
-                <div className="text-2xl mb-2" style={{ color: profile.color }}>
-                  <i className={profile.icon}></i>
-                </div>
-                <span className="text-sm">{profile.name}</span>
-              </motion.a>
-            ))}
+      </section>
+      
+      {/* Section Separator */}
+      <div className="py-12 sm:py-16 bg-white">
+        <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+          <div className="flex items-center justify-center">
+            <div className="w-24 sm:w-32 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+            <div className="mx-3 sm:mx-4 w-2 h-2 bg-blue-600 rounded-full"></div>
+            <div className="w-24 sm:w-32 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
           </div>
         </div>
       </div>
-    </section>
+    </>
   );
 }

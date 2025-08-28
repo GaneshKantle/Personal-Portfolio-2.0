@@ -74,6 +74,55 @@
       opacity: 1;
     }
   }
+
+  /* Mobile-first responsive improvements */
+  html {
+    font-size: 16px;
+  }
+
+  /* Ensure proper touch targets on mobile */
+  button, a, input, textarea, select {
+    @apply touch-manipulation;
+  }
+
+  /* Improve text readability on small screens */
+  @media (max-width: 640px) {
+    body {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      line-height: 1.2;
+    }
+  }
+
+  /* Prevent horizontal scroll on mobile */
+  .container {
+    @apply overflow-x-hidden;
+  }
+}
+
+@layer components {
+  /* Responsive button improvements */
+  .btn-responsive {
+    @apply px-4 py-2 text-sm sm:px-6 sm:py-3 sm:text-base;
+  }
+
+  /* Responsive card improvements */
+  .card-responsive {
+    @apply p-4 sm:p-6 md:p-8;
+  }
+
+  /* Responsive text improvements */
+  .text-responsive {
+    @apply text-sm sm:text-base md:text-lg;
+  }
+
+  /* Responsive heading improvements */
+  .heading-responsive {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl;
+  }
 }
 
 .water-fill {
@@ -103,107 +152,191 @@
   }
 }
 
-.no-hover-orange:hover {
-  background-color: transparent !important; /* Prevent bg color change */
-}
-
-/* Marquee effect for SkillsSection */
+/* Marquee animations for Skills Section */
 .marquee-row {
   overflow: hidden;
-  width: 100%;
+  white-space: nowrap;
   position: relative;
+  width: 100%;
   height: 110px;
-  /* Responsive height */
 }
+
+.marquee-row.reverse {
+  direction: rtl;
+}
+
 .marquee-track {
-  display: flex;
+  display: inline-flex;
   align-items: center;
+  white-space: nowrap;
+  animation: marquee 30s linear infinite;
   width: max-content;
-  animation: marquee-left 40s linear infinite;
 }
+
 .marquee-row.reverse .marquee-track {
-  animation: marquee-right 40s linear infinite;
+  animation: marquee-reverse 30s linear infinite;
 }
+
 .marquee-row.paused .marquee-track {
   animation-play-state: paused;
 }
+
 .marquee-icon {
-  min-width: 90px;
+  min-width: 80px;
   max-width: 120px;
   flex: 0 0 auto;
-  /* Responsive min/max width */
+  margin: 0 8px;
 }
+
 .marquee-icon-inner {
-  height: 80px;
-  width: 80px;
+  height: 60px;
+  width: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes marquee-reverse {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(50%);
+  }
+}
+
+/* Responsive marquee adjustments */
 @media (max-width: 640px) {
   .marquee-row {
     height: 100px;
   }
+  
+  .marquee-track {
+    animation-duration: 20s;
+  }
+  
+  .marquee-row.reverse .marquee-track {
+    animation-duration: 20s;
+  }
+  
   .marquee-icon {
     min-width: 60px;
     max-width: 70px;
+    margin: 0 4px;
   }
+  
   .marquee-icon-inner {
     height: 48px;
     width: 48px;
   }
+  
   .marquee-icon i {
     font-size: 1.5rem !important;
   }
+  
   .marquee-icon .text-sm {
     margin-top: 4px !important;
   }
 }
+
 @media (min-width: 641px) and (max-width: 1024px) {
   .marquee-row {
     height: 90px;
   }
+  
   .marquee-icon {
     min-width: 70px;
     max-width: 90px;
+    margin: 0 6px;
   }
+  
   .marquee-icon-inner {
-    height: 60px;
-    width: 60px;
+    height: 54px;
+    width: 54px;
   }
+  
   .marquee-icon i {
     font-size: 2rem !important;
   }
 }
+
 @media (min-width: 1025px) {
   .marquee-row {
     height: 110px;
   }
+  
   .marquee-icon {
-    min-width: 90px;
+    min-width: 80px;
     max-width: 120px;
+    margin: 0 8px;
   }
+  
   .marquee-icon-inner {
-    height: 80px;
-    width: 80px;
+    height: 60px;
+    width: 60px;
   }
+  
   .marquee-icon i {
     font-size: 2.5rem !important;
   }
 }
-@keyframes marquee-left {
-  0% {
-    transform: translateX(0%);
+
+/* Smooth scrolling for all devices */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Improve focus states for accessibility */
+button:focus,
+a:focus,
+input:focus,
+textarea:focus,
+select:focus {
+  @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 768px) {
+  /* Ensure proper spacing on mobile */
+  .container {
+    @apply px-4;
   }
-  100% {
-    transform: translateX(-50%);
+  
+  /* Improve button touch targets */
+  button, a {
+    @apply min-h-[44px] min-w-[44px];
+  }
+  
+  /* Better form spacing on mobile */
+  form > div {
+    @apply mb-4;
+  }
+  
+  /* Improve mobile navigation */
+  .mobile-menu {
+    @apply w-full max-w-[90vw];
   }
 }
-@keyframes marquee-right {
-  0% {
-    transform: translateX(-50%);
+
+/* Tablet improvements */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .container {
+    @apply px-6;
   }
-  100% {
-    transform: translateX(0%);
+}
+
+/* Desktop improvements */
+@media (min-width: 1024px) {
+  .container {
+    @apply px-8;
   }
 }

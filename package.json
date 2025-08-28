@@ -13,6 +13,8 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
+    "@iconify/icons-logos": "^1.2.36",
+    "@iconify/icons-simple-icons": "^1.2.74",
     "@iconify/react": "^6.0.0",
     "@jridgewell/trace-mapping": "^0.3.25",
     "@neondatabase/serverless": "^0.10.4",
