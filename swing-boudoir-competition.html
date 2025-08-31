@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Swing Boudoir Cover Model Competition</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Oswald:wght@400;700&display=swap');
+
+  /* General Reset */
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background-color: #000;
+    font-family: 'Arial', sans-serif;
+    color: #000;
+    padding: 0;
+  }
+
+  .container {
+    max-width: 400px;
+    margin: 0 auto;
+    background-color: #000;
+    position: relative;
+  }
+
+  /* Top Black Section */
+  .top-black {
+    background: #000;
+    color: #fff;
+    padding: 30px 20px 20px;
+    position: relative;
+  }
+
+  /* Logo */
+  .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    text-align: center;
+    color: #fff;
+    margin-bottom: 15px;
+    letter-spacing: 8px;
+  }
+  .logo small {
+    display: block;
+    font-size: 18px;
+    letter-spacing: 10px;
+    color: #e10713;
+    margin-top: -5px;
+  }
+
+  /* Main heading section */
+  .hero-content {
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  .heading-main {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    line-height: 0.9;
+    color: #fff;
+    text-align: left;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 2;
+    padding-right: 120px;
+  }
+
+  /* Open Now overlay text */
+  .open-now-overlay {
+    position: absolute;
+    right: -20px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 100px;
+    color: #e10713;
+    opacity: 0.8;
+    letter-spacing: 3px;
+    transform-origin: center;
+    white-space: nowrap;
+  }
+
+  /* Magazine image */
+  .magazine-image {
+    position: relative;
+    margin: 20px -20px 0;
+    overflow: hidden;
+  }
+
+  .magazine-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* White Prize Box */
+  .prize-box {
+    background: #fff;
+    margin: 20px;
+    padding: 25px 20px;
+    text-align: center;
+    border: 3px solid #000;
+    position: relative;
+  }
+
+  .prize-box h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    margin: 0 0 10px;
+    letter-spacing: 1px;
+    line-height: 1.2;
+  }
+
+  .prize-amount {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 72px;
+    color: #e10713;
+    margin: 10px 0;
+    line-height: 0.8;
+    letter-spacing: -2px;
+  }
+
+  .plus {
+    font-size: 36px;
+    font-weight: bold;
+    margin: 10px 0;
+  }
+
+  .prize-box p {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 8px 0;
+    line-height: 1.4;
+  }
+
+  /* Magazine covers section */
+  .magazines-row {
+    display: flex;
+    gap: 10px;
+    padding: 0 20px;
+    background: #000;
+  }
+
+  .magazine-cover {
+    flex: 1;
+    position: relative;
+  }
+
+  .magazine-cover img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 5px;
+  }
+
+  /* Top 5 Section */
+  .top5-section {
+    background: #000;
+    padding: 30px 20px;
+    position: relative;
+  }
+
+  .top5-badge {
+    background: #e10713;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    border: 3px solid #e10713;
+  }
+
+  .top5-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    margin: 0;
+    letter-spacing: 2px;
+  }
+
+  .top5-subtitle {
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 10px 0 5px;
+  }
+
+  .top5-badge p {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 8px 0;
+    line-height: 1.4;
+  }
+
+  /* Competition Live Section */
+  .competition-section {
+    background: #fff;
+    padding: 30px 20px;
+    text-align: center;
+  }
+
+  .competition-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    line-height: 1;
+  }
+
+  .entries-close {
+    font-family: 'Arial', sans-serif;
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  .date-display {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    margin: 10px 0;
+    letter-spacing: 1px;
+  }
+
+  .date-display sup {
+    font-size: 20px;
+  }
+
+  .urgency {
+    background: #e10713;
+    color: #fff;
+    padding: 15px 20px;
+    margin: 20px -20px -30px;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    letter-spacing: 2px;
+  }
+
+  /* Bottom CTA */
+  .bottom-cta {
+    background: #000;
+    color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .join-button {
+    background: #e10713;
+    color: #fff;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    padding: 15px 40px;
+    display: inline-block;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+  }
+
+  .bottom-cta small {
+    display: block;
+    font-size: 11px;
+    color: #999;
+    margin-bottom: 20px;
+    line-height: 1.4;
+  }
+
+  .bottom-tagline {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 24px;
+    line-height: 1.2;
+    letter-spacing: 1px;
+  }
+
+  .bottom-tagline .red {
+    color: #e10713;
+  }
+
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- Top Black Section with Logo -->
+  <section class="top-black">
+    <div class="logo">
+      SWING<small>BOUDOIR</small>
+    </div>
+
+    <div class="hero-content">
+      <h1 class="heading-main">
+        ULTIMATE<br>
+        COVER MODEL<br>
+        COMPETITION
+      </h1>
+      <div class="open-now-overlay">OPEN NOW!</div>
+    </div>
+
+    <!-- Magazine Hand Image -->
+    <div class="magazine-image">
+      <img src="https://i.imgur.com/yNwuGot.jpg" alt="Hand holding Swing Boudoir magazine">
+    </div>
+  </section>
+
+  <!-- Prize Box -->
+  <section class="prize-box">
+    <h3>BE OUR NEXT<br>COVER STAR & WIN</h3>
+    <div class="prize-amount">$2,000</div>
+    <div class="plus">+</div>
+    <p><strong>FRONT & BACK COVER FEATURE</strong></p>
+    <p><strong>EDITORIAL INTERVIEW +<br>INSTAGRAM COLLABORATION</strong></p>
+  </section>
+
+  <!-- Magazine Covers -->
+  <section class="magazines-row">
+    <div class="magazine-cover">
+      <img src="https://i.imgur.com/pM01hEn.jpg" alt="Swing Boudoir Magazine Issue 39">
+    </div>
+    <div class="magazine-cover">
+      <img src="https://i.imgur.com/qnWwbq4.jpg" alt="Swing Boudoir Magazine Issue 40">
+    </div>
+  </section>
+
+  <!-- Top 5 Section -->
+  <section class="top5-section">
+    <div class="top5-badge">
+      <h2 class="top5-title">TOP 5</h2>
+      <p class="top5-subtitle">FINALISTS EACH RECEIVE:</p>
+      <p><strong>$150 CASH PRIZE</strong></p>
+      <p><strong>+</strong></p>
+      <p><strong>FEATURED PLACEMENT IN<br>SWING BOUDOIR MAGAZINE</strong></p>
+    </div>
+  </section>
+
+  <!-- Competition Date Section -->
+  <section class="competition-section">
+    <h2 class="competition-title">THE COMPETITION<br>IS NOW LIVE</h2>
+    <p class="entries-close">ENTRIES CLOSE ON</p>
+    <div class="date-display">4<sup>th</sup> SEPTEMBER</div>
+    <div class="urgency">DON'T MISS YOUR CHANCE!</div>
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="bottom-cta">
+    <div class="join-button">JOIN NOW</div>
+    <small>(OR SIMPLY REPLY "I'M IN" TO THIS EMAIL<br>FOR FURTHER STEPS)</small>
+    <div class="bottom-tagline">
+      DON'T JUST<br>
+      DREAM ABOUT IT...<br>
+      THIS IS YOUR<br>
+      <span class="red">SPOTLIGHT MOMENT!</span>
+    </div>
+  </section>
+
+</div>
+</body>
+</html>
