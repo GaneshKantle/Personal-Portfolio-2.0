@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Switch, Route, useLocation } from "wouter";
 import { Toaster } from "./components/ui/toaster";
 import { TooltipProvider } from "./components/ui/tooltip";
+import { SpeedInsights } from "@vercel/speed-insights/react"
 import NotFound from "./pages/not-found";
 import Home from "./pages/Home";
 import AllProjects from "./components/projects/all-projects";
