@@ -13,12 +13,12 @@ export function log(message: string) {
 // Setup Vite in development mode
 export async function setupVite(app: Express, server: Server) {
   try {
-    // Create Vite server in middleware mode
+    // Create Vite server in middleware mode with config file
+    // This ensures path aliases from vite.config.ts are properly resolved
     const vite = await createViteServer({
+      configFile: path.resolve(process.cwd(), 'vite.config.ts'),
       server: { middlewareMode: true },
       appType: 'spa',
-      // Important: Make sure this matches the directory where your client files are located
-      root: path.resolve(process.cwd(), 'client'),
     });
 
     // Use Vite's connect instance as middleware
@@ -58,7 +58,8 @@ export async function setupVite(app: Express, server: Server) {
 
 // Serve static files in production
 export function serveStatic(app: Express) {
-  const clientDistPath = path.resolve(process.cwd(), 'dist', 'public');
+  // Vite builds to dist/, not dist/public
+  const clientDistPath = path.resolve(process.cwd(), 'dist');
   
   app.use(express.static(clientDistPath));
   
