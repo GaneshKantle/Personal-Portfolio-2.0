@@ -2,6 +2,8 @@ import React from "react";
 import { Button } from "../components/ui/button";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { BackgroundPattern } from "./BackgroundPattern";
+import { DotPattern } from "./DotPattern";
 import { setupTypewriterEffect, scrollToElement } from "../lib/utils";
 import profilePic from "../img/profile.jpg";
 import "../index.css";
@@ -36,27 +38,32 @@ export default function HeroSection() {
 
   return (
     <section
-      id="home"
-      className="relative pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-12 sm:pb-16 md:pb-20 min-h-screen flex items-center bg-white"
-    >
+    id="home"
+    className="relative min-h-screen flex items-center bg-white"
+  >
+    <DotPattern className="absolute inset-0 z-0" />
       {/* Subtle background pattern */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-br from-gray-50 to-white"></div>
+      {/* <div className="absolute inset-0 z-0 bg-white/10 pointer-events-none"></div> */}
 
-      <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
+
+      <div className="container mx-auto relative z-10">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
           <motion.div
             className="order-2 lg:order-1 text-center lg:text-left"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold tracking-tight text-gray-900 mb-3 sm:mb-4 font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] leading-tight">
-              I'm <span className="text-blue-600">AI Web Developer</span>
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold tracking-tight text-gray-900 mb-3 sm:mb-4 leading-tight">
+              I'm <span className="text-blue-600">Ganesh Kantle </span>
+            </h1>
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold tracking-tight text-gray-900 mb-3 sm:mb-4 leading-tight">
+              An <span className="text-blue-600">AI Web Developer</span>
             </h1>
 
             <p
               ref={typingTextRef}
-              className="text-base sm:text-lg md:text-xl text-gray-600 mb-4 sm:mb-6 font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] leading-relaxed"
+              className="text-base sm:text-lg md:text-xl text-gray-600 mb-4 sm:mb-6 leading-relaxed"
             >
               {/* Content will be filled by typewriter effect */}
             </p>

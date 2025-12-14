@@ -19,7 +19,7 @@ export default function AboutSection() {
       <section id="about" className="py-12 sm:py-16 md:py-20 bg-white">
         <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 mb-3 sm:mb-4 font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif]">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 mb-3 sm:mb-4">
               About <span className="text-blue-600">Me</span>
             </h2>
             <div className="w-16 sm:w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>
@@ -38,14 +38,14 @@ export default function AboutSection() {
                   transform: "translateZ(20px)",
                 }}
               >
-                <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed mb-4 sm:mb-6 font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] px-2 sm:px-0">
+                <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed mb-4 sm:mb-6 px-2 sm:px-0">
                   I'm a passionate frontend developer with 2+ years of academic
                   experience creating beautiful, responsive web applications. My
                   expertise lies in React.js, JavaScript, and Java, with a growing
                   interest in Web3, blockchain technologies, and Solidity
                   development.
                 </p>
-                <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed mb-4 sm:mb-6 font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] px-2 sm:px-0">
+                <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed mb-4 sm:mb-6 px-2 sm:px-0">
                   I enjoy turning complex problems into simple, elegant solutions.
                   When I'm not coding, I'm writing technical blogs or contributing
                   to open-source projects.
@@ -60,7 +60,7 @@ export default function AboutSection() {
                   className="bg-white p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 ease-in-out hover:scale-[1.02]"
                   whileHover={{ y: -5 }}
                   initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  whileInView={{ opacity: 1, y: -5 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >

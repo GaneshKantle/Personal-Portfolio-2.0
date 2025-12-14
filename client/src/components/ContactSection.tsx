@@ -146,11 +146,11 @@ export default function ContactSection() {
       <section id="contact" className="py-12 sm:py-16 md:py-20 bg-white">
         <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 mb-3 sm:mb-4 font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif]">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 mb-3 sm:mb-4">
               Get In <span className="text-blue-600">Touch</span>
             </h2>
             <div className="w-16 sm:w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>
-            <p className="text-gray-600 mt-3 sm:mt-4 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] px-4">
+            <p className="text-gray-600 mt-3 sm:mt-4 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed px-4">
               Hey Human feel free to reach me!.
             </p>
           </div>
@@ -158,13 +158,12 @@ export default function ContactSection() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 max-w-6xl mx-auto">
             {/* Contact Form */}
             <motion.div 
-              className="bg-white p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl shadow-sm border border-gray-200 hover:shadow-md transition-all duration-300 ease-in-out"
-              initial={{ opacity: 0, x: -50 }}
+className="relative z-10 bg-white p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl shadow-sm border border-gray-200 hover:shadow-md transition-all duration-300 ease-in-out"              initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-gray-900 font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif]">Send me a message</h3>
+              <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-gray-900">Send me a message</h3>
               
               <form>
                 <div className="mb-4 sm:mb-6">
@@ -222,7 +221,7 @@ export default function ContactSection() {
                     onClick={handleSendWhatsApp}
                     className="flex-1 bg-green-600 hover:bg-green-700 text-white font-semibold transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-md rounded-full px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-center text-sm sm:text-base"
                   >
-                    <i className="fas fa-whatsapp mr-1 sm:mr-2"></i> WhatsApp
+                    <i className="fab fa-whatsapp mr-1 sm:mr-2"></i> WhatsApp
                   </Button>
                 </div>
               </form>
@@ -237,7 +236,7 @@ export default function ContactSection() {
               transition={{ duration: 0.5 }}
             >
               <div className="mb-6 sm:mb-8">
-                <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-gray-900 font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif]">Contact Information</h3>
+                <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-gray-900">Contact Information</h3>
                 
                 <div className="space-y-4 sm:space-y-6">
                   <div className="flex items-start">
@@ -264,13 +263,13 @@ export default function ContactSection() {
               </div>
               
               <div>
-                <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-gray-900 font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif]">Let's build something amazing together</h3>
+                <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-gray-900">Let's build something amazing together</h3>
                 <p className="text-gray-600 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
                   I'm always interested in hearing about new projects and opportunities. Whether you need a web application, smart contract development, or technical consultation, I'm here to help.
                 </p>
-                <div className="font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-xs sm:text-sm text-blue-600">
+                <div className="text-xs sm:text-sm text-blue-600">
                   <span className="block mb-1"><span className="text-gray-500">{'>'}</span> Currently available for freelance projects</span>
-                  <span className="block"><span className="text-gray-500">{'>'}</span> Open to remote work opportunities</span>
+                  <span className="block"><span className="text-gray-500">{'>'}</span> Open to full time work opportunities</span>
                 </div>
               </div>
             </motion.div>

@@ -81,7 +81,7 @@ const additionalProjects: Project[] = [
             <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
             <div className="w-3 h-3 rounded-full bg-green-500"></div>
           </div>
-              <div className="text-xs font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-600">{`Loan Calculator`}</div>
+              <div className="text-xs text-gray-600">{`Loan Calculator`}</div>
         </div>
                 <img
           src={LoanCalculator}
@@ -114,7 +114,7 @@ const additionalProjects: Project[] = [
             <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
             <div className="w-3 h-3 rounded-full bg-green-500"></div>
           </div>
-              <div className="text-xs font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-600">{`Recipe Book`}</div>
+              <div className="text-xs text-gray-600">{`Recipe Book`}</div>
         </div>
                 <img
           src={RecipeBook}
@@ -148,7 +148,7 @@ const additionalProjects: Project[] = [
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-              <div className="text-xs font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-600">{`Pothole‑Portal`}</div>
+              <div className="text-xs text-gray-600">{`Pothole‑Portal`}</div>
             </div>
       
             {/* Preview image */}
@@ -184,7 +184,7 @@ const additionalProjects: Project[] = [
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-              <div className="text-xs font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-600">{`MyNFT DApp`}</div>
+              <div className="text-xs text-gray-600">{`MyNFT DApp`}</div>
             </div>
                     <img
           src={MyNFT}
@@ -217,7 +217,7 @@ const additionalProjects: Project[] = [
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-              <div className="text-xs font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-600">{`Smart-Safety-Ring`}</div>
+              <div className="text-xs text-gray-600">{`Smart-Safety-Ring`}</div>
             </div>
                     <img
           src={SmartSafetyRing}
@@ -251,7 +251,7 @@ const additionalProjects: Project[] = [
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-              <div className="text-xs font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-600">{`VoteWise`}</div>
+              <div className="text-xs text-gray-600">{`VoteWise`}</div>
             </div>
                     <img
           src={VoteWise}
@@ -284,7 +284,7 @@ const additionalProjects: Project[] = [
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-              <div className="text-xs font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-600">{`Kantle's Wardrobe`}</div>
+              <div className="text-xs text-gray-600">{`Kantle's Wardrobe`}</div>
             </div>
                     <img
           src={KantlesWardrobe}
@@ -318,7 +318,7 @@ const additionalProjects: Project[] = [
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-              <div className="text-xs font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-600">{`Freelance-Work-Portfolio`}</div>
+              <div className="text-xs text-gray-600">{`Freelance-Work-Portfolio`}</div>
             </div>
                     <img
           src={ClientPortfolio}
@@ -350,7 +350,7 @@ const additionalProjects: Project[] = [
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-              <div className="text-xs font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-600">{`Image Gallery`}</div>
+              <div className="text-xs text-gray-600">{`Image Gallery`}</div>
             </div>
                     <img
           src={ImageGallery}
@@ -384,7 +384,7 @@ const additionalProjects: Project[] = [
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-              <div className="text-xs font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-600">{`AI-Job-Portal`}</div>
+              <div className="text-xs text-gray-600">{`AI-Job-Portal`}</div>
             </div>
                     <img
           src={JobPortal}
@@ -417,7 +417,7 @@ const additionalProjects: Project[] = [
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-              <div className="text-xs font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-600">{`Farm Direct`}</div>
+              <div className="text-xs text-gray-600">{`Farm Direct`}</div>
             </div>
                     <img
           src={FarmDirect}
@@ -449,7 +449,7 @@ const additionalProjects: Project[] = [
                 <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                 <div className="w-3 h-3 rounded-full bg-green-500"></div>
               </div>
-              <div className="text-xs font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-600">{`Netflix Clone`}</div>
+              <div className="text-xs text-gray-600">{`Netflix Clone`}</div>
             </div>
                     <img
           src={NetflixClone}
@@ -482,7 +482,7 @@ const additionalProjects: Project[] = [
             <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
             <div className="w-3 h-3 rounded-full bg-green-500"></div>
           </div>
-              <div className="text-xs font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-600">{`Figma Smart Home`}</div>
+              <div className="text-xs text-gray-600">{`Figma Smart Home`}</div>
         </div>
                 <img
           src={FigmaSmartHome}
@@ -508,7 +508,7 @@ const convertMainProjectsToJSX = (projects: any[]) => {
             <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
             <div className="w-3 h-3 rounded-full bg-green-500"></div>
           </div>
-          <div className="text-xs font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-600">{project.title}</div>
+          <div className="text-xs text-gray-600">{project.title}</div>
         </div>
         <img
           src={project.image}
@@ -535,7 +535,7 @@ export default function AllProjects() {
           {/* Header Section */}
           <div className="text-center mb-16">
             <motion.h1
-              className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 mb-6 font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif]"
+              className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 mb-6"
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
@@ -543,7 +543,7 @@ export default function AllProjects() {
               All <span className="text-blue-600">Projects</span>
             </motion.h1>
             <motion.p
-              className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif]"
+              className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 1, 0.5, 1] }}
@@ -557,8 +557,7 @@ export default function AllProjects() {
             {allProjects.map((project: Project, index: number) => (
               <motion.div
                 key={project.id}
-                className="project-card bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-200 hover:shadow-md transition-all duration-300 ease-in-out hover:scale-[1.02] h-full min-w-0"
-                initial={{ opacity: 0 }}
+                className="project-card relative z-10 bg-white rounded-2xl shadow-sm overflow-hidden border border-gray-200 hover:shadow-md transition-all duration-300 ease-in-out hover:scale-[1.02] h-full min-w-0"                initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{
@@ -574,7 +573,7 @@ export default function AllProjects() {
                     {project.image}
                   </div>
                   <div className="p-3 sm:p-4 md:p-5 lg:p-6 flex-1 flex flex-col">
-                    <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3 text-gray-900 font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif]">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3 text-gray-900">
                       {project.title}
                     </h3>
                     <p className="text-gray-600 mb-3 sm:mb-4 flex-1 text-xs sm:text-sm lg:text-base leading-relaxed">
@@ -630,7 +629,7 @@ export default function AllProjects() {
           <div className="text-center mt-16">
             <button
               onClick={() => setLocation("/")}
-              className="inline-block bg-blue-600 hover:bg-blue-700 text-white border border-blue-600 hover:border-blue-700 transition-all duration-300 ease-in-out py-3 px-6 rounded-full text-lg font-semibold transform hover:scale-[1.02] hover:shadow-md font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif]"
+              className="inline-block bg-blue-600 hover:bg-blue-700 text-white border border-blue-600 hover:border-blue-700 transition-all duration-300 ease-in-out py-3 px-6 rounded-full text-lg font-semibold transform hover:scale-[1.02] hover:shadow-md"
             >
               ← Back to Home
             </button>

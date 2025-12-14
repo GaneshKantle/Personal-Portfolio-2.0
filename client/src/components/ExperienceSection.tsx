@@ -15,18 +15,10 @@ const experiences = [
   title: "Freelance Frontend Developer",
   company: "@Self-Employed",
   period: "Nov 2024 – July 2025",
-  description: "Built and maintained 3+ responsive client websites, including a video editor portfolio that increased engagement 60%. Integrated WhatsApp API chatbot, cutting response time by 70%, deployed via Vercel.",
+  description: "Built and maintained multiple responsive client websites, including a video editor portfolio that increased engagement 60%. Integrated WhatsApp API chatbot, cutting response time by 70%, deployed via Vercel.",
 
   skills: ["React.js", "TypeScript", "Tailwind CSS", "Vercel", "API Integration"],
 },
-{
-  title: "Python Programming Intern",
-  company: "@VaultofCodes",
-  period: "Nov – Dec 2023",
-  description: "Completed a 1-month Python internship, delivering 3+ functional scripts with 95% code efficiency. Recognized for strong problem-solving and technical precision.",
-  skills: ["Python", "Problem Solving", "Git", "Teamwork"],
-},
-
 {
   title: "Web Development Intern",
   company: "@Motion Cut",
@@ -82,7 +74,7 @@ export default function ExperienceSection() {
     <section id="experience" className="py-12 sm:py-16 md:py-20 bg-white">
       <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 mb-3 sm:mb-4 font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 mb-3 sm:mb-4">
             Work <span className="text-blue-600">Experience</span>
           </h2>
           <div className="w-16 sm:w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>

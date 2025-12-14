@@ -27,7 +27,7 @@ const renderProjectImage = (project: Project) => (
         <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-yellow-500"></div>
         <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-green-500"></div>
       </div>
-      <div className="text-xs sm:text-sm font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-600 truncate ml-2">
+      <div className="text-xs sm:text-sm text-gray-600 truncate ml-2">
         {project.title}
       </div>
     </div>
@@ -69,7 +69,7 @@ export default function ProjectsSection() {
         <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">
             <motion.h2
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 mb-3 sm:mb-4 font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif]"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 mb-3 sm:mb-4"
               initial={{ opacity: 0, y: 20 }}
               animate={controls}
               variants={{
@@ -91,7 +91,7 @@ export default function ProjectsSection() {
               transition={{ duration: 0.5, delay: 0.2 }}
             ></motion.div>
             <motion.p
-              className="text-gray-600 mt-3 sm:mt-4 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] px-4"
+              className="text-gray-600 mt-3 sm:mt-4 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed px-4"
               initial={{ opacity: 0 }}
               animate={controls}
               variants={{
@@ -113,14 +113,15 @@ export default function ProjectsSection() {
               {projects.map((project: Project, index: number) => (
                 <div
                   key={project.id}
-                  className="bg-white rounded-xl sm:rounded-2xl shadow-sm overflow-hidden border border-gray-200 transition-all duration-300 ease-in-out hover:shadow-md hover:scale-[1.02] h-full"
-                >
+  className="relative z-10 bg-white rounded-xl sm:rounded-2xl shadow-sm overflow-hidden border border-gray-200 transition-all duration-300 ease-in-out hover:shadow-md hover:scale-[1.02] h-full"
+>
+
                   <div className="flex flex-col h-full">
-                    <div className="bg-gray-50 flex items-center justify-center p-4 sm:p-6">
+                    <div className="bg-white flex items-center justify-center p-4 sm:p-6">
                       {renderProjectImage(project)}
                     </div>
                     <div className="p-4 sm:p-6 md:p-8 flex-1 flex flex-col">
-                      <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-gray-900 font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif]">
+                      <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4 text-gray-900">
                         {project.title}
                       </h3>
                       <p className="text-gray-600 mb-4 sm:mb-6 flex-1 leading-relaxed text-sm sm:text-base">
@@ -155,7 +156,7 @@ export default function ProjectsSection() {
                             rel="noopener noreferrer"
                             className="flex-1 bg-white hover:bg-gray-50 text-blue-600 hover:text-blue-700 border border-gray-200 hover:border-blue-300 transition-all duration-300 ease-in-out py-2 px-3 sm:px-4 rounded-lg text-xs sm:text-sm font-medium text-center flex items-center justify-center"
                           >
-                            <i className="fab fa-external-link-alt mr-1 sm:mr-2"></i> Live
+                            <i className="fas fa-external-link-alt mr-1 sm:mr-2"></i> Live
                           </a>
                         </div>
 

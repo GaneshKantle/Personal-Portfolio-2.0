@@ -102,7 +102,7 @@ export default function BlogSection() {
             transition={{ duration: 0.5 }}
           >
             <motion.h2
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 mb-3 sm:mb-4 font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif]"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 mb-3 sm:mb-4"
               initial={{ opacity: 0, y: 20 }}
               animate={controls}
               variants={{
@@ -124,7 +124,7 @@ export default function BlogSection() {
               transition={{ duration: 0.5, delay: 0.2 }}
             ></motion.div>
             <motion.p
-              className="text-gray-600 mt-3 sm:mt-4 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] px-4"
+              className="text-gray-600 mt-3 sm:mt-4 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed px-4"
               initial={{ opacity: 0 }}
               animate={controls}
               variants={{

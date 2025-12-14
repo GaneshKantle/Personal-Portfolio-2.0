@@ -131,9 +131,9 @@ export default function Navbar() {
               }`}
               onClick={handleLogoClick}
             >
-              <span className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-blue-600 mr-1 group-hover:text-blue-700 transition-colors">&lt;</span>
-              <span className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-900 group-hover:text-blue-600 transition-colors">GaneshKantle</span>
-              <span className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-blue-600 ml-1 group-hover:text-blue-700 transition-colors">/&gt;</span>
+              <span className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold text-blue-600 mr-1 group-hover:text-blue-700 transition-colors">&lt;</span>
+              <span className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">GaneshKantle</span>
+              <span className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold text-blue-600 ml-1 group-hover:text-blue-700 transition-colors">/&gt;</span>
               {isNavigating && (
                 <div className="ml-2 w-3 h-3 sm:w-4 sm:h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
               )}
@@ -198,9 +198,9 @@ export default function Navbar() {
           {/* Mobile menu header */}
           <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-200">
             <div className="flex items-center">
-              <span className="text-lg sm:text-xl font-semibold font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-blue-600 mr-1">&lt;</span>
-              <span className="text-lg sm:text-xl font-semibold font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-900">GaneshKantle</span>
-              <span className="text-lg sm:text-xl font-semibold font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-blue-600 ml-1">/&gt;</span>
+              <span className="text-lg sm:text-xl font-semibold text-blue-600 mr-1">&lt;</span>
+              <span className="text-lg sm:text-xl font-semibold text-gray-900">GaneshKantle</span>
+              <span className="text-lg sm:text-xl font-semibold text-blue-600 ml-1">/&gt;</span>
             </div>
             <button
               onClick={() => setMobileMenuOpen(false)}

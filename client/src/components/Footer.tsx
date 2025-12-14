@@ -18,11 +18,11 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0 text-center md:text-left">
             <div className="flex items-center justify-center md:justify-start">
-              <span className="text-lg sm:text-xl font-semibold font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-blue-600 mr-1">&lt;</span>
-              <span className="text-lg sm:text-xl font-semibold font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-gray-900">GaneshKantle</span>
-              <span className="text-lg sm:text-xl font-semibold font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-blue-600 ml-1">/&gt;</span>
+              <span className="text-lg sm:text-xl font-semibold text-blue-600 mr-1">&lt;</span>
+              <span className="text-lg sm:text-xl font-semibold text-gray-900">GaneshKantle</span>
+              <span className="text-lg sm:text-xl font-semibold text-blue-600 ml-1">/&gt;</span>
             </div>
-            <p className="text-gray-600 mt-2 text-xs sm:text-sm font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif]">AI Web Developer • Web3 Explorer • Tech Writer</p>
+            <p className="text-gray-600 mt-2 text-xs sm:text-sm">AI Web Developer • Web3 Explorer • Tech Writer</p>
           </div>
           
           <div className="flex space-x-4 sm:space-x-6 mb-6 md:mb-0">
@@ -40,7 +40,7 @@ export default function Footer() {
             ))}
           </div>
           
-          <div className="text-gray-600 text-xs sm:text-sm font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] text-center md:text-right">
+          <div className="text-gray-600 text-xs sm:text-sm text-center md:text-right">
             &copy; {new Date().getFullYear()} Ganesh Kantle. All rights reserved.
           </div>
         </div>
@@ -63,7 +63,7 @@ function ScrollToTopButton() {
   return (
     <motion.button 
       onClick={scrollToTop}
-      className="fixed bottom-4 sm:bottom-8 right-4 sm:right-8 bg-blue-600 hover:bg-blue-700 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-sm hover:shadow-md transform transition-all duration-300 ease-in-out hover:scale-[1.02] z-10"
+      className="fixed bottom-4 sm:bottom-8 right-4 sm:right-8 bg-blue-600 hover:bg-blue-700 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-sm hover:shadow-md transform transition-all duration-300 ease-in-out hover:scale-[1.02] z-10 isolate"
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ y: -3 }}
@@ -72,5 +72,5 @@ function ScrollToTopButton() {
     >
       <i className="fas fa-arrow-up text-sm sm:text-base"></i>
     </motion.button>
-  );
+  );  
 }

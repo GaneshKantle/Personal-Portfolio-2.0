@@ -79,7 +79,7 @@ export default function SkillsSection() {
       <section id="skills" className="py-12 sm:py-16 md:py-20 bg-white">
         <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 mb-3 sm:mb-4 font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif]">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 mb-3 sm:mb-4">
               My <span className="text-blue-600">Skills</span>
             </h2>
             <div className="w-16 sm:w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>
@@ -93,7 +93,7 @@ export default function SkillsSection() {
             transition={{ duration: 0.5 }}
             className="max-w-lg mx-auto"
           >
-            <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-gray-900 flex items-center justify-center font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif]">
+            <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-gray-900 flex items-center justify-center">
               <span className="mr-2 sm:mr-3 text-blue-600">
                 <i className="fas fa-laptop-code text-lg sm:text-xl"></i>
               </span>
@@ -109,7 +109,7 @@ export default function SkillsSection() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <div className="flex justify-between mb-1 font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif] font-semibold text-gray-900 text-sm sm:text-base">
+                  <div className="flex justify-between mb-1 font-semibold text-gray-900 text-sm sm:text-base">
                     <span>{skill.name}</span>
                     <span className="text-blue-600">{skill.percentage}%</span>
                   </div>
@@ -128,8 +128,8 @@ export default function SkillsSection() {
 
           {/* Tools & Technologies Marquee */}
           <div className="mt-12 sm:mt-16">
-            <h3 className="text-xl sm:text-2xl font-semibold mb-6 sm:mb-8 text-gray-900 text-center font-['-apple-system',_BlinkMacSystemFont,_'SF_Pro_Display',_'SF_Pro_Text',_Roboto,_Helvetica,_Arial,_sans-serif]">
-              Tools & Technologies
+            <h3 className="text-xl sm:text-2xl font-semibold mb-6 sm:mb-8 text-gray-900 text-center">
+            Technologies & Tools I Work With
             </h3>
 
             <div className="space-y-6 sm:space-y-8">

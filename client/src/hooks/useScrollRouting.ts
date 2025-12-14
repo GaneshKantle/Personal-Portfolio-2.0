@@ -5,18 +5,19 @@ export const useScrollRouting = () => {
   const [, setLocation] = useLocation();
 
   useEffect(() => {
+    const sections = [
+      { id: 'home', path: '/' },
+      { id: 'about', path: '/about' },
+      { id: 'skills', path: '/skills' },
+      { id: 'experience', path: '/experience' },
+      { id: 'education', path: '/education' },
+      { id: 'projects', path: '/projects' },
+      { id: 'activities', path: '/activities' },
+      { id: 'certificates', path: '/certificates' },
+      { id: 'contact', path: '/contact' },
+    ];
+
     const handleScroll = () => {
-      const sections = [
-        { id: 'home', path: '/' },
-        { id: 'about', path: '/about' },
-        { id: 'skills', path: '/skills' },
-        { id: 'experience', path: '/experience' },
-        { id: 'education', path: '/education' },
-        { id: 'projects', path: '/projects' },
-        { id: 'activities', path: '/activities' },
-        { id: 'certificates', path: '/certificates' },
-        { id: 'contact', path: '/contact' },
-      ];
 
       const windowHeight = window.innerHeight;
       const scrollY = window.scrollY;

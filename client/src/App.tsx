@@ -4,6 +4,7 @@ import { Toaster } from "./components/ui/toaster";
 import { TooltipProvider } from "./components/ui/tooltip";
 import { SpeedInsights } from "@vercel/speed-insights/react"
 import { Analytics } from "@vercel/analytics/react"
+import { BackgroundPattern } from "./components/BackgroundPattern";
 import NotFound from "./pages/not-found";
 import Home from "./pages/Home";
 import AllProjects from "./components/projects/all-projects";
@@ -31,6 +32,7 @@ function Router() {
 function App() {
   return (
     <TooltipProvider>
+      <BackgroundPattern />
       <Toaster />
       <Router />
       <SpeedInsights />
