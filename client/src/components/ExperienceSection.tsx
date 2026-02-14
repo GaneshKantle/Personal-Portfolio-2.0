@@ -3,18 +3,18 @@ import { Timeline } from "@/components/ui/timeline";
 import { Badge } from "@/components/ui/badge";
 
 const experiences = [
-  {
-    title: "AI Web Developer",
-    company: "@WI Thinkers",
-    period: "July 2025 – Present",
-    description: "I manage multiple production websites end-to-end, from development to deployment, and recently delivered a new production project that improved performance by 30% and reduced downtime to under 1%.",
+  // {
+  //   title: "AI Web Developer",
+  //   company: "@WI Thinkers",
+  //   period: "July 2025 – Present",
+  //   description: "I manage multiple production websites end-to-end, from development to deployment, and recently delivered a new production project that improved performance by 30% and reduced downtime to under 1%.",
   
-    skills: ["TypeScript", "Cursor",  "REST API", "Production", "WIX", "Tailwind CSS"],
-  },
+  //   skills: ["TypeScript", "Cursor",  "REST API", "Production", "WIX", "Tailwind CSS"],
+  // },
 {
   title: "Freelance Frontend Developer",
   company: "@Self-Employed",
-  period: "Nov 2024 – July 2025",
+  period: "Nov 2024 – Present",
   description: "Built and maintained multiple responsive client websites, including a video editor portfolio that increased engagement 60%. Integrated WhatsApp API chatbot, cutting response time by 70%, deployed via Vercel.",
 
   skills: ["React.js", "TypeScript", "Tailwind CSS", "Vercel", "API Integration"],
