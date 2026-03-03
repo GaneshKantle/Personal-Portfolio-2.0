@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { scrollToElement } from "../lib/utils";
 
 const socialLinks = [
-  { icon: "fab fa-linkedin-in", url: "https://www.linkedin.com/in/ganesh-kantle", label: "LinkedIn" },
+  { icon: "fab fa-linkedin-in", url: "https://www.linkedin.com/in/ganeshkantle", label: "LinkedIn" },
   { icon: "fab fa-github", url: "https://www.github.com/ganeshkantle", label: "GitHub" },
   { icon: "fab fa-twitter", url: "https://www.x.com/ganeshkantle", label: "Twitter" },
   { icon: "fas fa-code", url: "https://leetcode.com/u/ganeshkantle/", label: "Leet Code" },

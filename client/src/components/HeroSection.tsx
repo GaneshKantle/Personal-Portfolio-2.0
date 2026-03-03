@@ -11,7 +11,7 @@ const socialLinks = [
   {
     name: "LinkedIn",
     icon: "fab fa-linkedin-in",
-    url: "https://www.linkedin.com/in/ganesh-kantle",
+    url: "https://www.linkedin.com/in/ganeshkantle",
   },
   {
     name: "GitHub",

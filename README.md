@@ -138,5 +138,5 @@ If you'd like to contribute, please fork the repository and submit a pull reques
 For any queries, feel free to reach out:
 - **Email:** ganeshkantle@gmail.com
 - **My Portfolio:** https://ganesh-portfolio-dusky.vercel.app/
-- **LinkedIn:** https://www.linkedin.com/in/ganesh-kantle
+- **LinkedIn:** https://www.linkedin.com/in/ganeshkantle
 
