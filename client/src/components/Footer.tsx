@@ -8,7 +8,7 @@ const socialLinks = [
   { icon: "fab fa-github", url: "https://www.github.com/ganeshkantle", label: "GitHub" },
   { icon: "fab fa-twitter", url: "https://www.x.com/ganeshkantle", label: "Twitter" },
   { icon: "fas fa-code", url: "https://leetcode.com/u/ganeshkantle/", label: "Leet Code" },
-  { icon: "fab fa-instagram", url: "https://www.instagram.com/_.ganesshhh_", label: "Instagram" },
+  { icon: "fab fa-instagram", url: "https://www.instagram.com/ganeshkantle", label: "Instagram" },
 ];
 
 export default function Footer() {

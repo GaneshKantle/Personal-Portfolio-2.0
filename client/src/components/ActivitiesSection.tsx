@@ -78,7 +78,7 @@ const profiles = [
     name: "Instagram",
     icon: "fab fa-instagram",
     color: "#E4405F",
-    url: "https://instagram.com/_.ganesshhh_",
+    url: "https://instagram.com/ganeshkantle",
   },
   {
     name: "WordPress",
