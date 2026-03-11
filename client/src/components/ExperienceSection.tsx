@@ -3,14 +3,14 @@ import { Timeline } from "@/components/ui/timeline";
 import { Badge } from "@/components/ui/badge";
 
 const experiences = [
-  // {
-  //   title: "AI Web Developer",
-  //   company: "@WI Thinkers",
-  //   period: "July 2025 – Present",
-  //   description: "I manage multiple production websites end-to-end, from development to deployment, and recently delivered a new production project that improved performance by 30% and reduced downtime to under 1%.",
+  {
+    title: "AI Web Developer",
+    company: "@WI Thinkers",
+    period: "July 2025 – Present",
+    description: "I manage multiple production websites end-to-end, from development to deployment, and recently delivered a new production project that improved performance by 30% and reduced downtime to under 1%.",
   
-  //   skills: ["TypeScript", "Cursor",  "REST API", "Production", "WIX", "Tailwind CSS"],
-  // },
+    skills: ["TypeScript", "Cursor",  "REST API", "Production", "WIX", "Tailwind CSS"],
+  },
 {
   title: "Freelance Frontend Developer",
   company: "@Self-Employed",
