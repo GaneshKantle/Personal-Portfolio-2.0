@@ -9,6 +9,7 @@ import ProjectsSection from "../components/ProjectsSection";
 // import BlogSection from "../components/BlogSection";
 import CertificatesSection from "../components/CertificatesSection";
 import ActivitiesSection from "../components/ActivitiesSection";
+import GitHubStatsSection from "../components/GitHubStatsSection";
 import ContactSection from "../components/ContactSection";
 import Footer from "../components/Footer";
 import { useEffect } from "react";
@@ -77,6 +78,7 @@ export default function Home() {
       <AboutSection />
       <EducationSection />
       <SkillsSection />
+      <GitHubStatsSection />
       <ExperienceSection />
       <ProjectsSection />
       {/* <BlogSection /> */}
