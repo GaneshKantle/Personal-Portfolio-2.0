@@ -134,6 +134,7 @@ export default function GitHubStatsSection() {
   }, [mode]);
 
   return (
+    //Github Section
     <section id="github-stats" className="py-12 sm:py-16 md:py-20 bg-white">
       <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
         <div className="text-center mb-12 sm:mb-16">
