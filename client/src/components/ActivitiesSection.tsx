@@ -56,7 +56,7 @@ const profiles = [
     name: "Bento",
     icon: "fas fa-cube",
     color: "#6B66FF",
-    url: "https://bento.me/kantle",
+    url: "https://kantle.type.link/",
   },
   {
     name: "Dev.to",
