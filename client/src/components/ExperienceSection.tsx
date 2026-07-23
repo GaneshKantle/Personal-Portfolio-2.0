@@ -3,43 +3,45 @@ import { Timeline } from "@/components/ui/timeline";
 import { Badge } from "@/components/ui/badge";
 
 const experiences = [
-  // {
-  //   title: "AI Web Developer",
-  //   company: "@WI Thinkers",
-  //   period: "July 2025 – Present",
-  //   description:
-  //     "I manage multiple production websites end-to-end, from development to deployment, and recently delivered a new production project that improved performance by 30% and reduced downtime to under 1%.",
-  //   skills: [
-  //     "TypeScript",
-  //     "Cursor",
-  //     "REST API",
-  //     "Production",
-  //     "WIX",
-  //     "Tailwind CSS",
-  //   ],
-  // },
   {
-    title: "Freelance Frontend Developer",
-    company: "@Self-Employed",
-    period: "Nov 2024 – July 2025",
+    title: "AI Web Dev",
+    company: "@WI Thinkers",
+    period: "July 2025 – Present",
     description:
-      "Built and maintained multiple responsive client websites, including a video editor portfolio that increased engagement 60%. Integrated WhatsApp API chatbot, cutting response time by 70%, deployed via Vercel.",
+      "Build and manage production websites from development through deployment. Successfully shipped 5 production sites so far — see Production Work below.",
     skills: [
-      "React.js",
-      "TypeScript",
-      "Tailwind CSS",
-      "Vercel",
-      "API Integration",
+      "MailChimp",
+      "WIX Studio",
+      "Firebase",
+      "GCP",
+      "ReactJS",
+      "Cursor IDE",
+      "Production",
+      "Calendly",
     ],
   },
   {
-    title: "Web Development Intern",
-    company: "@Motion Cut",
-    period: "Oct 2023 – Nov 2023",
+    title: "Freelance Frontend Dev",
+    company: "@Self-Employed",
+    period: "Nov 2024 – July 2025",
     description:
-      "Developed a Netflix clone and Weather UI with 30% faster load times. Designed and launched a portfolio that boosted visitor engagement by 40%.",
-    skills: ["JavaScript", "HTML5/CSS3", "GitHub", "Responsive Design"],
+      "Built and maintained responsive client sites. Shipped a video editor portfolio and a WhatsApp API chatbot, deployed on Vercel.",
+    skills: [
+      "ReactJS",
+      "TypeScript",
+      "Tailwind CSS",
+      "Vercel",
+      "REST API",
+    ],
   },
+  // {
+  //   title: "Web Development Intern",
+  //   company: "@Motion Cut",
+  //   period: "Oct 2023 – Nov 2023",
+  //   description:
+  //     "Built a Netflix clone and Weather UI. Designed and launched a personal portfolio site.",
+  //   skills: ["JavaScript", "HTML5/CSS3", "GitHub", "Responsive Design"],
+  // },
 ];
 
 

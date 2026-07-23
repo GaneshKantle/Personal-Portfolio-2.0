@@ -255,7 +255,7 @@ className="relative z-10 bg-white p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl sh
                     </div>
                     <div>
                       <h4 className="font-semibold mb-1 text-gray-900 text-sm sm:text-base">Location</h4>
-                      <p className="text-gray-600 text-sm sm:text-base">Karnataka, India</p>
+                      <p className="text-gray-600 text-sm sm:text-base">Bangalore, India</p>
                     </div>
                   </div>
              

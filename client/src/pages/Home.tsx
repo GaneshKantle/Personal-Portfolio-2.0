@@ -5,6 +5,7 @@ import AboutSection from "../components/AboutSection";
 import EducationSection from "../components/EducationSection";
 import SkillsSection from "../components/SkillsSection";
 import ExperienceSection from "../components/ExperienceSection";
+import ProductionWorkSection from "../components/ProductionWorkSection";
 import ProjectsSection from "../components/ProjectsSection";
 // import BlogSection from "../components/BlogSection";
 import CertificatesSection from "../components/CertificatesSection";
@@ -80,6 +81,7 @@ export default function Home() {
       <SkillsSection />
       <GitHubStatsSection />
       <ExperienceSection />
+      <ProductionWorkSection />
       <ProjectsSection />
       {/* <BlogSection /> */}
       <CertificatesSection />

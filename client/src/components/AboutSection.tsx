@@ -3,7 +3,7 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const aboutCards = [
-  { icon: "fas fa-code", title: "Frontend Dev", color: "text-blue-600" },
+  { icon: "fas fa-code", title: "AI Web Dev", color: "text-blue-600" },
   {
     icon: "fas fa-laptop-code",
     title: "Web3 Explorer",
@@ -39,16 +39,15 @@ export default function AboutSection() {
                 }}
               >
                 <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed mb-4 sm:mb-6 px-2 sm:px-0">
-                  I'm a passionate frontend developer with 2+ years of academic
-                  experience creating beautiful, responsive web applications. My
-                  expertise lies in React.js, JavaScript, and Java, with a growing
-                  interest in Web3, blockchain technologies, and Solidity
-                  development.
+                  I'm an AI web developer who builds fast, responsive interfaces
+                  with React, TypeScript, and Java. I ship production-ready
+                  client work and keep pushing into Web3 — blockchain, Solidity,
+                  and the tooling that connects apps to the chain.
                 </p>
                 <p className="text-base sm:text-lg md:text-xl text-gray-600 leading-relaxed mb-4 sm:mb-6 px-2 sm:px-0">
-                  I enjoy turning complex problems into simple, elegant solutions.
-                  When I'm not coding, I'm writing technical blogs or contributing
-                  to open-source projects.
+                  Outside of shipping features, I write about what I'm learning
+                  and contribute to open-source. I care about clear UX, clean
+                  code, and products people actually want to use.
                 </p>
               </motion.div>
             </motion.div>

@@ -5,24 +5,24 @@ import "../index.css";
 import { Icon } from '@iconify/react';
 
 const technicalSkills = [
-  { name: "React.js", percentage: 80 },
-  { name: "JavaScript", percentage: 85 },
-  { name: "HTML5/CSS3", percentage: 95 },
-  { name: "Java", percentage: 75 },
-  { name: "Web3/Blockchain", percentage: 60 },
-  { name: "Python", percentage: 70 },
+  { name: "Java / Spring Boot", percentage: 90 },
+  { name: "React / TypeScript", percentage: 70 },
+  { name: "JavaScript", percentage: 90 },
+  { name: "HTML / CSS / Tailwind", percentage: 85 },
+  { name: "Web3 / Solidity", percentage: 65 },
+  { name: "MySQL", percentage: 70 },
 ];
 
 const technologies = [
   // Core Languages
-  { name: "JavaScript", icon: "logos:javascript", fallback: false },
-  { name: "Python", icon: "logos:python", fallback: false },
   { name: "Java", icon: "logos:java", fallback: false },
+  { name: "JavaScript", icon: "logos:javascript", fallback: false },
   { name: "HTML5", icon: "logos:html-5", fallback: false },
   { name: "CSS3", icon: "logos:css-3", fallback: false },
 
   // Frontend & UI
   { name: "ReactJS", icon: "logos:react", fallback: false },
+  { name: "TypeScript", icon: "logos:typescript-icon", fallback: false },
   { name: "Bootstrap", icon: "logos:bootstrap", fallback: false },
 
   // Blockchain & Web3
@@ -47,17 +47,17 @@ const technologies = [
   { name: "Gemini", icon: "logos:google-gemini", fallback: false },
   { name: "Llama Coder", icon: "fas fa-hippo", color: "#A07F5F", fallback: true },
   { name: "Blackbox AI", icon: "fas fa-box", color: "#3E64FF", fallback: true },
-  { name: "Julius AI", icon: "fas fa-robot", color: "#9ACD32", fallback: true },
+  // { name: "Julius AI", icon: "fas fa-robot", color: "#9ACD32", fallback: true },
 
   // Design & Creative
   { name: "Figma", icon: "logos:figma", fallback: false },
   { name: "Canva", icon: "simple-icons:canva", color: "#00C4CC", fallback: false },
-  { name: "Gamma", icon: "fas fa-lightbulb", color: "#FFD700", fallback: true },
+  // { name: "Gamma", icon: "fas fa-lightbulb", color: "#FFD700", fallback: true },
   { name: "Napkin AI", icon: "fas fa-note-sticky", color: "#FFDE00", fallback: true },
 
   // CMS & Site Builders
   { name: "WordPress", icon: "simple-icons:wordpress", color: "#21759B", fallback: false },
-  { name: "Wix", icon: "simple-icons:wix", color: "#FAAD4D", fallback: false },
+  { name: "Wix Studio", icon: "simple-icons:wix", color: "#FAAD4D", fallback: false },
 
   // Learning & Docs
   { name: "LeetCode", icon: "simple-icons:leetcode", color: "#FFA116", fallback: false },

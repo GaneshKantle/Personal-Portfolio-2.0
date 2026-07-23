@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useState } from "react";
 
-function parseHsl(cssValue: string): { h: number; s: number; l: number } | null {
+function parseHsl(
+  cssValue: string,
+): { h: number; s: number; l: number } | null {
   // Expected format: "<h> <s>% <l>%", e.g. "214 90% 52%"
   const parts = cssValue.trim().split(/\s+/);
   if (parts.length < 3) return null;
@@ -145,6 +147,19 @@ export default function GitHubStatsSection() {
         </div>
 
         <div className="flex flex-col gap-8 sm:gap-10 items-center">
+          <a
+            href="https://github.com/ganeshkantle"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group inline-flex items-center gap-2 text-sm sm:text-base text-gray-500 hover:text-gray-900 transition-colors duration-300"
+          >
+            <i className="fab fa-github text-lg"></i>
+            <span className="border-b border-transparent group-hover:border-gray-900 transition-colors duration-300">
+              github.com/ganeshkantle
+            </span>
+            <i className="fas fa-arrow-up-right-from-square text-xs opacity-50 group-hover:opacity-100 transition-opacity duration-300"></i>
+          </a>
+
           <img
             src={urls.ghUrl}
             alt="GitHub contributions heatmap"
@@ -163,4 +178,3 @@ export default function GitHubStatsSection() {
     </section>
   );
 }
-

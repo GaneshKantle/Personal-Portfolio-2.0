@@ -5,10 +5,11 @@ import { scrollToElement } from "../lib/utils";
 import { useLocation } from "wouter";
 
 const navLinks = [
-  { name: "Home", href: "#home", isHash: true },
+  // { name: "Home", href: "#home", isHash: true },
   { name: "About", href: "#about", isHash: true },
   { name: "Skills", href: "#skills", isHash: true },
   { name: "Experience", href: "#experience", isHash: true },
+  { name: "Production", href: "#production", isHash: true },
   { name: "Projects", href: "#projects", isHash: true },
   { name: "Contact", href: "#contact", isHash: true },
   { name: "Resume", href: "#resume", isHash: true }, // special case in handler

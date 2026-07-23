@@ -10,6 +10,7 @@ export const useScrollRouting = () => {
       { id: 'about', path: '/about' },
       { id: 'skills', path: '/skills' },
       { id: 'experience', path: '/experience' },
+      { id: 'production', path: '/production' },
       { id: 'education', path: '/education' },
       { id: 'projects', path: '/projects' },
       { id: 'activities', path: '/activities' },

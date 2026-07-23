@@ -31,7 +31,7 @@ export default function HeroSection() {
   useEffect(() => {
     setupTypewriterEffect(
       typingTextRef.current,
-      "ReactJS • JavaScript • Java • Web3 • Blockchain • Typescript",
+      "Java • Spring Boot • WIX Studio • ReactJS • Web3 • Blockchain ",
       100
     );
   }, []);
