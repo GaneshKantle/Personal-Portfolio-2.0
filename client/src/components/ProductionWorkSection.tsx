@@ -209,6 +209,55 @@ function AnimatedLiveWindow({
   );
 }
 
+function ProductionHeading({
+  compact = false,
+  subtitle,
+}: {
+  compact?: boolean;
+  subtitle: string;
+}) {
+  return (
+    <div
+      className={
+        compact
+          ? "mx-auto max-w-6xl text-center"
+          : "mx-auto max-w-2xl text-center"
+      }
+    >
+      <p
+        className={
+          compact
+            ? "mb-1.5 text-xs font-medium uppercase tracking-[0.2em] text-primary sm:text-sm"
+            : "mb-3 text-xs font-medium uppercase tracking-[0.2em] text-primary sm:text-sm"
+        }
+      >
+        From prompt → production
+      </p>
+      <h2
+        className={
+          compact
+            ? "text-2xl font-semibold tracking-tight text-foreground sm:text-3xl md:text-4xl"
+            : "mb-3 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl md:text-4xl lg:text-5xl"
+        }
+      >
+        Compile <span className="text-primary">Reality</span>
+      </h2>
+      {compact ? null : (
+        <div className="mx-auto mb-4 h-1 w-16 rounded-full bg-primary sm:w-20" />
+      )}
+      <p
+        className={
+          compact
+            ? "mx-auto mt-1.5 max-w-xl text-xs text-muted-foreground sm:text-sm"
+            : "text-sm text-muted-foreground sm:text-base md:text-lg"
+        }
+      >
+        {subtitle}
+      </p>
+    </div>
+  );
+}
+
 function StaticDock() {
   const [featured, ...rest] = productionSites;
 
@@ -219,17 +268,8 @@ function StaticDock() {
     >
       <DotPattern className="pointer-events-none absolute inset-0 z-0" />
       <div className="container relative z-10 mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-        <div className="mx-auto mb-10 max-w-2xl text-center sm:mb-14">
-          <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-primary sm:text-sm">
-            From prompt → production
-          </p>
-          <h2 className="mb-3 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl md:text-4xl lg:text-5xl">
-            Compile <span className="text-primary">Reality</span>
-          </h2>
-          <div className="mx-auto mb-4 h-1 w-16 rounded-full bg-primary sm:w-20" />
-          <p className="text-sm text-muted-foreground sm:text-base md:text-lg">
-            Live products shipped at WI Thinkers — open any window.
-          </p>
+        <div className="mb-10 sm:mb-14">
+          <ProductionHeading subtitle="Live products shipped at WI Thinkers — open any window." />
         </div>
 
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-6">
@@ -441,7 +481,6 @@ function CompileStage({ progress }: { progress: MotionValue<number> }) {
   const isMd = useIsMdUp();
   const [featured, ...rest] = productionSites;
 
-  const headerOpacity = useTransform(progress, [0, 0.05], [0, 1]);
   const progressWidth = useTransform(progress, [0, 1], ["0%", "100%"]);
   const windowsOpacity = useTransform(progress, [0.48, 0.56], [0, 1]);
   const mobileIdeOpacity = useTransform(
@@ -459,28 +498,18 @@ function CompileStage({ progress }: { progress: MotionValue<number> }) {
     <div className="relative flex h-[100svh] flex-col overflow-hidden bg-background">
       <DotPattern className="pointer-events-none absolute inset-0 z-0" />
 
-      <motion.div
-        className="relative z-10 shrink-0 px-3 pt-14 sm:px-4 sm:pt-16 md:px-6 lg:px-8"
-        style={{ opacity: headerOpacity }}
-      >
-        <div className="mx-auto max-w-6xl text-center">
-          <p className="mb-1 text-[10px] font-medium uppercase tracking-[0.22em] text-primary sm:text-xs">
-            From prompt → production
-          </p>
-          <h2 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl md:text-3xl lg:text-4xl">
-            Compile <span className="text-primary">Reality</span>
-          </h2>
-          <p className="mx-auto mt-1 max-w-xl text-[11px] text-muted-foreground sm:text-xs md:text-sm">
-            Scroll to write, deploy, and materialize live products.
-          </p>
-          <div className="mx-auto mt-2 h-1 max-w-[10rem] overflow-hidden rounded-full bg-muted sm:max-w-xs">
-            <motion.div
-              className="h-full origin-left rounded-full bg-primary"
-              style={{ width: progressWidth }}
-            />
-          </div>
+      <div className="relative z-10 shrink-0 px-3 pt-16 sm:px-4 sm:pt-20 md:px-6 lg:px-8">
+        <ProductionHeading
+          compact
+          subtitle="Scroll to write, deploy, and materialize live products."
+        />
+        <div className="mx-auto mt-3 h-1 max-w-[10rem] overflow-hidden rounded-full bg-muted sm:mt-4 sm:max-w-xs">
+          <motion.div
+            className="h-full origin-left rounded-full bg-primary"
+            style={{ width: progressWidth }}
+          />
         </div>
-      </motion.div>
+      </div>
 
       {/* Desktop — single IdePanel, compact 5-card dock */}
       {isMd ? (
@@ -564,7 +593,7 @@ function CompileStage({ progress }: { progress: MotionValue<number> }) {
 
 export default function ProductionWorkSection() {
   const prefersReducedMotion = useReducedMotion();
-  const containerRef = useRef<HTMLElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -582,14 +611,22 @@ export default function ProductionWorkSection() {
 
   return (
     <>
-      <section
-        id="production"
-        ref={containerRef}
-        className="relative bg-background"
-        style={{ height: "280vh" }}
-      >
-        <div className="sticky top-0 h-[100svh]">
-          <CompileStage progress={scrollYProgress} />
+      <section id="production" className="relative bg-background">
+        <div className="relative overflow-hidden py-16 sm:py-20 md:py-24">
+          <DotPattern className="pointer-events-none absolute inset-0 z-0" />
+          <div className="container relative z-10 mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+            <ProductionHeading subtitle="Scroll to write, deploy, and materialize live products." />
+          </div>
+        </div>
+
+        <div
+          ref={containerRef}
+          className="relative"
+          style={{ height: "280vh" }}
+        >
+          <div className="sticky top-0 h-[100svh]">
+            <CompileStage progress={scrollYProgress} />
+          </div>
         </div>
       </section>
       <SectionSeparator />
