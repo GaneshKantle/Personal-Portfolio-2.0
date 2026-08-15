@@ -1,91 +1,598 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useEffect, useRef, useState } from "react";
+import {
+  motion,
+  useMotionValue,
+  useMotionValueEvent,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+  type MotionValue,
+} from "framer-motion";
+import {
+  getHost,
+  productionSites,
+  type ProductionSite,
+} from "../shared/productionSites";
+import { DotPattern } from "./DotPattern";
 
-const productionSites = [
-  {
-    title: "Influencer X Media",
-    description: "Marketing site for Influencer X Media.",
-    url: "https://influencerxmedia.com",
-  },
-  {
-    title: "Swing Boudoir Mag",
-    description: "Membership and content platform for Swing Boudoir Magazine.",
-    url: "https://app.swingboudoirmag.com/",
-  },
-  {
-    title: "WI Thinkers",
-    description: "Company website for WI Thinkers.",
-    url: "https://thewithinkers.com/",
-  },
-  {
-    title: "WI Thinkers CRM",
-    description: "Internal CRM platform for client and workflow management.",
-    url: "https://crm.thewithinkers.com/",
-  },
-  {
-    title: "The Glam Model",
-    description: "Creator platform for The Glam Model.",
-    url: "https://onlyfans.theglammodel.com/",
-  },
-
+const CODE_LINES = [
+  "// compile reality — ship live products",
+  "import { deploy } from \"@wi/ship\";",
+  "",
+  "const sites = [",
+  "  \"influencerxmedia.com\",",
+  "  \"thewithinkers.com\",",
+  "  \"crm.thewithinkers.com\",",
+  "  \"app.swingboudoirmag.com\",",
+  "  \"onlyfans.theglammodel.com\",",
+  "];",
+  "",
+  "await Promise.all(",
+  "  sites.map((host) => deploy({ host, live: true }))",
+  ");",
+  "",
+  "// ✓ five products online",
 ];
 
-export default function ProductionWorkSection() {
+const DEPLOY_LINES = [
+  { text: "$ npm run build", tone: "cmd" as const },
+  { text: "✓ Compiled successfully in 1.8s", tone: "ok" as const },
+  { text: "$ deploy --prod --sites=5", tone: "cmd" as const },
+  { text: "→ uploading assets…", tone: "dim" as const },
+  { text: "✓ DNS healthy · TLS active · LIVE", tone: "ok" as const },
+];
+
+function SectionSeparator() {
   return (
-    <>
-      <section id="production" className="py-12 sm:py-16 md:py-20 bg-white">
-        <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-          <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 mb-3 sm:mb-4">
-              Production <span className="text-blue-600">Work</span>
-            </h2>
-            <div className="w-16 sm:w-20 h-1 bg-blue-600 mx-auto rounded-full mb-4 sm:mb-6"></div>
-            <p className="text-gray-600 text-sm sm:text-base md:text-lg max-w-2xl mx-auto px-2">
-              Live products built at WI Thinkers
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-6xl mx-auto">
-            {productionSites.map((site, index) => (
-              <motion.a
-                key={site.url}
-                href={site.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block bg-white p-5 sm:p-6 rounded-xl sm:rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 ease-in-out hover:scale-[1.02] hover:border-blue-300"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.08, duration: 0.4 }}
-              >
-                <div className="flex items-start justify-between gap-3 mb-2 sm:mb-3">
-                  <h3 className="font-semibold text-gray-900 text-base sm:text-lg group-hover:text-blue-600 transition-colors duration-300">
-                    {site.title}
-                  </h3>
-                  <i className="fas fa-arrow-up-right-from-square text-xs text-gray-400 group-hover:text-blue-600 mt-1.5 transition-colors duration-300"></i>
-                </div>
-                <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-4">
-                  {site.description}
-                </p>
-                <span className="inline-flex items-center gap-1.5 text-sm font-medium text-blue-600">
-                  Visit
-                  <i className="fas fa-external-link-alt text-xs"></i>
-                </span>
-              </motion.a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <div className="py-12 sm:py-16 bg-white">
-        <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-          <div className="flex items-center justify-center">
-            <div className="w-24 sm:w-32 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
-            <div className="mx-3 sm:mx-4 w-2 h-2 bg-blue-600 rounded-full"></div>
-            <div className="w-24 sm:w-32 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
-          </div>
+    <div className="bg-background py-10 sm:py-14">
+      <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+        <div className="flex items-center justify-center">
+          <div className="h-px w-24 bg-gradient-to-r from-transparent via-border to-transparent sm:w-32" />
+          <div className="mx-3 h-2 w-2 rounded-full bg-primary sm:mx-4" />
+          <div className="h-px w-24 bg-gradient-to-r from-transparent via-border to-transparent sm:w-32" />
         </div>
       </div>
+    </div>
+  );
+}
+
+function windowClassName(featured: boolean, dimmed: boolean) {
+  return `group relative flex h-full min-h-0 flex-col overflow-hidden rounded-xl border will-change-transform
+    border-black/[0.08] bg-[#F7F8FA] shadow-sm
+    hover:border-primary/30
+    dark:border-border dark:bg-card dark:hover:border-primary/35
+    ${dimmed ? "opacity-45" : "opacity-100"}
+    ${featured ? "" : ""}`;
+}
+
+function WindowChrome({
+  site,
+  index,
+  featured,
+  showLiveBadge = false,
+}: {
+  site: ProductionSite;
+  index: number;
+  featured: boolean;
+  showLiveBadge?: boolean;
+}) {
+  const host = getHost(site.url);
+
+  return (
+    <>
+      <div className="flex shrink-0 items-center gap-2 border-b border-black/[0.06] bg-[#EEF1F5] px-3 py-2 sm:px-3.5 sm:py-2.5 dark:border-border dark:bg-muted/60">
+        <div className="flex shrink-0 gap-1">
+          <span className="h-2 w-2 rounded-full bg-[#FF5F57]/90" />
+          <span className="h-2 w-2 rounded-full bg-[#FEBC2E]/90" />
+          <span className="h-2 w-2 rounded-full bg-[#28C840]/90" />
+        </div>
+        <div className="flex min-w-0 flex-1 items-center gap-1.5 rounded-full border border-black/[0.06] bg-white px-2.5 py-1 dark:border-border dark:bg-background">
+          <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" />
+          <span className="truncate font-mono text-[10px] text-slate-500 sm:text-[11px] dark:text-muted-foreground">
+            {host}
+          </span>
+        </div>
+        {showLiveBadge ? (
+          <span className="hidden shrink-0 rounded-full bg-emerald-500/15 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-emerald-700 sm:inline dark:text-emerald-400">
+            Live
+          </span>
+        ) : null}
+      </div>
+
+      <div
+        className={`relative flex min-h-0 flex-1 flex-col justify-between bg-white px-4 py-3.5 dark:bg-card sm:px-5 sm:py-4 ${
+          featured ? "sm:px-6 sm:py-5" : ""
+        }`}
+      >
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -right-3 -top-4 text-6xl font-semibold leading-none tracking-tighter text-slate-900/[0.07] sm:-right-2.5 sm:-top-5 sm:text-7xl md:text-8xl dark:text-foreground/[0.08]"
+        >
+          {String(index + 1).padStart(2, "0")}
+        </div>
+
+        <div className="relative min-w-0 pr-10 sm:pr-14">
+          <p className="mb-1 text-[9px] font-medium uppercase tracking-[0.16em] text-primary sm:mb-1.5 sm:text-[10px]">
+            Live product
+          </p>
+          <h3
+            className={`truncate font-semibold tracking-tight text-slate-900 group-hover:text-primary dark:text-foreground ${
+              featured ? "text-base sm:text-lg md:text-xl" : "text-sm sm:text-base"
+            }`}
+          >
+            {site.title}
+          </h3>
+          <p
+            className={`mt-1.5 line-clamp-2 text-slate-600 dark:text-muted-foreground ${
+              featured ? "text-xs sm:text-sm" : "text-[11px] sm:text-xs"
+            }`}
+          >
+            {site.description}
+          </p>
+        </div>
+
+        <div className="relative mt-3 flex items-center justify-between gap-2 sm:mt-4">
+          <span className="truncate font-mono text-[10px] text-slate-500 dark:text-muted-foreground">
+            {host}
+          </span>
+          <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-primary px-2.5 py-1 text-[10px] font-semibold text-white dark:text-primary-foreground">
+            Open
+            <i className="fas fa-arrow-up-right text-[8px]" />
+          </span>
+        </div>
+      </div>
+    </>
+  );
+}
+
+function StaticLiveWindow({
+  site,
+  index,
+  featured = false,
+}: {
+  site: ProductionSite;
+  index: number;
+  featured?: boolean;
+}) {
+  return (
+    <a
+      href={site.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={windowClassName(featured, false)}
+    >
+      <WindowChrome site={site} index={index} featured={featured} showLiveBadge />
+    </a>
+  );
+}
+
+function AnimatedLiveWindow({
+  site,
+  index,
+  featured = false,
+  progress,
+  dimmed = false,
+  onHover,
+  showLive,
+}: {
+  site: ProductionSite;
+  index: number;
+  featured?: boolean;
+  progress: MotionValue<number>;
+  dimmed?: boolean;
+  onHover?: (index: number | null) => void;
+  showLive: boolean;
+}) {
+  const spawnStart = 0.52 + index * 0.04;
+  const spawnEnd = Math.min(0.82, spawnStart + 0.1);
+
+  const opacity = useTransform(progress, [spawnStart, spawnEnd], [0, 1]);
+  const y = useTransform(progress, [spawnStart, spawnEnd], [20, 0]);
+
+  return (
+    <motion.a
+      href={site.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={windowClassName(featured, dimmed)}
+      style={{ opacity, y }}
+      onMouseEnter={() => onHover?.(index)}
+      onMouseLeave={() => onHover?.(null)}
+    >
+      <WindowChrome
+        site={site}
+        index={index}
+        featured={featured}
+        showLiveBadge={showLive}
+      />
+    </motion.a>
+  );
+}
+
+function StaticDock() {
+  const [featured, ...rest] = productionSites;
+
+  return (
+    <section
+      id="production"
+      className="relative overflow-hidden bg-background py-12 sm:py-16 md:py-20"
+    >
+      <DotPattern className="pointer-events-none absolute inset-0 z-0" />
+      <div className="container relative z-10 mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+        <div className="mx-auto mb-10 max-w-2xl text-center sm:mb-14">
+          <p className="mb-3 text-xs font-medium uppercase tracking-[0.2em] text-primary sm:text-sm">
+            From prompt → production
+          </p>
+          <h2 className="mb-3 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl md:text-4xl lg:text-5xl">
+            Compile <span className="text-primary">Reality</span>
+          </h2>
+          <div className="mx-auto mb-4 h-1 w-16 rounded-full bg-primary sm:w-20" />
+          <p className="text-sm text-muted-foreground sm:text-base md:text-lg">
+            Live products shipped at WI Thinkers — open any window.
+          </p>
+        </div>
+
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-6">
+          <div className="h-40 md:col-span-2 lg:col-span-6 sm:h-44">
+            <StaticLiveWindow site={featured} index={0} featured />
+          </div>
+          {rest.map((site, i) => (
+            <div
+              key={site.url}
+              className="h-36 md:col-span-1 lg:col-span-3 sm:h-40"
+            >
+              <StaticLiveWindow site={site} index={i + 1} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function GhostCursor({
+  progress,
+  x,
+  y,
+}: {
+  progress: MotionValue<number>;
+  x: MotionValue<number>;
+  y: MotionValue<number>;
+}) {
+  const opacity = useTransform(progress, [0.12, 0.18, 0.48, 0.56], [0, 1, 1, 0]);
+
+  return (
+    <motion.div
+      aria-hidden="true"
+      className="pointer-events-none absolute left-0 top-0 z-20"
+      style={{ x, y, opacity }}
+    >
+      <svg width="16" height="20" viewBox="0 0 18 22" fill="none">
+        <path
+          d="M1 1L16.5 10.2L9.4 11.6L6.8 19.5L1 1Z"
+          className="fill-foreground stroke-background"
+          strokeWidth="1.2"
+        />
+      </svg>
+    </motion.div>
+  );
+}
+
+function IdePanel({
+  progress,
+  className = "",
+}: {
+  progress: MotionValue<number>;
+  className?: string;
+}) {
+  const codeRef = useRef<HTMLPreElement>(null);
+  const deployRef = useRef<HTMLDivElement>(null);
+  const hoveringRef = useRef(false);
+  const cursorX = useMotionValue(48);
+  const cursorY = useMotionValue(36);
+  const visibleLinesRef = useRef(-1);
+  const deployCountRef = useRef(-1);
+
+  useMotionValueEvent(progress, "change", (v) => {
+    const codeT = Math.max(0, Math.min(1, (v - 0.15) / 0.25));
+    const nextLines = Math.round(codeT * CODE_LINES.length);
+    if (nextLines !== visibleLinesRef.current && codeRef.current) {
+      visibleLinesRef.current = nextLines;
+      const rows = codeRef.current.children;
+      for (let i = 0; i < rows.length; i++) {
+        (rows[i] as HTMLElement).style.opacity = i < nextLines ? "1" : "0.12";
+      }
+    }
+
+    const deployT = Math.max(0, Math.min(1, (v - 0.4) / 0.15));
+    const nextDeploy = Math.round(deployT * DEPLOY_LINES.length);
+    if (nextDeploy !== deployCountRef.current && deployRef.current) {
+      deployCountRef.current = nextDeploy;
+      const rows = deployRef.current.children;
+      for (let i = 0; i < rows.length; i++) {
+        (rows[i] as HTMLElement).style.opacity =
+          i < nextDeploy ? "1" : "0.15";
+      }
+    }
+
+    if (!hoveringRef.current && v >= 0.15 && v <= 0.4) {
+      const t = (v - 0.15) / 0.25;
+      cursorX.set(48 + t * 62);
+      cursorY.set(36 + t * 134);
+    }
+  });
+
+  const ideOpacity = useTransform(
+    progress,
+    [0, 0.06, 0.58, 0.75],
+    [0, 1, 1, 0.25]
+  );
+  const terminalOpen = useTransform(progress, [0.38, 0.5], [0, 1]);
+  const terminalHeight = useTransform(terminalOpen, (h) => `${h * 6.25}rem`);
+
+  return (
+    <motion.div
+      className={`relative flex h-full min-h-0 flex-col overflow-hidden rounded-xl border border-black/[0.08] bg-[#F7F8FA] shadow-sm dark:border-border dark:bg-card sm:rounded-2xl ${className}`}
+      style={{ opacity: ideOpacity }}
+      onMouseEnter={() => {
+        hoveringRef.current = true;
+      }}
+      onMouseLeave={() => {
+        hoveringRef.current = false;
+      }}
+      onMouseMove={(e) => {
+        if (!hoveringRef.current) return;
+        const rect = e.currentTarget.getBoundingClientRect();
+        cursorX.set(Math.max(8, e.clientX - rect.left - 4));
+        cursorY.set(Math.max(8, e.clientY - rect.top - 4));
+      }}
+    >
+      <div className="flex shrink-0 items-center gap-2 border-b border-black/[0.06] bg-[#EEF1F5] px-3 py-2 dark:border-border dark:bg-muted/60">
+        <div className="flex shrink-0 gap-1.5">
+          <span className="h-2.5 w-2.5 rounded-full bg-[#FF5F57]/90" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#FEBC2E]/90" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#28C840]/90" />
+        </div>
+        <span className="rounded-md bg-white px-2 py-0.5 font-mono text-[11px] text-slate-600 dark:bg-background dark:text-muted-foreground">
+          ship.tsx
+        </span>
+      </div>
+
+      <div className="relative min-h-0 flex-1 overflow-hidden">
+        <pre
+          ref={codeRef}
+          className="h-full overflow-hidden p-3 font-mono text-[11px] leading-5 sm:p-3.5 sm:text-xs sm:leading-5"
+        >
+          {CODE_LINES.map((line, i) => (
+            <div key={i} style={{ opacity: 0.12 }}>
+              <span className="mr-2 inline-block w-4 select-none text-right text-slate-400/70 dark:text-muted-foreground/40">
+                {i + 1}
+              </span>
+              <span
+                className={
+                  line.startsWith("//")
+                    ? "text-emerald-700/80 dark:text-emerald-400/70"
+                    : line.includes("\"")
+                      ? "text-sky-800 dark:text-sky-300/90"
+                      : "text-slate-800 dark:text-foreground/85"
+                }
+              >
+                {line || " "}
+              </span>
+            </div>
+          ))}
+        </pre>
+
+        <GhostCursor progress={progress} x={cursorX} y={cursorY} />
+      </div>
+
+      <motion.div
+        className="shrink-0 overflow-hidden border-t border-black/[0.06] bg-slate-900 dark:border-border dark:bg-black/60"
+        style={{ height: terminalHeight, opacity: terminalOpen }}
+      >
+        <div className="flex items-center gap-2 border-b border-white/10 px-3 py-1">
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+          <span className="font-mono text-[10px] uppercase tracking-wider text-white/60">
+            deploy terminal
+          </span>
+        </div>
+        <div
+          ref={deployRef}
+          className="space-y-0.5 px-3 py-1.5 font-mono text-[11px]"
+        >
+          {DEPLOY_LINES.map((line) => (
+            <div
+              key={line.text}
+              style={{ opacity: 0.15 }}
+              className={
+                line.tone === "ok"
+                  ? "text-emerald-400"
+                  : line.tone === "cmd"
+                    ? "text-white/90"
+                    : "text-white/45"
+              }
+            >
+              {line.text}
+            </div>
+          ))}
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
+
+function useIsMdUp() {
+  const [isMd, setIsMd] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const update = () => setIsMd(mq.matches);
+    update();
+    mq.addEventListener("change", update);
+    return () => mq.removeEventListener("change", update);
+  }, []);
+
+  return isMd;
+}
+
+function CompileStage({ progress }: { progress: MotionValue<number> }) {
+  const [hovered, setHovered] = useState<number | null>(null);
+  const [showLive, setShowLive] = useState(false);
+  const isMd = useIsMdUp();
+  const [featured, ...rest] = productionSites;
+
+  const headerOpacity = useTransform(progress, [0, 0.05], [0, 1]);
+  const progressWidth = useTransform(progress, [0, 1], ["0%", "100%"]);
+  const windowsOpacity = useTransform(progress, [0.48, 0.56], [0, 1]);
+  const mobileIdeOpacity = useTransform(
+    progress,
+    [0, 0.06, 0.48, 0.58],
+    [0, 1, 1, 0]
+  );
+
+  useMotionValueEvent(progress, "change", (v) => {
+    const next = v >= 0.82;
+    setShowLive((prev) => (prev === next ? prev : next));
+  });
+
+  return (
+    <div className="relative flex h-[100svh] flex-col overflow-hidden bg-background">
+      <DotPattern className="pointer-events-none absolute inset-0 z-0" />
+
+      <motion.div
+        className="relative z-10 shrink-0 px-3 pt-14 sm:px-4 sm:pt-16 md:px-6 lg:px-8"
+        style={{ opacity: headerOpacity }}
+      >
+        <div className="mx-auto max-w-6xl text-center">
+          <p className="mb-1 text-[10px] font-medium uppercase tracking-[0.22em] text-primary sm:text-xs">
+            From prompt → production
+          </p>
+          <h2 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl md:text-3xl lg:text-4xl">
+            Compile <span className="text-primary">Reality</span>
+          </h2>
+          <p className="mx-auto mt-1 max-w-xl text-[11px] text-muted-foreground sm:text-xs md:text-sm">
+            Scroll to write, deploy, and materialize live products.
+          </p>
+          <div className="mx-auto mt-2 h-1 max-w-[10rem] overflow-hidden rounded-full bg-muted sm:max-w-xs">
+            <motion.div
+              className="h-full origin-left rounded-full bg-primary"
+              style={{ width: progressWidth }}
+            />
+          </div>
+        </div>
+      </motion.div>
+
+      {/* Desktop — single IdePanel, compact 5-card dock */}
+      {isMd ? (
+        <div className="relative z-10 mx-auto flex min-h-0 w-full max-w-6xl flex-1 gap-3 px-4 pb-4 pt-3 lg:gap-4 lg:px-8 lg:pb-5">
+          <div className="w-[36%] min-h-0 shrink-0 lg:w-[38%]">
+            <IdePanel progress={progress} />
+          </div>
+
+          <motion.div
+            className="grid min-h-0 min-w-0 flex-1 grid-cols-2 grid-rows-3 gap-3 lg:gap-3.5"
+            style={{ opacity: windowsOpacity }}
+          >
+            <div className="col-span-2 row-span-1 min-h-0">
+              <AnimatedLiveWindow
+                site={featured}
+                index={0}
+                featured
+                progress={progress}
+                dimmed={hovered !== null && hovered !== 0}
+                onHover={setHovered}
+                showLive={showLive}
+              />
+            </div>
+            {rest.map((site, i) => (
+              <div key={site.url} className="min-h-0">
+                <AnimatedLiveWindow
+                  site={site}
+                  index={i + 1}
+                  progress={progress}
+                  dimmed={hovered !== null && hovered !== i + 1}
+                  onHover={setHovered}
+                  showLive={showLive}
+                />
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      ) : (
+        /* Mobile — IDE then compact windows; no double IdePanel */
+        <div className="relative z-10 flex min-h-0 flex-1 flex-col px-3 pb-4 pt-2">
+          <motion.div
+            className="mb-2 h-[32%] min-h-0 shrink-0"
+            style={{ opacity: mobileIdeOpacity }}
+          >
+            <IdePanel progress={progress} />
+          </motion.div>
+
+          <motion.div
+            className="grid min-h-0 flex-1 grid-cols-2 grid-rows-3 gap-2.5"
+            style={{ opacity: windowsOpacity }}
+          >
+            <div className="col-span-2 min-h-0">
+              <AnimatedLiveWindow
+                site={featured}
+                index={0}
+                featured
+                progress={progress}
+                dimmed={hovered !== null && hovered !== 0}
+                onHover={setHovered}
+                showLive={showLive}
+              />
+            </div>
+            {rest.map((site, i) => (
+              <div key={site.url} className="min-h-0">
+                <AnimatedLiveWindow
+                  site={site}
+                  index={i + 1}
+                  progress={progress}
+                  dimmed={hovered !== null && hovered !== i + 1}
+                  onHover={setHovered}
+                  showLive={showLive}
+                />
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default function ProductionWorkSection() {
+  const prefersReducedMotion = useReducedMotion();
+  const containerRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
+
+  if (prefersReducedMotion) {
+    return (
+      <>
+        <StaticDock />
+        <SectionSeparator />
+      </>
+    );
+  }
+
+  return (
+    <>
+      <section
+        id="production"
+        ref={containerRef}
+        className="relative bg-background"
+        style={{ height: "280vh" }}
+      >
+        <div className="sticky top-0 h-[100svh]">
+          <CompileStage progress={scrollYProgress} />
+        </div>
+      </section>
+      <SectionSeparator />
     </>
   );
 }

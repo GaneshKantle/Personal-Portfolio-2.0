@@ -40,12 +40,12 @@ export default function ProjectDetails() {
 
   if (!project) {
     return (
-      <div className="min-h-screen bg-white text-gray-900">
+      <div className="min-h-screen bg-background text-foreground">
         <Navbar />
         <div className="flex items-center justify-center min-h-screen">
           <div className="text-center">
-            <h1 className="text-4xl font-semibold text-gray-600 mb-4">Project Not Found</h1>
-            <button onClick={() => setLocation("/")} className="text-blue-600 hover:underline cursor-pointer">← Back to Home</button>
+            <h1 className="text-4xl font-semibold text-muted-foreground mb-4">Project Not Found</h1>
+            <button onClick={() => setLocation("/")} className="text-primary hover:underline cursor-pointer">← Back to Home</button>
           </div>
         </div>
         <Footer />
@@ -54,7 +54,7 @@ export default function ProjectDetails() {
   }
 
   return (
-    <div className="min-h-screen bg-white text-gray-900">
+    <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       
       {/* Hero Section */}
@@ -66,17 +66,17 @@ export default function ProjectDetails() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-gray-100 border border-gray-200 text-sm text-gray-700 mb-6">
-              <span className="w-2 h-2 rounded-full bg-blue-600 mr-2"></span>
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-muted border border-border text-sm text-muted-foreground mb-6">
+              <span className="w-2 h-2 rounded-full bg-primary mr-2"></span>
               {project.category}
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 mb-6">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground mb-6">
               {project.title}
             </h1>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8 leading-relaxed">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
               {project.tagline}
             </p>
-            <p className="text-lg text-gray-700 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed">
               {project.longDescription}
             </p>
           </motion.div>
@@ -88,21 +88,21 @@ export default function ProjectDetails() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="text-center p-6 bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 ease-in-out">
-              <div className="text-2xl font-semibold text-blue-600 mb-2">{project.developmentTime}</div>
-              <div className="text-sm text-gray-600">Development Time</div>
+            <div className="text-center p-6 bg-card rounded-2xl border border-border shadow-sm hover:shadow-md transition-all duration-300 ease-in-out">
+              <div className="text-2xl font-semibold text-primary mb-2">{project.developmentTime}</div>
+              <div className="text-sm text-muted-foreground">Development Time</div>
             </div>
-            <div className="text-center p-6 bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 ease-in-out">
-              <div className="text-2xl font-semibold text-blue-600 mb-2">{project.teamSize}</div>
-              <div className="text-sm text-gray-600">Team Size</div>
+            <div className="text-center p-6 bg-card rounded-2xl border border-border shadow-sm hover:shadow-md transition-all duration-300 ease-in-out">
+              <div className="text-2xl font-semibold text-primary mb-2">{project.teamSize}</div>
+              <div className="text-sm text-muted-foreground">Team Size</div>
             </div>
-            <div className="text-center p-6 bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 ease-in-out">
-              <div className="text-2xl font-semibold text-blue-600 mb-2">{project.difficulty}</div>
-              <div className="text-sm text-gray-600">Complexity</div>
+            <div className="text-center p-6 bg-card rounded-2xl border border-border shadow-sm hover:shadow-md transition-all duration-300 ease-in-out">
+              <div className="text-2xl font-semibold text-primary mb-2">{project.difficulty}</div>
+              <div className="text-sm text-muted-foreground">Complexity</div>
             </div>
-            <div className="text-center p-6 bg-white rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition-all duration-300 ease-in-out">
-              <div className="text-2xl font-semibold text-blue-600 mb-2">{project.status}</div>
-              <div className="text-sm text-gray-600">Status</div>
+            <div className="text-center p-6 bg-card rounded-2xl border border-border shadow-sm hover:shadow-md transition-all duration-300 ease-in-out">
+              <div className="text-2xl font-semibold text-primary mb-2">{project.status}</div>
+              <div className="text-sm text-muted-foreground">Status</div>
             </div>
           </motion.div>
 
@@ -117,7 +117,7 @@ export default function ProjectDetails() {
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-md"
+              className="inline-flex items-center justify-center px-8 py-4 bg-primary hover:bg-primary/90 text-white font-semibold rounded-full transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-md"
             >
               <i className="fas fa-external-link-alt mr-2"></i>
               View Live Project
@@ -126,7 +126,7 @@ export default function ProjectDetails() {
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-4 bg-white hover:bg-gray-50 text-blue-600 hover:text-blue-700 border border-gray-200 hover:border-blue-300 font-semibold rounded-full transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-md"
+              className="inline-flex items-center justify-center px-8 py-4 bg-card hover:bg-muted text-primary hover:text-primary border border-border hover:border-primary/40 font-semibold rounded-full transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-md"
             >
               <i className="fab fa-github mr-2"></i>
               View Source Code
@@ -136,7 +136,7 @@ export default function ProjectDetails() {
                 href={project.demoUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-8 py-4 bg-white hover:bg-gray-50 text-blue-600 hover:text-blue-700 border border-gray-200 hover:border-blue-300 font-semibold rounded-full transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-md"
+                className="inline-flex items-center justify-center px-8 py-4 bg-card hover:bg-muted text-primary hover:text-primary border border-border hover:border-primary/40 font-semibold rounded-full transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-md"
               >
                 <i className="fas fa-play mr-2"></i>
                 Watch Demo
@@ -147,7 +147,7 @@ export default function ProjectDetails() {
       </section>
 
       {/* Project Screenshots */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted">
         <div className="max-w-7xl mx-auto">
           <motion.div
             className="text-center mb-16"
@@ -156,8 +156,8 @@ export default function ProjectDetails() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-6">Project Screenshots</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-6">Project Screenshots</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               Visual walkthrough of the key features and user interface
             </p>
           </motion.div>
@@ -172,14 +172,14 @@ export default function ProjectDetails() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
               >
-                <div className="bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-200 group-hover:border-blue-300 transition-all duration-300 ease-in-out hover:shadow-md">
-                  <div className="p-4 bg-gray-50 border-b border-gray-200 flex justify-between items-center">
+                <div className="bg-card rounded-2xl overflow-hidden shadow-sm border border-border group-hover:border-primary/40 transition-all duration-300 ease-in-out hover:shadow-md">
+                  <div className="p-4 bg-muted border-b border-border flex justify-between items-center">
                     <div className="flex space-x-2">
                       <div className="w-3 h-3 rounded-full bg-red-500"></div>
                       <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
                       <div className="w-3 h-3 rounded-full bg-green-500"></div>
                     </div>
-                    <div className="text-xs text-gray-600">{screenshot.alt}</div>
+                    <div className="text-xs text-muted-foreground">{screenshot.alt}</div>
                   </div>
                   <img
                     src={screenshot.src}
@@ -187,7 +187,7 @@ export default function ProjectDetails() {
                     className="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="p-4">
-                    <p className="text-sm text-gray-600 text-center">{screenshot.caption}</p>
+                    <p className="text-sm text-muted-foreground text-center">{screenshot.caption}</p>
                   </div>
                 </div>
               </motion.div>
@@ -209,12 +209,12 @@ export default function ProjectDetails() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <h3 className="text-2xl font-semibold text-gray-900 mb-6">Technologies Used</h3>
+                <h3 className="text-2xl font-semibold text-foreground mb-6">Technologies Used</h3>
                 <div className="flex flex-wrap gap-3">
                   {project.technologies.map((tech: string, index: number) => (
                     <span
                       key={index}
-                      className="px-4 py-2 bg-gray-100 border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:border-blue-300 transition-all duration-300 ease-in-out"
+                      className="px-4 py-2 bg-muted border border-border rounded-lg text-sm font-medium text-muted-foreground hover:border-primary/40 transition-all duration-300 ease-in-out"
                     >
                       {tech}
                     </span>
@@ -229,12 +229,12 @@ export default function ProjectDetails() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <h3 className="text-2xl font-semibold text-gray-900 mb-6">Key Features</h3>
+                <h3 className="text-2xl font-semibold text-foreground mb-6">Key Features</h3>
                 <ul className="space-y-3">
                   {project.features.map((feature: string, index: number) => (
                     <li key={index} className="flex items-start">
-                      <span className="w-2 h-2 rounded-full bg-blue-600 mt-2 mr-3 flex-shrink-0"></span>
-                      <span className="text-gray-700">{feature}</span>
+                      <span className="w-2 h-2 rounded-full bg-primary mt-2 mr-3 flex-shrink-0"></span>
+                      <span className="text-muted-foreground">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -247,8 +247,8 @@ export default function ProjectDetails() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                <h3 className="text-2xl font-semibold text-gray-900 mb-6">Architecture</h3>
-                <p className="text-gray-700 leading-relaxed">{project.architecture}</p>
+                <h3 className="text-2xl font-semibold text-foreground mb-6">Architecture</h3>
+                <p className="text-muted-foreground leading-relaxed">{project.architecture}</p>
               </motion.div>
             </div>
 
@@ -261,12 +261,12 @@ export default function ProjectDetails() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
-                <h3 className="text-2xl font-semibold text-gray-900 mb-6">Challenges Faced</h3>
+                <h3 className="text-2xl font-semibold text-foreground mb-6">Challenges Faced</h3>
                 <ul className="space-y-3">
                   {project.challenges.map((challenge: string, index: number) => (
                     <li key={index} className="flex items-start">
-                      <span className="w-2 h-2 rounded-full bg-blue-600 mt-2 mr-3 flex-shrink-0"></span>
-                      <span className="text-gray-700">{challenge}</span>
+                      <span className="w-2 h-2 rounded-full bg-primary mt-2 mr-3 flex-shrink-0"></span>
+                      <span className="text-muted-foreground">{challenge}</span>
                     </li>
                   ))}
                 </ul>
@@ -279,12 +279,12 @@ export default function ProjectDetails() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <h3 className="text-2xl font-semibold text-gray-900 mb-6">Key Learnings</h3>
+                <h3 className="text-2xl font-semibold text-foreground mb-6">Key Learnings</h3>
                 <ul className="space-y-3">
                   {project.learnings.map((learning: string, index: number) => (
                     <li key={index} className="flex items-start">
-                      <span className="w-2 h-2 rounded-full bg-blue-600 mt-2 mr-3 flex-shrink-0"></span>
-                      <span className="text-gray-700">{learning}</span>
+                      <span className="w-2 h-2 rounded-full bg-primary mt-2 mr-3 flex-shrink-0"></span>
+                      <span className="text-muted-foreground">{learning}</span>
                     </li>
                   ))}
                 </ul>
@@ -297,8 +297,8 @@ export default function ProjectDetails() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                <h3 className="text-2xl font-semibold text-gray-900 mb-6">Project Impact</h3>
-                <p className="text-gray-700 leading-relaxed">{project.impact}</p>
+                <h3 className="text-2xl font-semibold text-foreground mb-6">Project Impact</h3>
+                <p className="text-muted-foreground leading-relaxed">{project.impact}</p>
               </motion.div>
             </div>
           </div>
@@ -306,7 +306,7 @@ export default function ProjectDetails() {
       </section>
 
       {/* Additional Links */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted">
         <div className="max-w-7xl mx-auto">
           <motion.div
             className="text-center mb-16"
@@ -315,8 +315,8 @@ export default function ProjectDetails() {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl md:text-4xl font-semibold text-gray-900 mb-6">Additional Resources</h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
+            <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-6">Additional Resources</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               Explore more about this project through documentation and related resources
             </p>
           </motion.div>
@@ -327,16 +327,16 @@ export default function ProjectDetails() {
                 href={project.documentationUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group p-6 bg-white rounded-2xl border border-gray-200 hover:border-blue-300 transition-all duration-300 ease-in-out hover:shadow-md"
+                className="group p-6 bg-card rounded-2xl border border-border hover:border-primary/40 transition-all duration-300 ease-in-out hover:shadow-md"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8 }}
               >
                 <div className="text-center">
-                  <i className="fas fa-book text-3xl text-blue-600 mb-4 group-hover:scale-110 transition-transform duration-200"></i>
-                  <h3 className="text-xl font-semibold mb-2 text-gray-900">Documentation</h3>
-                  <p className="text-gray-600 text-sm">Comprehensive project documentation and setup guides</p>
+                  <i className="fas fa-book text-3xl text-primary mb-4 group-hover:scale-110 transition-transform duration-200"></i>
+                  <h3 className="text-xl font-semibold mb-2 text-foreground">Documentation</h3>
+                  <p className="text-muted-foreground text-sm">Comprehensive project documentation and setup guides</p>
                 </div>
               </motion.a>
             )}
@@ -345,16 +345,16 @@ export default function ProjectDetails() {
               href={project.githubUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group p-6 bg-white rounded-2xl border border-gray-200 hover:border-blue-300 transition-all duration-300 ease-in-out hover:shadow-md"
+              className="group p-6 bg-card rounded-2xl border border-border hover:border-primary/40 transition-all duration-300 ease-in-out hover:shadow-md"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.1 }}
             >
               <div className="text-center">
-                <i className="fab fa-github text-3xl text-blue-600 mb-4 group-hover:scale-110 transition-transform duration-200"></i>
-                <h3 className="text-xl font-semibold mb-2 text-gray-900">Source Code</h3>
-                <p className="text-gray-600 text-sm">Browse the complete source code and contribute</p>
+                <i className="fab fa-github text-3xl text-primary mb-4 group-hover:scale-110 transition-transform duration-200"></i>
+                <h3 className="text-xl font-semibold mb-2 text-foreground">Source Code</h3>
+                <p className="text-muted-foreground text-sm">Browse the complete source code and contribute</p>
               </div>
             </motion.a>
 
@@ -362,16 +362,16 @@ export default function ProjectDetails() {
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="group p-6 bg-white rounded-2xl border border-gray-200 hover:border-blue-300 transition-all duration-300 ease-in-out hover:shadow-md"
+              className="group p-6 bg-card rounded-2xl border border-border hover:border-primary/40 transition-all duration-300 ease-in-out hover:shadow-md"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <div className="text-center">
-                <i className="fas fa-external-link-alt text-3xl text-blue-600 mb-4 group-hover:scale-110 transition-transform duration-200"></i>
-                <h3 className="text-xl font-semibold mb-2 text-gray-900">Live Demo</h3>
-                <p className="text-gray-600 text-sm">Experience the project in action</p>
+                <i className="fas fa-external-link-alt text-3xl text-primary mb-4 group-hover:scale-110 transition-transform duration-200"></i>
+                <h3 className="text-xl font-semibold mb-2 text-foreground">Live Demo</h3>
+                <p className="text-muted-foreground text-sm">Experience the project in action</p>
               </div>
             </motion.a>
           </div>
@@ -390,14 +390,14 @@ export default function ProjectDetails() {
           >
             <button
               onClick={() => setLocation("/")}
-              className="inline-flex items-center justify-center px-8 py-4 bg-white hover:bg-gray-50 text-blue-600 hover:text-blue-700 border border-gray-200 hover:border-blue-300 font-semibold rounded-full transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-md cursor-pointer"
+              className="inline-flex items-center justify-center px-8 py-4 bg-card hover:bg-muted text-primary hover:text-primary border border-border hover:border-primary/40 font-semibold rounded-full transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-md cursor-pointer"
             >
               <i className="fas fa-arrow-left mr-2"></i>
               Back to Home
             </button>
             <button
               onClick={() => setLocation("/all-projects")}
-              className="inline-flex items-center justify-center px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-full transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-md cursor-pointer"
+              className="inline-flex items-center justify-center px-8 py-4 bg-primary hover:bg-primary/90 text-white font-semibold rounded-full transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-md cursor-pointer"
             >
               View All Projects
               <i className="fas fa-arrow-right ml-2"></i>

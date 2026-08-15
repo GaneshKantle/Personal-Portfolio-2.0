@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useState } from "react";
+import { motion } from "framer-motion";
 
 function parseHsl(
   cssValue: string,
@@ -78,7 +79,7 @@ function cssVarHex(varName: string): string | null {
 }
 
 export default function GitHubStatsSection() {
-  const [mode, setMode] = useState<"light" | "dark">("dark");
+  const [mode, setMode] = useState<"light" | "dark">("light");
 
   useEffect(() => {
     const root = document.documentElement;
@@ -137,41 +138,64 @@ export default function GitHubStatsSection() {
 
   return (
     //Github Section
-    <section id="github-stats" className="py-12 sm:py-16 md:py-20 bg-white">
+    <section id="github-stats" className="py-12 sm:py-16 md:py-20 bg-background">
       <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-        <div className="text-center mb-12 sm:mb-16">
-          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 mb-3 sm:mb-4">
-            GitHub <span className="text-blue-600">Activity</span>
+        <motion.div
+          className="text-center mb-12 sm:mb-16"
+          initial={{ opacity: 0, y: 24, filter: "blur(8px)" }}
+          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-foreground mb-3 sm:mb-4">
+            GitHub <span className="text-primary">Activity</span>
           </h2>
-          <div className="w-16 sm:w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>
-        </div>
+          <motion.div
+            className="w-16 sm:w-20 h-1 bg-primary mx-auto rounded-full origin-center"
+            initial={{ scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.55, delay: 0.1 }}
+          />
+        </motion.div>
 
         <div className="flex flex-col gap-8 sm:gap-10 items-center">
-          <a
+          <motion.a
             href="https://github.com/ganeshkantle"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 text-sm sm:text-base text-gray-500 hover:text-gray-900 transition-colors duration-300"
+            className="group inline-flex items-center gap-2 text-sm sm:text-base text-muted-foreground hover:text-foreground transition-colors duration-300"
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
           >
             <i className="fab fa-github text-lg"></i>
-            <span className="border-b border-transparent group-hover:border-gray-900 transition-colors duration-300">
+            <span className="border-b border-transparent group-hover:border-foreground transition-colors duration-300">
               github.com/ganeshkantle
             </span>
             <i className="fas fa-arrow-up-right-from-square text-xs opacity-50 group-hover:opacity-100 transition-opacity duration-300"></i>
-          </a>
+          </motion.a>
 
-          <img
+          <motion.img
             src={urls.ghUrl}
             alt="GitHub contributions heatmap"
             className="w-full max-w-[663px] h-auto"
             loading="lazy"
+            initial={{ opacity: 0, y: 40, scale: 0.96 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           />
 
-          <img
+          <motion.img
             src={urls.streakUrl}
             alt="GitHub streak stats"
             className="w-full max-w-[495px] h-auto"
             loading="lazy"
+            initial={{ opacity: 0, y: 40, scale: 0.96 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
           />
         </div>
       </div>

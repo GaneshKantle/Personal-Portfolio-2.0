@@ -133,74 +133,93 @@ export default function ContactSection() {
   return (
     <>
       {/* Section Separator */}
-      <div className="py-12 sm:py-16 bg-white">
+      <div className="py-12 sm:py-16 bg-background">
         <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
           <div className="flex items-center justify-center">
-            <div className="w-24 sm:w-32 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
-            <div className="mx-3 sm:mx-4 w-2 h-2 bg-blue-600 rounded-full"></div>
-            <div className="w-24 sm:w-32 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+            <div className="w-24 sm:w-32 h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
+            <div className="mx-3 sm:mx-4 w-2 h-2 bg-primary rounded-full"></div>
+            <div className="w-24 sm:w-32 h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
           </div>
         </div>
       </div>
       
-      <section id="contact" className="py-12 sm:py-16 md:py-20 bg-white">
+      <section id="contact" className="py-12 sm:py-16 md:py-20 bg-background">
         <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-gray-900 mb-3 sm:mb-4">
-              Get In <span className="text-blue-600">Touch</span>
-            </h2>
-            <div className="w-16 sm:w-20 h-1 bg-blue-600 mx-auto rounded-full"></div>
-            <p className="text-gray-600 mt-3 sm:mt-4 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed px-4">
+            <motion.h2
+              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-foreground mb-3 sm:mb-4"
+              initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+            >
+              Get In <span className="text-primary">Touch</span>
+            </motion.h2>
+            <motion.div
+              className="w-16 sm:w-20 h-1 bg-primary mx-auto rounded-full origin-center"
+              initial={{ scaleX: 0 }}
+              whileInView={{ scaleX: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.55, delay: 0.1 }}
+            />
+            <motion.p
+              className="text-muted-foreground mt-3 sm:mt-4 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed px-4"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+            >
               Hey Human feel free to reach me!.
-            </p>
+            </motion.p>
           </div>
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 max-w-6xl mx-auto">
             {/* Contact Form */}
-            <motion.div 
-className="relative z-10 bg-white p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl shadow-sm border border-gray-200 hover:shadow-md transition-all duration-300 ease-in-out"              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+            <motion.div
+              className="relative z-10 bg-card p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl shadow-sm border border-border"
+              initial={{ opacity: 0, x: -60, rotate: -1 }}
+              whileInView={{ opacity: 1, x: 0, rotate: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             >
-              <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-gray-900">Send me a message</h3>
+              <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-foreground">Send me a message</h3>
               
               <form>
                 <div className="mb-4 sm:mb-6">
-                  <label htmlFor="name" className="block text-gray-600 mb-2 font-medium text-sm sm:text-base">Name</label>
+                  <label htmlFor="name" className="block text-muted-foreground mb-2 font-medium text-sm sm:text-base">Name</label>
                   <Input 
                     type="text" 
                     id="name" 
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="w-full bg-white text-gray-900 border border-gray-200 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100 transition-all duration-300 ease-in-out text-sm sm:text-base" 
+                    className="w-full bg-card text-foreground border border-border rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 focus:outline-none focus:border-primary focus:ring-2 focus:ring-ring/20 transition-all duration-300 ease-in-out text-sm sm:text-base" 
                     placeholder="Your name" 
                   />
                 </div>
                 
                 <div className="mb-4 sm:mb-6">
-                  <label htmlFor="email" className="block text-gray-600 mb-2 font-medium text-sm sm:text-base">Email</label>
+                  <label htmlFor="email" className="block text-muted-foreground mb-2 font-medium text-sm sm:text-base">Email</label>
                   <Input 
                     type="email" 
                     id="email" 
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="w-full bg-white text-gray-900 border border-gray-200 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100 transition-all duration-300 ease-in-out text-sm sm:text-base" 
+                    className="w-full bg-card text-foreground border border-border rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 focus:outline-none focus:border-primary focus:ring-2 focus:ring-ring/20 transition-all duration-300 ease-in-out text-sm sm:text-base" 
                     placeholder="Your email" 
                   />
                 </div>
                 
                 <div className="mb-4 sm:mb-6">
-                  <label htmlFor="message" className="block text-gray-600 mb-2 font-medium text-sm sm:text-base">Message</label>
+                  <label htmlFor="message" className="block text-muted-foreground mb-2 font-medium text-sm sm:text-base">Message</label>
                   <Textarea 
                     id="message" 
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={5} 
-                    className="w-full bg-white text-gray-900 border border-gray-200 rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-100 transition-all duration-300 ease-in-out text-sm sm:text-base" 
+                    className="w-full bg-card text-foreground border border-border rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 focus:outline-none focus:border-primary focus:ring-2 focus:ring-ring/20 transition-all duration-300 ease-in-out text-sm sm:text-base" 
                     placeholder="Your message" 
                   />
                 </div>
@@ -210,7 +229,7 @@ className="relative z-10 bg-white p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl sh
                     type="button"
                     disabled={isSubmitting}
                     onClick={handleSendEmail}
-                    className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-md rounded-full px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-center text-sm sm:text-base"
+                    className="flex-1 bg-primary hover:bg-primary/90 text-white font-semibold transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-md rounded-full px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-center text-sm sm:text-base"
                   >
                     <i className="fas fa-envelope mr-1 sm:mr-2"></i> Send Email
                   </Button>
@@ -230,32 +249,32 @@ className="relative z-10 bg-white p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl sh
             {/* Contact Information */}
             <motion.div 
               className="lg:pl-8 xl:pl-12"
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, x: 60, rotate: 1 }}
+              whileInView={{ opacity: 1, x: 0, rotate: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="mb-6 sm:mb-8">
-                <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-gray-900">Contact Information</h3>
+                <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-foreground">Contact Information</h3>
                 
                 <div className="space-y-4 sm:space-y-6">
                   <div className="flex items-start">
-                    <div className="bg-blue-50 p-2.5 sm:p-3 rounded-full text-blue-600 mr-3 sm:mr-4 border border-blue-200">
+                    <div className="bg-primary/10 p-2.5 sm:p-3 rounded-full text-primary mr-3 sm:mr-4 border border-primary/20">
                       <i className="fas fa-envelope text-sm sm:text-base"></i>
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-1 text-gray-900 text-sm sm:text-base">Email</h4>
-                      <p className="text-gray-600 text-sm sm:text-base">ganeshkantle@gmail.com</p>
+                      <h4 className="font-semibold mb-1 text-foreground text-sm sm:text-base">Email</h4>
+                      <p className="text-muted-foreground text-sm sm:text-base">ganeshkantle@gmail.com</p>
                     </div>
                   </div>
                   
                   <div className="flex items-start">
-                    <div className="bg-blue-50 p-2.5 sm:p-3 rounded-full text-blue-600 mr-3 sm:mr-4 border border-blue-200">
+                    <div className="bg-primary/10 p-2.5 sm:p-3 rounded-full text-primary mr-3 sm:mr-4 border border-primary/20">
                       <i className="fas fa-map-marker-alt text-sm sm:text-base"></i>
                     </div>
                     <div>
-                      <h4 className="font-semibold mb-1 text-gray-900 text-sm sm:text-base">Location</h4>
-                      <p className="text-gray-600 text-sm sm:text-base">Bangalore, India</p>
+                      <h4 className="font-semibold mb-1 text-foreground text-sm sm:text-base">Location</h4>
+                      <p className="text-muted-foreground text-sm sm:text-base">Bangalore, India</p>
                     </div>
                   </div>
              
@@ -263,13 +282,13 @@ className="relative z-10 bg-white p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl sh
               </div>
               
               <div>
-                <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-gray-900">Let's build something amazing together</h3>
-                <p className="text-gray-600 mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
+                <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-foreground">Let's build something amazing together</h3>
+                <p className="text-muted-foreground mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
                   I'm always interested in hearing about new projects and opportunities. Whether you need a web application, smart contract development, or technical consultation, I'm here to help.
                 </p>
-                <div className="text-xs sm:text-sm text-blue-600">
-                  <span className="block mb-1"><span className="text-gray-500">{'>'}</span> Currently available for freelance projects</span>
-                  <span className="block"><span className="text-gray-500">{'>'}</span> Open to full time work opportunities</span>
+                <div className="text-xs sm:text-sm text-primary">
+                  <span className="block mb-1"><span className="text-muted-foreground">{'>'}</span> Currently available for freelance projects</span>
+                  <span className="block"><span className="text-muted-foreground">{'>'}</span> Open to full time work opportunities</span>
                 </div>
               </div>
             </motion.div>

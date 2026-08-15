@@ -53,43 +53,43 @@ export default function BlogSection() {
   const getCategoryColor = (color: string) => {
     switch(color) {
       case 'primary':
-        return 'bg-blue-50 text-blue-700 border-blue-200';
+        return 'bg-primary/10 text-primary border-primary/20';
       case 'secondary':
         return 'bg-green-50 text-green-700 border-green-200';
       case 'accent':
         return 'bg-purple-50 text-purple-700 border-purple-200';
       default:
-        return 'bg-blue-50 text-blue-700 border-blue-200';
+        return 'bg-primary/10 text-primary border-primary/20';
     }
   };
 
   const getLinkColor = (color: string) => {
     switch(color) {
       case 'primary':
-        return 'text-blue-600 group-hover:text-blue-700';
+        return 'text-primary group-hover:text-primary/90';
       case 'secondary':
         return 'text-green-600 group-hover:text-green-700';
       case 'accent':
         return 'text-purple-600 group-hover:text-purple-700';
       default:
-        return 'text-blue-600 group-hover:text-blue-700';
+        return 'text-primary group-hover:text-primary/90';
     }
   };
 
   return (
     <>
       {/* Section Separator */}
-      <div className="py-12 sm:py-16 bg-white">
+      <div className="py-12 sm:py-16 bg-background">
         <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
           <div className="flex items-center justify-center">
-            <div className="w-24 sm:w-32 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
-            <div className="mx-3 sm:mx-4 w-2 h-2 bg-blue-600 rounded-full"></div>
-            <div className="w-24 sm:w-32 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+            <div className="w-24 sm:w-32 h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
+            <div className="mx-3 sm:mx-4 w-2 h-2 bg-primary rounded-full"></div>
+            <div className="w-24 sm:w-32 h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
           </div>
         </div>
       </div>
       
-      <section id="blog" className="py-12 sm:py-16 md:py-20 bg-white" ref={ref}>
+      <section id="blog" className="py-12 sm:py-16 md:py-20 bg-background" ref={ref}>
         <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
           <motion.div 
             className="text-center mb-12 sm:mb-16"
@@ -102,7 +102,7 @@ export default function BlogSection() {
             transition={{ duration: 0.5 }}
           >
             <motion.h2
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-gray-900 mb-3 sm:mb-4"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground mb-3 sm:mb-4"
               initial={{ opacity: 0, y: 20 }}
               animate={controls}
               variants={{
@@ -111,10 +111,10 @@ export default function BlogSection() {
               }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              Latest <span className="text-blue-600">Blog Posts</span>
+              Latest <span className="text-primary">Blog Posts</span>
             </motion.h2>
             <motion.div
-              className="w-16 sm:w-20 h-1 bg-blue-600 mx-auto rounded-full"
+              className="w-16 sm:w-20 h-1 bg-primary mx-auto rounded-full"
               initial={{ opacity: 0, width: 0 }}
               animate={controls}
               variants={{
@@ -124,7 +124,7 @@ export default function BlogSection() {
               transition={{ duration: 0.5, delay: 0.2 }}
             ></motion.div>
             <motion.p
-              className="text-gray-600 mt-3 sm:mt-4 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed px-4"
+              className="text-muted-foreground mt-3 sm:mt-4 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed px-4"
               initial={{ opacity: 0 }}
               animate={controls}
               variants={{
@@ -142,7 +142,7 @@ export default function BlogSection() {
               {blogPosts.map((post, index) => (
                 <motion.article
                   key={post.id}
-                  className="bg-white rounded-xl sm:rounded-2xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-all duration-300 ease-in-out hover:scale-[1.02] group"
+                  className="bg-card rounded-xl sm:rounded-2xl shadow-sm border border-border overflow-hidden hover:shadow-md transition-all duration-300 ease-in-out hover:scale-[1.02] group"
                   initial={{ opacity: 0, y: 20 }}
                   animate={controls}
                   variants={{
@@ -161,12 +161,12 @@ export default function BlogSection() {
                       >
                         {post.category}
                       </Badge>
-                      <span className="text-xs sm:text-sm text-gray-500">{post.date}</span>
+                      <span className="text-xs sm:text-sm text-muted-foreground">{post.date}</span>
                     </div>
-                    <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-gray-900 line-clamp-2">
+                    <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-foreground line-clamp-2">
                       {post.title}
                     </h3>
-                    <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-4 sm:mb-6 line-clamp-3">
+                    <p className="text-muted-foreground text-sm sm:text-base leading-relaxed mb-4 sm:mb-6 line-clamp-3">
                       {post.excerpt}
                     </p>
                     <a
@@ -186,7 +186,7 @@ export default function BlogSection() {
             <div className="text-center mt-8 sm:mt-12">
               <Button
                 size="lg"
-                className="bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-md rounded-full px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base"
+                className="bg-primary hover:bg-primary/90 text-white font-semibold transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-md rounded-full px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base"
               >
                 View All Posts
               </Button>
@@ -196,12 +196,12 @@ export default function BlogSection() {
       </section>
       
       {/* Section Separator */}
-      <div className="py-12 sm:py-16 bg-white">
+      <div className="py-12 sm:py-16 bg-background">
         <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
           <div className="flex items-center justify-center">
-            <div className="w-24 sm:w-32 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
-            <div className="mx-3 sm:mx-4 w-2 h-2 bg-blue-600 rounded-full"></div>
-            <div className="w-24 sm:w-32 h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent"></div>
+            <div className="w-24 sm:w-32 h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
+            <div className="mx-3 sm:mx-4 w-2 h-2 bg-primary rounded-full"></div>
+            <div className="w-24 sm:w-32 h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
           </div>
         </div>
       </div>

@@ -7,12 +7,12 @@ export function DotPattern({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "pointer-events-none absolute inset-0",
+        "pointer-events-none absolute inset-0 text-foreground",
         className
       )}
     >
       <svg
-        className="h-full w-full dark:opacity-30"
+        className="h-full w-full opacity-40 dark:opacity-30"
         xmlns="http://www.w3.org/2000/svg"
       >
         <defs>
@@ -28,7 +28,7 @@ export function DotPattern({ className }: { className?: string }) {
               cx="1" 
               cy="1" 
               r="1.5" 
-              fill="#000000"
+              fill="currentColor"
               fillOpacity="0.4"
             />
           </pattern>
@@ -38,4 +38,3 @@ export function DotPattern({ className }: { className?: string }) {
     </div>
   )
 }
-

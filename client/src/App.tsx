@@ -5,6 +5,7 @@ import { TooltipProvider } from "./components/ui/tooltip";
 import { SpeedInsights } from "@vercel/speed-insights/react"
 import { Analytics } from "@vercel/analytics/react"
 import { BackgroundPattern } from "./components/BackgroundPattern";
+import ScrollProgress from "./components/motion/ScrollProgress";
 import NotFound from "./pages/not-found";
 import Home from "./pages/Home";
 import AllProjects from "./components/projects/all-projects";
@@ -33,6 +34,7 @@ function Router() {
 function App() {
   return (
     <TooltipProvider>
+      <ScrollProgress />
       <BackgroundPattern />
       <Toaster />
       <Router />

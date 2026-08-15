@@ -1,8 +1,8 @@
 import React from "react";
 import { useEffect, useState } from "react";
-import { useTheme } from "./ThemeProvider";
 import { scrollToElement } from "../lib/utils";
 import { useLocation } from "wouter";
+import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   // { name: "Home", href: "#home", isHash: true },
@@ -19,7 +19,6 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [isNavigating, setIsNavigating] = useState(false);
-  const { theme, setTheme } = useTheme();
   const [location, setLocation] = useLocation();
 
   // Check if we're on the home page
@@ -42,13 +41,13 @@ export default function Navbar() {
   // Prevent body scroll when mobile menu is open
   useEffect(() => {
     if (mobileMenuOpen) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
-    
+
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [mobileMenuOpen]);
 
@@ -77,11 +76,11 @@ export default function Navbar() {
       // If on other pages and trying to use hash, go to home first
       setIsNavigating(true);
       setLocation("/");
-      
+
       // Use a more reliable approach with multiple checks
       let attempts = 0;
       const maxAttempts = 10; // Prevent infinite loops
-      
+
       const checkAndScroll = () => {
         attempts++;
         const id = href.substring(1);
@@ -97,11 +96,11 @@ export default function Navbar() {
           setIsNavigating(false);
         }
       };
-      
+
       // Start checking after a short delay
       setTimeout(checkAndScroll, 100);
     }
-    
+
     setMobileMenuOpen(false);
   };
 
@@ -117,26 +116,30 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 backdrop-blur-xl border-b border-gray-200 ${
-          scrolled 
-            ? "bg-white/95 shadow-sm" 
-            : "bg-white/80"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 backdrop-blur-xl border-b border-border ${
+          scrolled ? "bg-background/95 shadow-sm" : "bg-background/80"
         }`}
       >
         <div className="w-full px-3 sm:px-4 md:px-6 lg:px-8">
           <div className="flex items-center h-14 sm:h-16 lg:h-20">
             {/* Left side - Logo */}
-            <div 
+            <div
               className={`flex items-center cursor-pointer group transition-all duration-300 hover:scale-105 ${
-                isNavigating ? 'opacity-70' : ''
+                isNavigating ? "opacity-70" : ""
               }`}
               onClick={handleLogoClick}
             >
-              <span className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold text-blue-600 mr-1 group-hover:text-blue-700 transition-colors">&lt;</span>
-              <span className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold text-gray-900 group-hover:text-blue-600 transition-colors">GaneshKantle</span>
-              <span className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold text-blue-600 ml-1 group-hover:text-blue-700 transition-colors">/&gt;</span>
+              <span className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold text-primary mr-1 group-hover:text-primary/80 transition-colors">
+                &lt;
+              </span>
+              <span className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+                GaneshKantle
+              </span>
+              <span className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold text-primary ml-1 group-hover:text-primary/80 transition-colors">
+                /&gt;
+              </span>
               {isNavigating && (
-                <div className="ml-2 w-3 h-3 sm:w-4 sm:h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                <div className="ml-2 w-3 h-3 sm:w-4 sm:h-4 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
               )}
             </div>
 
@@ -147,32 +150,42 @@ export default function Navbar() {
                   key={link.name}
                   onClick={() => handleNavClick(link.href, link.isHash)}
                   disabled={isNavigating}
-                  className={`relative text-gray-600 hover:text-blue-600 transition-all duration-300 group font-medium px-3 lg:px-4 py-2 ${
-                    isNavigating ? 'opacity-50 cursor-not-allowed' : ''
+                  className={`relative text-muted-foreground hover:text-primary transition-all duration-300 group font-medium px-3 lg:px-4 py-2 ${
+                    isNavigating ? "opacity-50 cursor-not-allowed" : ""
                   }`}
                 >
                   {link.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
                 </button>
               ))}
+              <ThemeToggle className="ml-2" />
             </div>
 
             {/* Right side - Mobile menu button */}
-            <div className="flex items-center lg:hidden ml-auto">
+            <div className="flex items-center gap-2 lg:hidden ml-auto">
+              <ThemeToggle />
               <button
                 className="relative w-8 h-8 sm:w-10 sm:h-10 flex flex-col items-center justify-center space-y-1 sm:space-y-1.5 group"
                 onClick={toggleMobileMenu}
                 aria-label="Toggle menu"
               >
-                <span className={`block w-5 sm:w-6 h-0.5 bg-gray-600 group-hover:bg-blue-600 transition-all duration-300 ${
-                  mobileMenuOpen ? 'rotate-45 translate-y-1.5 sm:translate-y-2' : ''
-                }`}></span>
-                <span className={`block w-5 sm:w-6 h-0.5 bg-gray-600 group-hover:bg-blue-600 transition-all duration-300 ${
-                  mobileMenuOpen ? 'opacity-0' : ''
-                }`}></span>
-                <span className={`block w-5 sm:w-6 h-0.5 bg-gray-600 group-hover:bg-blue-600 transition-all duration-300 ${
-                  mobileMenuOpen ? '-rotate-45 -translate-y-1.5 sm:-translate-y-2' : ''
-                }`}></span>
+                <span
+                  className={`block w-5 sm:w-6 h-0.5 bg-muted-foreground group-hover:bg-primary transition-all duration-300 ${
+                    mobileMenuOpen ? "rotate-45 translate-y-1.5 sm:translate-y-2" : ""
+                  }`}
+                ></span>
+                <span
+                  className={`block w-5 sm:w-6 h-0.5 bg-muted-foreground group-hover:bg-primary transition-all duration-300 ${
+                    mobileMenuOpen ? "opacity-0" : ""
+                  }`}
+                ></span>
+                <span
+                  className={`block w-5 sm:w-6 h-0.5 bg-muted-foreground group-hover:bg-primary transition-all duration-300 ${
+                    mobileMenuOpen
+                      ? "-rotate-45 -translate-y-1.5 sm:-translate-y-2"
+                      : ""
+                  }`}
+                ></span>
               </button>
             </div>
           </div>
@@ -180,9 +193,9 @@ export default function Navbar() {
       </nav>
 
       {/* Mobile menu overlay */}
-      <div 
+      <div
         className={`lg:hidden fixed inset-0 z-40 transition-all duration-500 ${
-          mobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+          mobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
         }`}
         onClick={() => setMobileMenuOpen(false)}
       >
@@ -190,26 +203,42 @@ export default function Navbar() {
       </div>
 
       {/* Mobile menu slide-in from right */}
-      <div 
-        className={`lg:hidden fixed top-0 right-0 h-full w-72 sm:w-80 max-w-[90vw] z-50 bg-white/95 backdrop-blur-xl border-l border-gray-200 shadow-lg transition-transform duration-500 ease-out ${
-          mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+      <div
+        className={`lg:hidden fixed top-0 right-0 h-full w-72 sm:w-80 max-w-[90vw] z-50 bg-background/95 backdrop-blur-xl border-l border-border shadow-lg transition-transform duration-500 ease-out ${
+          mobileMenuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
         <div className="flex flex-col h-full">
           {/* Mobile menu header */}
-          <div className="flex items-center justify-between p-4 sm:p-6 border-b border-gray-200">
+          <div className="flex items-center justify-between p-4 sm:p-6 border-b border-border">
             <div className="flex items-center">
-              <span className="text-lg sm:text-xl font-semibold text-blue-600 mr-1">&lt;</span>
-              <span className="text-lg sm:text-xl font-semibold text-gray-900">GaneshKantle</span>
-              <span className="text-lg sm:text-xl font-semibold text-blue-600 ml-1">/&gt;</span>
+              <span className="text-lg sm:text-xl font-semibold text-primary mr-1">
+                &lt;
+              </span>
+              <span className="text-lg sm:text-xl font-semibold text-foreground">
+                GaneshKantle
+              </span>
+              <span className="text-lg sm:text-xl font-semibold text-primary ml-1">
+                /&gt;
+              </span>
             </div>
             <button
               onClick={() => setMobileMenuOpen(false)}
-              className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-gray-100 hover:bg-gray-200 border border-gray-200 transition-all duration-300 ease-in-out"
+              className="w-7 h-7 sm:w-8 sm:h-8 flex items-center justify-center rounded-full bg-muted hover:bg-muted/80 border border-border transition-all duration-300 ease-in-out"
               aria-label="Close menu"
             >
-              <svg className="w-4 h-4 sm:w-5 sm:h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <svg
+                className="w-4 h-4 sm:w-5 sm:h-5 text-muted-foreground"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
           </div>
@@ -221,14 +250,14 @@ export default function Navbar() {
                 key={link.name}
                 onClick={() => handleNavClick(link.href, link.isHash)}
                 disabled={isNavigating}
-                className={`w-full text-left px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl text-gray-600 hover:bg-blue-50 hover:text-blue-600 transition-all duration-300 font-medium group ${
-                  isNavigating ? 'opacity-50 cursor-not-allowed' : ''
+                className={`w-full text-left px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl text-muted-foreground hover:bg-primary/10 hover:text-primary transition-all duration-300 font-medium group ${
+                  isNavigating ? "opacity-50 cursor-not-allowed" : ""
                 }`}
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <span className="relative text-sm sm:text-base">
                   {link.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
                 </span>
               </button>
             ))}

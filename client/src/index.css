@@ -5,6 +5,7 @@
 :root {
   /* Font family variable for Inter */
   --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color-scheme: light;
   
   /* Google theme-inspired colors for light mode */
   --background: 0 0% 100%;
@@ -31,6 +32,7 @@
 }
 
 .dark {
+  color-scheme: dark;
   /* Google dark theme-inspired colors */
   --background: 220 10% 10%;
   --foreground: 210 40% 98%;
@@ -82,12 +84,6 @@
     }
   }
 
-  /* Base background at root level */
-  html,
-  body {
-    background-color: #ffffff;
-  }
-
   /* Mobile-first responsive improvements */
   html {
     font-size: 16px;
@@ -110,9 +106,10 @@
     }
   }
 
-  /* Prevent horizontal scroll on mobile */
+  /* Prevent horizontal scroll without creating per-section vertical scrollports.
+     overflow-x: hidden makes overflow-y compute to auto (CSS quirk) — use clip instead. */
   .container {
-    @apply overflow-x-hidden;
+    overflow-x: clip;
   }
 }
 
@@ -303,9 +300,27 @@
   }
 }
 
-/* Smooth scrolling for all devices */
+/* Custom scrollbar — page only, not every nested overflow box */
 html {
   scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+html::-webkit-scrollbar {
+  width: 8px;
+}
+
+html::-webkit-scrollbar-track {
+  background: hsl(var(--muted) / 0.5);
+}
+
+html::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.55);
+  border-radius: 4px;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.75);
 }
 
 /* Improve focus states for accessibility */
@@ -314,7 +329,22 @@ a:focus,
 input:focus,
 textarea:focus,
 select:focus {
-  @apply outline-none ring-2 ring-blue-500 ring-offset-2;
+  @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
+}
+
+/* Theme-aware matrix overlay */
+.matrix-bg::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: linear-gradient(
+    hsl(var(--background) / 0.92),
+    hsl(var(--background) / 0.98)
+  );
 }
 
 /* Mobile-specific improvements */
