@@ -5,6 +5,7 @@ import { Icon } from "@iconify/react";
 import { AnimatedCounter } from "./motion/AnimatedCounter";
 import { ScrollReveal } from "./motion/ScrollReveal";
 import { fadeUp, popIn, viewportOnce } from "../lib/motion";
+import heyzineLogo from "../img/heyzine.svg";
 
 const technicalSkills = [
   { name: "Java / Spring Boot", percentage: 90 },
@@ -15,38 +16,90 @@ const technicalSkills = [
   { name: "MySQL", percentage: 70 },
 ];
 
-const technologies = [
-  { name: "Java", icon: "logos:java", fallback: false },
-  { name: "JavaScript", icon: "logos:javascript", fallback: false },
-  { name: "HTML5", icon: "logos:html-5", fallback: false },
-  { name: "CSS3", icon: "logos:css-3", fallback: false },
-  { name: "ReactJS", icon: "logos:react", fallback: false },
-  { name: "TypeScript", icon: "logos:typescript-icon", fallback: false },
-  { name: "Bootstrap", icon: "logos:bootstrap", fallback: false },
-  { name: "Solidity", icon: "logos:solidity", fallback: false },
-  { name: "Ethereum", icon: "logos:ethereum", fallback: false },
-  { name: "GitHub", icon: "simple-icons:github", color: "#6e5494", fallback: false },
-  { name: "Docker", icon: "logos:docker-icon", fallback: false },
-  { name: "VS Code", icon: "logos:visual-studio-code", fallback: false },
+type TechItem = {
+  name: string;
+  icon?: string;
+  color?: string;
+  fallback?: boolean;
+  image?: string;
+};
+
+const technologies: TechItem[] = [
+  { name: "Java", icon: "logos:java" },
+  { name: "JavaScript", icon: "logos:javascript" },
+  { name: "HTML5", icon: "logos:html-5" },
+  { name: "CSS3", icon: "logos:css-3" },
+  { name: "ReactJS", icon: "logos:react" },
+  { name: "TypeScript", icon: "logos:typescript-icon" },
+  { name: "Bootstrap", icon: "logos:bootstrap" },
+  { name: "Solidity", icon: "logos:solidity" },
+  { name: "Ethereum", icon: "logos:ethereum" },
+  { name: "GitHub", icon: "simple-icons:github", color: "#6e5494" },
+  { name: "Docker", icon: "logos:docker-icon" },
+  { name: "VS Code", icon: "logos:visual-studio-code" },
   { name: "Cursor IDE", icon: "fas fa-terminal", color: "#CCCCCC", fallback: true },
-  { name: "Replit", icon: "logos:replit-icon", fallback: false },
-  { name: "Vercel", icon: "simple-icons:vercel", color: "#0070f3", fallback: false },
-  { name: "Postman", icon: "logos:postman-icon", fallback: false },
-  { name: "ChatGPT", icon: "logos:openai-icon", color: "#fff", fallback: false },
+  { name: "Replit", icon: "logos:replit-icon" },
+  { name: "Vercel", icon: "simple-icons:vercel", color: "#000000" },
+  { name: "Postman", icon: "logos:postman-icon" },
+  { name: "ChatGPT", icon: "logos:openai-icon" },
   { name: "Grok", icon: "fas fa-comment-dots", color: "#FF4500", fallback: true },
   { name: "Claude AI", icon: "fas fa-cloud", color: "#5A5A5A", fallback: true },
-  { name: "Copilot", icon: "logos:github-copilot", color: "#fff", fallback: false },
-  { name: "Gemini", icon: "logos:google-gemini", fallback: false },
+  { name: "Copilot", icon: "logos:github-copilot" },
+  { name: "Gemini", icon: "logos:google-gemini" },
   { name: "Llama Coder", icon: "fas fa-hippo", color: "#A07F5F", fallback: true },
   { name: "Blackbox AI", icon: "fas fa-box", color: "#3E64FF", fallback: true },
-  { name: "Figma", icon: "logos:figma", fallback: false },
-  { name: "Canva", icon: "simple-icons:canva", color: "#00C4CC", fallback: false },
-  { name: "WordPress", icon: "simple-icons:wordpress", color: "#21759B", fallback: false },
-  { name: "Wix Studio", icon: "simple-icons:wix", color: "#FAAD4D", fallback: false },
-  { name: "LeetCode", icon: "simple-icons:leetcode", color: "#FFA116", fallback: false },
+  { name: "Figma", icon: "logos:figma" },
+  { name: "Canva", icon: "simple-icons:canva", color: "#00C4CC" },
+  { name: "WordPress", icon: "logos:wordpress-icon" },
+  { name: "Wix Studio", icon: "simple-icons:wix", color: "#0C6EFC" },
+  { name: "HeyZine", image: heyzineLogo },
+  { name: "Shopify", icon: "logos:shopify" },
+  { name: "Zapier", icon: "logos:zapier" },
+  { name: "Firebase", icon: "logos:firebase" },
+  { name: "bunny.net", icon: "logos:bunny-net" },
+  { name: "Google Cloud Console", icon: "logos:google-cloud" },
+  { name: "Google Drive", icon: "logos:google-drive" },
+  { name: "Google Sheets", icon: "simple-icons:googlesheets", color: "#34A853" },
+  { name: "Mailchimp", icon: "logos:mailchimp" },
+  { name: "Calendly", icon: "simple-icons:calendly", color: "#006BFF" },
+  { name: "LeetCode", icon: "simple-icons:leetcode", color: "#FFA116" },
   { name: "W3Schools", icon: "fas fa-graduation-cap", color: "#04AA6D", fallback: true },
-  { name: "LaTeX", icon: "fas fa-file-code", color: "#00A78E", fallback: true },
+  { name: "LaTeX", icon: "fas fa-file-code", color: "#008080", fallback: true },
 ];
+
+function TechIcon({ tech }: { tech: TechItem }) {
+  if (tech.image) {
+    return (
+      <img
+        src={tech.image}
+        alt=""
+        width={32}
+        height={32}
+        className="h-6 w-6 object-contain sm:h-8 sm:w-8"
+        loading="lazy"
+      />
+    );
+  }
+
+  if (tech.fallback && tech.icon) {
+    return (
+      <i
+        className={`${tech.icon} text-2xl sm:text-4xl`}
+        style={{ color: tech.color || "#666" }}
+      />
+    );
+  }
+
+  return (
+    <Icon
+      icon={tech.icon!}
+      width="24"
+      height="24"
+      className="sm:h-8 sm:w-8"
+      color={tech.color || undefined}
+    />
+  );
+}
 
 export default function SkillsSection() {
   const mid = Math.ceil(technologies.length / 2);
@@ -153,20 +206,7 @@ export default function SkillsSection() {
                         className="marquee-icon flex flex-col items-center mx-2 sm:mx-4 cursor-pointer"
                       >
                         <div className="bg-card p-3 sm:p-4 rounded-full flex items-center justify-center border border-border hover:border-primary transition-all duration-300 ease-in-out hover:scale-[1.02] shadow-sm hover:shadow-md marquee-icon-inner">
-                          {tech.fallback ? (
-                            <i
-                              className={`${tech.icon} text-2xl sm:text-4xl`}
-                              style={{ color: tech.color || "#666" }}
-                            ></i>
-                          ) : (
-                            <Icon
-                              icon={tech.icon}
-                              width="24"
-                              height="24"
-                              className="sm:w-8 sm:h-8"
-                              color={tech.color || undefined}
-                            />
-                          )}
+                          <TechIcon tech={tech} />
                         </div>
                         <div className="text-xs sm:text-sm font-medium text-center mt-1 sm:mt-2 text-muted-foreground">
                           {tech.name}
@@ -190,20 +230,7 @@ export default function SkillsSection() {
                         className="marquee-icon flex flex-col items-center mx-2 sm:mx-4 cursor-pointer"
                       >
                         <div className="bg-card p-3 sm:p-4 rounded-full flex items-center justify-center border border-border hover:border-primary transition-all duration-300 ease-in-out hover:scale-[1.02] shadow-sm hover:shadow-md marquee-icon-inner">
-                          {tech.fallback ? (
-                            <i
-                              className={`${tech.icon} text-2xl sm:text-4xl`}
-                              style={{ color: tech.color || "#666" }}
-                            ></i>
-                          ) : (
-                            <Icon
-                              icon={tech.icon}
-                              width="24"
-                              height="24"
-                              className="sm:w-8 sm:h-8"
-                              color={tech.color || undefined}
-                            />
-                          )}
+                          <TechIcon tech={tech} />
                         </div>
                         <div className="text-xs sm:text-sm font-medium text-center mt-1 sm:mt-2 text-muted-foreground">
                           {tech.name}

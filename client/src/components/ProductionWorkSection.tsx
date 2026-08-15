@@ -612,13 +612,6 @@ export default function ProductionWorkSection() {
   return (
     <>
       <section id="production" className="relative bg-background">
-        <div className="relative overflow-hidden py-16 sm:py-20 md:py-24">
-          <DotPattern className="pointer-events-none absolute inset-0 z-0" />
-          <div className="container relative z-10 mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-            <ProductionHeading subtitle="Scroll to write, deploy, and materialize live products." />
-          </div>
-        </div>
-
         <div
           ref={containerRef}
           className="relative"
