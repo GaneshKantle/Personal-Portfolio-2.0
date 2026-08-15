@@ -45,7 +45,7 @@ const DEPLOY_LINES = [
 function SectionSeparator() {
   return (
     <div className="bg-background py-10 sm:py-14">
-      <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+      <div className="page-shell">
         <div className="flex items-center justify-center">
           <div className="h-px w-24 bg-gradient-to-r from-transparent via-border to-transparent sm:w-32" />
           <div className="mx-3 h-2 w-2 rounded-full bg-primary sm:mx-4" />
@@ -57,7 +57,7 @@ function SectionSeparator() {
 }
 
 function windowClassName(featured: boolean, dimmed: boolean) {
-  return `group relative flex h-full min-h-0 flex-col overflow-hidden rounded-xl border will-change-transform
+  return `group relative flex h-full min-h-0 flex-col overflow-hidden rounded-xl border
     border-black/[0.08] bg-[#F7F8FA] shadow-sm
     hover:border-primary/30
     dark:border-border dark:bg-card dark:hover:border-primary/35
@@ -88,12 +88,12 @@ function WindowChrome({
         </div>
         <div className="flex min-w-0 flex-1 items-center gap-1.5 rounded-full border border-black/[0.06] bg-white px-2.5 py-1 dark:border-border dark:bg-background">
           <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-500" />
-          <span className="truncate font-mono text-[10px] text-slate-500 sm:text-[11px] dark:text-muted-foreground">
+          <span className="truncate font-mono text-xs text-slate-500 dark:text-muted-foreground">
             {host}
           </span>
         </div>
         {showLiveBadge ? (
-          <span className="hidden shrink-0 rounded-full bg-emerald-500/15 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-emerald-700 sm:inline dark:text-emerald-400">
+          <span className="hidden shrink-0 rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-700 sm:inline dark:text-emerald-400">
             Live
           </span>
         ) : null}
@@ -112,7 +112,7 @@ function WindowChrome({
         </div>
 
         <div className="relative min-w-0 pr-10 sm:pr-14">
-          <p className="mb-1 text-[9px] font-medium uppercase tracking-[0.16em] text-primary sm:mb-1.5 sm:text-[10px]">
+          <p className="mb-1 text-[10px] font-medium uppercase tracking-[0.16em] text-primary sm:mb-1.5 sm:text-xs">
             Live product
           </p>
           <h3
@@ -124,7 +124,7 @@ function WindowChrome({
           </h3>
           <p
             className={`mt-1.5 line-clamp-2 text-slate-600 dark:text-muted-foreground ${
-              featured ? "text-xs sm:text-sm" : "text-[11px] sm:text-xs"
+              featured ? "text-xs sm:text-sm" : "text-xs"
             }`}
           >
             {site.description}
@@ -132,12 +132,12 @@ function WindowChrome({
         </div>
 
         <div className="relative mt-3 flex items-center justify-between gap-2 sm:mt-4">
-          <span className="truncate font-mono text-[10px] text-slate-500 dark:text-muted-foreground">
+          <span className="truncate font-mono text-xs text-slate-500 dark:text-muted-foreground">
             {host}
           </span>
-          <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-primary px-2.5 py-1 text-[10px] font-semibold text-white dark:text-primary-foreground">
+          <span className="inline-flex shrink-0 items-center gap-1.5 rounded-full bg-primary px-2.5 py-1 text-xs font-semibold text-white dark:text-primary-foreground">
             Open
-            <i className="fas fa-arrow-up-right text-[8px]" />
+            <i className="fas fa-arrow-up-right text-[10px]" />
           </span>
         </div>
       </div>
@@ -264,22 +264,22 @@ function StaticDock() {
   return (
     <section
       id="production"
-      className="relative overflow-hidden bg-background py-12 sm:py-16 md:py-20"
+      className="section-y relative overflow-hidden bg-background"
     >
-      <DotPattern className="pointer-events-none absolute inset-0 z-0" />
-      <div className="container relative z-10 mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+      <DotPattern />
+      <div className="page-shell relative z-10">
         <div className="mb-10 sm:mb-14">
           <ProductionHeading subtitle="Live products shipped at WI Thinkers — open any window." />
         </div>
 
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-6">
-          <div className="h-40 md:col-span-2 lg:col-span-6 sm:h-44">
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-6 3xl:max-w-7xl">
+          <div className="min-h-[10rem] md:col-span-2 lg:col-span-6 sm:min-h-[11rem]">
             <StaticLiveWindow site={featured} index={0} featured />
           </div>
           {rest.map((site, i) => (
             <div
               key={site.url}
-              className="h-36 md:col-span-1 lg:col-span-3 sm:h-40"
+              className="min-h-[9rem] md:col-span-1 lg:col-span-3 sm:min-h-[10rem]"
             >
               <StaticLiveWindow site={site} index={i + 1} />
             </div>
@@ -495,9 +495,8 @@ function CompileStage({ progress }: { progress: MotionValue<number> }) {
   });
 
   return (
-    <div className="relative flex h-[100svh] flex-col overflow-hidden bg-background">
-      <DotPattern className="pointer-events-none absolute inset-0 z-0" />
-
+    <div className="relative flex h-full flex-col overflow-hidden bg-background">
+      <DotPattern />
       <div className="relative z-10 shrink-0 px-3 pt-16 sm:px-4 sm:pt-20 md:px-6 lg:px-8">
         <ProductionHeading
           compact
@@ -511,15 +510,14 @@ function CompileStage({ progress }: { progress: MotionValue<number> }) {
         </div>
       </div>
 
-      {/* Desktop — single IdePanel, compact 5-card dock */}
       {isMd ? (
-        <div className="relative z-10 mx-auto flex min-h-0 w-full max-w-6xl flex-1 gap-3 px-4 pb-4 pt-3 lg:gap-4 lg:px-8 lg:pb-5">
-          <div className="w-[36%] min-h-0 shrink-0 lg:w-[38%]">
+        <div className="relative z-10 mx-auto flex min-h-0 w-full max-w-6xl flex-1 gap-3 px-4 pb-4 pt-3 3xl:max-w-7xl lg:gap-4 lg:px-8 lg:pb-5">
+          <div className="h-full w-[36%] min-h-0 shrink-0 lg:w-[38%]">
             <IdePanel progress={progress} />
           </div>
 
           <motion.div
-            className="grid min-h-0 min-w-0 flex-1 grid-cols-2 grid-rows-3 gap-3 lg:gap-3.5"
+            className="grid h-full min-h-0 min-w-0 flex-1 grid-cols-2 grid-rows-3 gap-3 lg:gap-3.5"
             style={{ opacity: windowsOpacity }}
           >
             <div className="col-span-2 row-span-1 min-h-0">
@@ -548,7 +546,6 @@ function CompileStage({ progress }: { progress: MotionValue<number> }) {
           </motion.div>
         </div>
       ) : (
-        /* Mobile — IDE then compact windows; no double IdePanel */
         <div className="relative z-10 flex min-h-0 flex-1 flex-col px-3 pb-4 pt-2">
           <motion.div
             className="mb-2 h-[32%] min-h-0 shrink-0"
@@ -611,13 +608,14 @@ export default function ProductionWorkSection() {
 
   return (
     <>
-      <section id="production" className="relative bg-background">
+      <section id="production" className="relative isolate bg-background">
+        {/* Full sticky stage — next section starts only after this track ends */}
         <div
           ref={containerRef}
           className="relative"
-          style={{ height: "280vh" }}
+          style={{ height: "240vh" }}
         >
-          <div className="sticky top-0 h-[100svh]">
+          <div className="sticky top-0 z-10 h-[100svh] overflow-hidden bg-background">
             <CompileStage progress={scrollYProgress} />
           </div>
         </div>

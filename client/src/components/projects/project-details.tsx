@@ -4,6 +4,7 @@ import { useRoute, useLocation } from "wouter";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { getProjectById } from "../../shared/projectData";
+import { DotPattern } from "../DotPattern";
 
 // Define the project type
 interface Project {
@@ -58,25 +59,26 @@ export default function ProjectDetails() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <section className="section-y relative overflow-hidden" style={{ paddingTop: "calc(var(--nav-offset) + var(--section-y))" }}>
+        <DotPattern />
+        <div className="page-shell relative z-10">
           <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 50 }}
+            className="mb-12 text-center sm:mb-16"
+            initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-muted border border-border text-sm text-muted-foreground mb-6">
-              <span className="w-2 h-2 rounded-full bg-primary mr-2"></span>
+            <div className="mb-6 inline-flex items-center rounded-full border border-border bg-muted px-4 py-2 text-sm text-muted-foreground">
+              <span className="mr-2 h-2 w-2 rounded-full bg-primary"></span>
               {project.category}
             </div>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground mb-6">
+            <h1 className="text-title mb-6 font-semibold tracking-tight text-foreground">
               {project.title}
             </h1>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
+            <p className="mx-auto mb-8 max-w-3xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
               {project.tagline}
             </p>
-            <p className="text-lg text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+            <p className="mx-auto max-w-4xl text-base leading-relaxed text-muted-foreground sm:text-lg">
               {project.longDescription}
             </p>
           </motion.div>
@@ -147,22 +149,23 @@ export default function ProjectDetails() {
       </section>
 
       {/* Project Screenshots */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted">
-        <div className="max-w-7xl mx-auto">
+      <section className="section-y relative overflow-hidden bg-muted">
+        <DotPattern />
+        <div className="page-shell relative z-10">
           <motion.div
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
+            className="mb-12 text-center sm:mb-16"
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.55 }}
           >
-            <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-6">Project Screenshots</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            <h2 className="text-title mb-6 font-semibold text-foreground">Project Screenshots</h2>
+            <p className="mx-auto max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
               Visual walkthrough of the key features and user interface
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-3">
             {project.screenshots.map((screenshot: { src: string; alt: string; caption: string }, index: number) => (
               <motion.div
                 key={index}
@@ -197,9 +200,10 @@ export default function ProjectDetails() {
       </section>
 
       {/* Project Details Grid */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+      <section className="relative overflow-hidden py-20">
+        <DotPattern />
+        <div className="page-shell relative z-10">
+          <div className="grid grid-cols-1 gap-16 lg:grid-cols-2">
             {/* Left Column */}
             <div className="space-y-16">
               {/* Technologies */}
@@ -306,10 +310,11 @@ export default function ProjectDetails() {
       </section>
 
       {/* Additional Links */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative overflow-hidden bg-muted py-20">
+        <DotPattern />
+        <div className="page-shell relative z-10">
           <motion.div
-            className="text-center mb-16"
+            className="mb-16 text-center"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -379,10 +384,11 @@ export default function ProjectDetails() {
       </section>
 
       {/* Navigation */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <section className="relative overflow-hidden py-20">
+        <DotPattern />
+        <div className="page-shell relative z-10">
           <motion.div
-            className="flex flex-col sm:flex-row gap-6 justify-center"
+            className="flex flex-col justify-center gap-6 sm:flex-row"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

@@ -2,6 +2,7 @@ import React from "react";
 
 import { motion } from "framer-motion";
 import { scrollToElement } from "../lib/utils";
+import { DotPattern } from "./DotPattern";
 
 const socialLinks = [
   { icon: "fab fa-linkedin-in", url: "https://www.linkedin.com/in/ganeshkantle", label: "LinkedIn" },
@@ -13,24 +14,25 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="py-8 sm:py-12 bg-background border-t border-border">
-      <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row justify-between items-center">
-          <div className="mb-6 md:mb-0 text-center md:text-left">
-            <div className="flex items-center justify-center md:justify-start">
-              <span className="text-lg sm:text-xl font-semibold text-primary mr-1">&lt;</span>
-              <span className="text-lg sm:text-xl font-semibold text-foreground">GaneshKantle</span>
-              <span className="text-lg sm:text-xl font-semibold text-primary ml-1">/&gt;</span>
+    <footer className="relative overflow-hidden border-t border-border bg-background py-8 sm:py-12">
+      <DotPattern />
+      <div className="page-shell relative z-10">
+        <div className="flex flex-col items-center justify-between gap-6 md:flex-col lg:flex-row">
+          <div className="text-center lg:text-left">
+            <div className="flex items-center justify-center lg:justify-start">
+              <span className="mr-1 text-lg font-semibold text-primary sm:text-xl">&lt;</span>
+              <span className="text-lg font-semibold text-foreground sm:text-xl">GaneshKantle</span>
+              <span className="ml-1 text-lg font-semibold text-primary sm:text-xl">/&gt;</span>
             </div>
-            <p className="text-muted-foreground mt-2 text-xs sm:text-sm">AI Web Developer • Web3 Explorer • Tech Writer</p>
+            <p className="mt-2 text-xs text-muted-foreground sm:text-sm">AI Web Developer • Web3 Explorer • Tech Writer</p>
           </div>
           
-          <div className="flex space-x-4 sm:space-x-6 mb-6 md:mb-0">
+          <div className="mb-0 flex space-x-4 sm:space-x-6">
             {socialLinks.map((link, index) => (
               <motion.a 
                 key={index}
                 href={link.url} 
-                className="text-muted-foreground hover:text-primary transition-all duration-300 ease-in-out text-lg sm:text-xl"
+                className="touch-target flex items-center justify-center text-lg text-muted-foreground transition-all duration-300 ease-in-out hover:text-primary sm:text-xl"
                 whileHover={{ y: -3 }}
                 whileTap={{ scale: 0.95 }}
                 aria-label={link.label}
@@ -40,7 +42,7 @@ export default function Footer() {
             ))}
           </div>
           
-          <div className="text-muted-foreground text-xs sm:text-sm text-center md:text-right">
+          <div className="text-center text-xs text-muted-foreground sm:text-sm lg:text-right">
             &copy; {new Date().getFullYear()} Ganesh Kantle. All rights reserved.
           </div>
         </div>

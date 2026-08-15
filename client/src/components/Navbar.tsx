@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { scrollToElement } from "../lib/utils";
 import { useLocation } from "wouter";
 import ThemeToggle from "./ThemeToggle";
+import { DotPattern } from "./DotPattern";
 
 const navLinks = [
   // { name: "Home", href: "#home", isHash: true },
@@ -25,11 +26,19 @@ export default function Navbar() {
   const isHomePage = location === "/";
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        const next = window.scrollY > 20;
+        setScrolled((prev) => (prev === next ? prev : next));
+        ticking = false;
+      });
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
@@ -116,56 +125,59 @@ export default function Navbar() {
   return (
     <>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 backdrop-blur-xl border-b border-border ${
-          scrolled ? "bg-background/95 shadow-sm" : "bg-background/80"
+        className={`fixed top-0 left-0 right-0 z-50 overflow-hidden border-b border-border transition-colors duration-300 ${
+          scrolled
+            ? "bg-background/95 shadow-sm backdrop-blur-md"
+            : "bg-background/80 backdrop-blur-sm"
         }`}
       >
-        <div className="w-full px-3 sm:px-4 md:px-6 lg:px-8">
-          <div className="flex items-center h-14 sm:h-16 lg:h-20">
+        <DotPattern />
+        <div className="page-shell relative z-10">
+          <div className="flex h-14 items-center sm:h-16 lg:h-20">
             {/* Left side - Logo */}
             <div
-              className={`flex items-center cursor-pointer group transition-all duration-300 hover:scale-105 ${
+              className={`group flex min-w-0 cursor-pointer items-center transition-all duration-300 hover:scale-105 ${
                 isNavigating ? "opacity-70" : ""
               }`}
               onClick={handleLogoClick}
             >
-              <span className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold text-primary mr-1 group-hover:text-primary/80 transition-colors">
+              <span className="mr-1 shrink-0 text-base font-semibold text-primary transition-colors group-hover:text-primary/80 xs:text-lg sm:text-xl lg:text-2xl xl:text-3xl">
                 &lt;
               </span>
-              <span className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors">
+              <span className="truncate text-base font-semibold text-foreground transition-colors group-hover:text-primary xs:text-lg sm:text-xl lg:text-2xl xl:text-3xl">
                 GaneshKantle
               </span>
-              <span className="text-lg sm:text-xl lg:text-2xl xl:text-3xl font-semibold text-primary ml-1 group-hover:text-primary/80 transition-colors">
+              <span className="ml-1 shrink-0 text-base font-semibold text-primary transition-colors group-hover:text-primary/80 xs:text-lg sm:text-xl lg:text-2xl xl:text-3xl">
                 /&gt;
               </span>
               {isNavigating && (
-                <div className="ml-2 w-3 h-3 sm:w-4 sm:h-4 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+                <div className="ml-2 h-3 w-3 shrink-0 animate-spin rounded-full border-2 border-primary border-t-transparent sm:h-4 sm:w-4"></div>
               )}
             </div>
 
             {/* Right side - Desktop Navigation */}
-            <div className="hidden lg:flex items-center ml-auto space-x-1">
+            <div className="ml-auto hidden items-center space-x-0.5 lg:flex xl:space-x-1">
               {navLinks.map((link) => (
                 <button
                   key={link.name}
                   onClick={() => handleNavClick(link.href, link.isHash)}
                   disabled={isNavigating}
-                  className={`relative text-muted-foreground hover:text-primary transition-all duration-300 group font-medium px-3 lg:px-4 py-2 ${
-                    isNavigating ? "opacity-50 cursor-not-allowed" : ""
+                  className={`group relative px-2.5 py-2 font-medium text-muted-foreground transition-all duration-300 hover:text-primary xl:px-3 2xl:px-4 ${
+                    isNavigating ? "cursor-not-allowed opacity-50" : ""
                   }`}
                 >
                   {link.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full"></span>
+                  <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-primary transition-all duration-300 group-hover:w-full"></span>
                 </button>
               ))}
               <ThemeToggle className="ml-2" />
             </div>
 
             {/* Right side - Mobile menu button */}
-            <div className="flex items-center gap-2 lg:hidden ml-auto">
+            <div className="ml-auto flex items-center gap-2 lg:hidden">
               <ThemeToggle />
               <button
-                className="relative w-8 h-8 sm:w-10 sm:h-10 flex flex-col items-center justify-center space-y-1 sm:space-y-1.5 group"
+                className="touch-target group relative flex h-8 w-8 flex-col items-center justify-center space-y-1 sm:h-10 sm:w-10 sm:space-y-1.5"
                 onClick={toggleMobileMenu}
                 aria-label="Toggle menu"
               >

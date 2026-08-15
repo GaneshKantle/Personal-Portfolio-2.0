@@ -2,6 +2,7 @@ import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ScrollReveal, Stagger, StaggerItem } from "./motion/ScrollReveal";
 import { popIn, viewportOnce } from "../lib/motion";
+import { DotPattern } from "./DotPattern";
 
 const certificates = [
   {
@@ -37,15 +38,16 @@ export default function CertificatesSection() {
     <>
       <section
         id="certificates"
-        className="py-12 sm:py-16 md:py-20 bg-background"
+        className="section-y relative overflow-hidden cv-auto bg-background"
       >
-        <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-          <ScrollReveal className="text-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-foreground mb-3 sm:mb-4">
+        <DotPattern />
+        <div className="page-shell relative z-10">
+          <ScrollReveal className="mb-12 text-center sm:mb-16">
+            <h2 className="text-title mb-3 font-semibold tracking-tight text-foreground sm:mb-4">
               My <span className="text-primary">Certificates</span>
             </h2>
             <motion.div
-              className="w-16 sm:w-20 h-1 bg-primary mx-auto rounded-full origin-center"
+              className="mx-auto h-1 w-16 origin-center rounded-full bg-primary sm:w-20"
               initial={prefersReducedMotion ? false : { scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={viewportOnce}
@@ -54,7 +56,7 @@ export default function CertificatesSection() {
           </ScrollReveal>
 
           <Stagger
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-6xl mx-auto"
+            className="mx-auto grid max-w-6xl grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 2xl:gap-8 3xl:max-w-7xl"
             stagger={0.12}
           >
             {certificates.map((cert) => (
@@ -90,12 +92,12 @@ export default function CertificatesSection() {
         </div>
       </section>
 
-      <div className="py-12 sm:py-16 bg-background">
-        <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+      <div className="bg-background py-10 sm:py-14">
+        <div className="page-shell">
           <div className="flex items-center justify-center">
-            <div className="w-24 sm:w-32 h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
-            <div className="mx-3 sm:mx-4 w-2 h-2 bg-primary rounded-full"></div>
-            <div className="w-24 sm:w-32 h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
+            <div className="h-px w-24 bg-gradient-to-r from-transparent via-border to-transparent sm:w-32"></div>
+            <div className="mx-3 h-2 w-2 rounded-full bg-primary sm:mx-4"></div>
+            <div className="h-px w-24 bg-gradient-to-r from-transparent via-border to-transparent sm:w-32"></div>
           </div>
         </div>
       </div>

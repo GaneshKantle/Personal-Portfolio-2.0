@@ -6,11 +6,11 @@ import {
   useTransform,
   useReducedMotion,
 } from "framer-motion";
+import { PageShell } from "./layout/PageShell";
 import { DotPattern } from "./DotPattern";
 import { setupTypewriterEffect, scrollToElement } from "../lib/utils";
 import { easeOutExpo } from "../lib/motion";
 import profilePic from "../img/profile.jpg";
-import "../index.css";
 
 const socialLinks = [
   {
@@ -40,15 +40,17 @@ export default function HeroSection() {
     offset: ["start start", "end start"],
   });
 
-  const textY = useTransform(scrollYProgress, [0, 1], [0, 120]);
-  const imageY = useTransform(scrollYProgress, [0, 1], [0, -80]);
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 0.85]);
+  // Single light parallax — opacity + y only
+  const textY = useTransform(scrollYProgress, [0, 1], [0, 48]);
   const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0]);
 
   useEffect(() => {
+    const isNarrow = window.matchMedia("(max-width: 474px)").matches;
     setupTypewriterEffect(
       typingTextRef.current,
-      "Java • Spring Boot • WIX Studio • ReactJS • Web3 • Blockchain ",
+      isNarrow
+        ? "Java • Spring Boot • React • Web3 "
+        : "Java • Spring Boot • WIX Studio • ReactJS • Web3 • Blockchain ",
       100
     );
   }, []);
@@ -57,150 +59,145 @@ export default function HeroSection() {
     <section
       ref={sectionRef}
       id="home"
-      className="relative min-h-screen flex items-center bg-background overflow-hidden"
+      className="relative flex min-h-[100svh] items-center overflow-hidden bg-background"
+      style={{ paddingTop: "var(--nav-offset)" }}
     >
-      <DotPattern className="absolute inset-0 z-0" />
-
+      <DotPattern />
       <motion.div
-        className="container mx-auto relative z-10"
+        className="relative z-10 w-full"
         style={prefersReducedMotion ? undefined : { opacity }}
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 items-center">
-          <motion.div
-            className="order-2 lg:order-1 text-center lg:text-left"
-            style={prefersReducedMotion ? undefined : { y: textY }}
-            initial={prefersReducedMotion ? false : { opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: easeOutExpo }}
-          >
-            <motion.h1
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-semibold tracking-tight text-foreground mb-3 sm:mb-4 leading-tight"
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 32, filter: "blur(10px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.85, ease: easeOutExpo }}
-            >
-              I'm <span className="text-primary">Ganesh Kantle </span>
-            </motion.h1>
-            <motion.h1
-              className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-semibold tracking-tight text-foreground mb-3 sm:mb-4 leading-tight"
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 28, filter: "blur(8px)" }}
-              animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-              transition={{ duration: 0.85, delay: 0.12, ease: easeOutExpo }}
-            >
-              An <span className="text-primary">AI Web Developer</span>
-            </motion.h1>
-
-            <p
-              ref={typingTextRef}
-              className="text-base sm:text-lg md:text-xl text-muted-foreground mb-4 sm:mb-6 leading-relaxed"
-            />
-
+        <PageShell>
+          <div className="grid grid-cols-1 items-center gap-8 sm:gap-10 lg:grid-cols-2 lg:gap-12 3xl:gap-16">
             <motion.div
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-6 sm:mb-8 justify-center lg:justify-start"
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+              className="order-2 text-center lg:order-1 lg:text-left"
+              style={prefersReducedMotion ? undefined : { y: textY }}
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.25, ease: easeOutExpo }}
+              transition={{ duration: 0.7, ease: easeOutExpo }}
             >
-              <Button
-                size="lg"
-                onClick={() => scrollToElement("projects")}
-                className="bg-primary hover:bg-primary/90 text-white font-semibold transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-md rounded-full px-6 sm:px-8 py-2.5 sm:py-3 flex items-center justify-center text-sm sm:text-base"
+              <motion.h1
+                className="text-display mb-3 font-semibold tracking-tight text-foreground sm:mb-4"
+                initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, ease: easeOutExpo }}
               >
-                <i className="fas fa-code mr-2"></i> View Projects
-              </Button>
-              <Button
-                variant="outline"
-                size="lg"
-                onClick={() =>
-                  window.open(
-                    "https://drive.google.com/drive/folders/1uNqBhasvr7ovsl79eEA4_6PkM6cGvN3n?usp=sharing",
-                    "_blank"
-                  )
-                }
-                className="border-2 border-border text-muted-foreground hover:border-primary/40 hover:text-primary font-semibold transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-md rounded-full px-6 sm:px-8 py-2.5 sm:py-3 flex items-center justify-center bg-card hover:bg-muted text-sm sm:text-base"
+                I'm <span className="text-primary">Ganesh Kantle </span>
+              </motion.h1>
+              <motion.h2
+                className="text-title mb-3 font-semibold tracking-tight text-foreground sm:mb-4"
+                initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.1, ease: easeOutExpo }}
               >
-                <i className="fas fa-download mr-2"></i> Resume
-              </Button>
+                An <span className="text-primary">AI Web Developer</span>
+              </motion.h2>
+
+              <p
+                ref={typingTextRef}
+                className="mb-4 text-base leading-relaxed text-muted-foreground sm:mb-6 sm:text-lg md:text-xl"
+              />
+
+              <motion.div
+                className="mb-6 flex flex-col justify-center gap-3 sm:mb-8 sm:flex-row sm:gap-4 lg:justify-start"
+                initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.55, delay: 0.2, ease: easeOutExpo }}
+              >
+                <Button
+                  size="lg"
+                  onClick={() => scrollToElement("projects")}
+                  className="flex items-center justify-center rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white transition-all duration-300 ease-in-out hover:scale-[1.02] hover:bg-primary/90 hover:shadow-md sm:px-8 sm:py-3 sm:text-base"
+                >
+                  <i className="fas fa-code mr-2"></i> View Projects
+                </Button>
+                <Button
+                  variant="outline"
+                  size="lg"
+                  onClick={() =>
+                    window.open(
+                      "https://drive.google.com/drive/folders/1uNqBhasvr7ovsl79eEA4_6PkM6cGvN3n?usp=sharing",
+                      "_blank"
+                    )
+                  }
+                  className="flex items-center justify-center rounded-full border-2 border-border bg-card px-6 py-2.5 text-sm font-semibold text-muted-foreground transition-all duration-300 ease-in-out hover:scale-[1.02] hover:border-primary/40 hover:bg-muted hover:text-primary hover:shadow-md sm:px-8 sm:py-3 sm:text-base"
+                >
+                  <i className="fas fa-download mr-2"></i> Resume
+                </Button>
+              </motion.div>
+
+              <div className="flex flex-wrap justify-center gap-2 sm:gap-3 lg:justify-start">
+                {socialLinks.map((link, index) => (
+                  <motion.a
+                    key={index}
+                    href={link.url}
+                    className="touch-target flex items-center justify-center rounded-full border border-border bg-card p-2.5 text-muted-foreground shadow-sm transition-all duration-300 ease-in-out hover:border-primary/40 hover:bg-primary/10 hover:text-primary hover:shadow-md sm:p-3"
+                    initial={
+                      prefersReducedMotion ? false : { opacity: 0, scale: 0.9 }
+                    }
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{
+                      delay: 0.3 + index * 0.06,
+                      type: "spring",
+                      stiffness: 220,
+                    }}
+                    whileHover={{ scale: 1.08, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    aria-label={link.name}
+                  >
+                    <i className={`${link.icon} text-sm sm:text-base`}></i>
+                  </motion.a>
+                ))}
+              </div>
             </motion.div>
 
-            <div className="flex flex-wrap gap-2 sm:gap-3 justify-center lg:justify-start">
-              {socialLinks.map((link, index) => (
-                <motion.a
-                  key={index}
-                  href={link.url}
-                  className="bg-card p-2.5 sm:p-3 rounded-full hover:bg-primary/10 hover:text-primary transition-all duration-300 ease-in-out text-muted-foreground border border-border hover:border-primary/40 shadow-sm hover:shadow-md"
-                  initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.6 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.35 + index * 0.08, type: "spring", stiffness: 220 }}
-                  whileHover={{ scale: 1.12, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  aria-label={link.name}
-                >
-                  <i className={`${link.icon} text-sm sm:text-base`}></i>
-                </motion.a>
-              ))}
-            </div>
-          </motion.div>
-
-          <motion.div
-            className="order-1 lg:order-2 flex justify-center"
-            style={
-              prefersReducedMotion
-                ? undefined
-                : { y: imageY, scale: imageScale }
-            }
-            initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.85 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.9, delay: 0.15, ease: easeOutExpo }}
-          >
             <motion.div
-              className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 xl:w-80 xl:h-80"
-              animate={
-                prefersReducedMotion ? undefined : { y: [0, -12, 0] }
-              }
-              transition={{ repeat: Infinity, duration: 3.2, ease: "easeInOut" }}
+              className="order-1 flex justify-center lg:order-2"
+              initial={prefersReducedMotion ? false : { opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.75, delay: 0.12, ease: easeOutExpo }}
             >
-              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/20 to-muted blur-md opacity-50" />
-              <div className="relative bg-card border-4 border-primary/20 rounded-full w-full h-full overflow-hidden flex items-center justify-center shadow-lg">
-                <img
-                  src={profilePic}
-                  alt="My Photo"
-                  className="w-full h-full object-cover rounded-full"
-                />
-              </div>
               <motion.div
-                className="absolute -bottom-2 sm:-bottom-3 md:-bottom-4 -right-2 sm:-right-3 md:-right-4 bg-card p-2 sm:p-2.5 md:p-3 rounded-xl sm:rounded-2xl border border-border shadow-md"
+                className="relative h-48 w-48 sm:h-56 sm:w-56 md:h-64 md:w-64 lg:h-72 lg:w-72 xl:h-80 xl:w-80 3xl:h-96 3xl:w-96"
                 animate={
-                  prefersReducedMotion
-                    ? undefined
-                    : { rotate: [0, 5, 0, -5, 0] }
+                  prefersReducedMotion ? undefined : { y: [0, -10, 0] }
                 }
                 transition={{
                   repeat: Infinity,
-                  duration: 5,
+                  duration: 3.2,
                   ease: "easeInOut",
                 }}
               >
-                <div className="text-primary text-lg sm:text-xl md:text-2xl">
-                  <i className="fas fa-laptop-code"></i>
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/20 to-muted opacity-50 blur-md" />
+                <div className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-full border-4 border-primary/20 bg-card shadow-lg">
+                  <img
+                    src={profilePic}
+                    alt="My Photo"
+                    className="h-full w-full rounded-full object-cover"
+                  />
+                </div>
+                <div className="absolute -bottom-2 -right-2 rounded-xl border border-border bg-card p-2 shadow-md sm:-bottom-3 sm:-right-3 sm:rounded-2xl sm:p-2.5 md:-bottom-4 md:-right-4 md:p-3">
+                  <div className="text-lg text-primary sm:text-xl md:text-2xl">
+                    <i className="fas fa-laptop-code"></i>
+                  </div>
                 </div>
               </motion.div>
             </motion.div>
-          </motion.div>
-        </div>
+          </div>
+        </PageShell>
       </motion.div>
 
-      <div className="absolute bottom-4 sm:bottom-6 left-1/2 transform -translate-x-1/2 text-center z-10">
+      <div className="absolute bottom-4 left-1/2 z-10 -translate-x-1/2 transform text-center sm:bottom-6">
         <motion.a
           href="#about"
-          className="inline-block text-muted-foreground hover:text-primary transition-all duration-300 ease-in-out"
+          className="inline-block text-muted-foreground transition-all duration-300 ease-in-out hover:text-primary"
           onClick={(e) => {
             e.preventDefault();
             scrollToElement("about");
           }}
           whileHover={{ y: 3 }}
         >
-          <span className="block mb-1 text-xs sm:text-sm font-medium">
+          <span className="mb-1 block text-xs font-medium sm:text-sm">
             Scroll Down
           </span>
           <motion.i

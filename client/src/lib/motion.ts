@@ -9,43 +9,41 @@ export const springSnappy = {
   mass: 0.8,
 };
 
+/** Opacity + transform only — no filter blur (rasterizes every frame). */
 export const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 48, filter: "blur(8px)" },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
-    transition: { duration: 0.7, ease: easeOutExpo },
+    transition: { duration: 0.55, ease: easeOutExpo },
   },
 };
 
 export const fadeInScale: Variants = {
-  hidden: { opacity: 0, scale: 0.88, y: 24 },
+  hidden: { opacity: 0, scale: 0.94, y: 16 },
   visible: {
     opacity: 1,
     scale: 1,
     y: 0,
-    transition: { duration: 0.65, ease: easeOutExpo },
+    transition: { duration: 0.5, ease: easeOutExpo },
   },
 };
 
 export const slideInLeft: Variants = {
-  hidden: { opacity: 0, x: -56, rotate: -2 },
+  hidden: { opacity: 0, x: -28 },
   visible: {
     opacity: 1,
     x: 0,
-    rotate: 0,
-    transition: { duration: 0.7, ease: easeOutExpo },
+    transition: { duration: 0.55, ease: easeOutExpo },
   },
 };
 
 export const slideInRight: Variants = {
-  hidden: { opacity: 0, x: 56, rotate: 2 },
+  hidden: { opacity: 0, x: 28 },
   visible: {
     opacity: 1,
     x: 0,
-    rotate: 0,
-    transition: { duration: 0.7, ease: easeOutExpo },
+    transition: { duration: 0.55, ease: easeOutExpo },
   },
 };
 
@@ -54,8 +52,8 @@ export const staggerContainer: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.08,
+      staggerChildren: 0.08,
+      delayChildren: 0.05,
     },
   },
 };
@@ -65,14 +63,14 @@ export const staggerFast: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.06,
-      delayChildren: 0.05,
+      staggerChildren: 0.05,
+      delayChildren: 0.04,
     },
   },
 };
 
 export const popIn: Variants = {
-  hidden: { opacity: 0, scale: 0.6, y: 20 },
+  hidden: { opacity: 0, scale: 0.92, y: 12 },
   visible: {
     opacity: 1,
     scale: 1,

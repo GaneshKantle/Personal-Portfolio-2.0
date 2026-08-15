@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef } from "react";
 import {
   motion,
   useReducedMotion,
@@ -6,6 +6,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { easeOutExpo } from "../lib/motion";
+import { DotPattern } from "./DotPattern";
 
 const educationData = [
   {
@@ -16,8 +17,8 @@ const educationData = [
     location: "Karnataka, India",
     start: "2022",
     end: "2026",
-    status: "current" as const,
-    focus: "",
+    status: "completed" as const,
+    code: "BE · CSE",
   },
   {
     id: 2,
@@ -28,127 +29,100 @@ const educationData = [
     start: "2020",
     end: "2022",
     status: "completed" as const,
-    focus: "",
+    code: "PU · SCI",
   },
 ];
 
 export default function EducationSection() {
   const prefersReducedMotion = useReducedMotion();
   const sectionRef = useRef<HTMLElement>(null);
-  const journeyRef = useRef<HTMLDivElement>(null);
-  const [spineHeight, setSpineHeight] = useState(0);
-
-  useEffect(() => {
-    const el = journeyRef.current;
-    if (!el) return;
-
-    const update = () => setSpineHeight(el.getBoundingClientRect().height);
-    update();
-
-    const observer = new ResizeObserver(update);
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start 70%", "end 45%"],
+    offset: ["start 75%", "end 40%"],
   });
 
-  const drawHeight = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [0, Math.max(spineHeight, 1)]
-  );
-  const drawOpacity = useTransform(scrollYProgress, [0, 0.08], [0, 1]);
+  const railScale = useTransform(scrollYProgress, [0, 0.55], [0.08, 1]);
 
   return (
     <>
       <section
         id="education"
         ref={sectionRef}
-        className="relative py-12 sm:py-16 md:py-20 bg-background overflow-hidden"
+        className="section-y relative overflow-hidden bg-background cv-auto"
       >
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 opacity-70"
-          style={{
-            background:
-              "radial-gradient(ellipse 80% 50% at 10% 20%, hsl(var(--primary) / 0.08), transparent 55%), radial-gradient(ellipse 60% 40% at 90% 80%, hsl(var(--muted) / 0.9), transparent 50%)",
-          }}
-        />
-
-        <div className="container relative z-10 mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+        <DotPattern />
+        <div className="page-shell relative z-10">
           <motion.div
-            className="mb-12 sm:mb-16 max-w-2xl"
-            initial={prefersReducedMotion ? false : { opacity: 0, y: 20, filter: "blur(6px)" }}
-            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-            viewport={{ once: true, amount: 0.4 }}
+            className="mx-auto mb-10 max-w-3xl text-center sm:mb-14"
+            initial={
+              prefersReducedMotion
+                ? false
+                : { opacity: 0, y: 20 }
+            }
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.45 }}
             transition={{ duration: 0.55, ease: easeOutExpo }}
           >
-            <p className="mb-3 text-xs sm:text-sm font-medium uppercase tracking-[0.2em] text-primary">
-              Academic path
+            <p className="mb-3 text-xs font-medium uppercase tracking-[0.22em] text-primary sm:text-sm">
+              Academic ledger
             </p>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-foreground mb-3 sm:mb-4">
+            <h2 className="text-title mb-3 font-semibold tracking-tight text-foreground sm:mb-4">
               Where I <span className="text-primary">learned</span>
             </h2>
             <motion.div
-              className="w-16 sm:w-20 h-1 bg-primary rounded-full mb-4 sm:mb-5 origin-left"
+              className="mx-auto mb-4 h-1 w-16 origin-center rounded-full bg-primary sm:mb-5 sm:w-20"
               initial={prefersReducedMotion ? false : { scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, ease: easeOutExpo, delay: 0.1 }}
+              transition={{ duration: 0.55, ease: easeOutExpo, delay: 0.08 }}
             />
-            <p className="text-muted-foreground text-sm sm:text-base md:text-lg leading-relaxed">
-              Two chapters so far — from science foundations to engineering systems.
+            <p className="text-sm leading-relaxed text-muted-foreground sm:text-base md:text-lg">
+              Two chapters filed — science foundations into engineering systems.
             </p>
           </motion.div>
 
-          <div ref={journeyRef} className="relative mx-auto max-w-5xl">
-            {/* Journey spine track */}
-            <div
-              aria-hidden="true"
-              className="absolute left-[1.15rem] top-3 bottom-3 w-px overflow-hidden sm:left-1/2 sm:-translate-x-px md:left-[7.5rem]"
-            >
-              <div className="absolute inset-0 bg-border/70" />
-              {prefersReducedMotion ? (
-                <div className="absolute inset-0 bg-gradient-to-b from-primary via-primary/50 to-primary/20" />
-              ) : (
+          {/* Year continuum rail — not a vertical timeline */}
+          <div className="mx-auto mb-10 max-w-4xl sm:mb-14">
+            <div className="relative px-1 pt-2 sm:px-4">
+              <div className="relative h-px w-full bg-border">
                 <motion.div
-                  style={{ height: drawHeight, opacity: drawOpacity }}
-                  className="absolute inset-x-0 top-0 w-full origin-top rounded-full bg-gradient-to-b from-primary via-primary to-primary/40"
+                  className="absolute inset-y-0 left-0 origin-left bg-primary"
+                  style={
+                    prefersReducedMotion
+                      ? { scaleX: 1 }
+                      : { scaleX: railScale }
+                  }
                 />
-              )}
+              </div>
+              <div className="mt-3 flex justify-between font-mono text-[10px] uppercase tracking-[0.18em] text-muted-foreground sm:text-xs">
+                <span>2020</span>
+                <span className="text-primary">2022</span>
+                <span>2026</span>
+              </div>
             </div>
+          </div>
 
-            <ol className="relative space-y-10 sm:space-y-14">
-              {educationData.map((item, index) => {
-                const isCurrent = item.status === "current";
-                const progressAt = (index + 0.35) / educationData.length;
-
-                return (
-                  <EducationChapter
-                    key={item.id}
-                    item={item}
-                    index={index}
-                    isCurrent={isCurrent}
-                    prefersReducedMotion={!!prefersReducedMotion}
-                    scrollYProgress={scrollYProgress}
-                    progressAt={progressAt}
-                  />
-                );
-              })}
-            </ol>
+          {/* Staggered diploma folios */}
+          <div className="relative mx-auto max-w-5xl space-y-8 sm:space-y-10 md:space-y-12">
+            {educationData.map((item, index) => (
+              <DiplomaFolio
+                key={item.id}
+                item={item}
+                index={index}
+                prefersReducedMotion={!!prefersReducedMotion}
+              />
+            ))}
           </div>
         </div>
       </section>
 
-      <div className="py-12 sm:py-16 bg-background">
-        <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+      <div className="bg-background py-10 sm:py-14">
+        <div className="page-shell">
           <div className="flex items-center justify-center">
-            <div className="w-24 sm:w-32 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
-            <div className="mx-3 sm:mx-4 w-2 h-2 bg-primary rounded-full" />
-            <div className="w-24 sm:w-32 h-px bg-gradient-to-r from-transparent via-border to-transparent" />
+            <div className="h-px w-24 bg-gradient-to-r from-transparent via-border to-transparent sm:w-32" />
+            <div className="mx-3 h-2 w-2 rounded-full bg-primary sm:mx-4" />
+            <div className="h-px w-24 bg-gradient-to-r from-transparent via-border to-transparent sm:w-32" />
           </div>
         </div>
       </div>
@@ -158,183 +132,139 @@ export default function EducationSection() {
 
 type Chapter = (typeof educationData)[number];
 
-function EducationChapter({
+function DiplomaFolio({
   item,
   index,
-  isCurrent,
   prefersReducedMotion,
-  scrollYProgress,
-  progressAt,
 }: {
   item: Chapter;
   index: number;
-  isCurrent: boolean;
   prefersReducedMotion: boolean;
-  scrollYProgress: ReturnType<typeof useScroll>["scrollYProgress"];
-  progressAt: number;
 }) {
-  const nodeScale = useTransform(
-    scrollYProgress,
-    [progressAt - 0.12, progressAt, progressAt + 0.08],
-    prefersReducedMotion ? [1, 1, 1] : [0.72, 1.14, 1]
-  );
-  const nodeOpacity = useTransform(
-    scrollYProgress,
-    [progressAt - 0.14, progressAt],
-    prefersReducedMotion ? [1, 1] : [0.4, 1]
-  );
+  const isCurrent = item.status === "current";
+  const fromLeft = index % 2 === 0;
+  const passOutYear = item.end;
 
   return (
-    <motion.li
-      className="relative grid grid-cols-[2.5rem_1fr] gap-4 sm:gap-6 md:grid-cols-[7.5rem_2.5rem_1fr] md:gap-0"
+    <motion.article
+      className={`relative mx-auto w-full max-w-3xl md:max-w-4xl ${
+        fromLeft ? "md:mr-auto md:ml-0" : "md:ml-auto md:mr-0"
+      }`}
       initial={
         prefersReducedMotion
           ? false
-          : { opacity: 0, y: 36, filter: "blur(8px)" }
+          : {
+              opacity: 0,
+              x: fromLeft ? -24 : 24,
+              y: 16,
+            }
       }
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-      viewport={{ once: true, margin: "-12% 0px" }}
+      whileInView={{ opacity: 1, x: 0, y: 0 }}
+      viewport={{ once: true, margin: "-8% 0px" }}
       transition={{
-        duration: 0.65,
+        duration: 0.55,
         delay: prefersReducedMotion ? 0 : index * 0.1,
         ease: easeOutExpo,
       }}
+      whileHover={
+        prefersReducedMotion
+          ? undefined
+          : { y: -4 }
+      }
     >
-      {/* Giant year — desktop */}
-      <motion.div
-        className="hidden md:flex md:flex-col md:items-end md:justify-start md:pr-6 md:pt-1"
-        initial={prefersReducedMotion ? false : { opacity: 0, x: -24 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: "-10% 0px" }}
-        transition={{
-          duration: 0.55,
-          delay: prefersReducedMotion ? 0 : 0.08 + index * 0.1,
-          ease: easeOutExpo,
-        }}
-      >
-        <span
-          className={`font-semibold leading-none tracking-tighter tabular-nums ${
-            isCurrent
-              ? "text-4xl lg:text-5xl text-primary"
-              : "text-3xl lg:text-4xl text-muted-foreground/50"
-          }`}
-        >
-          {item.start}
-        </span>
-        <span className="mt-1 text-xs uppercase tracking-[0.18em] text-muted-foreground">
-          → {item.end}
-        </span>
-      </motion.div>
-
-      {/* Node on spine */}
-      <div className="relative z-10 flex justify-center pt-2 md:pt-3">
-        <motion.div
-          style={
-            prefersReducedMotion
-              ? undefined
-              : { scale: nodeScale, opacity: nodeOpacity }
-          }
-          className={`relative flex h-9 w-9 items-center justify-center rounded-full border-2 ${
-            isCurrent
-              ? "border-primary bg-primary text-primary-foreground shadow-[0_0_0_6px_hsl(var(--primary)/0.15)]"
-              : "border-border bg-background text-muted-foreground"
-          }`}
-          whileHover={prefersReducedMotion ? undefined : { scale: 1.12 }}
-          transition={{ type: "spring", stiffness: 400, damping: 22 }}
-        >
-          {isCurrent ? (
-            <span className="absolute inset-0 rounded-full bg-primary/30 animate-ping opacity-40" />
-          ) : null}
-          <i
-            className={`relative text-sm ${
-              isCurrent ? "fas fa-graduation-cap" : "fas fa-book-open"
-            }`}
-            aria-hidden="true"
-          />
-        </motion.div>
-      </div>
-
-      {/* Content panel */}
-      <motion.article
-        className={`group relative overflow-hidden rounded-2xl border p-5 sm:p-6 md:p-7 transition-colors duration-300 ${
-          isCurrent
-            ? "border-primary/35 bg-card shadow-sm"
-            : "border-border bg-card/70 hover:border-primary/25"
+      <div
+        className={`group relative overflow-hidden rounded-2xl border bg-card shadow-sm transition-shadow duration-300 hover:shadow-md ${
+          isCurrent ? "border-primary/40" : "border-border"
         }`}
-        initial={prefersReducedMotion ? false : { opacity: 0, x: 28 }}
-        whileInView={{ opacity: 1, x: 0 }}
-        viewport={{ once: true, margin: "-10% 0px" }}
-        transition={{
-          duration: 0.6,
-          delay: prefersReducedMotion ? 0 : 0.14 + index * 0.1,
-          ease: easeOutExpo,
-        }}
-        whileHover={prefersReducedMotion ? undefined : { y: -4 }}
       >
+        {/* Binder edge */}
         <div
           aria-hidden="true"
-          className={`absolute inset-y-0 left-0 w-1 ${
-            isCurrent ? "bg-primary" : "bg-border group-hover:bg-primary/50"
-          } transition-colors duration-300`}
-        />
-
-        <div className="mb-3 flex items-center justify-between gap-3 md:hidden">
-          <p className="text-sm font-semibold tabular-nums text-primary">
-            {item.start} — {item.end}
-          </p>
-          <StatusChip status={item.status} />
+          className="absolute inset-y-0 left-0 z-10 flex w-7 flex-col items-center justify-evenly border-r border-border/80 bg-muted/40 sm:w-9"
+        >
+          {[0, 1, 2, 3].map((hole) => (
+            <span
+              key={hole}
+              className="h-2 w-2 rounded-full border border-border bg-background shadow-inner sm:h-2.5 sm:w-2.5"
+            />
+          ))}
         </div>
 
-        <div className="mb-3 hidden md:flex md:justify-end">
-          <StatusChip status={item.status} />
-        </div>
-
-        <h3 className="text-lg sm:text-xl md:text-2xl font-semibold tracking-tight text-foreground">
-          {item.degree}
-        </h3>
-        <p className="mt-1 text-sm sm:text-base font-medium text-primary">
-          {item.field}
-        </p>
-
-        <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
-          <span className="font-medium text-foreground/80">
-            {item.institution}
-          </span>
-          <span aria-hidden="true" className="text-border">
-            ·
-          </span>
-          <span>{item.location}</span>
-        </div>
-
-        {item.focus ? (
-          <p className="mt-4 max-w-xl text-sm sm:text-base leading-relaxed text-muted-foreground border-t border-border/80 pt-4">
-            {item.focus}
-          </p>
-        ) : null}
-
+        {/* Giant year watermark — pass-out year */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full bg-primary/5 blur-2xl transition-opacity duration-300 group-hover:opacity-100 opacity-60"
+          className={`pointer-events-none absolute -right-2 top-1/2 z-0 -translate-y-1/2 select-none font-semibold leading-none tracking-tighter tabular-nums ${
+            isCurrent
+              ? "text-primary/[0.08]"
+              : "text-foreground/[0.05]"
+          } text-[5.5rem] sm:text-[7rem] md:text-[8.5rem]`}
+        >
+          {passOutYear}
+        </div>
+
+        <div className="relative z-[1] pl-10 pr-5 py-6 sm:pl-14 sm:pr-8 sm:py-8 md:pl-16 md:pr-10">
+          <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
+            <div>
+              <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-primary sm:text-xs">
+                {item.code}
+              </p>
+              <p className="mt-2 font-mono text-sm tabular-nums text-muted-foreground sm:text-base">
+                <span>{item.start}</span>
+                <span className="mx-2 text-border">→</span>
+                <span className="text-foreground">{item.end}</span>
+              </p>
+            </div>
+
+            <Stamp status={item.status} />
+          </div>
+
+          <h3 className="max-w-xl text-xl font-semibold tracking-tight text-foreground sm:text-2xl md:text-3xl">
+            {item.degree}
+          </h3>
+          <p className="mt-2 text-base font-medium text-primary sm:text-lg">
+            {item.field}
+          </p>
+
+          <div className="mt-6 flex flex-col gap-1 border-t border-dashed border-border pt-5 sm:flex-row sm:items-center sm:gap-3">
+            <span className="text-sm font-medium text-foreground sm:text-base">
+              {item.institution}
+            </span>
+            <span
+              aria-hidden="true"
+              className="hidden text-muted-foreground/50 sm:inline"
+            >
+              /
+            </span>
+            <span className="text-sm text-muted-foreground sm:text-base">
+              {item.location}
+            </span>
+          </div>
+        </div>
+
+        {/* Corner fold */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute bottom-0 right-0 h-10 w-10 bg-gradient-to-tl from-muted/80 to-transparent"
         />
-      </motion.article>
-    </motion.li>
+      </div>
+    </motion.article>
   );
 }
 
-function StatusChip({ status }: { status: "current" | "completed" }) {
+function Stamp({ status }: { status: "current" | "completed" }) {
   const isCurrent = status === "current";
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[11px] sm:text-xs font-semibold uppercase tracking-wider ${
+      className={`inline-flex rotate-[-6deg] items-center gap-1.5 rounded-sm border-2 px-2.5 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.16em] sm:text-[11px] ${
         isCurrent
-          ? "bg-primary/10 text-primary"
-          : "bg-muted text-muted-foreground"
+          ? "border-primary/50 text-primary"
+          : "border-muted-foreground/35 text-muted-foreground"
       }`}
     >
       <span
         className={`h-1.5 w-1.5 rounded-full ${
-          isCurrent ? "bg-primary animate-pulse" : "bg-muted-foreground/60"
+          isCurrent ? "bg-primary animate-pulse" : "bg-muted-foreground/50"
         }`}
       />
       {isCurrent ? "In progress" : "Completed"}

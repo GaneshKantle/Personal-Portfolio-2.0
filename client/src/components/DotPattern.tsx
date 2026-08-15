@@ -1,15 +1,18 @@
-import React from "react"
-import { cn } from "@/lib/utils"
+import React, { useId } from "react";
+import { cn } from "@/lib/utils";
 
+/** Dot field for section backgrounds. */
 export function DotPattern({ className }: { className?: string }) {
-  const patternId = `dot-pattern-${Math.random().toString(36).substr(2, 9)}`
-  
+  const reactId = useId();
+  const patternId = `dot-pattern-${reactId.replace(/:/g, "")}`;
+
   return (
     <div
       className={cn(
-        "pointer-events-none absolute inset-0 text-foreground",
+        "pointer-events-none absolute inset-0 z-0 text-foreground",
         className
       )}
+      aria-hidden="true"
     >
       <svg
         className="h-full w-full opacity-40 dark:opacity-30"
@@ -24,10 +27,10 @@ export function DotPattern({ className }: { className?: string }) {
             height="20"
             patternUnits="userSpaceOnUse"
           >
-            <circle 
-              cx="1" 
-              cy="1" 
-              r="1.5" 
+            <circle
+              cx="1"
+              cy="1"
+              r="1.5"
               fill="currentColor"
               fillOpacity="0.4"
             />
@@ -36,5 +39,5 @@ export function DotPattern({ className }: { className?: string }) {
         <rect width="100%" height="100%" fill={`url(#${patternId})`} />
       </svg>
     </div>
-  )
+  );
 }

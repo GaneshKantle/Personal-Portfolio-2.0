@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { AnimatedCounter } from "./motion/AnimatedCounter";
+import { DotPattern } from "./DotPattern";
 
 const GITHUB_USER = "ganeshkantle";
 const CONTRIBUTIONS_API = `https://github-contributions-api.jogruber.de/v4/${GITHUB_USER}`;
@@ -222,14 +223,14 @@ function SideStat({
   hint: string | null;
 }) {
   return (
-    <div className="flex h-full min-w-0 flex-col items-center justify-center px-3 text-center sm:px-4">
-      <p className="text-[1.65rem] font-bold tabular-nums leading-none tracking-tight text-foreground sm:text-[1.85rem]">
-        <AnimatedCounter value={value} duration={1.1} />
+    <div className="flex h-full min-w-0 flex-col items-center justify-center px-3 py-4 text-center sm:px-4 sm:py-0">
+      <p className="text-2xl font-bold tabular-nums leading-none tracking-tight text-foreground sm:text-[1.85rem]">
+        <AnimatedCounter value={value} duration={1.2} />
       </p>
-      <p className="mt-2 text-[13px] font-semibold leading-tight text-foreground sm:text-[14px]">
+      <p className="mt-2 text-sm font-semibold leading-tight text-foreground">
         {label}
       </p>
-      <p className="mt-1.5 text-[11px] leading-snug text-muted-foreground sm:text-xs">
+      <p className="mt-1.5 text-xs leading-snug text-muted-foreground">
         {hint ?? "—"}
       </p>
     </div>
@@ -295,15 +296,15 @@ function CurrentStreak({
 
         <div className="absolute inset-0 flex items-center justify-center pt-3">
           <p className="text-[1.65rem] font-bold tabular-nums leading-none tracking-tight text-foreground sm:text-[1.85rem]">
-            <AnimatedCounter value={value} duration={1.15} />
+            <AnimatedCounter value={value} duration={1.25} />
           </p>
         </div>
       </div>
 
-      <p className="text-[13px] font-bold leading-tight text-[#FB8C00] sm:text-[14px]">
+      <p className="text-sm font-bold leading-tight text-[#FB8C00]">
         Current Streak
       </p>
-      <p className="mt-1.5 text-[11px] leading-snug text-muted-foreground sm:text-xs">
+      <p className="mt-1.5 text-xs leading-snug text-muted-foreground">
         {hint ?? "No active streak"}
       </p>
     </div>
@@ -312,23 +313,27 @@ function CurrentStreak({
 
 function StreakCard({ stats }: { stats: StreakStats }) {
   return (
-    <div className="w-full max-w-[600px] overflow-hidden rounded-[10px] border border-border bg-card shadow-sm">
-      <div className="grid min-h-[11.5rem] grid-cols-3 sm:min-h-[12.25rem]">
-        <SideStat
-          value={stats.total}
-          label="Total Contributions"
-          hint={stats.totalRange}
-        />
+    <div className="w-full max-w-[600px] overflow-hidden rounded-[10px] border border-border bg-card shadow-sm 3xl:max-w-3xl">
+      <div className="grid min-h-0 grid-cols-1 sm:min-h-[12.25rem] sm:grid-cols-3">
+        <div className="order-2 border-t border-border sm:order-1 sm:border-t-0">
+          <SideStat
+            value={stats.total}
+            label="Total Contributions"
+            hint={stats.totalRange}
+          />
+        </div>
 
-        <div className="relative border-x border-border">
+        <div className="relative order-1 border-b border-border py-2 sm:order-2 sm:border-x sm:border-b-0">
           <CurrentStreak value={stats.currentStreak} hint={stats.currentRange} />
         </div>
 
-        <SideStat
-          value={stats.longestStreak}
-          label="Longest Streak"
-          hint={stats.longestRange}
-        />
+        <div className="order-3 border-t border-border sm:border-t-0">
+          <SideStat
+            value={stats.longestStreak}
+            label="Longest Streak"
+            hint={stats.longestRange}
+          />
+        </div>
       </div>
     </div>
   );
@@ -336,13 +341,13 @@ function StreakCard({ stats }: { stats: StreakStats }) {
 
 function StreakSkeleton() {
   return (
-    <div className="w-full max-w-[600px] overflow-hidden rounded-[10px] border border-border bg-card shadow-sm">
-      <div className="grid min-h-[11.5rem] grid-cols-3 sm:min-h-[12.25rem]">
+    <div className="w-full max-w-[600px] overflow-hidden rounded-[10px] border border-border bg-card shadow-sm 3xl:max-w-3xl">
+      <div className="grid min-h-0 grid-cols-1 sm:min-h-[12.25rem] sm:grid-cols-3">
         {[0, 1, 2].map((i) => (
           <div
             key={i}
-            className={`flex flex-col items-center justify-center gap-2 ${
-              i === 1 ? "border-x border-border" : ""
+            className={`flex flex-col items-center justify-center gap-2 py-4 ${
+              i === 1 ? "border-y border-border sm:border-x sm:border-y-0" : ""
             }`}
           >
             {i === 1 ? (
@@ -419,19 +424,12 @@ export default function GitHubStatsSection() {
   return (
     <section
       id="github-stats"
-      className="bg-background py-12 sm:py-16 md:py-20"
+      className="section-y relative overflow-hidden bg-background"
     >
-      <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-        <motion.div
-          className="mb-12 text-center sm:mb-16"
-          initial={
-            prefersReducedMotion ? false : { opacity: 0, y: 24, filter: "blur(8px)" }
-          }
-          whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <h2 className="mb-3 text-2xl font-semibold tracking-tight text-foreground sm:mb-4 sm:text-3xl md:text-4xl lg:text-5xl">
+      <DotPattern />
+      <div className="page-shell relative z-10">
+        <div className="mb-12 text-center sm:mb-16">
+          <h2 className="text-title mb-3 font-semibold tracking-tight text-foreground sm:mb-4">
             GitHub <span className="text-primary">Activity</span>
           </h2>
           <motion.div
@@ -441,7 +439,7 @@ export default function GitHubStatsSection() {
             viewport={{ once: true }}
             transition={{ duration: 0.55, delay: 0.1 }}
           />
-        </motion.div>
+        </div>
 
         <div className="flex flex-col items-center gap-8 sm:gap-10">
           <motion.a
@@ -464,24 +462,24 @@ export default function GitHubStatsSection() {
             key={ghUrl}
             src={ghUrl}
             alt="GitHub contributions heatmap"
-            className="h-auto w-full max-w-[663px]"
+            className="h-auto w-full max-w-[663px] 3xl:max-w-3xl"
             loading="lazy"
             initial={
-              prefersReducedMotion ? false : { opacity: 0, y: 40, scale: 0.96 }
+              prefersReducedMotion ? false : { opacity: 0, y: 24, scale: 0.98 }
             }
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
           />
 
           <motion.div
-            className="w-full max-w-[600px]"
+            className="w-full max-w-[600px] 3xl:max-w-3xl"
             initial={
-              prefersReducedMotion ? false : { opacity: 0, y: 40, scale: 0.96 }
+              prefersReducedMotion ? false : { opacity: 0, y: 24, scale: 0.98 }
             }
             whileInView={{ opacity: 1, y: 0, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.7, delay: 0.08, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.55, delay: 0.06, ease: [0.16, 1, 0.3, 1] }}
           >
             {loading ? (
               <StreakSkeleton />

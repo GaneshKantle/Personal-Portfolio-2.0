@@ -6,6 +6,7 @@ import { Input } from "../components/ui/input";
 import { Textarea } from "../components/ui/textarea";
 import { isValidEmail } from "../lib/utils";
 import { useToast } from "../hooks/use-toast";
+import { DotPattern } from "./DotPattern";
 
 export default function ContactSection() {
   const [formData, setFormData] = useState({
@@ -133,37 +134,38 @@ export default function ContactSection() {
   return (
     <>
       {/* Section Separator */}
-      <div className="py-12 sm:py-16 bg-background">
-        <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+      <div className="bg-background py-10 sm:py-14">
+        <div className="page-shell">
           <div className="flex items-center justify-center">
-            <div className="w-24 sm:w-32 h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
-            <div className="mx-3 sm:mx-4 w-2 h-2 bg-primary rounded-full"></div>
-            <div className="w-24 sm:w-32 h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
+            <div className="h-px w-24 bg-gradient-to-r from-transparent via-border to-transparent sm:w-32"></div>
+            <div className="mx-3 h-2 w-2 rounded-full bg-primary sm:mx-4"></div>
+            <div className="h-px w-24 bg-gradient-to-r from-transparent via-border to-transparent sm:w-32"></div>
           </div>
         </div>
       </div>
       
-      <section id="contact" className="py-12 sm:py-16 md:py-20 bg-background">
-        <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-          <div className="text-center mb-12 sm:mb-16">
+      <section id="contact" className="section-y relative overflow-hidden cv-auto bg-background">
+        <DotPattern />
+        <div className="page-shell relative z-10">
+          <div className="mb-12 text-center sm:mb-16">
             <motion.h2
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-foreground mb-3 sm:mb-4"
-              initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
-              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+              className="text-title mb-3 font-semibold tracking-tight text-foreground sm:mb-4"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
             >
               Get In <span className="text-primary">Touch</span>
             </motion.h2>
             <motion.div
-              className="w-16 sm:w-20 h-1 bg-primary mx-auto rounded-full origin-center"
+              className="mx-auto h-1 w-16 origin-center rounded-full bg-primary sm:w-20"
               initial={{ scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.55, delay: 0.1 }}
             />
             <motion.p
-              className="text-muted-foreground mt-3 sm:mt-4 max-w-2xl mx-auto text-base sm:text-lg leading-relaxed px-4"
+              className="mx-auto mt-3 max-w-2xl px-4 text-base leading-relaxed text-muted-foreground sm:mt-4 sm:text-lg"
               initial={{ opacity: 0, y: 12 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -173,14 +175,14 @@ export default function ContactSection() {
             </motion.p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-10 lg:gap-12 max-w-6xl mx-auto">
+          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 sm:gap-10 md:grid-cols-2 lg:gap-12 3xl:max-w-7xl">
             {/* Contact Form */}
             <motion.div
-              className="relative z-10 bg-card p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl shadow-sm border border-border"
-              initial={{ opacity: 0, x: -60, rotate: -1 }}
-              whileInView={{ opacity: 1, x: 0, rotate: 0 }}
+              className="relative z-10 rounded-xl border border-border bg-card p-4 shadow-sm sm:rounded-2xl sm:p-6 md:p-8"
+              initial={{ opacity: 0, x: -28 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
             >
               <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-foreground">Send me a message</h3>
               
@@ -249,22 +251,22 @@ export default function ContactSection() {
             {/* Contact Information */}
             <motion.div 
               className="lg:pl-8 xl:pl-12"
-              initial={{ opacity: 0, x: 60, rotate: 1 }}
-              whileInView={{ opacity: 1, x: 0, rotate: 0 }}
+              initial={{ opacity: 0, x: 28 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="mb-6 sm:mb-8">
-                <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-foreground">Contact Information</h3>
+                <h3 className="mb-4 text-xl font-semibold text-foreground sm:mb-6 sm:text-2xl">Contact Information</h3>
                 
                 <div className="space-y-4 sm:space-y-6">
                   <div className="flex items-start">
-                    <div className="bg-primary/10 p-2.5 sm:p-3 rounded-full text-primary mr-3 sm:mr-4 border border-primary/20">
+                    <div className="mr-3 rounded-full border border-primary/20 bg-primary/10 p-2.5 text-primary sm:mr-4 sm:p-3">
                       <i className="fas fa-envelope text-sm sm:text-base"></i>
                     </div>
-                    <div>
-                      <h4 className="font-semibold mb-1 text-foreground text-sm sm:text-base">Email</h4>
-                      <p className="text-muted-foreground text-sm sm:text-base">ganeshkantle@gmail.com</p>
+                    <div className="min-w-0">
+                      <h4 className="mb-1 text-sm font-semibold text-foreground sm:text-base">Email</h4>
+                      <p className="break-all text-sm text-muted-foreground sm:text-base">ganeshkantle@gmail.com</p>
                     </div>
                   </div>
                   

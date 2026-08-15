@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { AnimatedCounter } from "./motion/AnimatedCounter";
 import { ScrollReveal } from "./motion/ScrollReveal";
 import { viewportOnce } from "../lib/motion";
+import { DotPattern } from "./DotPattern";
 
 const experiences = [
   {
@@ -172,14 +173,15 @@ export default function ExperienceSection() {
   }, []);
 
   return (
-    <section id="experience" className="py-12 sm:py-16 md:py-20 bg-background">
-      <div className="container mx-auto px-4">
-        <ScrollReveal className="text-center mb-8 sm:mb-10">
-          <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground mb-3">
+    <section id="experience" className="section-y relative overflow-hidden cv-auto bg-background">
+      <DotPattern />
+      <div className="page-shell relative z-10">
+        <ScrollReveal className="mb-8 text-center sm:mb-10">
+          <p className="mb-3 text-sm uppercase tracking-[0.2em] text-muted-foreground">
             Total Experience
           </p>
           <div className="flex items-baseline justify-center gap-2">
-            <div className="text-4xl sm:text-5xl md:text-6xl font-semibold tracking-tighter text-primary">
+            <div className="text-4xl font-semibold tracking-tighter text-primary sm:text-5xl md:text-6xl 3xl:text-7xl">
               {showAsYears ? (
                 <AnimatedCounter
                   value={experienceYears}
@@ -190,7 +192,7 @@ export default function ExperienceSection() {
                 <AnimatedCounter value={totalMonths} duration={1.8} />
               )}
             </div>
-            <span className="text-base sm:text-lg md:text-xl text-muted-foreground font-medium">
+            <span className="text-base font-medium text-muted-foreground sm:text-lg md:text-xl">
               {showAsYears
                 ? experienceYears === 1
                   ? "year"
@@ -202,12 +204,12 @@ export default function ExperienceSection() {
           </div>
         </ScrollReveal>
 
-        <ScrollReveal className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-3">
+        <ScrollReveal className="mb-12 text-center">
+          <h2 className="text-title mb-3 font-semibold text-foreground">
             Work <span className="text-primary">Experience</span>
           </h2>
           <motion.div
-            className="w-20 h-1 bg-primary mx-auto rounded-full origin-center"
+            className="mx-auto h-1 w-20 origin-center rounded-full bg-primary"
             initial={prefersReducedMotion ? false : { scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={viewportOnce}

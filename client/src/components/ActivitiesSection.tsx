@@ -2,6 +2,7 @@ import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { ScrollReveal, Stagger, StaggerItem } from "./motion/ScrollReveal";
 import { popIn, viewportOnce } from "../lib/motion";
+import { DotPattern } from "./DotPattern";
 
 const activities = [
   {
@@ -97,15 +98,16 @@ export default function ActivitiesSection() {
     <>
       <section
         id="activities"
-        className="py-12 sm:py-16 md:py-20 bg-background"
+        className="section-y relative overflow-hidden cv-auto bg-background"
       >
-        <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
-          <ScrollReveal className="text-center mb-12 sm:mb-16">
-            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight text-foreground mb-3 sm:mb-4">
+        <DotPattern />
+        <div className="page-shell relative z-10">
+          <ScrollReveal className="mb-12 text-center sm:mb-16">
+            <h2 className="text-title mb-3 font-semibold tracking-tight text-foreground sm:mb-4">
               Extracurricular <span className="text-primary">Activities</span>
             </h2>
             <motion.div
-              className="w-16 sm:w-20 h-1 bg-primary mx-auto rounded-full origin-center"
+              className="mx-auto h-1 w-16 origin-center rounded-full bg-primary sm:w-20"
               initial={prefersReducedMotion ? false : { scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={viewportOnce}
@@ -113,9 +115,9 @@ export default function ActivitiesSection() {
             />
           </ScrollReveal>
 
-          <div className="max-w-6xl mx-auto">
+          <div className="mx-auto max-w-6xl 3xl:max-w-7xl">
             <Stagger
-              className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16"
+              className="mb-12 grid grid-cols-1 gap-6 sm:mb-16 sm:gap-8 md:grid-cols-2 lg:grid-cols-3"
               stagger={0.12}
             >
               {activities.map((activity) => (
@@ -149,7 +151,7 @@ export default function ActivitiesSection() {
                 Connect with me on
               </h3>
               <Stagger
-                className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-3 sm:gap-4 max-w-4xl mx-auto"
+                className="mx-auto grid max-w-4xl grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4 xl:grid-cols-8"
                 stagger={0.06}
               >
                 {profiles.map((profile) => (
@@ -183,12 +185,12 @@ export default function ActivitiesSection() {
         </div>
       </section>
 
-      <div className="py-12 sm:py-16 bg-background">
-        <div className="container mx-auto px-3 sm:px-4 md:px-6 lg:px-8">
+      <div className="bg-background py-10 sm:py-14">
+        <div className="page-shell">
           <div className="flex items-center justify-center">
-            <div className="w-24 sm:w-32 h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
-            <div className="mx-3 sm:mx-4 w-2 h-2 bg-primary rounded-full"></div>
-            <div className="w-24 sm:w-32 h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
+            <div className="h-px w-24 bg-gradient-to-r from-transparent via-border to-transparent sm:w-32"></div>
+            <div className="mx-3 h-2 w-2 rounded-full bg-primary sm:mx-4"></div>
+            <div className="h-px w-24 bg-gradient-to-r from-transparent via-border to-transparent sm:w-32"></div>
           </div>
         </div>
       </div>

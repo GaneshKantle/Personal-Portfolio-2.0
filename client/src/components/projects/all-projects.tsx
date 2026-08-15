@@ -4,6 +4,7 @@ import { useLocation } from "wouter";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { getAllProjects } from "../../shared/projectData";
+import { DotPattern } from "../DotPattern";
 import ClientProfile from "../../img/client-portfolio.png";
 import ImageGallery from "../../img/image-gallery.png";
 import JobPortal from "../../img/job-management.png";
@@ -530,30 +531,31 @@ export default function AllProjects() {
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <section className="section-y relative overflow-hidden" style={{ paddingTop: "calc(var(--nav-offset) + var(--section-y))" }}>
+        <DotPattern />
+        <div className="page-shell relative z-10">
           {/* Header Section */}
-          <div className="text-center mb-16">
+          <div className="mb-12 text-center sm:mb-16">
             <motion.h1
-              className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight text-foreground mb-6"
-              initial={{ opacity: 0, y: 50 }}
+              className="text-title mb-6 font-semibold tracking-tight text-foreground"
+              initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
+              transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
             >
               All <span className="text-primary">Projects</span>
             </motion.h1>
             <motion.p
-              className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed"
-              initial={{ opacity: 0, y: 30 }}
+              className="mx-auto max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg"
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 1, 0.5, 1] }}
+              transition={{ duration: 0.55, delay: 0.15, ease: [0.25, 1, 0.5, 1] }}
             >
               Explore my complete portfolio of projects. Each project showcases different skills and technologies I've worked with.
             </motion.p>
           </div>
 
           {/* Projects Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 w-full">
+          <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8 2xl:gap-8">
             {allProjects.map((project: Project, index: number) => (
               <motion.div
                 key={project.id}

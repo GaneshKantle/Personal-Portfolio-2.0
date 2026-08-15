@@ -6,7 +6,16 @@
   /* Font family variable for Inter */
   --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   color-scheme: light;
-  
+
+  /* Fluid layout + type scale */
+  --page-gutter: clamp(0.75rem, 2.4vw, 4rem);
+  --page-max: 80rem;
+  --section-y: clamp(3rem, 6vw, 8rem);
+  --display: clamp(1.75rem, 1.1rem + 3.2vw, 5.5rem);
+  --title: clamp(1.5rem, 1rem + 2vw, 3.25rem);
+  --body: clamp(0.9375rem, 0.88rem + 0.25vw, 1.125rem);
+  --nav-offset: 3.5rem;
+
   /* Google theme-inspired colors for light mode */
   --background: 0 0% 100%;
   --foreground: 220 10% 20%;
@@ -29,6 +38,30 @@
   --destructive-foreground: 210 40% 98%;
   --ring: 214 90% 52%;
   --radius: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  :root {
+    --nav-offset: 4rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root {
+    --nav-offset: 5rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  :root {
+    --page-max: 90rem;
+  }
+}
+
+@media (min-width: 2560px) {
+  :root {
+    --page-max: 96rem;
+  }
 }
 
 .dark {
@@ -62,19 +95,27 @@
     @apply border-border;
   }
 
+  html {
+    font-size: 16px;
+    /* Native wheel/touch scroll — smooth only via JS for nav jumps */
+    scroll-behavior: auto;
+    overflow-x: clip;
+    overscroll-behavior-y: none;
+  }
+
   body {
     @apply font-sans antialiased bg-background text-foreground transition-colors duration-300;
-    scroll-behavior: smooth;
     font-family: var(--font-sans);
+    font-size: var(--body);
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-  
+
   .theme-transition {
     animation: theme-fade 0.5s ease;
   }
-  
+
   @keyframes theme-fade {
     0% {
       opacity: 0.8;
@@ -84,26 +125,17 @@
     }
   }
 
-  /* Mobile-first responsive improvements */
-  html {
-    font-size: 16px;
-  }
-
-  /* Ensure proper touch targets on mobile */
-  button, a, input, textarea, select {
+  /* Touch targets — scoped, not every link */
+  button,
+  a,
+  input,
+  textarea,
+  select {
     @apply touch-manipulation;
   }
 
-  /* Improve text readability on small screens */
-  @media (max-width: 640px) {
-    body {
-      font-size: 14px;
-      line-height: 1.6;
-    }
-    
-    h1, h2, h3, h4, h5, h6 {
-      line-height: 1.2;
-    }
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
   }
 
   /* Prevent horizontal scroll without creating per-section vertical scrollports.
@@ -111,27 +143,44 @@
   .container {
     overflow-x: clip;
   }
+
+  /* Skip layout/paint for below-fold sections until near viewport */
+  .cv-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 720px;
+  }
 }
 
 @layer components {
-  /* Responsive button improvements */
+  .page-shell {
+    width: 100%;
+    max-width: var(--page-max);
+    margin-inline: auto;
+    padding-inline: var(--page-gutter);
+  }
+
+  .section-y {
+    padding-block: var(--section-y);
+  }
+
+  .text-display {
+    font-size: var(--display);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+  }
+
+  .text-title {
+    font-size: var(--title);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
   .btn-responsive {
     @apply px-4 py-2 text-sm sm:px-6 sm:py-3 sm:text-base;
   }
 
-  /* Responsive card improvements */
   .card-responsive {
     @apply p-4 sm:p-6 md:p-8;
-  }
-
-  /* Responsive text improvements */
-  .text-responsive {
-    @apply text-sm sm:text-base md:text-lg;
-  }
-
-  /* Responsive heading improvements */
-  .heading-responsive {
-    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl;
   }
 }
 
@@ -168,7 +217,7 @@
   white-space: nowrap;
   position: relative;
   width: 100%;
-  height: 110px;
+  height: clamp(5.5rem, 8vw, 7.5rem);
 }
 
 .marquee-row.reverse {
@@ -181,6 +230,7 @@
   white-space: nowrap;
   animation: marquee 30s linear infinite;
   width: max-content;
+  will-change: transform;
 }
 
 .marquee-row.reverse .marquee-track {
@@ -192,15 +242,15 @@
 }
 
 .marquee-icon {
-  min-width: 80px;
-  max-width: 120px;
+  min-width: clamp(3.75rem, 8vw, 7.5rem);
+  max-width: clamp(4.375rem, 10vw, 7.5rem);
   flex: 0 0 auto;
-  margin: 0 8px;
+  margin: 0 clamp(0.25rem, 1vw, 0.5rem);
 }
 
 .marquee-icon-inner {
-  height: 60px;
-  width: 60px;
+  height: clamp(3rem, 5vw, 3.75rem);
+  width: clamp(3rem, 5vw, 3.75rem);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -224,88 +274,14 @@
   }
 }
 
-/* Responsive marquee adjustments */
 @media (max-width: 640px) {
-  .marquee-row {
-    height: 100px;
-  }
-  
-  .marquee-track {
-    animation-duration: 20s;
-  }
-  
+  .marquee-track,
   .marquee-row.reverse .marquee-track {
     animation-duration: 20s;
-  }
-  
-  .marquee-icon {
-    min-width: 60px;
-    max-width: 70px;
-    margin: 0 4px;
-  }
-  
-  .marquee-icon-inner {
-    height: 48px;
-    width: 48px;
-  }
-  
-  .marquee-icon i {
-    font-size: 1.5rem !important;
-  }
-  
-  .marquee-icon .text-sm {
-    margin-top: 4px !important;
-  }
-}
-
-@media (min-width: 641px) and (max-width: 1024px) {
-  .marquee-row {
-    height: 90px;
-  }
-  
-  .marquee-icon {
-    min-width: 70px;
-    max-width: 90px;
-    margin: 0 6px;
-  }
-  
-  .marquee-icon-inner {
-    height: 54px;
-    width: 54px;
-  }
-  
-  .marquee-icon i {
-    font-size: 2rem !important;
-  }
-}
-
-@media (min-width: 1025px) {
-  .marquee-row {
-    height: 110px;
-  }
-  
-  .marquee-icon {
-    min-width: 80px;
-    max-width: 120px;
-    margin: 0 8px;
-  }
-  
-  .marquee-icon-inner {
-    height: 60px;
-    width: 60px;
-  }
-  
-  .marquee-icon i {
-    font-size: 2.5rem !important;
   }
 }
 
 /* Custom scrollbar — page only, not every nested overflow box */
-html {
-  scroll-behavior: smooth;
-  overflow-x: clip;
-}
-
 html::-webkit-scrollbar {
   width: 8px;
 }
@@ -347,39 +323,12 @@ select:focus {
   );
 }
 
-/* Mobile-specific improvements */
 @media (max-width: 768px) {
-  /* Ensure proper spacing on mobile */
-  .container {
-    @apply px-4;
-  }
-  
-  /* Improve button touch targets */
-  button, a {
-    @apply min-h-[44px] min-w-[44px];
-  }
-  
-  /* Better form spacing on mobile */
   form > div {
     @apply mb-4;
   }
-  
-  /* Improve mobile navigation */
+
   .mobile-menu {
     @apply w-full max-w-[90vw];
-  }
-}
-
-/* Tablet improvements */
-@media (min-width: 768px) and (max-width: 1024px) {
-  .container {
-    @apply px-6;
-  }
-}
-
-/* Desktop improvements */
-@media (min-width: 1024px) {
-  .container {
-    @apply px-8;
   }
 }
