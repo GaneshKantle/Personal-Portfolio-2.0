@@ -147,10 +147,18 @@ function useIsMdUp() {
   return isMd;
 }
 
+/** Vertical scroll distance per 1px of horizontal travel — slows the gallery. */
+const SCROLL_PX_PER_TRAVEL = 2.4;
+/** Hold first cards still at the start so momentum from prior sections doesn't skip them. */
+const INTRO_HOLD = 0.14;
+/** Hold the final card / CTA briefly before releasing to the next section. */
+const OUTRO_HOLD = 0.1;
+
 export default function ProjectsSection() {
   const prefersReducedMotion = useReducedMotion();
   const isMd = useIsMdUp();
   const containerRef = useRef<HTMLElement>(null);
+  const viewportRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
   const [travel, setTravel] = useState(0);
 
@@ -158,20 +166,25 @@ export default function ProjectsSection() {
     if (!isMd || prefersReducedMotion) return;
     const measure = () => {
       const track = trackRef.current;
-      if (!track) return;
-      const maxTravel = Math.max(0, track.scrollWidth - window.innerWidth);
-      setTravel(maxTravel);
+      const viewport = viewportRef.current;
+      if (!track || !viewport) return;
+      const maxTravel = Math.max(0, track.scrollWidth - viewport.clientWidth);
+      setTravel((prev) => (prev === maxTravel ? prev : maxTravel));
     };
 
     measure();
+    // Re-measure after layout/fonts settle so the first paint isn't short.
+    const raf = requestAnimationFrame(measure);
     window.addEventListener("resize", measure);
     const ro =
       typeof ResizeObserver !== "undefined"
         ? new ResizeObserver(measure)
         : null;
     if (trackRef.current && ro) ro.observe(trackRef.current);
+    if (viewportRef.current && ro) ro.observe(viewportRef.current);
 
     return () => {
+      cancelAnimationFrame(raf);
       window.removeEventListener("resize", measure);
       ro?.disconnect();
     };
@@ -182,8 +195,14 @@ export default function ProjectsSection() {
     offset: ["start start", "end end"],
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], [0, -travel]);
+  // Dead zones at both ends: first cards stay on screen, then the track moves.
+  const x = useTransform(
+    scrollYProgress,
+    [0, INTRO_HOLD, 1 - OUTRO_HOLD, 1],
+    [0, 0, -travel, -travel]
+  );
   const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  const scrollBudget = Math.max(travel * SCROLL_PX_PER_TRAVEL, 1);
 
   if (prefersReducedMotion || !isMd) {
     return (
@@ -200,9 +219,12 @@ export default function ProjectsSection() {
         id="projects"
         ref={containerRef}
         className="relative isolate bg-background"
-        style={{ height: `calc(100svh + ${Math.max(travel, 1)}px)` }}
+        style={{ height: `calc(100svh + ${scrollBudget}px)` }}
       >
-        <div className="sticky top-0 z-10 flex h-[100svh] flex-col overflow-x-hidden overflow-y-hidden bg-background">
+        <div
+          ref={viewportRef}
+          className="sticky top-0 z-10 flex h-[100svh] flex-col overflow-x-hidden overflow-y-hidden bg-background"
+        >
           <DotPattern />
           <div className="page-shell relative z-10 shrink-0 pt-16 sm:pt-20">
             <div className="mb-3 text-center sm:mb-4">
@@ -227,7 +249,7 @@ export default function ProjectsSection() {
           <div className="relative z-10 flex min-h-0 flex-1 items-center justify-start pb-6 pt-1 sm:pb-8">
             <motion.div
               ref={trackRef}
-              className="flex items-center gap-4 px-4 sm:gap-6 sm:px-8 md:px-12"
+              className="flex items-center gap-4 pl-4 pr-8 sm:gap-6 sm:pl-8 sm:pr-12 md:pl-12 md:pr-16 lg:pl-16"
               style={{ x }}
             >
               {projects.map((project) => (
