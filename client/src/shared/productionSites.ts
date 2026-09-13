@@ -26,9 +26,10 @@ export const productionSites: ProductionSite[] = [
     url: "https://app.swingboudoirmag.com/",
   },
   {
-    title: "The Glam Model",
-    description: "Creator platform for The Glam Model.",
-    url: "https://onlyfans.theglammodel.com/",
+    title: "AcqoraX Marketing",
+    description:
+      "Performance marketing site that drives customer acquisition, sales, and measurable growth.",
+    url: "https://www.acqoraxmarketing.com/",
   },
 ];
 

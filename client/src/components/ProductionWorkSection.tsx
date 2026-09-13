@@ -24,7 +24,7 @@ const CODE_LINES = [
   "  \"thewithinkers.com\",",
   "  \"crm.thewithinkers.com\",",
   "  \"app.swingboudoirmag.com\",",
-  "  \"onlyfans.theglammodel.com\",",
+  "  \"acqoraxmarketing.com\",",
   "];",
   "",
   "await Promise.all(",
