@@ -8,7 +8,7 @@ import ExperienceSection from "../components/ExperienceSection";
 import ProductionWorkSection from "../components/ProductionWorkSection";
 import ProjectsSection from "../components/ProjectsSection";
 // import BlogSection from "../components/BlogSection";
-import CertificatesSection from "../components/CertificatesSection";
+// import CertificatesSection from "../components/CertificatesSection";
 import ActivitiesSection from "../components/ActivitiesSection";
 import GitHubStatsSection from "../components/GitHubStatsSection";
 import ContactSection from "../components/ContactSection";
@@ -31,7 +31,7 @@ export default function Home() {
       <ProductionWorkSection />
       <ProjectsSection />
       {/* <BlogSection /> */}
-      <CertificatesSection />
+      {/* <CertificatesSection /> */}
       <ActivitiesSection />
       <ContactSection />
       <Footer />

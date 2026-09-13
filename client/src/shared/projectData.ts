@@ -12,9 +12,9 @@ export const projectsData = [
   {
     id: 1,
     title: "Read It Twin",
-    tagline: "Multiplayer Reading Speed Challenge",
+    tagline: "Race your friend at reading",
     description:
-      "Competitive reading races: solo practice or synchronized two-player matches with WPM + comprehension scoring, rematch, and a production-hardened Supabase backend.",
+      "Read a story as fast as you can. Play alone or race a friend. Then answer a few questions to see who did better.",
     longDescription:
       "Read It Twin is a polished multiplayer reading competition app where players race through passages and take comprehension quizzes. It supports solo runs with local passage seeds and synchronized two-player rooms with authoritative server-side scoring, lobby flow, countdown sync, results, and rematch. Built as a React SPA with a Supabase (PostgreSQL + Realtime) backend, anonymous sessions, and production hardening for live deployment.",
     categoryColor: "primary",
@@ -90,9 +90,9 @@ export const projectsData = [
   {
     id: 2,
     title: "BrainWMe",
-    tagline: "Illustrated JS/TS Ecosystem Encyclopedia",
+    tagline: "A picture guide to coding tools",
     description:
-      "Illustrated encyclopedia of the JavaScript and TypeScript ecosystem: browse tools by job, explore categories volume by volume, and assemble a stack in an interactive workshop — React is one UI branch, not the foundation.",
+      "A simple picture book of JavaScript tools. See what each tool is for, and try building your own stack like putting puzzle pieces together.",
     longDescription:
       "BrainWMe is an illustrated learning map of the JS/TS ecosystem. It organizes tools into volumes and job-based categories so learners can see what each piece is for, when it’s needed, and what it’s often confused with. An interactive workshop lets you explode a stack in 3D, dock one tool per job, and enforce needs-React wiring rules. A language-model view shows the TypeScript trunk versus UI and runtime branches. Built as a modern Next.js app with custom ink-style illustrations and motion.",
     categoryColor: "primary",
@@ -166,9 +166,9 @@ export const projectsData = [
   {
     id: 3,
     title: "Parallel You",
-    tagline: "Birth-Moment Exhibition",
+    tagline: "What the world looked like when you were born",
     description:
-      "Interactive exhibition from one birth moment: sky, numbers, history, Earth, and the universe — observational, sourced, no accounts or astrology.",
+      "Type in your birthday. Then scroll through the sky, Earth, and history from that exact moment. Only real facts — no made-up stuff.",
     longDescription:
       "Parallel You turns a real date, time, and place of birth into a continuous scroll experience. It moves from the exact night you arrived — moon, sun, location, life-in-numbers — through world context, a birthplace map, age capsules, and life alongside history, then zooms out through civilization, Earth, and the cosmos. Built for restraint: calculated and curated facts only, uncertainty labeled, empty when unknown. No astrology, no invented people, no signup.",
     categoryColor: "primary",
@@ -251,8 +251,8 @@ export const projectsData = [
   {
     id: 4,
     title: "EYE'dentify",
-    tagline: "Forensic Face Recognition & Sketch System",
-    description: "Forensic face sketch and recognition system for law enforcement and investigators. Create composite sketches, upload images, and match against a criminal database with real-time results.",
+    tagline: "Draw a face and find a match",
+    description: "Draw a face or upload a photo. The app looks for a matching person in a list, like a digital detective game.",
     longDescription: "EYE'dentify is a comprehensive forensic investigation tool that combines advanced computer vision with user-friendly interfaces to assist law enforcement agencies in criminal identification. The system can process both hand-drawn sketches and real photographs, using sophisticated algorithms to match faces against criminal databases with high accuracy.",
     categoryColor: "primary",
     technologies: [
@@ -311,8 +311,8 @@ export const projectsData = [
   {
     id: 5,
     title: "OpenDraft",
-    tagline: "AI-Powered Resume Builder",
-    description: "AI Resume Builder: Build professional, real‑time preview, and one‑click PDF export. Modern templates, responsive UI, no signup required.",
+    tagline: "Make a resume in minutes",
+    description: "Fill in your details and watch your resume appear right away. When you are done, download it as a PDF. No sign-up needed.",
     longDescription: "OpenDraft is a sophisticated resume builder that leverages AI to help users create professional, ATS-friendly resumes. The application features real-time preview, multiple professional templates, and seamless PDF export functionality. Built with modern web technologies, it provides an intuitive user experience without requiring user registration.",
     categoryColor: "primary",
     technologies: [
@@ -371,8 +371,8 @@ export const projectsData = [
   {
     id: 6,
     title: "Video Editor Portfolio",
-    tagline: "Professional Portfolio Showcase",
-    description: "Developed as a Freelance project where I engineered a sleek, responsive portfolio of my client. Highlights: React, TypeScript, Google Drive, dark mode, SVG icons.",
+    tagline: "A showcase site for a client",
+    description: "A clean website I built for a client. It shows their video work in a simple, easy-to-browse layout.",
     longDescription: "A modern, responsive portfolio website designed for a professional video editor. The project showcases creative work through an elegant interface with smooth animations, dark mode support, and integration with Google Drive for content management. Built with performance and user experience as top priorities.",
     categoryColor: "primary",
     technologies: [
@@ -430,9 +430,9 @@ export const projectsData = [
   {
     id: 7,
     title: "LiquorHub",
-    tagline: "Spirits E-Commerce Platform",
+    tagline: "An online shop for drinks",
     description:
-      "Full-stack liquor storefront: browse categories, wishlist favourites, cart & checkout, and order history — plus age-gate access and a curated rare-bottle vault.",
+      "An online store where you can browse drinks, save favorites, fill a cart, and place an order. Built like a real shopping website.",
     longDescription:
       "LiquorHub is a J2EE e-commerce web application for browsing, carting, and ordering spirits. Built with Java Servlets, JSP, JDBC, and MySQL on Apache Tomcat, it features account management, category catalogues, wishlist, cart/checkout with payment records, order history, and a rare collection of collector bottles. An age gate and liquor quiz gate first-time visitors. Designed as an educational full-stack demo of classic layered Java web architecture.",
     categoryColor: "primary",

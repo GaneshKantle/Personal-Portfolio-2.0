@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useLocation } from "wouter";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { getAllProjects } from "../../shared/projectData";
 import { DotPattern } from "../DotPattern";
-import ClientProfile from "../../img/client-portfolio.png";
+import {
+  ProjectSpecimenCard,
+  type SpecimenProject,
+} from "./ProjectSpecimenCard";
 import ImageGallery from "../../img/image-gallery.png";
 import JobPortal from "../../img/job-management.png";
 import FarmDirect from "../../img/farm-direct.png";
@@ -20,618 +23,267 @@ import VoteWise from "../../img/votewise.png";
 import KantlesWardrobe from "../../img/kantle-wardrobe.png";
 import ClientPortfolio from "../../img/client-portfolio.png";
 
-// Define the project type
-// Replace your current interface with this:
-interface Project {
-    id: number;
-    title: string;
-    description: string;
-    technologies: string[];
-    githubUrl: string;
-    liveUrl: string;
-    image: string | JSX.Element;
-    categoryColor: string;
-    tagline?: string;
-    longDescription?: string;
-    demoUrl?: string;
-    documentationUrl?: string;
-    features?: string[];
-    challenges?: string[];
-    learnings?: string[];
-    screenshots?: Array<{
-      src: string;
-      alt: string;
-      caption: string;
-    }>;
-    architecture?: string;
-    deployment?: string;
-    status?: string;
-    developmentTime?: string;
-    teamSize?: string;
-    impact?: string;
-    category?: string;
-    difficulty?: string;
-  }
+const mainProjects = getAllProjects() as SpecimenProject[];
 
-// Get main projects from shared data
-const mainProjects = getAllProjects();
-
-// Additional projects that will only show on this page
-const additionalProjects: Project[] = [
-  
-    {
-        id: 5,
-        title: "Loan Calculator App",
+const additionalProjects: SpecimenProject[] = [
+  {
+    id: 101,
+    title: "Loan Calculator App",
     description:
-          "Compute EMI and visualize loan payments over time.\nConvert EMI to multiple currencies with live exchange rates and theme toggle.",
-    categoryColor: "primary",
+      "Type how much money you borrow. The app shows how much you pay back each month, and can change the answer into other currencies.",
     technologies: [
-          "Material UI 5",
-          "React Router DOM 7",
+      "Material UI 5",
+      "React Router DOM 7",
       "Axios",
-          "Custom Hooks"
-          // "ExchangeRate-API"
-        ],
-        githubUrl: "https://github.com/GaneshKantle/Loan-Calculator",
-        liveUrl: "https://loan-calcii.vercel.app/",
-    image: (
-      <div className="bg-card rounded-xl overflow-hidden shadow-sm w-full max-w-md border border-border">
-        <div className="p-4 bg-muted border-b border-border flex justify-between items-center">
-          <div className="flex space-x-2">
-            <div className="w-3 h-3 rounded-full bg-red-500"></div>
-            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-            <div className="w-3 h-3 rounded-full bg-green-500"></div>
-          </div>
-              <div className="text-xs text-muted-foreground">{`Loan Calculator`}</div>
-        </div>
-                <img
-          src={LoanCalculator}
-          alt="Loan Calculator App"
-          className="w-full h-32 sm:h-40 md:h-44 lg:h-48 xl:h-52 object-cover rounded-b-xl"
-        />
-      </div>
-    ),
+      "Custom Hooks",
+    ],
+    githubUrl: "https://github.com/GaneshKantle/Loan-Calculator",
+    liveUrl: "https://loan-calcii.vercel.app/",
+    image: LoanCalculator,
   },
   {
-        id: 5,
-        title: "Recipe Skeleton Master",
+    id: 102,
+    title: "Recipe Skeleton Master",
     description:
-          "Browse and search curated recipes with a clean, restaurant-style UI. Fetches live data from DummyJSON and filters by name or cuisine.",
-    categoryColor: "primary",
+      "Look up tasty recipes. Search by name or food type, then open one to see how to cook it.",
     technologies: [
-          "Material UI",
-          "Emotion",
-          "Framer Motion",
-          "Jest + Testing Library",
-          "JavaScript"
-        ],
-        githubUrl: "https://github.com/GaneshKantle/Recipe-Skeleton-Master",
-        liveUrl: "https://recipe-skeleton-master.vercel.app/",
-    image: (
-      <div className="bg-card rounded-xl overflow-hidden shadow-sm w-full max-w-md border border-border">
-        <div className="p-4 bg-muted border-b border-border flex justify-between items-center">
-          <div className="flex space-x-2">
-            <div className="w-3 h-3 rounded-full bg-red-500"></div>
-            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-            <div className="w-3 h-3 rounded-full bg-green-500"></div>
-          </div>
-              <div className="text-xs text-muted-foreground">{`Recipe Book`}</div>
-        </div>
-                <img
-          src={RecipeBook}
-          alt="Recipe-Skeleton-Master Screenshot"
-          className="w-full h-32 sm:h-40 md:h-44 lg:h-48 xl:h-52 object-cover rounded-b-xl"
-        />
-          </div>
-        ),
-      },
-      {
-        id: 6,
-        title: "PotHole Portal",
-        description:
-          "Crowdsourced Road Repair Platform. Detect and report potholes via user submissions.\nAuthorities review, verify, and manage repairs through an admin dashboard.",
-        categoryColor: "primary",
-        technologies: [
-          "HTML5",
-          "CSS3",
-          "JavaScript",
-          "PHP",
-          "Google Maps JavaScript API"
-        ],
-        githubUrl: "https://github.com/GaneshKantle/Pothole-Portal",
-        liveUrl: "https://pothole-portal.vercel.app/",
-        image: (
-          <div className="bg-card rounded-xl overflow-hidden shadow-sm w-full max-w-md border border-border">
-            {/* Top Bar */}
-            <div className="p-4 bg-muted border-b border-border flex justify-between items-center">
-              <div className="flex space-x-2">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-              </div>
-              <div className="text-xs text-muted-foreground">{`Pothole‑Portal`}</div>
-            </div>
-      
-            {/* Preview image */}
-                    <img
-          src={PotholePortal}
-          alt="Pothole‑Portal Dashboard Screenshot"
-          className="w-full h-32 sm:h-40 md:h-44 lg:h-48 xl:h-52 object-cover rounded-b-xl"
-        />
-      </div>
-    ),
+      "Material UI",
+      "Emotion",
+      "Framer Motion",
+      "Jest + Testing Library",
+      "JavaScript",
+    ],
+    githubUrl: "https://github.com/GaneshKantle/Recipe-Skeleton-Master",
+    liveUrl: "https://recipe-skeleton-master.vercel.app/",
+    image: RecipeBook,
   },
   {
-        id: 1,
-        title: "NFT - DApp",
+    id: 103,
+    title: "PotHole Portal",
     description:
-          "Mnting DApp for ERC‑721 tokens on Ethereum.\nConnect with MetaMask, enter an IPFS/Pinata token URI, and mint to your wallet.",
-    categoryColor: "primary",
+      "Spot a hole in the road? Report it on a map. City workers can check the reports and plan the fixes.",
     technologies: [
-          "Solidity",
-          "Remix IDE",
-          "Web3.js",
-          "MetaMask",
-          "IPFS",
-          "Ethereum "
-        ],
-        githubUrl: "https://github.com/GaneshKantle/My-Non-Fungible-Token-DApp",
-        liveUrl: "https://non-fungible-token-dapp.vercel.app",
-        image: (
-          <div className="bg-card rounded-xl overflow-hidden shadow-sm w-full max-w-md border border-border">
-            <div className="p-4 bg-muted border-b border-border flex justify-between items-center">
-              <div className="flex space-x-2">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-              </div>
-              <div className="text-xs text-muted-foreground">{`MyNFT DApp`}</div>
-            </div>
-                    <img
-          src={MyNFT}
-          alt="My NFT DApp Preview"
-          className="w-full h-32 sm:h-40 md:h-44 lg:h-48 xl:h-52 object-cover rounded-b-xl"
-        />
-          </div>
-        ),
-      },
-      {
-        id: 1,
-        title: "EmpowHER",
-        description:
-          " Smart Safety Ring, Interactive concept site for a smart safety ring.\nShows how SOS alerts, live location, and emergency workflows would work.",
-        categoryColor: "primary",
-        technologies: [
-          "HTML5",
-          "CSS3",
-          "JavaScript",
-          "Lottie Web",
-          "Google Model Viewer"
-        ],
-        githubUrl: "https://github.com/GaneshKantle/Smart-Safety-Ring",
-        liveUrl: "https://smart-safety-ring.vercel.app/",
-        image: (
-          <div className="bg-card rounded-xl overflow-hidden shadow-sm w-full max-w-md border border-border">
-            <div className="p-4 bg-muted border-b border-border flex justify-between items-center">
-              <div className="flex space-x-2">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-              </div>
-              <div className="text-xs text-muted-foreground">{`Smart-Safety-Ring`}</div>
-            </div>
-                    <img
-          src={SmartSafetyRing}
-          alt="Smart Safety Ring Website"
-          className="w-full h-32 sm:h-40 md:h-44 lg:h-48 xl:h-52 object-cover rounded-b-xl"
-        />
-          </div>
-        ),
-      },
-
-      {
-        id: 1,
-        title: "VoteWise DApp",
-        description:
-          "Cast votes for any candidate by name and see real-time counts on-chain. Connect with MetaMask to interact with a deployed Solidity contract via Web3.js.",
-        categoryColor: "primary",
-        technologies: [
-          "Web3.js 4",
-          "Solidity",
-          "MetaMask",
-          "Remix IDE",
-          "Hardhat",
-        ],
-        githubUrl: "https://github.com/GaneshKantle/Ethereum-Voting-DApp",
-        liveUrl: "https://votewise-dapp.vercel.app/",
-        image: (
-          <div className="bg-card rounded-xl overflow-hidden shadow-sm w-full max-w-md border border-border">
-            <div className="p-4 bg-muted border-b border-border flex justify-between items-center">
-              <div className="flex space-x-2">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-              </div>
-              <div className="text-xs text-muted-foreground">{`VoteWise`}</div>
-            </div>
-                    <img
-          src={VoteWise}
-          alt="Ethereum Voting DApp Screenshot"
-          className="w-full h-32 sm:h-40 md:h-44 lg:h-48 xl:h-52 object-cover rounded-b-xl"
-        />
-          </div>
-        ),
-      },
-
-      {
-        id: 1,
-        title: "Kantle's Wardrobe",
-        description:
-          "Business portfolio for a men's fashion brand with product showcases.\nBrowse shirts and pants, view item pages, and access contact/social links.",
-        categoryColor: "primary",
-        technologies: [
-          "HTML5",
-          "CSS3",
-          "Vanilla JavaScript",
-          "Google Fonts"
-        ],
-        githubUrl: "https://github.com/GaneshKantle/KANTLE-Wardrobe",
-        liveUrl: "https://kantles-wardrobe.vercel.app/",
-        image: (
-          <div className="bg-card rounded-xl overflow-hidden shadow-sm w-full max-w-md border border-border">
-            <div className="p-4 bg-muted border-b border-border flex justify-between items-center">
-              <div className="flex space-x-2">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-              </div>
-              <div className="text-xs text-muted-foreground">{`Kantle's Wardrobe`}</div>
-            </div>
-                    <img
-          src={KantlesWardrobe}
-          alt="Kantle's Wardrobe Screenshot"
-          className="w-full h-32 sm:h-40 md:h-44 lg:h-48 xl:h-52 object-cover rounded-b-xl"
-        />
-          </div>
-        ),
-      },
-
-      {
-        id: 1,
-        title: "Client's Portfolio",
-        description:
-          "Responsive single‑page portfolio built for a client to showcase skills, education, and projects. Direct contact via mail-to and WhatsApp, plus links to GitHub and LinkedIn.",
-        categoryColor: "primary",
-        technologies: [
-          "HTML5",
-          "CSS3",
-          "JavaScript6",
-          "Font Awesome 6",
-          "Mailto/WhatsApp deep links"
-        ],
-        githubUrl: "https://github.com/GaneshKantle/Freelance-Work-Portfolio",
-        liveUrl: "https://ganeshkantle.github.io/Freelance-Work-Portfolio/",
-        image: (
-          <div className="bg-card rounded-xl overflow-hidden shadow-sm w-full max-w-md border border-border">
-            <div className="p-4 bg-muted border-b border-border flex justify-between items-center">
-              <div className="flex space-x-2">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-              </div>
-              <div className="text-xs text-muted-foreground">{`Freelance-Work-Portfolio`}</div>
-            </div>
-                    <img
-          src={ClientPortfolio}
-          alt="Anu Prakash Portfolio Preview"
-          className="w-full h-32 sm:h-40 md:h-44 lg:h-48 xl:h-52 object-cover rounded-b-xl"
-        />
-          </div>
-        ),
-      },
-      {
-        id: 1,
-        title: "Image Gallery",
-        description:
-          "Interactive, responsive image grid with smooth hover animations and a fullscreen viewer. Click any image to open an overlay; press X/ESC to close.",
-        categoryColor: "primary",
-        technologies: [
-          "HTML5",
-          "CSS3",
-          "Vanilla",
-          "GitHub Pages"
-        ],
-        githubUrl: "https://github.com/GaneshKantle/Image-Gallery",
-        liveUrl: "https://ganeshkantle.github.io/Image-Gallery/",
-        image: (
-          <div className="bg-card rounded-xl overflow-hidden shadow-sm w-full max-w-md border border-border">
-            <div className="p-4 bg-muted border-b border-border flex justify-between items-center">
-              <div className="flex space-x-2">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-              </div>
-              <div className="text-xs text-muted-foreground">{`Image Gallery`}</div>
-            </div>
-                    <img
-          src={ImageGallery}
-          alt="Image Gallery Screenshot"
-          className="w-full h-32 sm:h-40 md:h-44 lg:h-48 xl:h-52 object-cover rounded-b-xl"
-        />
-          </div>
-        ),
-      },
-
-      {
-        id: 1,
-        title: "Internship Management Portal",
-        description:
-          "Browse internships with filters and detailed descriptions.\nApply and track application status via a student dashboard.\nSave jobs and manage your profile.",
-        categoryColor: "primary",
-        technologies: [
-          "Tailwind CSS 3",
-          "daisyUI 5",
-          "Express 4",
-          "Node.js",
-          "PostCSS 8"
-        ],
-        githubUrl: "https://github.com/GaneshKantle/AI-Job-Management-Portal",
-        liveUrl: "https://ai-job-management-portal.vercel.app",
-        image: (
-          <div className="bg-card rounded-xl overflow-hidden shadow-sm w-full max-w-md border border-border">
-            <div className="p-4 bg-muted border-b border-border flex justify-between items-center">
-              <div className="flex space-x-2">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-              </div>
-              <div className="text-xs text-muted-foreground">{`AI-Job-Portal`}</div>
-            </div>
-                    <img
-          src={JobPortal}
-          alt="AI Job Management Portal Screenshot"
-          className="w-full h-32 sm:h-40 md:h-44 lg:h-48 xl:h-52 object-cover rounded-b-xl"
-        />
-          </div>
-        ),
-      },
-
-      {
-        id: 1,
-        title: "Farm Direct",
-        description:
-          "Connects farmers and buyers through an assured contract farming marketplace.\nBrowse profiles, send requests, draft agreements, and view simple market trends.",
-        categoryColor: "primary",
-        technologies: [
-          "HTML5",
-          "CSS3",
-          "Vanilla JavaScript",
-          "Chart.js (CDN)",
-        ],
-        githubUrl: "https://github.com/GaneshKantle/Farm-Direct",
-        liveUrl: "https://farm-directs.vercel.app/",
-        image: (
-          <div className="bg-card rounded-xl overflow-hidden shadow-sm w-full max-w-md border border-border">
-            <div className="p-4 bg-muted border-b border-border flex justify-between items-center">
-              <div className="flex space-x-2">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-              </div>
-              <div className="text-xs text-muted-foreground">{`Farm Direct`}</div>
-            </div>
-                    <img
-          src={FarmDirect}
-          alt="Farm Direct Screenshot"
-          className="w-full h-32 sm:h-40 md:h-44 lg:h-48 xl:h-52 object-cover rounded-b-xl"
-        />
-          </div>
-        ),
-      },
-
-      {
-        id: 1,
-        title: "Netflix Clone",
-        description: "Responsive clone of the Netflix landing page. Replicates hero sections, device/kids highlights, FAQ, and footer.",
-        categoryColor: "primary",
-        technologies: [
-          "HTML5",
-          "CSS3",
-          "JavaScript (Vanilla)",
-          "Font Awesome 6"
-        ],
-        githubUrl: "https://github.com/GaneshKantle/Netflix-Clone",
-        liveUrl: "https://ganeshkantle.github.io/Netflix-Clone/",
-        image: (
-          <div className="bg-card rounded-xl overflow-hidden shadow-sm w-full max-w-md border border-border">
-            <div className="p-4 bg-muted border-b border-border flex justify-between items-center">
-              <div className="flex space-x-2">
-                <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                <div className="w-3 h-3 rounded-full bg-green-500"></div>
-              </div>
-              <div className="text-xs text-muted-foreground">{`Netflix Clone`}</div>
-            </div>
-                    <img
-          src={NetflixClone}
-          alt="Netflix Clone Landing Page Preview"
-          className="w-full h-32 sm:h-40 md:h-44 lg:h-48 xl:h-52 object-cover rounded-b-xl"
-        />
-          </div>
-        ),
-      },
-
-      {
-        id: 1,
-        title: "Figma Smart Home Controller",
-        description:
-          "Interactive UI/UX concept for a smart home controller, embedded directly from Figma. Showcases Home, Living Room, Alarms, Search Devices etc with a modern, responsive layout.",
-        categoryColor: "primary",
-        technologies: [
-          "HTML5",
-          "Google Fonts",
-          "Figma Embed",
-          "GitHub Pages"
-        ],
-        githubUrl: "https://github.com/GaneshKantle/Figma-Smart-Home-Controller",
-        liveUrl: "https://ganeshkantle.github.io/Figma-Smart-Home-Controller/",
-    image: (
-      <div className="bg-card rounded-xl overflow-hidden shadow-sm w-full max-w-md border border-border">
-        <div className="p-4 bg-muted border-b border-border flex justify-between items-center">
-          <div className="flex space-x-2">
-            <div className="w-3 h-3 rounded-full bg-red-500"></div>
-            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-            <div className="w-3 h-3 rounded-full bg-green-500"></div>
-          </div>
-              <div className="text-xs text-muted-foreground">{`Figma Smart Home`}</div>
-        </div>
-                <img
-          src={FigmaSmartHome}
-          alt="Smart Home UI preview"
-          className="w-full h-32 sm:h-40 md:h-44 lg:h-48 xl:h-52 object-cover rounded-b-xl"
-        />
-      </div>
-    ),
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "PHP",
+      "Google Maps JavaScript API",
+    ],
+    githubUrl: "https://github.com/GaneshKantle/Pothole-Portal",
+    liveUrl: "https://pothole-portal.vercel.app/",
+    image: PotholePortal,
   },
-
-      
+  {
+    id: 104,
+    title: "NFT - DApp",
+    description:
+      "Make your own digital collectible on the blockchain. Connect your wallet and mint it so it belongs to you.",
+    technologies: [
+      "Solidity",
+      "Remix IDE",
+      "Web3.js",
+      "MetaMask",
+      "IPFS",
+      "Ethereum",
+    ],
+    githubUrl: "https://github.com/GaneshKantle/My-Non-Fungible-Token-DApp",
+    liveUrl: "https://non-fungible-token-dapp.vercel.app",
+    image: MyNFT,
+  },
+  {
+    id: 105,
+    title: "EmpowHER",
+    description:
+      "A website about a smart safety ring. It shows how someone could call for help and share their location in an emergency.",
+    technologies: [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Lottie Web",
+      "Google Model Viewer",
+    ],
+    githubUrl: "https://github.com/GaneshKantle/Smart-Safety-Ring",
+    liveUrl: "https://smart-safety-ring.vercel.app/",
+    image: SmartSafetyRing,
+  },
+  {
+    id: 106,
+    title: "VoteWise DApp",
+    description:
+      "Vote for a person by typing their name. Everyone can see the live vote count saved on the blockchain.",
+    technologies: ["Web3.js 4", "Solidity", "MetaMask", "Remix IDE", "Hardhat"],
+    githubUrl: "https://github.com/GaneshKantle/Ethereum-Voting-DApp",
+    liveUrl: "https://votewise-dapp.vercel.app/",
+    image: VoteWise,
+  },
+  {
+    id: 107,
+    title: "Kantle's Wardrobe",
+    description:
+      "A simple clothing brand website. Browse shirts and pants, open a product page, and find ways to get in touch.",
+    technologies: ["HTML5", "CSS3", "Vanilla JavaScript", "Google Fonts"],
+    githubUrl: "https://github.com/GaneshKantle/KANTLE-Wardrobe",
+    liveUrl: "https://kantles-wardrobe.vercel.app/",
+    image: KantlesWardrobe,
+  },
+  {
+    id: 108,
+    title: "Client's Portfolio",
+    description:
+      "A personal website I built for a client. It shows their skills, school, projects, and easy ways to contact them.",
+    technologies: [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "Font Awesome 6",
+      "Mailto/WhatsApp deep links",
+    ],
+    githubUrl: "https://github.com/GaneshKantle/Freelance-Work-Portfolio",
+    liveUrl: "https://ganeshkantle.github.io/Freelance-Work-Portfolio/",
+    image: ClientPortfolio,
+  },
+  {
+    id: 109,
+    title: "Image Gallery",
+    description:
+      "A grid of pictures. Click one to see it big. Press X or Escape to close it.",
+    technologies: ["HTML5", "CSS3", "Vanilla", "GitHub Pages"],
+    githubUrl: "https://github.com/GaneshKantle/Image-Gallery",
+    liveUrl: "https://ganeshkantle.github.io/Image-Gallery/",
+    image: ImageGallery,
+  },
+  {
+    id: 110,
+    title: "Internship Management Portal",
+    description:
+      "Find internship jobs, filter them, and apply. Track your applications and save the ones you like.",
+    technologies: [
+      "Tailwind CSS 3",
+      "daisyUI 5",
+      "Express 4",
+      "Node.js",
+      "PostCSS 8",
+    ],
+    githubUrl: "https://github.com/GaneshKantle/AI-Job-Management-Portal",
+    liveUrl: "https://ai-job-management-portal.vercel.app",
+    image: JobPortal,
+  },
+  {
+    id: 111,
+    title: "Farm Direct",
+    description:
+      "A place where farmers and buyers meet. Send a request, make a deal, and peek at simple market charts.",
+    technologies: ["HTML5", "CSS3", "Vanilla JavaScript", "Chart.js (CDN)"],
+    githubUrl: "https://github.com/GaneshKantle/Farm-Direct",
+    liveUrl: "https://farm-directs.vercel.app/",
+    image: FarmDirect,
+  },
+  {
+    id: 112,
+    title: "Netflix Clone",
+    description:
+      "A look-alike of the Netflix home page. Same big hero, device sections, FAQ, and footer — built for practice.",
+    technologies: [
+      "HTML5",
+      "CSS3",
+      "JavaScript (Vanilla)",
+      "Font Awesome 6",
+    ],
+    githubUrl: "https://github.com/GaneshKantle/Netflix-Clone",
+    liveUrl: "https://ganeshkantle.github.io/Netflix-Clone/",
+    image: NetflixClone,
+  },
+  {
+    id: 113,
+    title: "Figma Smart Home Controller",
+    description:
+      "A design for a phone app that controls a smart home. Tap rooms, alarms, and devices in the interactive layout.",
+    technologies: ["HTML5", "Google Fonts", "Figma Embed", "GitHub Pages"],
+    githubUrl: "https://github.com/GaneshKantle/Figma-Smart-Home-Controller",
+    liveUrl: "https://ganeshkantle.github.io/Figma-Smart-Home-Controller/",
+    image: FigmaSmartHome,
+  },
 ];
 
-// Function to convert string image paths to JSX elements for main projects
-const convertMainProjectsToJSX = (projects: any[]) => {
-  return projects.map(project => ({
-    ...project,
-    image: (
-      <div className="bg-card rounded-xl overflow-hidden shadow-sm w-full max-w-md border border-border">
-        <div className="p-4 bg-muted border-b border-border flex justify-between items-center">
-          <div className="flex space-x-2">
-            <div className="w-3 h-3 rounded-full bg-red-500"></div>
-            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-            <div className="w-3 h-3 rounded-full bg-green-500"></div>
-          </div>
-          <div className="text-xs text-muted-foreground">{project.title}</div>
-        </div>
-        <img
-          src={project.image}
-          alt={`${project.title} Screenshot`}
-          className="w-full h-32 sm:h-40 md:h-44 lg:h-48 xl:h-52 object-cover rounded-b-xl"
-        />
-      </div>
-    )
-  }));
-};
-
-// Convert main projects to have JSX images and combine with additional projects
-const allProjects = [...convertMainProjectsToJSX(mainProjects), ...additionalProjects];
+const allProjects: SpecimenProject[] = [
+  ...mainProjects,
+  ...additionalProjects,
+];
 
 export default function AllProjects() {
   const [, setLocation] = useLocation();
-  
+  const [flippedId, setFlippedId] = useState<number | null>(null);
+
+  const toggleFlip = (id: number) => {
+    setFlippedId((current) => (current === id ? null : id));
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Navbar />
-      
-      <section className="section-y relative overflow-hidden" style={{ paddingTop: "calc(var(--nav-offset) + var(--section-y))" }}>
+
+      <section
+        className="section-y relative overflow-hidden"
+        style={{ paddingTop: "calc(var(--nav-offset) + var(--section-y))" }}
+      >
         <DotPattern />
         <div className="page-shell relative z-10">
-          {/* Header Section */}
           <div className="mb-12 text-center sm:mb-16">
+            <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+              Full archive
+            </p>
             <motion.h1
               className="text-title mb-6 font-semibold tracking-tight text-foreground"
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, ease: [0.25, 1, 0.5, 1] }}
             >
-              All <span className="text-primary">Projects</span>
+              Project <span className="text-primary">Specimens</span>
             </motion.h1>
             <motion.p
               className="mx-auto max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.55, delay: 0.15, ease: [0.25, 1, 0.5, 1] }}
+              transition={{
+                duration: 0.55,
+                delay: 0.15,
+                ease: [0.25, 1, 0.5, 1],
+              }}
             >
-              Explore my complete portfolio of projects. Each project showcases different skills and technologies I've worked with.
+              Every build, catalogued. Click a plate to flip it open — only one
+              stays flipped at a time.
             </motion.p>
           </div>
 
-          {/* Projects Grid */}
-          <div className="grid w-full grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8 2xl:gap-8">
-            {allProjects.map((project: Project, index: number) => (
+          <div className="grid w-full grid-cols-1 gap-5 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8">
+            {allProjects.map((project, index) => (
               <motion.div
-                key={project.id}
-                className="project-card relative z-10 bg-card rounded-2xl shadow-sm overflow-hidden border border-border hover:shadow-md transition-all duration-300 ease-in-out hover:scale-[1.02] h-full min-w-0"                initial={{ opacity: 0 }}
+                key={`${project.id}-${project.title}`}
+                className="min-w-0"
+                initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{
                   duration: 0.2,
-                  delay: index * 0.03,
+                  delay: Math.min(index * 0.03, 0.3),
                   ease: "easeOut",
                 }}
-                whileHover={{ y: -3 }}
               >
-                <div className="flex flex-col h-full">
-                  <div className="bg-muted flex items-center justify-center p-3 sm:p-4 lg:p-5">
-                    {/* Render the project image directly since it's already JSX.Element */}
-                    {project.image}
-                  </div>
-                  <div className="p-3 sm:p-4 md:p-5 lg:p-6 flex-1 flex flex-col">
-                    <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-2 sm:mb-3 text-foreground">
-                      {project.title}
-                    </h3>
-                    <p className="text-muted-foreground mb-3 sm:mb-4 flex-1 text-xs sm:text-sm lg:text-base leading-relaxed">
-                      {project.description}
-                    </p>
-                    <div className="flex flex-wrap gap-1 sm:gap-2 mb-3 sm:mb-4">
-                      {project.technologies.slice(0, 6).map((tech: string, techIndex: number) => (
-                        <span
-                          key={techIndex}
-                          className="bg-muted px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-xs text-muted-foreground border border-border"
-                        >
-                           {tech}
-                        </span>
-                      ))}
-                      {project.technologies.length > 6 && (
-                        <span className="bg-muted px-1.5 sm:px-2 py-0.5 sm:py-1 rounded-full text-xs text-muted-foreground border border-border">
-                          +{project.technologies.length - 6}
-                        </span>
-                      )}
-                    </div>
-                    <div className="mt-auto space-y-2">
-                      {/* First row: Source and Live buttons side by side */}
-                      <div className="flex space-x-2">
-                        <a
-                          href={project.githubUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex-1 bg-card hover:bg-muted text-primary hover:text-primary border border-border hover:border-primary/40 transition-all duration-300 ease-in-out py-2 px-3 rounded-lg text-sm font-medium text-center flex items-center justify-center"
-                        >
-                          <i className="fab fa-github mr-2"></i> 
-                          <span className="hidden sm:inline">Source</span>
-                          <span className="sm:hidden">Src</span>
-                        </a>
-                        <a
-                          href={project.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="flex-1 bg-card hover:bg-muted text-primary hover:text-primary border border-border hover:border-primary/40 transition-all duration-300 ease-in-out py-2 px-3 rounded-lg text-sm font-medium text-center flex items-center justify-center"
-                        >
-                          <i className="fas fa-external-link-alt mr-2"></i> 
-                          <span className="hidden sm:inline">Live</span>
-                          <span className="sm:hidden">Demo</span>
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                <ProjectSpecimenCard
+                  project={project}
+                  index={index}
+                  variant="grid"
+                  flipped={flippedId === project.id}
+                  onFlip={() => toggleFlip(project.id)}
+                />
               </motion.div>
             ))}
           </div>
 
-          {/* Back to Home Button */}
-          <div className="text-center mt-16">
+          <div className="mt-16 text-center">
             <button
               onClick={() => setLocation("/")}
-              className="inline-block bg-primary hover:bg-primary/90 text-white border border-primary hover:border-primary/90 transition-all duration-300 ease-in-out py-3 px-6 rounded-full text-lg font-semibold transform hover:scale-[1.02] hover:shadow-md"
+              className="inline-block border border-foreground bg-foreground px-6 py-3 text-lg font-semibold text-background transition-opacity duration-300 hover:opacity-90"
             >
               ← Back to Home
             </button>

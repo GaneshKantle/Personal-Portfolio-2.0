@@ -22,7 +22,7 @@ function Router() {
       <Route path="/education" component={Home} />
       <Route path="/projects" component={Home} />
       <Route path="/activities" component={Home} />
-      <Route path="/certificates" component={Home} />
+      {/* <Route path="/certificates" component={Home} /> */}
       <Route path="/contact" component={Home} />
       <Route path="/all-projects" component={AllProjects} />
       <Route path="/projects/:id" component={ProjectDetails} />

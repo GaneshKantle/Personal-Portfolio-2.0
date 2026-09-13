@@ -9,7 +9,7 @@ const SECTIONS = [
   { id: "education", path: "/education" },
   { id: "projects", path: "/projects" },
   { id: "activities", path: "/activities" },
-  { id: "certificates", path: "/certificates" },
+  // { id: "certificates", path: "/certificates" },
   { id: "contact", path: "/contact" },
 ] as const;
 
