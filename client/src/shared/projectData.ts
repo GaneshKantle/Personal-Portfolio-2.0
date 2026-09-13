@@ -11,6 +11,160 @@ import Project2 from "../img/project2.png";
 export const projectsData = [
   {
     id: 1,
+    title: "Read It Twin",
+    tagline: "Multiplayer Reading Speed Challenge",
+    description:
+      "Competitive reading races: solo practice or synchronized two-player matches with WPM + comprehension scoring, rematch, and a production-hardened Supabase backend.",
+    longDescription:
+      "Read It Twin is a polished multiplayer reading competition app where players race through passages and take comprehension quizzes. It supports solo runs with local passage seeds and synchronized two-player rooms with authoritative server-side scoring, lobby flow, countdown sync, results, and rematch. Built as a React SPA with a Supabase (PostgreSQL + Realtime) backend, anonymous sessions, and production hardening for live deployment.",
+    categoryColor: "primary",
+    technologies: [
+      "TypeScript",
+      "React 19",
+      "Vite",
+      "Tailwind CSS",
+      "Supabase",
+      "Framer Motion",
+      "React Router",
+      "Vitest",
+    ],
+    githubUrl: "https://github.com/GaneshKantle/Read-It-Twin",
+    liveUrl: "https://readittwin.vercel.app",
+    demoUrl: "https://readittwin.vercel.app",
+    documentationUrl:
+      "https://github.com/GaneshKantle/Read-It-Twin/blob/main/README.md",
+    features: [
+      "Solo reading → quiz → results flow",
+      "Create/join rooms with shareable codes",
+      "Synchronized two-player races with live lobby",
+      "Server-authoritative WPM and comprehension scoring",
+      "Countdown-synced race start and rematch",
+      "Anonymous play with no signup required",
+      "Realtime multiplayer via Supabase",
+      "Responsive UI with polished motion",
+    ],
+    challenges: [
+      "Keeping race timing synchronized across clients",
+      "Designing authoritative scoring without traditional auth",
+      "Modeling lobby → race → results → rematch state machines",
+      "Hardening RLS and RPCs for anonymous Realtime access",
+      "Handling disconnects, rejoin, and leave notifications cleanly",
+    ],
+    learnings: [
+      "Supabase Realtime and SECURITY DEFINER RPCs",
+      "Server-authoritative multiplayer game design",
+      "Anonymous session and room lifecycle patterns",
+      "Complex client-server state synchronization",
+      "Production hardening for SPA + Postgres backends",
+    ],
+    screenshots: [
+      {
+        src: readItTwin,
+        alt: "Landing Page",
+        caption: "Product landing with solo and challenge entry points",
+      },
+      {
+        src: readItTwin,
+        alt: "Race Lobby",
+        caption: "Two-player room lobby with ready states",
+      },
+      {
+        src: readItTwin,
+        alt: "Results View",
+        caption: "WPM, comprehension, and rematch results screen",
+      },
+    ],
+    architecture:
+      "React SPA with Vite, synchronized via Supabase Realtime and Postgres RPCs for authoritative multiplayer scoring",
+    deployment: "Vercel",
+    status: "Live",
+    developmentTime: "2 weeks",
+    teamSize: "Solo",
+    impact:
+      "Turns reading practice into a competitive, shareable challenge that scores both speed and understanding",
+    image: readItTwin,
+    category: "Web Application",
+    difficulty: "Advanced",
+  },
+
+  {
+    id: 2,
+    title: "BrainWMe",
+    tagline: "Illustrated JS/TS Ecosystem Encyclopedia",
+    description:
+      "Illustrated encyclopedia of the JavaScript and TypeScript ecosystem: browse tools by job, explore categories volume by volume, and assemble a stack in an interactive workshop — React is one UI branch, not the foundation.",
+    longDescription:
+      "BrainWMe is an illustrated learning map of the JS/TS ecosystem. It organizes tools into volumes and job-based categories so learners can see what each piece is for, when it’s needed, and what it’s often confused with. An interactive workshop lets you explode a stack in 3D, dock one tool per job, and enforce needs-React wiring rules. A language-model view shows the TypeScript trunk versus UI and runtime branches. Built as a modern Next.js app with custom ink-style illustrations and motion.",
+    categoryColor: "primary",
+    technologies: [
+      "TypeScript",
+      "Next.js",
+      "React",
+      "Tailwind CSS",
+      "Motion",
+      "Lucide React",
+    ],
+    githubUrl: "https://github.com/GaneshKantle/Brain-W-Me",
+    liveUrl: "https://brainwme.vercel.app/",
+    demoUrl: "https://brainwme.vercel.app/",
+    documentationUrl:
+      "https://github.com/GaneshKantle/Brain-W-Me/blob/main/README.md",
+    features: [
+      "Illustrated encyclopedia of 50+ categories and 200+ tools",
+      "Volume-based browsing (language, UI, data, product, platform, tooling)",
+      "Per-tool job, why, how, and common confusion notes",
+      "Interactive workshop to wire one tool per job",
+      "Needs-React rules baked into stack assembly",
+      "Language model view: trunk vs UI/runtime branches",
+      "Custom ink-and-wash illustration system",
+      "Responsive, comic-panel UI with motion",
+    ],
+    challenges: [
+      "Modeling the ecosystem as jobs and sockets, not just a tool list",
+      "Teaching that React is optional without oversimplifying",
+      "Building an interactive assemble/explode workshop UX",
+      "Keeping a large content catalog consistent and navigable",
+      "Designing a cohesive illustrated visual language in the browser",
+    ],
+    learnings: [
+      "Content modeling for educational product surfaces",
+      "Next.js App Router structure for content-heavy sites",
+      "Motion-driven interaction design",
+      "SVG/illustration systems for product UI",
+      "Explaining complex ecosystems through progressive disclosure",
+    ],
+    screenshots: [
+      {
+        src: brainWMe,
+        alt: "Encyclopedia Home",
+        caption: "Volume-based encyclopedia of the JS/TS ecosystem",
+      },
+      {
+        src: brainWMe,
+        alt: "Category View",
+        caption: "Tools grouped by job with illustrated part cards",
+      },
+      {
+        src: brainWMe,
+        alt: "Workshop",
+        caption: "Interactive stack assembly with wiring rules",
+      },
+    ],
+    architecture:
+      "Next.js App Router content site with typed tool/category catalog and client-side workshop state",
+    deployment: "Vercel",
+    status: "Live",
+    developmentTime: "1 week",
+    teamSize: "Solo",
+    impact:
+      "Helps developers understand the JS/TS map without treating React as the whole language",
+    image: brainWMe,
+    category: "Web Application",
+    difficulty: "Intermediate",
+  },
+
+  {
+    id: 3,
     title: "Parallel You",
     tagline: "Birth-Moment Exhibition",
     description:
@@ -93,158 +247,7 @@ export const projectsData = [
     category: "Web Application",
     difficulty: "Intermediate",
   },
-  {
-    id: 2,
-    title: "Read It Twin",
-    tagline: "Multiplayer Reading Speed Challenge",
-    description:
-      "Competitive reading races: solo practice or synchronized two-player matches with WPM + comprehension scoring, rematch, and a production-hardened Supabase backend.",
-    longDescription:
-      "Read It Twin is a polished multiplayer reading competition app where players race through passages and take comprehension quizzes. It supports solo runs with local passage seeds and synchronized two-player rooms with authoritative server-side scoring, lobby flow, countdown sync, results, and rematch. Built as a React SPA with a Supabase (PostgreSQL + Realtime) backend, anonymous sessions, and production hardening for live deployment.",
-    categoryColor: "primary",
-    technologies: [
-      "TypeScript",
-      "React 19",
-      "Vite",
-      "Tailwind CSS",
-      "Supabase",
-      "Framer Motion",
-      "React Router",
-      "Vitest",
-    ],
-    githubUrl: "https://github.com/GaneshKantle/Read-It-Twin",
-    liveUrl: "https://readittwin.vercel.app",
-    demoUrl: "https://readittwin.vercel.app",
-    documentationUrl:
-      "https://github.com/GaneshKantle/Read-It-Twin/blob/main/README.md",
-    features: [
-      "Solo reading → quiz → results flow",
-      "Create/join rooms with shareable codes",
-      "Synchronized two-player races with live lobby",
-      "Server-authoritative WPM and comprehension scoring",
-      "Countdown-synced race start and rematch",
-      "Anonymous play with no signup required",
-      "Realtime multiplayer via Supabase",
-      "Responsive UI with polished motion",
-    ],
-    challenges: [
-      "Keeping race timing synchronized across clients",
-      "Designing authoritative scoring without traditional auth",
-      "Modeling lobby → race → results → rematch state machines",
-      "Hardening RLS and RPCs for anonymous Realtime access",
-      "Handling disconnects, rejoin, and leave notifications cleanly",
-    ],
-    learnings: [
-      "Supabase Realtime and SECURITY DEFINER RPCs",
-      "Server-authoritative multiplayer game design",
-      "Anonymous session and room lifecycle patterns",
-      "Complex client-server state synchronization",
-      "Production hardening for SPA + Postgres backends",
-    ],
-    screenshots: [
-      {
-        src: readItTwin,
-        alt: "Landing Page",
-        caption: "Product landing with solo and challenge entry points",
-      },
-      {
-        src: readItTwin,
-        alt: "Race Lobby",
-        caption: "Two-player room lobby with ready states",
-      },
-      {
-        src: readItTwin,
-        alt: "Results View",
-        caption: "WPM, comprehension, and rematch results screen",
-      },
-    ],
-    architecture:
-      "React SPA with Vite, synchronized via Supabase Realtime and Postgres RPCs for authoritative multiplayer scoring",
-    deployment: "Vercel",
-    status: "Live",
-    developmentTime: "2 weeks",
-    teamSize: "Solo",
-    impact:
-      "Turns reading practice into a competitive, shareable challenge that scores both speed and understanding",
-    image: readItTwin,
-    category: "Web Application",
-    difficulty: "Advanced",
-  },
-  {
-    id: 3,
-    title: "BrainWMe",
-    tagline: "Illustrated JS/TS Ecosystem Encyclopedia",
-    description:
-      "Illustrated encyclopedia of the JavaScript and TypeScript ecosystem: browse tools by job, explore categories volume by volume, and assemble a stack in an interactive workshop — React is one UI branch, not the foundation.",
-    longDescription:
-      "BrainWMe is an illustrated learning map of the JS/TS ecosystem. It organizes tools into volumes and job-based categories so learners can see what each piece is for, when it’s needed, and what it’s often confused with. An interactive workshop lets you explode a stack in 3D, dock one tool per job, and enforce needs-React wiring rules. A language-model view shows the TypeScript trunk versus UI and runtime branches. Built as a modern Next.js app with custom ink-style illustrations and motion.",
-    categoryColor: "primary",
-    technologies: [
-      "TypeScript",
-      "Next.js",
-      "React",
-      "Tailwind CSS",
-      "Motion",
-      "Lucide React",
-    ],
-    githubUrl: "https://github.com/GaneshKantle/Brain-W-Me",
-    liveUrl: "https://brainwme.vercel.app/",
-    demoUrl: "https://brainwme.vercel.app/",
-    documentationUrl:
-      "https://github.com/GaneshKantle/Brain-W-Me/blob/main/README.md",
-    features: [
-      "Illustrated encyclopedia of 50+ categories and 200+ tools",
-      "Volume-based browsing (language, UI, data, product, platform, tooling)",
-      "Per-tool job, why, how, and common confusion notes",
-      "Interactive workshop to wire one tool per job",
-      "Needs-React rules baked into stack assembly",
-      "Language model view: trunk vs UI/runtime branches",
-      "Custom ink-and-wash illustration system",
-      "Responsive, comic-panel UI with motion",
-    ],
-    challenges: [
-      "Modeling the ecosystem as jobs and sockets, not just a tool list",
-      "Teaching that React is optional without oversimplifying",
-      "Building an interactive assemble/explode workshop UX",
-      "Keeping a large content catalog consistent and navigable",
-      "Designing a cohesive illustrated visual language in the browser",
-    ],
-    learnings: [
-      "Content modeling for educational product surfaces",
-      "Next.js App Router structure for content-heavy sites",
-      "Motion-driven interaction design",
-      "SVG/illustration systems for product UI",
-      "Explaining complex ecosystems through progressive disclosure",
-    ],
-    screenshots: [
-      {
-        src: brainWMe,
-        alt: "Encyclopedia Home",
-        caption: "Volume-based encyclopedia of the JS/TS ecosystem",
-      },
-      {
-        src: brainWMe,
-        alt: "Category View",
-        caption: "Tools grouped by job with illustrated part cards",
-      },
-      {
-        src: brainWMe,
-        alt: "Workshop",
-        caption: "Interactive stack assembly with wiring rules",
-      },
-    ],
-    architecture:
-      "Next.js App Router content site with typed tool/category catalog and client-side workshop state",
-    deployment: "Vercel",
-    status: "Live",
-    developmentTime: "1 week",
-    teamSize: "Solo",
-    impact:
-      "Helps developers understand the JS/TS map without treating React as the whole language",
-    image: brainWMe,
-    category: "Web Application",
-    difficulty: "Intermediate",
-  },
+
   {
     id: 4,
     title: "EYE'dentify",

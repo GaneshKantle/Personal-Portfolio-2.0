@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   motion,
   useScroll,
@@ -136,7 +136,13 @@ function SnapGallery() {
 }
 
 function useIsMdUp() {
-  const [isMd, setIsMd] = useState(false);
+  // Avoid a false→true flip on desktop (that remounts a ~100vh section and
+  // advances scroll progress before travel is measured).
+  const [isMd, setIsMd] = useState(() =>
+    typeof window !== "undefined"
+      ? window.matchMedia("(min-width: 768px)").matches
+      : false
+  );
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 768px)");
     const update = () => setIsMd(mq.matches);
@@ -150,9 +156,16 @@ function useIsMdUp() {
 /** Vertical scroll distance per 1px of horizontal travel — slows the gallery. */
 const SCROLL_PX_PER_TRAVEL = 2.4;
 /** Hold first cards still at the start so momentum from prior sections doesn't skip them. */
-const INTRO_HOLD = 0.14;
+const INTRO_HOLD = 0.18;
 /** Hold the final card / CTA briefly before releasing to the next section. */
 const OUTRO_HOLD = 0.1;
+/** Rough card+gap width used only to size the section before measure settles. */
+const EST_CARD_TRAVEL = 420;
+
+function estimateTravel(viewportWidth: number) {
+  const trackItems = projects.length + 1; // cards + "View all" CTA
+  return Math.max(0, trackItems * EST_CARD_TRAVEL - viewportWidth);
+}
 
 export default function ProjectsSection() {
   const prefersReducedMotion = useReducedMotion();
@@ -160,9 +173,14 @@ export default function ProjectsSection() {
   const containerRef = useRef<HTMLElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
-  const [travel, setTravel] = useState(0);
+  // Non-zero estimate so the pin distance is never ~0vh (that maxes progress
+  // immediately, then snaps the track to the CTA once real travel is known).
+  const [travel, setTravel] = useState(() =>
+    typeof window !== "undefined" ? estimateTravel(window.innerWidth) : 0
+  );
+  const [trackReady, setTrackReady] = useState(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!isMd || prefersReducedMotion) return;
     const measure = () => {
       const track = trackRef.current;
@@ -170,10 +188,11 @@ export default function ProjectsSection() {
       if (!track || !viewport) return;
       const maxTravel = Math.max(0, track.scrollWidth - viewport.clientWidth);
       setTravel((prev) => (prev === maxTravel ? prev : maxTravel));
+      setTrackReady(true);
     };
 
     measure();
-    // Re-measure after layout/fonts settle so the first paint isn't short.
+    // Re-measure after layout/fonts settle so travel isn't understated.
     const raf = requestAnimationFrame(measure);
     window.addEventListener("resize", measure);
     const ro =
@@ -196,13 +215,16 @@ export default function ProjectsSection() {
   });
 
   // Dead zones at both ends: first cards stay on screen, then the track moves.
+  // Until the track is measured, keep x at 0 so a stale progress value (from a
+  // too-short pre-measure height) cannot jump straight to the CTA.
+  const endX = trackReady ? -travel : 0;
   const x = useTransform(
     scrollYProgress,
     [0, INTRO_HOLD, 1 - OUTRO_HOLD, 1],
-    [0, 0, -travel, -travel]
+    [0, 0, endX, endX]
   );
   const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
-  const scrollBudget = Math.max(travel * SCROLL_PX_PER_TRAVEL, 1);
+  const scrollBudget = Math.max(travel * SCROLL_PX_PER_TRAVEL, 800);
 
   if (prefersReducedMotion || !isMd) {
     return (
