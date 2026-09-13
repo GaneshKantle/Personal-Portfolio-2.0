@@ -49,16 +49,17 @@ export default function AboutSection() {
                 transition={{ duration: 0.35 }}
               >
                 <p className="mb-4 px-2 text-base leading-relaxed text-muted-foreground sm:mb-6 sm:px-0 sm:text-lg md:text-xl">
-                  I'm an AI web developer who builds fast, responsive
-                  interfaces with React, TypeScript, and Java. I ship
-                  production-ready client work and keep pushing into Web3 —
-                  blockchain, Solidity, and the tooling that connects apps to
-                  the chain.
+                  I make little corners of the web that feel calm and
+                  quick. Mostly with React, TypeScript, and Java. Sometimes for
+                  clients. Sometimes just because an idea won't leave me alone.
+                  Lately I've been teaching websites how to talk to the
+                  blockchain, one careful step at a time.
                 </p>
                 <p className="mb-4 px-2 text-base leading-relaxed text-muted-foreground sm:mb-6 sm:px-0 sm:text-lg md:text-xl">
-                  Outside of shipping features, I write about what I'm
-                  learning and contribute to open-source. I care about clear
-                  UX, clean code, and products people actually want to use.
+                  Off the keyboard, I jot down what I'm learning and leave
+                  small gifts in open-source repos. I care about screens that
+                  feel friendly, code that doesn't shout, and apps people come
+                  back to without thinking twice.
                 </p>
               </motion.div>
             </ScrollReveal>

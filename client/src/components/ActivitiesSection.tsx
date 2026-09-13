@@ -1,199 +1,103 @@
 import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
-import { ScrollReveal, Stagger, StaggerItem } from "./motion/ScrollReveal";
-import { popIn, viewportOnce } from "../lib/motion";
 import { DotPattern } from "./DotPattern";
+import { easeOutExpo, viewportOnce } from "../lib/motion";
 
 const activities = [
   {
-    id: 1,
-    title: "Hackathon Participant",
-    description:
-      "Regular participant in local and academic hackathons. Top 3 at the 2025 AquaTech Hackathon.",
-    icon: "fas fa-code",
-    color: "text-primary",
-    gradient: "from-blue-100 to-purple-100",
+    mark: "C",
+    title: "Chess",
+    detail: "State level player · Top 90 of 700+ players",
   },
   {
-    id: 2,
-    title: "Youth Red Cross Volunteer",
-    description:
-      "Organizing blood donation camps and spreading awareness about health and safety.",
-    icon: "fas fa-users",
-    color: "text-green-600",
-    gradient: "from-green-100 to-blue-100",
+    mark: "R",
+    title: "Red Cross",
+    detail: "Head of Pre Post Dept. · Youth volunteer · Camps & awareness",
   },
   {
-    id: 3,
-    title: "Chess State Level",
-    description:
-      "Secured a position in the top 50, competing against 700+ skilled players.",
-    icon: "fas fa-basketball-ball",
-    color: "text-purple-600",
-    gradient: "from-purple-100 to-green-100",
+    mark: "H",
+    title: "Hackathons",
+    detail: "Top 3 at AquaTech 2025",
   },
 ];
-
-// const profiles = [
-//   {
-//     name: "LeetCode",
-//     icon: "fas fa-code",
-//     color: "#F48024",
-//     url: "https://leetcode.com/u/ganeshkantle/",
-//   },
-//   {
-//     name: "Unstop",
-//     icon: "fas fa-briefcase",
-//     color: "#FF5722",
-//     url: "https://unstop.com/u/ganeskan50953",
-//   },
-//   {
-//     name: "Medium",
-//     icon: "fab fa-medium-m",
-//     color: "#00A5EC",
-//     url: "https://medium.com/@ganeshkantle",
-//   },
-//   {
-//     name: "Bento",
-//     icon: "fas fa-cube",
-//     color: "#6B66FF",
-//     url: "https://kantle.type.link/",
-//   },
-//   {
-//     name: "Dev.to",
-//     icon: "fab fa-dev",
-//     color: "#0A0A0A",
-//     url: "https://dev.to/ganeshkantle",
-//     target: "_blank",
-//     rel: "noopener noreferrer",
-//   },
-//   {
-//     name: "Twitter",
-//     icon: "fab fa-twitter",
-//     color: "#00ACEE",
-//     url: "https://twitter.com/ganeshkantle",
-//     target: "_blank",
-//     rel: "noopener noreferrer",
-//   },
-//   {
-//     name: "Instagram",
-//     icon: "fab fa-instagram",
-//     color: "#E4405F",
-//     url: "https://instagram.com/ganeshkantle",
-//   },
-//   {
-//     name: "WordPress",
-//     icon: "fab fa-wordpress",
-//     color: "#21759B",
-//     url: "https://ganeshkantle.wordpress.com/",
-//     target: "_blank",
-//     rel: "noopener noreferrer",
-//   },
-// ];
 
 export default function ActivitiesSection() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <>
-      <section
-        id="activities"
-        className="section-y relative overflow-hidden cv-auto bg-background"
-      >
-        <DotPattern />
-        <div className="page-shell relative z-10">
-          <ScrollReveal className="mb-12 text-center sm:mb-16">
-            <h2 className="text-title mb-3 font-semibold tracking-tight text-foreground sm:mb-4">
-              Extracurricular <span className="text-primary">Activities</span>
-            </h2>
-            <motion.div
-              className="mx-auto h-1 w-16 origin-center rounded-full bg-primary sm:w-20"
-              initial={prefersReducedMotion ? false : { scaleX: 0 }}
-              whileInView={{ scaleX: 1 }}
+    <section
+      id="activities"
+      className="section-y relative overflow-hidden cv-auto scroll-mt-[var(--nav-offset)] bg-background"
+    >
+      <DotPattern />
+      <div className="page-shell relative z-10">
+        <motion.div
+          className="mx-auto max-w-2xl text-center"
+          initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.45 }}
+          transition={{ duration: 0.5, ease: easeOutExpo }}
+        >
+          <p className="mb-2 text-xs font-medium uppercase tracking-[0.22em] text-primary sm:text-sm">
+            Beyond the editor
+          </p>
+          <h2 className="text-title font-semibold tracking-tight text-foreground">
+          Extracurricular <span className="text-primary">Activities</span>
+          </h2>
+          <motion.div
+            className="mx-auto mt-3 h-1 w-16 origin-center rounded-full bg-primary sm:mt-4 sm:w-20"
+            initial={prefersReducedMotion ? false : { scaleX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={viewportOnce}
+            transition={{ duration: 0.5, ease: easeOutExpo, delay: 0.06 }}
+          />
+        </motion.div>
+
+        <ul className="mx-auto mt-10 grid max-w-4xl grid-cols-1 gap-10 sm:mt-14 sm:grid-cols-3 sm:gap-8">
+          {activities.map((activity, index) => (
+            <motion.li
+              key={activity.mark}
+              className="group relative text-center"
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={viewportOnce}
-              transition={{ duration: 0.55, delay: 0.1 }}
-            />
-          </ScrollReveal>
-
-          <div className="mx-auto max-w-6xl 3xl:max-w-7xl">
-            <Stagger
-              className="mb-12 grid grid-cols-1 gap-6 sm:mb-16 sm:gap-8 md:grid-cols-2 lg:grid-cols-3"
-              stagger={0.12}
+              transition={{
+                duration: 0.55,
+                delay: 0.1 * index,
+                ease: easeOutExpo,
+              }}
             >
-              {activities.map((activity) => (
-                <StaggerItem key={activity.id} variants={popIn}>
-                  <motion.div
-                    className="relative z-10 bg-card p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-sm border border-border hover:shadow-md transition-all duration-300 ease-in-out group h-full"
-                    whileHover={
-                      prefersReducedMotion ? undefined : { y: -8, scale: 1.02 }
-                    }
-                  >
-                    <div
-                      className={`w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br ${activity.gradient} rounded-xl sm:rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}
-                    >
-                      <i
-                        className={`${activity.icon} ${activity.color} text-lg sm:text-2xl`}
-                      ></i>
-                    </div>
-                    <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3 text-foreground">
-                      {activity.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm sm:text-base leading-relaxed">
-                      {activity.description}
-                    </p>
-                  </motion.div>
-                </StaggerItem>
-              ))}
-            </Stagger>
-
-            {/* <ScrollReveal className="text-center">
-              <h3 className="text-2xl sm:text-3xl font-semibold mb-6 sm:mb-8 text-foreground">
-                Connect with me on
-              </h3>
-              <Stagger
-                className="mx-auto grid max-w-4xl grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4 xl:grid-cols-8"
-                stagger={0.06}
+              <motion.span
+                className="block select-none text-[5.5rem] font-bold leading-none tracking-tight text-primary/15 transition-colors duration-300 group-hover:text-primary/30 sm:text-[6.5rem]"
+                aria-hidden="true"
+                whileHover={prefersReducedMotion ? undefined : { scale: 1.04 }}
               >
-                {profiles.map((profile) => (
-                  <StaggerItem key={profile.name} variants={popIn}>
-                    <motion.a
-                      href={profile.url}
-                      target={profile.target || "_self"}
-                      rel={profile.rel || ""}
-                      className="relative z-10 bg-card p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-border shadow-sm hover:shadow-md transition-all duration-300 ease-in-out group flex flex-col items-center h-full"
-                      whileHover={
-                        prefersReducedMotion
-                          ? undefined
-                          : { y: -6, scale: 1.05 }
-                      }
-                    >
-                      <div className="w-8 h-8 sm:w-10 sm:h-10 mb-2 sm:mb-3 flex items-center justify-center">
-                        <i
-                          className={`${profile.icon} text-lg sm:text-xl`}
-                          style={{ color: profile.color }}
-                        ></i>
-                      </div>
-                      <span className="text-xs sm:text-sm font-medium text-muted-foreground text-center">
-                        {profile.name}
-                      </span>
-                    </motion.a>
-                  </StaggerItem>
-                ))}
-              </Stagger>
-            </ScrollReveal> */}
-          </div>
-        </div>
-      </section>
+                {activity.mark}
+              </motion.span>
 
-      {/* <div className="bg-background py-10 sm:py-14">
-        <div className="page-shell">
-          <div className="flex items-center justify-center">
-            <div className="h-px w-24 bg-gradient-to-r from-transparent via-border to-transparent sm:w-32"></div>
-            <div className="mx-3 h-2 w-2 rounded-full bg-primary sm:mx-4"></div>
-            <div className="h-px w-24 bg-gradient-to-r from-transparent via-border to-transparent sm:w-32"></div>
-          </div>
-        </div>
-      </div> */}
-    </>
+              <div className="relative -mt-6 sm:-mt-8">
+                <p className="text-lg font-semibold tracking-tight text-foreground sm:text-xl">
+                  {activity.title}
+                </p>
+                <p className="mt-1.5 text-sm text-muted-foreground">
+                  {activity.detail}
+                </p>
+                <motion.span
+                  className="mx-auto mt-4 block h-0.5 w-8 origin-center bg-primary"
+                  initial={prefersReducedMotion ? false : { scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  viewport={viewportOnce}
+                  transition={{
+                    duration: 0.45,
+                    delay: 0.15 + 0.08 * index,
+                    ease: easeOutExpo,
+                  }}
+                />
+              </div>
+            </motion.li>
+          ))}
+        </ul>
+      </div>
+    </section>
   );
 }

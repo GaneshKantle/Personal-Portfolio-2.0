@@ -1,20 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Icon } from "@iconify/react";
-import { ScrollReveal } from "./motion/ScrollReveal";
 import { PageShell } from "./layout/PageShell";
 import { AnimatedCounter } from "./motion/AnimatedCounter";
-import { viewportOnce } from "../lib/motion";
+import { easeOutExpo, viewportOnce } from "../lib/motion";
 import { DotPattern } from "./DotPattern";
 import heyzineLogo from "../img/heyzine.svg";
 
 const technicalSkills = [
   { name: "Java / Spring Boot", percentage: 90 },
-  { name: "React / TypeScript", percentage: 70 },
   { name: "JavaScript", percentage: 90 },
   { name: "HTML / CSS / Tailwind", percentage: 85 },
-  { name: "Web3 / Solidity", percentage: 65 },
+  { name: "React / TypeScript", percentage: 70 },
   { name: "MySQL", percentage: 70 },
+  { name: "Web3 / Solidity", percentage: 65 },
 ];
 
 type TechItem = {
@@ -58,12 +57,11 @@ const technologies: TechItem[] = [
   { name: "Zapier", icon: "logos:zapier" },
   { name: "Firebase", icon: "logos:firebase" },
   { name: "bunny.net", icon: "logos:bunny-net" },
-  { name: "Google Cloud Console", icon: "logos:google-cloud" },
+  { name: "Google Cloud", icon: "logos:google-cloud" },
   { name: "Google Drive", icon: "logos:google-drive" },
   { name: "Google Sheets", icon: "simple-icons:googlesheets", color: "#34A853" },
   { name: "Mailchimp", icon: "logos:mailchimp" },
   { name: "Calendly", icon: "simple-icons:calendly", color: "#006BFF" },
-  // { name: "LeetCode", icon: "simple-icons:leetcode", color: "#FFA116" },
   { name: "W3Schools", icon: "fas fa-graduation-cap", color: "#04AA6D", fallback: true },
   { name: "LaTeX", icon: "fas fa-file-code", color: "#008080", fallback: true },
 ];
@@ -87,6 +85,7 @@ function TechIcon({ tech }: { tech: TechItem }) {
       <i
         className={`${tech.icon} text-2xl sm:text-4xl`}
         style={{ color: tech.color || "#666" }}
+        aria-hidden="true"
       />
     );
   }
@@ -98,11 +97,12 @@ function TechIcon({ tech }: { tech: TechItem }) {
       height="24"
       className="sm:h-8 sm:w-8"
       color={tech.color || undefined}
+      aria-hidden="true"
     />
   );
 }
 
-function SkillProgressRow({
+function SkillPlate({
   name,
   percentage,
   index,
@@ -113,40 +113,59 @@ function SkillProgressRow({
   index: number;
   reducedMotion: boolean;
 }) {
+  const label = String(index + 1).padStart(2, "0");
+
   return (
-    <div>
-      <div className="mb-1 flex justify-between text-sm font-semibold text-foreground sm:text-base">
-        <span>{name}</span>
-        <span className="tabular-nums text-primary">
+    <motion.div
+      className="group relative flex flex-col justify-between border border-border bg-card/30 p-4 transition-colors hover:border-primary/35 sm:p-5"
+      initial={reducedMotion ? false : { opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={viewportOnce}
+      transition={{
+        duration: 0.5,
+        delay: 0.06 * index,
+        ease: easeOutExpo,
+      }}
+    >
+      <div className="mb-6 flex items-start justify-between gap-3 sm:mb-8">
+        <span className="font-mono text-[10px] tracking-[0.18em] text-muted-foreground sm:text-[11px]">
+          {label}
+        </span>
+        <span className="tabular-nums text-sm font-semibold text-primary sm:text-base">
           <AnimatedCounter
             value={percentage}
-            duration={1.4}
+            duration={1.35}
             delay={0.08 * index}
             suffix="%"
           />
         </span>
       </div>
-      <div className="h-2.5 w-full overflow-hidden rounded-md bg-muted sm:h-3">
+
+      <p className="mb-4 text-base font-semibold tracking-tight text-foreground sm:mb-5 sm:text-lg">
+        {name}
+      </p>
+
+      <div className="h-1.5 w-full overflow-hidden rounded-full bg-muted sm:h-2">
         <motion.div
-          className="water-fill h-full !transition-none"
+          className="water-fill h-full !rounded-full !transition-none"
           initial={reducedMotion ? false : { width: "0%" }}
           whileInView={{ width: `${percentage}%` }}
           viewport={viewportOnce}
           transition={{
-            duration: 1.4,
+            duration: 1.35,
             delay: 0.08 * index,
             ease: [0.16, 1, 0.3, 1],
           }}
         />
       </div>
-    </div>
+    </motion.div>
   );
 }
 
 export default function SkillsSection() {
   const mid = Math.ceil(technologies.length / 2);
   const row1 = technologies.slice(0, mid);
-  const row2 = technologies.slice(mid, technologies.length);
+  const row2 = technologies.slice(mid);
   const [isPaused, setIsPaused] = useState(false);
   const [inView, setInView] = useState(false);
   const marqueeRef = useRef<HTMLDivElement>(null);
@@ -167,55 +186,62 @@ export default function SkillsSection() {
 
   return (
     <>
-      <section id="skills" className="section-y relative overflow-hidden cv-auto bg-background">
+      <section
+        id="skills"
+        className="section-y relative overflow-hidden cv-auto scroll-mt-[var(--nav-offset)] bg-background"
+      >
         <DotPattern />
         <PageShell className="relative z-10">
-          <ScrollReveal className="mb-12 text-center sm:mb-16">
+          <motion.div
+            className="mx-auto mb-10 max-w-2xl text-center sm:mb-12"
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.45 }}
+            transition={{ duration: 0.55, ease: easeOutExpo }}
+          >
+            <p className="mb-3 text-xs font-medium uppercase tracking-[0.22em] text-primary sm:text-sm">
+              Technical skills
+            </p>
             <h2 className="text-title mb-3 font-semibold tracking-tight text-foreground sm:mb-4">
-              My <span className="text-primary">Skills</span>
+              What I build{" "}
+              <span className="text-primary">with</span>
             </h2>
             <motion.div
-              className="mx-auto h-1 w-16 origin-center rounded-full bg-primary sm:w-20"
+              className="mx-auto mb-4 h-1 w-16 origin-center rounded-full bg-primary sm:mb-5 sm:w-20"
               initial={prefersReducedMotion ? false : { scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={viewportOnce}
-              transition={{ duration: 0.6, delay: 0.15 }}
+              transition={{ duration: 0.55, ease: easeOutExpo, delay: 0.08 }}
             />
-          </ScrollReveal>
+            <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
+              Core strengths I lean on when shipping products end to end.
+            </p>
+          </motion.div>
 
-          <div className="mx-auto max-w-lg">
-            <motion.h3
-              initial={prefersReducedMotion ? false : { opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={viewportOnce}
-              transition={{ duration: 0.5 }}
-              className="mb-4 flex items-center justify-center text-xl font-semibold text-foreground sm:mb-6 sm:text-2xl"
-            >
-              <span className="mr-2 text-primary sm:mr-3">
-                <i className="fas fa-laptop-code text-lg sm:text-xl"></i>
-              </span>
-              Technical Skills
-            </motion.h3>
-
-            <div className="space-y-4 sm:space-y-6">
-              {technicalSkills.map((skill, index) => (
-                <SkillProgressRow
-                  key={skill.name}
-                  name={skill.name}
-                  percentage={skill.percentage}
-                  index={index}
-                  reducedMotion={!!prefersReducedMotion}
-                />
-              ))}
-            </div>
+          <div className="mx-auto grid max-w-4xl grid-cols-1 gap-3 xs:grid-cols-2 sm:gap-4 md:grid-cols-3">
+            {technicalSkills.map((skill, index) => (
+              <SkillPlate
+                key={skill.name}
+                name={skill.name}
+                percentage={skill.percentage}
+                index={index}
+                reducedMotion={!!prefersReducedMotion}
+              />
+            ))}
           </div>
 
-          <div className="mt-12 sm:mt-16" ref={marqueeRef}>
-            <ScrollReveal>
-              <h3 className="mb-6 text-center text-xl font-semibold text-foreground sm:mb-8 sm:text-2xl">
-                Technologies & Tools I Work With
+          <div className="mt-16 sm:mt-20 md:mt-24" ref={marqueeRef}>
+            <motion.div
+              className="mx-auto mb-8 max-w-2xl text-center sm:mb-10"
+              initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.55, ease: easeOutExpo }}
+            >
+              <h3 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
+                Technologies & tools I work with
               </h3>
-            </ScrollReveal>
+            </motion.div>
 
             <div className="w-full space-y-6 overflow-x-clip sm:space-y-8">
               <div className="relative w-full overflow-hidden">
@@ -273,9 +299,9 @@ export default function SkillsSection() {
       <div className="bg-background py-10 sm:py-14">
         <PageShell>
           <div className="flex items-center justify-center">
-            <div className="h-px w-24 bg-gradient-to-r from-transparent via-border to-transparent sm:w-32"></div>
-            <div className="mx-3 h-2 w-2 rounded-full bg-primary sm:mx-4"></div>
-            <div className="h-px w-24 bg-gradient-to-r from-transparent via-border to-transparent sm:w-32"></div>
+            <div className="h-px w-24 bg-gradient-to-r from-transparent via-border to-transparent sm:w-32" />
+            <div className="mx-3 h-2 w-2 rounded-full bg-primary sm:mx-4" />
+            <div className="h-px w-24 bg-gradient-to-r from-transparent via-border to-transparent sm:w-32" />
           </div>
         </PageShell>
       </div>

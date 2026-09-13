@@ -159,7 +159,7 @@ export default function Navbar() {
               <button
                 type="button"
                 onClick={toggleMenu}
-                aria-label={menuOpen ? "Close menu" : "Open menu"}
+                aria-label={menuOpen ? "Close navigation" : "Open navigation"}
                 aria-expanded={menuOpen}
                 className="group relative flex h-10 items-center gap-2.5 overflow-hidden rounded-md border border-border bg-background px-3 text-foreground transition-colors duration-300 hover:border-primary/40 hover:bg-muted sm:h-11 sm:gap-3 sm:px-3.5"
               >
@@ -195,7 +195,7 @@ export default function Navbar() {
                 <span className="relative h-4 overflow-hidden text-[11px] font-semibold uppercase tracking-[0.18em] sm:text-xs">
                   <AnimatePresence mode="wait" initial={false}>
                     <motion.span
-                      key={menuOpen ? "close" : "menu"}
+                      key={menuOpen ? "close" : "explore"}
                       className="block"
                       initial={
                         prefersReducedMotion
@@ -210,7 +210,7 @@ export default function Navbar() {
                       }
                       transition={{ duration: 0.22, ease }}
                     >
-                      {menuOpen ? "Close" : "Menu"}
+                      {menuOpen ? "Close" : "Explore"}
                     </motion.span>
                   </AnimatePresence>
                 </span>
