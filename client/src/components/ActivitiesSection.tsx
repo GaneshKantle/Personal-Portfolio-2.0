@@ -34,62 +34,62 @@ const activities = [
   },
 ];
 
-const profiles = [
-  {
-    name: "LeetCode",
-    icon: "fas fa-code",
-    color: "#F48024",
-    url: "https://leetcode.com/u/ganeshkantle/",
-  },
-  {
-    name: "Unstop",
-    icon: "fas fa-briefcase",
-    color: "#FF5722",
-    url: "https://unstop.com/u/ganeskan50953",
-  },
-  {
-    name: "Medium",
-    icon: "fab fa-medium-m",
-    color: "#00A5EC",
-    url: "https://medium.com/@ganeshkantle",
-  },
-  {
-    name: "Bento",
-    icon: "fas fa-cube",
-    color: "#6B66FF",
-    url: "https://kantle.type.link/",
-  },
-  {
-    name: "Dev.to",
-    icon: "fab fa-dev",
-    color: "#0A0A0A",
-    url: "https://dev.to/ganeshkantle",
-    target: "_blank",
-    rel: "noopener noreferrer",
-  },
-  {
-    name: "Twitter",
-    icon: "fab fa-twitter",
-    color: "#00ACEE",
-    url: "https://twitter.com/ganeshkantle",
-    target: "_blank",
-    rel: "noopener noreferrer",
-  },
-  {
-    name: "Instagram",
-    icon: "fab fa-instagram",
-    color: "#E4405F",
-    url: "https://instagram.com/ganeshkantle",
-  },
-  {
-    name: "WordPress",
-    icon: "fab fa-wordpress",
-    color: "#21759B",
-    url: "https://ganeshkantle.wordpress.com/",
-    target: "_blank",
-    rel: "noopener noreferrer",
-  },
-];
+// const profiles = [
+//   {
+//     name: "LeetCode",
+//     icon: "fas fa-code",
+//     color: "#F48024",
+//     url: "https://leetcode.com/u/ganeshkantle/",
+//   },
+//   {
+//     name: "Unstop",
+//     icon: "fas fa-briefcase",
+//     color: "#FF5722",
+//     url: "https://unstop.com/u/ganeskan50953",
+//   },
+//   {
+//     name: "Medium",
+//     icon: "fab fa-medium-m",
+//     color: "#00A5EC",
+//     url: "https://medium.com/@ganeshkantle",
+//   },
+//   {
+//     name: "Bento",
+//     icon: "fas fa-cube",
+//     color: "#6B66FF",
+//     url: "https://kantle.type.link/",
+//   },
+//   {
+//     name: "Dev.to",
+//     icon: "fab fa-dev",
+//     color: "#0A0A0A",
+//     url: "https://dev.to/ganeshkantle",
+//     target: "_blank",
+//     rel: "noopener noreferrer",
+//   },
+//   {
+//     name: "Twitter",
+//     icon: "fab fa-twitter",
+//     color: "#00ACEE",
+//     url: "https://twitter.com/ganeshkantle",
+//     target: "_blank",
+//     rel: "noopener noreferrer",
+//   },
+//   {
+//     name: "Instagram",
+//     icon: "fab fa-instagram",
+//     color: "#E4405F",
+//     url: "https://instagram.com/ganeshkantle",
+//   },
+//   {
+//     name: "WordPress",
+//     icon: "fab fa-wordpress",
+//     color: "#21759B",
+//     url: "https://ganeshkantle.wordpress.com/",
+//     target: "_blank",
+//     rel: "noopener noreferrer",
+//   },
+// ];
 
 export default function ActivitiesSection() {
   const prefersReducedMotion = useReducedMotion();
@@ -146,7 +146,7 @@ export default function ActivitiesSection() {
               ))}
             </Stagger>
 
-            <ScrollReveal className="text-center">
+            {/* <ScrollReveal className="text-center">
               <h3 className="text-2xl sm:text-3xl font-semibold mb-6 sm:mb-8 text-foreground">
                 Connect with me on
               </h3>
@@ -180,12 +180,12 @@ export default function ActivitiesSection() {
                   </StaggerItem>
                 ))}
               </Stagger>
-            </ScrollReveal>
+            </ScrollReveal> */}
           </div>
         </div>
       </section>
 
-      <div className="bg-background py-10 sm:py-14">
+      {/* <div className="bg-background py-10 sm:py-14">
         <div className="page-shell">
           <div className="flex items-center justify-center">
             <div className="h-px w-24 bg-gradient-to-r from-transparent via-border to-transparent sm:w-32"></div>
@@ -193,7 +193,7 @@ export default function ActivitiesSection() {
             <div className="h-px w-24 bg-gradient-to-r from-transparent via-border to-transparent sm:w-32"></div>
           </div>
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

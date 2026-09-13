@@ -1,5 +1,4 @@
 import React from "react";
-
 import { motion } from "framer-motion";
 import { scrollToElement } from "../lib/utils";
 import { DotPattern } from "./DotPattern";
@@ -12,43 +11,135 @@ const socialLinks = [
   { icon: "fab fa-instagram", url: "https://www.instagram.com/ganeshkantle", label: "Instagram" },
 ];
 
+const footerNav = [
+  { name: "About", id: "about" },
+  { name: "Projects", id: "projects" },
+  { name: "Experience", id: "experience" },
+  { name: "Contact", id: "contact" },
+];
+
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-border bg-background py-8 sm:py-12">
+    <footer className="relative overflow-hidden border-t border-border bg-background">
       <DotPattern />
+
       <div className="page-shell relative z-10">
-        <div className="flex flex-col items-center justify-between gap-6 md:flex-col lg:flex-row">
-          <div className="text-center lg:text-left">
-            <div className="flex items-center justify-center lg:justify-start">
-              <span className="mr-1 text-lg font-semibold text-primary sm:text-xl">&lt;</span>
-              <span className="text-lg font-semibold text-foreground sm:text-xl">GaneshKantle</span>
-              <span className="ml-1 text-lg font-semibold text-primary sm:text-xl">/&gt;</span>
-            </div>
-            <p className="mt-2 text-xs text-muted-foreground sm:text-sm">AI Web Developer • Web3 Explorer • Tech Writer</p>
+        {/* CTA */}
+        <motion.div
+          className="flex flex-col items-center px-4 pt-16 text-center sm:pt-20 md:pt-24"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <p className="mb-3 text-[11px] font-medium tracking-[0.22em] text-muted-foreground sm:text-xs">
+            NEXT CHAPTER
+          </p>
+          <h2 className="max-w-3xl text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
+            Ready to make your{" "}
+            <span className="italic text-primary">idea</span>{" "}
+            unforgettable?
+          </h2>
+          <div className="mt-8 flex flex-col items-center gap-3 sm:mt-10 sm:flex-row sm:gap-4">
+            <motion.a
+              href="mailto:ganeshkantle@gmail.com"
+              className="inline-flex items-center gap-3 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90 sm:px-7 sm:py-3.5 sm:text-base"
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground sm:h-8 sm:w-8 sm:text-sm">
+                <i className="fas fa-envelope" aria-hidden="true" />
+              </span>
+              Email Me
+            </motion.a>
+            <motion.a
+              href="https://wa.me/8861435167"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90 sm:px-7 sm:py-3.5 sm:text-base"
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground sm:h-8 sm:w-8 sm:text-sm">
+                <i className="fab fa-whatsapp" aria-hidden="true" />
+              </span>
+              WhatsApp
+            </motion.a>
           </div>
-          
-          <div className="mb-0 flex space-x-4 sm:space-x-6">
-            {socialLinks.map((link, index) => (
-              <motion.a 
-                key={index}
-                href={link.url} 
-                className="touch-target flex items-center justify-center text-lg text-muted-foreground transition-all duration-300 ease-in-out hover:text-primary sm:text-xl"
-                whileHover={{ y: -3 }}
+        </motion.div>
+
+        {/* Large brand mark */}
+        <motion.div
+          className="flex justify-center px-2 pb-10 pt-16 sm:pb-12 sm:pt-20 md:pt-24"
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <div
+            className="select-none whitespace-nowrap font-bold leading-none tracking-tight text-foreground"
+            style={{ fontSize: "clamp(2.25rem, 9.5vw, 7.5rem)" }}
+            aria-label="GaneshKantle"
+          >
+            <span className="text-primary">&lt;</span>
+            GaneshKantle
+            <span className="text-primary">/&gt;</span>
+          </div>
+        </motion.div>
+
+        {/* Nav + contact */}
+        <div className="border-t border-border pb-10 pt-8 text-center sm:pb-12 sm:pt-10">
+          <nav
+            className="mb-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 sm:mb-8 sm:gap-x-8"
+            aria-label="Footer"
+          >
+            {footerNav.map((link) => (
+              <button
+                key={link.id}
+                type="button"
+                onClick={() => scrollToElement(link.id)}
+                className="text-sm text-muted-foreground transition-colors hover:text-primary"
+              >
+                {link.name}
+              </button>
+            ))}
+          </nav>
+
+          <a
+            href="mailto:ganeshkantle@gmail.com"
+            className="block text-sm text-foreground/80 transition-colors hover:text-primary sm:text-base"
+          >
+            ganeshkantle@gmail.com
+          </a>
+          <p className="mt-1.5 text-sm text-muted-foreground">Bangalore, India</p>
+
+          <div className="mt-6 flex justify-center gap-4 sm:mt-8 sm:gap-5">
+            {socialLinks.map((link) => (
+              <motion.a
+                key={link.label}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="touch-target flex items-center justify-center text-base text-muted-foreground transition-colors hover:text-primary sm:text-lg"
+                whileHover={{ y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 aria-label={link.label}
               >
-                <i className={link.icon}></i>
+                <i className={link.icon} aria-hidden="true" />
               </motion.a>
             ))}
           </div>
-          
-          <div className="text-center text-xs text-muted-foreground sm:text-sm lg:text-right">
-            &copy; {new Date().getFullYear()} Ganesh Kantle. All rights reserved.
-          </div>
+        </div>
+
+        {/* Copyright bar */}
+        <div className="flex flex-col items-center justify-between gap-3 border-t border-border py-5 text-xs text-muted-foreground sm:flex-row sm:py-6 sm:text-sm">
+          <p>&copy; {new Date().getFullYear()} Ganesh Kantle. All rights reserved.</p>
+          <p className="text-center sm:text-right">
+            AI Web Developer · Web3 Explorer · Tech Writer
+          </p>
         </div>
       </div>
 
-      {/* Scroll to Top Button */}
       <ScrollToTopButton />
     </footer>
   );
@@ -63,16 +154,16 @@ function ScrollToTopButton() {
   };
 
   return (
-    <motion.button 
+    <motion.button
       onClick={scrollToTop}
-      className="fixed bottom-4 sm:bottom-8 right-4 sm:right-8 bg-primary hover:bg-primary/90 text-white w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shadow-sm hover:shadow-md transform transition-all duration-300 ease-in-out hover:scale-[1.02] z-10 isolate"
+      className="fixed bottom-4 right-4 z-10 isolate flex h-10 w-10 items-center justify-center rounded-full border border-border bg-background text-foreground shadow-sm transition-all duration-300 hover:border-primary/40 hover:text-primary hover:shadow-md sm:bottom-8 sm:right-8 sm:h-12 sm:w-12"
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ y: -3 }}
       whileTap={{ scale: 0.9 }}
       aria-label="Scroll to top"
     >
-      <i className="fas fa-arrow-up text-sm sm:text-base"></i>
+      <i className="fas fa-arrow-up text-sm sm:text-base" aria-hidden="true" />
     </motion.button>
-  );  
+  );
 }
