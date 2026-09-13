@@ -223,7 +223,7 @@ export default function ContactSection() {
                     onFocus={() => setFocused("email")}
                     onBlur={() => setFocused(null)}
                     autoComplete="email"
-                    placeholder="you@email.com"
+                    placeholder="ganeshkantle@gmail.com"
                     className="mt-2 w-full bg-transparent pb-3 text-base text-foreground outline-none placeholder:text-muted-foreground/45 sm:text-lg"
                   />
                 </div>
@@ -273,29 +273,6 @@ export default function ContactSection() {
                 </motion.button>
               </div>
             </form>
-
-            {/* Meta strip — secondary, not competing */}
-            <div className="mt-10 flex flex-col items-center gap-2.5 border-t border-border pt-8 text-center sm:mt-12 sm:pt-9">
-              <div className="inline-flex items-center gap-2 text-xs text-muted-foreground sm:text-sm">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-60" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-                </span>
-                Available for new work
-              </div>
-              <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm text-muted-foreground">
-                <a
-                  href={`mailto:${EMAIL}`}
-                  className="transition-colors hover:text-primary"
-                >
-                  {EMAIL}
-                </a>
-                <span className="text-border" aria-hidden="true">
-                  ·
-                </span>
-                <span>Bangalore, India</span>
-              </p>
-            </div>
           </motion.div>
         </div>
       </section>

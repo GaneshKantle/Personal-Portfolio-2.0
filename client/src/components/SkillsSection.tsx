@@ -63,7 +63,7 @@ const technologies: TechItem[] = [
   { name: "Google Sheets", icon: "simple-icons:googlesheets", color: "#34A853" },
   { name: "Mailchimp", icon: "logos:mailchimp" },
   { name: "Calendly", icon: "simple-icons:calendly", color: "#006BFF" },
-  { name: "LeetCode", icon: "simple-icons:leetcode", color: "#FFA116" },
+  // { name: "LeetCode", icon: "simple-icons:leetcode", color: "#FFA116" },
   { name: "W3Schools", icon: "fas fa-graduation-cap", color: "#04AA6D", fallback: true },
   { name: "LaTeX", icon: "fas fa-file-code", color: "#008080", fallback: true },
 ];

@@ -23,11 +23,11 @@ const socialLinks = [
     icon: "fab fa-github",
     url: "https://www.github.com/ganeshkantle",
   },
-  {
-    name: "LeetCode",
-    icon: "fas fa-code",
-    url: "https://leetcode.com/u/ganeshkantle",
-  },
+  // {
+  //   name: "LeetCode",
+  //   icon: "fas fa-code",
+  //   url: "https://leetcode.com/u/ganeshkantle",
+  // },
 ];
 
 export default function HeroSection() {
