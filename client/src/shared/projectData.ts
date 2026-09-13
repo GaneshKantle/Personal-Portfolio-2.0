@@ -429,66 +429,6 @@ export const projectsData = [
   },
   {
     id: 7,
-    title: "Stroke Risk Prediction System",
-    tagline: "ML-Powered Health Risk Assessment",
-    description: "A machine learning web app predicting stroke risk using five models for high accuracy. Users input health data for early detection.",
-    longDescription: "An advanced machine learning application that predicts stroke risk using multiple algorithms for enhanced accuracy. The system analyzes various health parameters and provides risk assessments with detailed explanations. Built with Python and Flask, it offers a user-friendly interface for healthcare professionals and individuals to assess stroke risk factors.",
-    categoryColor: "primary",
-    technologies: [
-      "Python",
-      "Flask",
-      "JavaScript",
-      "Scikit-learn",
-      "Pandas",
-      "NumPy",
-      "Machine Learning",
-      "Data Analysis"
-    ],
-    githubUrl: "https://github.com/GaneshKantle/Stroke-Risk-Prediction-using-ML",
-    liveUrl: "https://stroke-risk-prediction.herokuapp.com/",
-    demoUrl: "https://stroke-risk-prediction.herokuapp.com/",
-    documentationUrl: "https://github.com/GaneshKantle/Stroke-Risk-Prediction-using-ML/blob/main/README.md",
-    features: [
-      "Multiple ML model ensemble",
-      "Real-time risk assessment",
-      "Detailed health parameter input",
-      "Risk factor explanations",
-      "Data visualization",
-      "Export capabilities",
-      "Responsive web interface",
-      "Secure data handling"
-    ],
-    challenges: [
-      "Training accurate ML models",
-      "Handling medical data responsibly",
-      "Creating intuitive input forms",
-      "Optimizing model performance",
-      "Ensuring data privacy"
-    ],
-    learnings: [
-      "Machine learning model development",
-      "Medical data handling",
-      "Flask web development",
-      "Data preprocessing techniques",
-      "Model evaluation and validation"
-    ],
-    screenshots: [
-      { src: Project2, alt: "Input Form", caption: "Health parameter input interface" },
-      { src: Project2, alt: "Results Dashboard", caption: "Risk assessment results and visualization" },
-      { src: Project2, alt: "Model Comparison", caption: "Multiple model performance comparison" }
-    ],
-    architecture: "Flask backend with machine learning models and responsive frontend",
-    deployment: "Heroku",
-    status: "Live",
-    developmentTime: "2.5 months",
-    teamSize: "Solo",
-    impact: "Potential to improve early stroke detection and prevention",
-    image: Project2,
-    category: "Healthcare/ML",
-    difficulty: "Advanced"
-  },
-  {
-    id: 8,
     title: "LiquorHub",
     tagline: "Spirits E-Commerce Platform",
     description:
@@ -563,7 +503,67 @@ export const projectsData = [
     image: liquorHub,
     category: "Web Application",
     difficulty: "Intermediate",
-  }
+  },
+  // {
+  //   id: 8,
+  //   title: "Stroke Risk Prediction System",
+  //   tagline: "ML-Powered Health Risk Assessment",
+  //   description: "A machine learning web app predicting stroke risk using five models for high accuracy. Users input health data for early detection.",
+  //   longDescription: "An advanced machine learning application that predicts stroke risk using multiple algorithms for enhanced accuracy. The system analyzes various health parameters and provides risk assessments with detailed explanations. Built with Python and Flask, it offers a user-friendly interface for healthcare professionals and individuals to assess stroke risk factors.",
+  //   categoryColor: "primary",
+  //   technologies: [
+  //     "Python",
+  //     "Flask",
+  //     "JavaScript",
+  //     "Scikit-learn",
+  //     "Pandas",
+  //     "NumPy",
+  //     "Machine Learning",
+  //     "Data Analysis"
+  //   ],
+  //   githubUrl: "https://github.com/GaneshKantle/Stroke-Risk-Prediction-using-ML",
+  //   liveUrl: "https://stroke-risk-prediction.herokuapp.com/",
+  //   demoUrl: "https://stroke-risk-prediction.herokuapp.com/",
+  //   documentationUrl: "https://github.com/GaneshKantle/Stroke-Risk-Prediction-using-ML/blob/main/README.md",
+  //   features: [
+  //     "Multiple ML model ensemble",
+  //     "Real-time risk assessment",
+  //     "Detailed health parameter input",
+  //     "Risk factor explanations",
+  //     "Data visualization",
+  //     "Export capabilities",
+  //     "Responsive web interface",
+  //     "Secure data handling"
+  //   ],
+  //   challenges: [
+  //     "Training accurate ML models",
+  //     "Handling medical data responsibly",
+  //     "Creating intuitive input forms",
+  //     "Optimizing model performance",
+  //     "Ensuring data privacy"
+  //   ],
+  //   learnings: [
+  //     "Machine learning model development",
+  //     "Medical data handling",
+  //     "Flask web development",
+  //     "Data preprocessing techniques",
+  //     "Model evaluation and validation"
+  //   ],
+  //   screenshots: [
+  //     { src: Project2, alt: "Input Form", caption: "Health parameter input interface" },
+  //     { src: Project2, alt: "Results Dashboard", caption: "Risk assessment results and visualization" },
+  //     { src: Project2, alt: "Model Comparison", caption: "Multiple model performance comparison" }
+  //   ],
+  //   architecture: "Flask backend with machine learning models and responsive frontend",
+  //   deployment: "Heroku",
+  //   status: "Live",
+  //   developmentTime: "2.5 months",
+  //   teamSize: "Solo",
+  //   impact: "Potential to improve early stroke detection and prevention",
+  //   image: Project2,
+  //   category: "Healthcare/ML",
+  //   difficulty: "Advanced"
+  // },
 ];
 
 // Helper function to get project by ID

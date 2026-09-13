@@ -1,7 +1,10 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import {
   motion,
+  useMotionTemplate,
+  useMotionValue,
   useScroll,
+  useSpring,
   useTransform,
   useReducedMotion,
 } from "framer-motion";
@@ -14,11 +17,15 @@ const projects = getAllProjects();
 interface Project {
   id: number;
   title: string;
+  tagline?: string;
   description: string;
   technologies: string[];
   githubUrl: string;
   liveUrl: string;
   image: string;
+  category?: string;
+  status?: string;
+  difficulty?: string;
 }
 
 const CARD_WIDTH =
@@ -26,76 +33,175 @@ const CARD_WIDTH =
 const CARD_HEIGHT =
   "h-[min(420px,calc(100svh-14rem))] sm:h-[min(440px,calc(100svh-15rem))]";
 
-function ProjectCard({ project }: { project: Project }) {
+function CropMarks() {
+  const mark =
+    "pointer-events-none absolute h-3 w-3 border-foreground/35 sm:h-3.5 sm:w-3.5";
   return (
-    <article
-      className={`relative z-10 box-border flex ${CARD_WIDTH} ${CARD_HEIGHT} shrink-0 flex-col overflow-hidden rounded-xl border border-border bg-card shadow-sm sm:rounded-2xl`}
-    >
-      <div className="h-[46%] max-h-[230px] min-h-[170px] shrink-0 p-3 pb-0 sm:p-4">
-        <div className="flex h-full flex-col overflow-hidden rounded-lg border border-border">
-          <div className="flex h-8 shrink-0 items-center justify-between border-b border-border bg-muted px-3">
-            <div className="flex space-x-1.5">
-              <div className="h-2 w-2 rounded-full bg-red-500" />
-              <div className="h-2 w-2 rounded-full bg-yellow-500" />
-              <div className="h-2 w-2 rounded-full bg-green-500" />
-            </div>
-            <div className="ml-2 truncate text-xs text-muted-foreground">
-              {project.title}
-            </div>
-          </div>
-          <img
-            src={project.image}
-            alt={`${project.title} Screenshot`}
-            className="h-0 min-h-0 w-full flex-1 object-cover"
-            loading="lazy"
-          />
-        </div>
-      </div>
+    <>
+      <span className={`${mark} left-2 top-2 border-l border-t`} />
+      <span className={`${mark} right-2 top-2 border-r border-t`} />
+      <span className={`${mark} bottom-2 left-2 border-b border-l`} />
+      <span className={`${mark} bottom-2 right-2 border-b border-r`} />
+    </>
+  );
+}
 
-      <div className="flex min-h-0 flex-1 flex-col px-4 pb-4 pt-3 sm:px-5">
-        <h3 className="shrink-0 truncate text-base font-semibold text-foreground sm:text-lg">
-          {project.title}
-        </h3>
-        <p className="mt-1.5 line-clamp-2 shrink-0 text-sm leading-5 text-muted-foreground">
-          {project.description}
-        </p>
-        <div className="mt-2.5 flex h-7 shrink-0 items-center gap-2 overflow-hidden">
-          {project.technologies.slice(0, 3).map((tech) => (
-            <span
-              key={tech}
-              className="max-w-[6rem] truncate rounded-full border border-border bg-muted px-2 py-0.5 text-xs text-muted-foreground"
-            >
-              {tech}
-            </span>
-          ))}
-          {project.technologies.length > 3 ? (
-            <span className="shrink-0 rounded-full border border-border bg-muted px-2 py-0.5 text-xs text-muted-foreground">
-              +{project.technologies.length - 3}
+function ProjectCard({
+  project,
+  index,
+}: {
+  project: Project;
+  index: number;
+}) {
+  const prefersReducedMotion = useReducedMotion();
+  const cardRef = useRef<HTMLElement>(null);
+  const mouseX = useMotionValue(0.5);
+  const mouseY = useMotionValue(0.5);
+  const springX = useSpring(mouseX, { stiffness: 120, damping: 20 });
+  const springY = useSpring(mouseY, { stiffness: 120, damping: 20 });
+
+  const rotateX = useTransform(springY, [0, 1], [7, -7]);
+  const rotateY = useTransform(springX, [0, 1], [-8, 8]);
+  const glareX = useTransform(springX, [0, 1], ["0%", "100%"]);
+  const glareY = useTransform(springY, [0, 1], ["0%", "100%"]);
+  const glareBackground = useMotionTemplate`radial-gradient(420px circle at ${glareX} ${glareY}, hsl(var(--primary) / 0.18), transparent 55%)`;
+
+  const specimenNo = String(index + 1).padStart(2, "0");
+  const techLine = project.technologies.slice(0, 5).join(" · ");
+  const metaBits = [
+    project.category,
+    project.difficulty,
+    project.status,
+  ].filter(Boolean);
+
+  const handleMove = (e: React.MouseEvent<HTMLElement>) => {
+    if (prefersReducedMotion || !cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    mouseX.set((e.clientX - rect.left) / rect.width);
+    mouseY.set((e.clientY - rect.top) / rect.height);
+  };
+
+  const handleLeave = () => {
+    mouseX.set(0.5);
+    mouseY.set(0.5);
+  };
+
+  return (
+    <motion.article
+      ref={cardRef}
+      onMouseMove={handleMove}
+      onMouseLeave={handleLeave}
+      style={
+        prefersReducedMotion
+          ? undefined
+          : {
+              rotateX,
+              rotateY,
+              transformPerspective: 1100,
+              transformStyle: "preserve-3d",
+            }
+      }
+      className={`group relative z-10 box-border flex ${CARD_WIDTH} ${CARD_HEIGHT} shrink-0 flex-col overflow-hidden rounded-none border border-foreground/15 bg-card shadow-[0_18px_50px_-28px_rgba(0,0,0,0.45)]`}
+    >
+      <CropMarks />
+
+      {/* Specimen index watermark */}
+      <span
+        aria-hidden
+        className="pointer-events-none absolute -right-1 top-6 z-0 select-none font-mono text-[7.5rem] font-bold leading-none tracking-tighter text-foreground/[0.04] transition-colors duration-500 group-hover:text-primary/[0.08] sm:text-[9rem]"
+      >
+        {specimenNo}
+      </span>
+
+      {/* Image plate */}
+      <div className="relative h-[58%] min-h-[190px] shrink-0 overflow-hidden border-b border-foreground/10">
+        <div className="absolute inset-0 bg-[linear-gradient(180deg,transparent_45%,hsl(var(--card)_/_0.92)_100%)] z-[1]" />
+        <img
+          src={project.image}
+          alt={`${project.title} Screenshot`}
+          className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-[1.08]"
+          loading="lazy"
+        />
+        <motion.div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 z-[2] opacity-0 mix-blend-soft-light transition-opacity duration-300 group-hover:opacity-100"
+          style={{ background: glareBackground }}
+        />
+
+        <div className="absolute left-3 top-3 z-[3] flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-white/90 sm:left-4 sm:top-4">
+          <span className="rounded-sm bg-black/55 px-2 py-1 backdrop-blur-sm">
+            SPEC {specimenNo}
+          </span>
+          {project.status ? (
+            <span className="rounded-sm border border-white/25 bg-black/35 px-2 py-1 backdrop-blur-sm">
+              {project.status}
             </span>
           ) : null}
         </div>
-        <div className="mt-auto flex shrink-0 gap-2 pt-3">
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex h-9 flex-1 items-center justify-center rounded-lg border border-border text-xs font-medium text-primary transition-colors hover:border-primary/40 hover:bg-muted sm:text-sm"
-          >
-            <i className="fab fa-github mr-2" />
-            Source
-          </a>
+
+        {/* Film sprocket edge */}
+        <div
+          aria-hidden
+          className="absolute inset-y-0 left-0 z-[3] flex w-3 flex-col justify-between py-2 sm:w-3.5"
+        >
+          {Array.from({ length: 7 }).map((_, i) => (
+            <span
+              key={i}
+              className="mx-auto block h-2 w-1.5 rounded-[1px] bg-background/80 shadow-sm sm:h-2.5 sm:w-2"
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Label plate */}
+      <div className="relative z-10 flex min-h-0 flex-1 flex-col px-4 pb-4 pt-3 sm:px-5 sm:pt-4">
+        <div className="mb-2 flex items-center justify-between gap-3 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
+          <span className="truncate">{metaBits.join(" / ") || "Archive"}</span>
+          <span className="shrink-0 tabular-nums">{specimenNo}</span>
+        </div>
+
+        <h3 className="shrink-0 text-lg font-semibold leading-tight tracking-tight text-foreground sm:text-xl">
+          {project.title}
+        </h3>
+        <p className="mt-1.5 shrink-0 text-sm font-medium leading-snug text-primary/90">
+          {project.tagline || project.description}
+        </p>
+
+        <p className="mt-0 max-h-0 overflow-hidden text-sm leading-5 text-muted-foreground opacity-0 transition-all duration-300 group-hover:mt-2 group-hover:max-h-12 group-hover:opacity-100 group-focus-within:mt-2 group-focus-within:max-h-12 group-focus-within:opacity-100 max-sm:mt-2 max-sm:max-h-12 max-sm:line-clamp-2 max-sm:opacity-100">
+          {project.description}
+        </p>
+
+        <div className="mt-auto overflow-hidden border-y border-dashed border-border py-2">
+          <p className="truncate font-mono text-[11px] tracking-wide text-muted-foreground transition-colors group-hover:text-foreground/80">
+            {techLine}
+            {project.technologies.length > 5
+              ? ` · +${project.technologies.length - 5}`
+              : ""}
+          </p>
+        </div>
+
+        <div className="mt-3 flex shrink-0 items-center gap-2">
           <a
             href={project.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex h-9 flex-1 items-center justify-center rounded-lg border border-border text-xs font-medium text-primary transition-colors hover:border-primary/40 hover:bg-muted sm:text-sm"
+            className="flex h-9 flex-1 items-center justify-center gap-2 bg-foreground text-xs font-semibold text-background transition-transform duration-200 hover:-translate-y-0.5 sm:text-sm"
           >
-            <i className="fas fa-external-link-alt mr-2" />
-            Live
+            Open live
+            <i className="fas fa-arrow-up-right-from-square text-[10px]" />
+          </a>
+          <a
+            href={project.githubUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex h-9 w-9 items-center justify-center border border-border text-foreground transition-colors hover:border-foreground/40 hover:bg-muted"
+            aria-label={`${project.title} source code`}
+          >
+            <i className="fab fa-github" />
           </a>
         </div>
       </div>
-    </article>
+    </motion.article>
   );
 }
 
@@ -105,18 +211,21 @@ function SnapGallery() {
       <DotPattern />
       <div className="page-shell relative z-10">
         <div className="mb-8 text-center">
+          <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+            Selected work
+          </p>
           <h2 className="text-title mb-3 font-semibold tracking-tight text-foreground">
-            My <span className="text-primary">Projects</span>
+            Project <span className="text-primary">Specimens</span>
           </h2>
           <div className="mx-auto mb-4 h-1 w-16 rounded-full bg-primary sm:w-20" />
           <p className="mx-auto max-w-2xl text-sm text-muted-foreground sm:text-base">
-            Swipe through the projects, then continue down the page.
+            Swipe the archive — each plate is a build you can open.
           </p>
         </div>
-        <div className="-mx-1 flex gap-4 overflow-x-auto px-1 pb-4 snap-x snap-mandatory">
-          {projects.map((project) => (
+        <div className="-mx-1 flex gap-4 overflow-x-auto px-1 pb-4 snap-x snap-mandatory sm:gap-5">
+          {projects.map((project, index) => (
             <div key={project.id} className="snap-start">
-              <ProjectCard project={project} />
+              <ProjectCard project={project} index={index} />
             </div>
           ))}
         </div>
@@ -124,9 +233,9 @@ function SnapGallery() {
           <a href="/all-projects">
             <Button
               size="lg"
-              className="rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-white hover:bg-primary/90 sm:px-8 sm:py-3 sm:text-base"
+              className="rounded-none bg-primary px-6 py-2.5 text-sm font-semibold text-white hover:bg-primary/90 sm:px-8 sm:py-3 sm:text-base"
             >
-              View All Projects
+              View full archive
             </Button>
           </a>
         </div>
@@ -250,13 +359,16 @@ export default function ProjectsSection() {
           <DotPattern />
           <div className="page-shell relative z-10 shrink-0 pt-16 sm:pt-20">
             <div className="mb-3 text-center sm:mb-4">
+              <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+                Selected work
+              </p>
               <h2 className="text-title mb-2 font-semibold tracking-tight text-foreground">
-                My <span className="text-primary">Projects</span>
+                Project <span className="text-primary">Specimens</span>
               </h2>
               <div className="mx-auto mb-2 h-1 w-16 rounded-full bg-primary sm:w-20" />
               <p className="mx-auto max-w-2xl px-2 text-sm text-muted-foreground sm:text-base">
-                Keep scrolling — the gallery moves sideways. When it ends, you
-                continue down.
+                Keep scrolling — the archive slides sideways. Each plate is a
+                build you can open.
               </p>
             </div>
 
@@ -271,25 +383,32 @@ export default function ProjectsSection() {
           <div className="relative z-10 flex min-h-0 flex-1 items-center justify-start pb-6 pt-1 sm:pb-8">
             <motion.div
               ref={trackRef}
-              className="flex items-center gap-4 pl-4 pr-8 sm:gap-6 sm:pl-8 sm:pr-12 md:pl-12 md:pr-16 lg:pl-16"
+              className="flex items-center gap-5 pl-4 pr-8 sm:gap-6 sm:pl-8 sm:pr-12 md:pl-12 md:pr-16 lg:pl-16 [perspective:1200px]"
               style={{ x }}
             >
-              {projects.map((project) => (
-                <ProjectCard key={project.id} project={project} />
+              {projects.map((project, index) => (
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  index={index}
+                />
               ))}
 
               <a
                 href="/all-projects"
-                className={`${CARD_WIDTH} ${CARD_HEIGHT} box-border flex shrink-0 flex-col items-center justify-center gap-3 rounded-xl border border-dashed border-primary/40 bg-card/60 p-6 text-center transition-colors hover:border-primary hover:bg-primary/5 sm:rounded-2xl`}
+                className={`${CARD_WIDTH} ${CARD_HEIGHT} box-border flex shrink-0 flex-col items-center justify-center gap-3 border border-dashed border-foreground/25 bg-card/60 p-6 text-center transition-colors hover:border-primary hover:bg-primary/5`}
               >
+                <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground">
+                  End of reel
+                </span>
                 <span className="text-2xl text-primary sm:text-3xl">
                   <i className="fas fa-arrow-right" />
                 </span>
                 <p className="text-base font-semibold text-foreground sm:text-lg">
-                  View all projects
+                  View full archive
                 </p>
                 <p className="text-sm text-muted-foreground">
-                  Open the full archive
+                  Every build, catalogued
                 </p>
               </a>
             </motion.div>
