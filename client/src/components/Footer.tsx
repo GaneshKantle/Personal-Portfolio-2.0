@@ -24,57 +24,13 @@ export default function Footer() {
       <DotPattern />
 
       <div className="page-shell relative z-10">
-        {/* CTA */}
-        <motion.div
-          className="flex flex-col items-center px-4 pt-16 text-center sm:pt-20 md:pt-24"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <p className="mb-3 text-[11px] font-medium tracking-[0.22em] text-muted-foreground sm:text-xs">
-            NEXT CHAPTER
-          </p>
-          <h2 className="max-w-3xl text-balance text-3xl font-bold tracking-tight text-foreground sm:text-4xl md:text-5xl">
-            Ready to make your{" "}
-            <span className="italic text-primary">idea</span>{" "}
-            unforgettable?
-          </h2>
-          <div className="mt-8 flex flex-col items-center gap-3 sm:mt-10 sm:flex-row sm:gap-4">
-            <motion.a
-              href="mailto:ganeshkantle@gmail.com"
-              className="inline-flex items-center gap-3 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90 sm:px-7 sm:py-3.5 sm:text-base"
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.97 }}
-            >
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground sm:h-8 sm:w-8 sm:text-sm">
-                <i className="fas fa-envelope" aria-hidden="true" />
-              </span>
-              Email Me
-            </motion.a>
-            <motion.a
-              href="https://wa.me/8861435167"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 rounded-full bg-foreground px-6 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90 sm:px-7 sm:py-3.5 sm:text-base"
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.97 }}
-            >
-              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-primary text-xs text-primary-foreground sm:h-8 sm:w-8 sm:text-sm">
-                <i className="fab fa-whatsapp" aria-hidden="true" />
-              </span>
-              WhatsApp
-            </motion.a>
-          </div>
-        </motion.div>
-
         {/* Large brand mark */}
         <motion.div
           className="flex justify-center px-2 pb-10 pt-16 sm:pb-12 sm:pt-20 md:pt-24"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.05, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           <div
             className="select-none whitespace-nowrap font-bold leading-none tracking-tight text-foreground"

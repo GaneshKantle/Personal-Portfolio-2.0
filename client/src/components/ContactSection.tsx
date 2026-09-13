@@ -1,28 +1,29 @@
-import React from "react";
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { Button } from "../components/ui/button";
-import { Input } from "../components/ui/input";
-import { Textarea } from "../components/ui/textarea";
+import React, { useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { isValidEmail } from "../lib/utils";
 import { useToast } from "../hooks/use-toast";
 import { DotPattern } from "./DotPattern";
+import { easeOutExpo } from "../lib/motion";
+
+const EMAIL = "ganeshkantle@gmail.com";
+const WHATSAPP = "8861435167";
 
 export default function ContactSection() {
+  const prefersReducedMotion = useReducedMotion();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [focused, setFocused] = useState<string | null>(null);
   const { toast } = useToast();
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const validateEmailForm = () => {
@@ -34,7 +35,6 @@ export default function ContactSection() {
       });
       return false;
     }
-
     if (!formData.email.trim() || !isValidEmail(formData.email)) {
       toast({
         title: "Valid email is required",
@@ -43,7 +43,6 @@ export default function ContactSection() {
       });
       return false;
     }
-
     if (!formData.message.trim()) {
       toast({
         title: "Message is required",
@@ -52,7 +51,6 @@ export default function ContactSection() {
       });
       return false;
     }
-
     return true;
   };
 
@@ -65,7 +63,6 @@ export default function ContactSection() {
       });
       return false;
     }
-
     if (!formData.message.trim()) {
       toast({
         title: "Message is required",
@@ -74,26 +71,20 @@ export default function ContactSection() {
       });
       return false;
     }
-
     return true;
   };
 
   const handleSendEmail = async () => {
     if (!validateEmailForm()) return;
-
     setIsSubmitting(true);
-    
     try {
-      // In a real implementation, this would send an email via API
-      // For this demo, we'll open the mail client
-      const mailtoLink = `mailto:ganeshkantle@gmail.com?subject=Message from ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(formData.message)}%0A%0AFrom: ${encodeURIComponent(formData.name)}%0AEmail: ${encodeURIComponent(formData.email)}`;
+      const mailtoLink = `mailto:${EMAIL}?subject=Message from ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(formData.message)}%0A%0AFrom: ${encodeURIComponent(formData.name)}%0AEmail: ${encodeURIComponent(formData.email)}`;
       window.open(mailtoLink);
-      
       toast({
         title: "Email client opened",
         description: "Your message has been prepared in your default email client.",
       });
-    } catch (error) {
+    } catch {
       toast({
         title: "Error sending email",
         description: "There was an error preparing your email. Please try again.",
@@ -106,21 +97,19 @@ export default function ContactSection() {
 
   const handleSendWhatsApp = () => {
     if (!validateWhatsAppForm()) return;
-    
     setIsSubmitting(true);
-    
     try {
-      // In a real implementation, you would put your actual WhatsApp number here
-      const whatsappNumber = '8861435167';
       const whatsappText = `Hi, I'm ${formData.name}. ${formData.message}`;
-      const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(whatsappText)}`;
-      window.open(whatsappLink);
-      
+      window.open(
+        `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(whatsappText)}`,
+        "_blank",
+        "noopener,noreferrer"
+      );
       toast({
         title: "WhatsApp opened",
         description: "Your message has been prepared in WhatsApp.",
       });
-    } catch (error) {
+    } catch {
       toast({
         title: "Error opening WhatsApp",
         description: "There was an error preparing your WhatsApp message. Please try again.",
@@ -131,170 +120,183 @@ export default function ContactSection() {
     }
   };
 
+  const fieldShell = (name: string) =>
+    `relative border-b transition-colors duration-300 ${
+      focused === name ? "border-primary" : "border-border"
+    }`;
+
   return (
     <>
-      {/* Section Separator */}
       <div className="bg-background py-10 sm:py-14">
         <div className="page-shell">
           <div className="flex items-center justify-center">
-            <div className="h-px w-24 bg-gradient-to-r from-transparent via-border to-transparent sm:w-32"></div>
-            <div className="mx-3 h-2 w-2 rounded-full bg-primary sm:mx-4"></div>
-            <div className="h-px w-24 bg-gradient-to-r from-transparent via-border to-transparent sm:w-32"></div>
+            <div className="h-px w-24 bg-gradient-to-r from-transparent via-border to-transparent sm:w-32" />
+            <div className="mx-3 h-2 w-2 rounded-full bg-primary sm:mx-4" />
+            <div className="h-px w-24 bg-gradient-to-r from-transparent via-border to-transparent sm:w-32" />
           </div>
         </div>
       </div>
-      
-      <section id="contact" className="section-y relative overflow-hidden cv-auto bg-background">
+
+      <section
+        id="contact"
+        className="section-y relative overflow-hidden cv-auto scroll-mt-[var(--nav-offset)] bg-background"
+      >
         <DotPattern />
         <div className="page-shell relative z-10">
-          <div className="mb-12 text-center sm:mb-16">
-            <motion.h2
-              className="text-title mb-3 font-semibold tracking-tight text-foreground sm:mb-4"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-            >
-              Get In <span className="text-primary">Touch</span>
-            </motion.h2>
+          {/* Header — one job */}
+          <motion.div
+            className="mx-auto mb-10 max-w-2xl text-center sm:mb-12"
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.45 }}
+            transition={{ duration: 0.55, ease: easeOutExpo }}
+          >
+            <p className="mb-3 text-xs font-medium uppercase tracking-[0.22em] text-primary sm:text-sm">
+              Get in touch
+            </p>
+            <h2 className="text-title mb-3 font-semibold tracking-tight text-foreground sm:mb-4">
+              Let&apos;s build something{" "}
+              <span className="text-primary">together</span>
+            </h2>
             <motion.div
-              className="mx-auto h-1 w-16 origin-center rounded-full bg-primary sm:w-20"
-              initial={{ scaleX: 0 }}
+              className="mx-auto mb-4 h-1 w-16 origin-center rounded-full bg-primary sm:mb-5 sm:w-20"
+              initial={prefersReducedMotion ? false : { scaleX: 0 }}
               whileInView={{ scaleX: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.55, delay: 0.1 }}
+              transition={{ duration: 0.55, ease: easeOutExpo, delay: 0.08 }}
             />
-            <motion.p
-              className="mx-auto mt-3 max-w-2xl px-4 text-base leading-relaxed text-muted-foreground sm:mt-4 sm:text-lg"
-              initial={{ opacity: 0, y: 12 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+            <p className="text-sm leading-relaxed text-muted-foreground sm:text-base">
+              Freelance, full-time, or a rough idea — drop a note. I reply myself.
+            </p>
+          </motion.div>
+
+          {/* Composer — main focus */}
+          <motion.div
+            className="mx-auto max-w-2xl"
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.55, delay: 0.05, ease: easeOutExpo }}
+          >
+            <form
+              className="space-y-7 sm:space-y-8"
+              onSubmit={(e) => {
+                e.preventDefault();
+                handleSendEmail();
+              }}
             >
-              Hey Human feel free to reach me!.
-            </motion.p>
-          </div>
-          
-          <div className="mx-auto grid max-w-6xl grid-cols-1 gap-8 sm:gap-10 md:grid-cols-2 lg:gap-12 3xl:max-w-7xl">
-            {/* Contact Form */}
-            <motion.div
-              className="relative z-10 rounded-xl border border-border bg-card p-4 shadow-sm sm:rounded-2xl sm:p-6 md:p-8"
-              initial={{ opacity: 0, x: -28 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-foreground">Send me a message</h3>
-              
-              <form>
-                <div className="mb-4 sm:mb-6">
-                  <label htmlFor="name" className="block text-muted-foreground mb-2 font-medium text-sm sm:text-base">Name</label>
-                  <Input 
-                    type="text" 
-                    id="name" 
+              <div className="grid gap-7 sm:grid-cols-2 sm:gap-6">
+                <div className={fieldShell("name")}>
+                  <label
+                    htmlFor="contact-name"
+                    className="text-xs font-medium text-muted-foreground sm:text-sm"
+                  >
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="contact-name"
                     name="name"
                     value={formData.name}
                     onChange={handleInputChange}
-                    className="w-full bg-card text-foreground border border-border rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 focus:outline-none focus:border-primary focus:ring-2 focus:ring-ring/20 transition-all duration-300 ease-in-out text-sm sm:text-base" 
-                    placeholder="Your name" 
+                    onFocus={() => setFocused("name")}
+                    onBlur={() => setFocused(null)}
+                    autoComplete="name"
+                    placeholder="How should I call you?"
+                    className="mt-2 w-full bg-transparent pb-3 text-base text-foreground outline-none placeholder:text-muted-foreground/45 sm:text-lg"
                   />
                 </div>
-                
-                <div className="mb-4 sm:mb-6">
-                  <label htmlFor="email" className="block text-muted-foreground mb-2 font-medium text-sm sm:text-base">Email</label>
-                  <Input 
-                    type="email" 
-                    id="email" 
+
+                <div className={fieldShell("email")}>
+                  <label
+                    htmlFor="contact-email"
+                    className="text-xs font-medium text-muted-foreground sm:text-sm"
+                  >
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="contact-email"
                     name="email"
                     value={formData.email}
                     onChange={handleInputChange}
-                    className="w-full bg-card text-foreground border border-border rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 focus:outline-none focus:border-primary focus:ring-2 focus:ring-ring/20 transition-all duration-300 ease-in-out text-sm sm:text-base" 
-                    placeholder="Your email" 
+                    onFocus={() => setFocused("email")}
+                    onBlur={() => setFocused(null)}
+                    autoComplete="email"
+                    placeholder="you@email.com"
+                    className="mt-2 w-full bg-transparent pb-3 text-base text-foreground outline-none placeholder:text-muted-foreground/45 sm:text-lg"
                   />
                 </div>
-                
-                <div className="mb-4 sm:mb-6">
-                  <label htmlFor="message" className="block text-muted-foreground mb-2 font-medium text-sm sm:text-base">Message</label>
-                  <Textarea 
-                    id="message" 
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    rows={5} 
-                    className="w-full bg-card text-foreground border border-border rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 focus:outline-none focus:border-primary focus:ring-2 focus:ring-ring/20 transition-all duration-300 ease-in-out text-sm sm:text-base" 
-                    placeholder="Your message" 
-                  />
-                </div>
-                
-                <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                  <Button
-                    type="button"
-                    disabled={isSubmitting}
-                    onClick={handleSendEmail}
-                    className="flex-1 bg-primary hover:bg-primary/90 text-white font-semibold transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-md rounded-full px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-center text-sm sm:text-base"
-                  >
-                    <i className="fas fa-envelope mr-1 sm:mr-2"></i> Send Email
-                  </Button>
-                  
-                  <Button
-                    type="button"
-                    disabled={isSubmitting}
-                    onClick={handleSendWhatsApp}
-                    className="flex-1 bg-green-600 hover:bg-green-700 text-white font-semibold transition-all duration-300 ease-in-out transform hover:scale-[1.02] hover:shadow-md rounded-full px-4 sm:px-6 py-2.5 sm:py-3 flex items-center justify-center text-sm sm:text-base"
-                  >
-                    <i className="fab fa-whatsapp mr-1 sm:mr-2"></i> WhatsApp
-                  </Button>
-                </div>
-              </form>
-            </motion.div>
-            
-            {/* Contact Information */}
-            <motion.div 
-              className="lg:pl-8 xl:pl-12"
-              initial={{ opacity: 0, x: 28 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <div className="mb-6 sm:mb-8">
-                <h3 className="mb-4 text-xl font-semibold text-foreground sm:mb-6 sm:text-2xl">Contact Information</h3>
-                
-                <div className="space-y-4 sm:space-y-6">
-                  <div className="flex items-start">
-                    <div className="mr-3 rounded-full border border-primary/20 bg-primary/10 p-2.5 text-primary sm:mr-4 sm:p-3">
-                      <i className="fas fa-envelope text-sm sm:text-base"></i>
-                    </div>
-                    <div className="min-w-0">
-                      <h4 className="mb-1 text-sm font-semibold text-foreground sm:text-base">Email</h4>
-                      <p className="break-all text-sm text-muted-foreground sm:text-base">ganeshkantle@gmail.com</p>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-start">
-                    <div className="bg-primary/10 p-2.5 sm:p-3 rounded-full text-primary mr-3 sm:mr-4 border border-primary/20">
-                      <i className="fas fa-map-marker-alt text-sm sm:text-base"></i>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-1 text-foreground text-sm sm:text-base">Location</h4>
-                      <p className="text-muted-foreground text-sm sm:text-base">Bangalore, India</p>
-                    </div>
-                  </div>
-             
-                </div>
               </div>
-              
-              <div>
-                <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-foreground">Let's build something amazing together</h3>
-                <p className="text-muted-foreground mb-4 sm:mb-6 leading-relaxed text-sm sm:text-base">
-                  I'm always interested in hearing about new projects and opportunities. Whether you need a web application, smart contract development, or technical consultation, I'm here to help.
-                </p>
-                <div className="text-xs sm:text-sm text-primary">
-                  <span className="block mb-1"><span className="text-muted-foreground">{'>'}</span> Currently available for freelance projects</span>
-                  <span className="block"><span className="text-muted-foreground">{'>'}</span> Open to full time work opportunities</span>
-                </div>
+
+              <div className={fieldShell("message")}>
+                <label
+                  htmlFor="contact-message"
+                  className="text-xs font-medium text-muted-foreground sm:text-sm"
+                >
+                  Message
+                </label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  onFocus={() => setFocused("message")}
+                  onBlur={() => setFocused(null)}
+                  rows={5}
+                  placeholder="What are you working on?"
+                  className="mt-2 w-full resize-y bg-transparent pb-3 text-base leading-relaxed text-foreground outline-none placeholder:text-muted-foreground/45 sm:min-h-[140px] sm:text-lg"
+                />
               </div>
-            </motion.div>
-          </div>
+
+              <div className="flex flex-col items-stretch gap-3 pt-1 sm:flex-row sm:items-center sm:justify-center sm:gap-4">
+                <motion.button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="inline-flex items-center justify-center gap-2.5 rounded-full bg-foreground px-7 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90 disabled:opacity-60"
+                  whileHover={prefersReducedMotion ? undefined : { y: -2 }}
+                  whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
+                >
+                  <i className="fas fa-envelope text-xs" aria-hidden="true" />
+                  Send Email
+                </motion.button>
+                <motion.button
+                  type="button"
+                  disabled={isSubmitting}
+                  onClick={handleSendWhatsApp}
+                  className="inline-flex items-center justify-center gap-2.5 rounded-full bg-foreground px-7 py-3 text-sm font-medium text-background transition-opacity hover:opacity-90 disabled:opacity-60"
+                  whileHover={prefersReducedMotion ? undefined : { y: -2 }}
+                  whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
+                >
+                  <i className="fab fa-whatsapp text-sm" aria-hidden="true" />
+                  WhatsApp
+                </motion.button>
+              </div>
+            </form>
+
+            {/* Meta strip — secondary, not competing */}
+            <div className="mt-10 flex flex-col items-center gap-2.5 border-t border-border pt-8 text-center sm:mt-12 sm:pt-9">
+              <div className="inline-flex items-center gap-2 text-xs text-muted-foreground sm:text-sm">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-60" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+                </span>
+                Available for new work
+              </div>
+              <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm text-muted-foreground">
+                <a
+                  href={`mailto:${EMAIL}`}
+                  className="transition-colors hover:text-primary"
+                >
+                  {EMAIL}
+                </a>
+                <span className="text-border" aria-hidden="true">
+                  ·
+                </span>
+                <span>Bangalore, India</span>
+              </p>
+            </div>
+          </motion.div>
         </div>
       </section>
     </>

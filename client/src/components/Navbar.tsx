@@ -296,10 +296,9 @@ export default function Navbar() {
             </div>
 
             {/* Links */}
-            <div className="page-shell relative z-10 flex min-h-0 flex-1 flex-col py-6 sm:py-8 lg:py-10">
-              
+            <div className="page-shell relative z-10 flex min-h-0 flex-1 flex-col overflow-hidden py-6 sm:py-8 lg:py-10">
               <nav
-                className="flex min-h-0 flex-1 flex-col justify-center overflow-y-auto"
+                className="flex min-h-0 flex-1 flex-col justify-center overflow-hidden"
                 aria-label="Primary"
                 onMouseLeave={() => setHoveredIndex(null)}
               >
