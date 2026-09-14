@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useRef, useState } from "react";
 import {
   motion,
   useScroll,
@@ -16,7 +16,21 @@ import {
 
 const projects = getAllProjects();
 
-function SnapGallery() {
+/** Vertical scroll distance per 1px of horizontal travel — slows the gallery. */
+const SCROLL_PX_PER_TRAVEL = 2.4;
+/** Hold first cards still at the start so momentum from prior sections doesn't skip them. */
+const INTRO_HOLD = 0.18;
+/** Hold the final card / CTA briefly before releasing to the next section. */
+const OUTRO_HOLD = 0.1;
+/** Rough card+gap width used only to size the section before measure settles. */
+const EST_CARD_TRAVEL = 360;
+
+function estimateTravel(viewportWidth: number) {
+  const trackItems = projects.length + 1; // cards + "View all" CTA
+  return Math.max(0, trackItems * EST_CARD_TRAVEL - viewportWidth);
+}
+
+function ReducedMotionGallery() {
   const [flippedId, setFlippedId] = useState<number | null>(null);
 
   const toggleFlip = (id: number) => {
@@ -66,41 +80,8 @@ function SnapGallery() {
   );
 }
 
-function useIsMdUp() {
-  // Avoid a false→true flip on desktop (that remounts a ~100vh section and
-  // advances scroll progress before travel is measured).
-  const [isMd, setIsMd] = useState(() =>
-    typeof window !== "undefined"
-      ? window.matchMedia("(min-width: 768px)").matches
-      : false
-  );
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px)");
-    const update = () => setIsMd(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, []);
-  return isMd;
-}
-
-/** Vertical scroll distance per 1px of horizontal travel — slows the gallery. */
-const SCROLL_PX_PER_TRAVEL = 2.4;
-/** Hold first cards still at the start so momentum from prior sections doesn't skip them. */
-const INTRO_HOLD = 0.18;
-/** Hold the final card / CTA briefly before releasing to the next section. */
-const OUTRO_HOLD = 0.1;
-/** Rough card+gap width used only to size the section before measure settles. */
-const EST_CARD_TRAVEL = 420;
-
-function estimateTravel(viewportWidth: number) {
-  const trackItems = projects.length + 1; // cards + "View all" CTA
-  return Math.max(0, trackItems * EST_CARD_TRAVEL - viewportWidth);
-}
-
 export default function ProjectsSection() {
   const prefersReducedMotion = useReducedMotion();
-  const isMd = useIsMdUp();
   const containerRef = useRef<HTMLElement>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -117,7 +98,7 @@ export default function ProjectsSection() {
   };
 
   useLayoutEffect(() => {
-    if (!isMd || prefersReducedMotion) return;
+    if (prefersReducedMotion) return;
     const measure = () => {
       const track = trackRef.current;
       const viewport = viewportRef.current;
@@ -143,7 +124,7 @@ export default function ProjectsSection() {
       window.removeEventListener("resize", measure);
       ro?.disconnect();
     };
-  }, [isMd, prefersReducedMotion]);
+  }, [prefersReducedMotion]);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -162,10 +143,10 @@ export default function ProjectsSection() {
   const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   const scrollBudget = Math.max(travel * SCROLL_PX_PER_TRAVEL, 800);
 
-  if (prefersReducedMotion || !isMd) {
+  if (prefersReducedMotion) {
     return (
       <>
-        <SnapGallery />
+        <ReducedMotionGallery />
         <SectionSeparator />
       </>
     );
@@ -184,22 +165,22 @@ export default function ProjectsSection() {
           className="sticky top-0 z-10 flex h-[100svh] flex-col overflow-x-hidden overflow-y-hidden bg-background"
         >
           <DotPattern />
-          <div className="page-shell relative z-10 shrink-0 pt-16 sm:pt-20">
-            <div className="mb-3 text-center sm:mb-4">
-              <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
+          <div className="page-shell relative z-10 shrink-0 pt-14 sm:pt-16 md:pt-20">
+            <div className="mb-2 text-center sm:mb-3 md:mb-4">
+              <p className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground sm:mb-2 sm:text-[11px]">
                 Selected work
               </p>
-              <h2 className="text-title mb-2 font-semibold tracking-tight text-foreground">
+              <h2 className="text-title mb-1.5 font-semibold tracking-tight text-foreground sm:mb-2">
                 Project <span className="text-primary">Specimens</span>
               </h2>
-              <div className="mx-auto mb-2 h-1 w-16 rounded-full bg-primary sm:w-20" />
+              <div className="mx-auto mb-1.5 h-1 w-16 rounded-full bg-primary sm:mb-2 sm:w-20" />
               <p className="mx-auto max-w-2xl px-2 text-sm text-muted-foreground sm:text-base">
                 Keep scrolling — the archive slides sideways. Click a plate to
                 flip it open.
               </p>
             </div>
 
-            <div className="mx-auto mb-4 h-1 max-w-xs overflow-hidden rounded-full bg-muted sm:mb-5">
+            <div className="mx-auto mb-3 h-1 max-w-[10rem] overflow-hidden rounded-full bg-muted sm:mb-4 sm:max-w-xs md:mb-5">
               <motion.div
                 className="h-full origin-left rounded-full bg-primary"
                 style={{ width: progressWidth }}
@@ -207,10 +188,10 @@ export default function ProjectsSection() {
             </div>
           </div>
 
-          <div className="relative z-10 flex min-h-0 flex-1 items-center justify-start pb-6 pt-1 sm:pb-8">
+          <div className="relative z-10 flex min-h-0 flex-1 items-center justify-start pb-5 pt-1 sm:pb-6 md:pb-8">
             <motion.div
               ref={trackRef}
-              className="flex items-center gap-5 pl-4 pr-8 sm:gap-6 sm:pl-8 sm:pr-12 md:pl-12 md:pr-16 lg:pl-16"
+              className="flex items-center gap-4 pl-4 pr-8 sm:gap-5 sm:pl-8 sm:pr-12 md:gap-6 md:pl-12 md:pr-16 lg:pl-16"
               style={{ x }}
             >
               {projects.map((project, index) => (

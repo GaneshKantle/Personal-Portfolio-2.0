@@ -18,7 +18,7 @@ export interface SpecimenProject {
 export const CARD_WIDTH =
   "w-[min(85vw,20rem)] sm:w-[22rem] md:w-[24rem] xl:w-[28rem] 3xl:w-[32rem]";
 export const CARD_HEIGHT =
-  "h-[min(500px,calc(100svh-10rem))] sm:h-[min(520px,calc(100svh-11rem))]";
+  "h-[min(440px,calc(100svh-13.5rem))] sm:h-[min(500px,calc(100svh-12rem))] md:h-[min(520px,calc(100svh-11rem))]";
 
 function CropMarks() {
   const mark =
