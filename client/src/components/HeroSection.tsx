@@ -267,7 +267,7 @@ export default function HeroSection() {
                     "_blank"
                   )
                 }
-                className="rounded-full border border-border bg-background px-7 py-3 text-sm font-medium text-foreground transition-colors hover:border-primary/40 hover:text-primary sm:text-base"
+                className="rounded-full border border-border bg-background px-7 py-3 text-sm font-medium text-foreground transition-colors hover:border-foreground/40 hover:bg-muted hover:text-foreground sm:text-base"
               >
                 Resume
               </Button>
