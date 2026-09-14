@@ -9,7 +9,7 @@ import { DotPattern } from "./DotPattern";
 
 const experiences = [
   {
-    title: "AI Web Dev",
+    title: "AI Web Developer",
     company: "@WI Thinkers",
     period: "July 2025 – Present",
     description:
@@ -26,7 +26,7 @@ const experiences = [
     ],
   },
   {
-    title: "Freelance Frontend Dev",
+    title: "Freelance Frontend Developer",
     company: "@Self-Employed",
     period: "Nov 2024 – July 2025",
     description:

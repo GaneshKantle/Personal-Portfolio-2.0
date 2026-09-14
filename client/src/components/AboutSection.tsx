@@ -7,7 +7,7 @@ import { easeOutExpo, viewportOnce } from "../lib/motion";
 const roles = [
   {
     mark: "A",
-    title: "AI Web Dev",
+    title: "AI Web Developer",
     detail: "Calm, fast interfaces · React & TypeScript",
   },
   {

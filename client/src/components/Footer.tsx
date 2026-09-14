@@ -91,7 +91,7 @@ export default function Footer() {
         <div className="flex flex-col items-center justify-between gap-3 border-t border-border py-5 text-xs text-muted-foreground sm:flex-row sm:py-6 sm:text-sm">
           <p>&copy; {new Date().getFullYear()} Ganesh Kantle. All rights reserved.</p>
           <p className="text-center sm:text-right">
-            AI Web Developer · Web3 Explorer · Tech Writer
+            AI Web Developereloper · Web3 Explorer · Tech Writer
           </p>
         </div>
       </div>
