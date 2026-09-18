@@ -132,7 +132,7 @@ export default App;
 ---
 
 ## Contributing
-If you'd like to contribute, please fork the repository and submit a pull request. All contributions are welcome!
+If you'd like to contribute, please fork the repository and submit a pull request. All contributions are welcome!!
 
 ## Contact
 For any queries, feel free to reach out:
