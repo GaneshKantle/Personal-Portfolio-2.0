@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { scrollToElement } from "../lib/utils";
+import { scrollToElement, RESUME_URL } from "../lib/utils";
 import { useLocation } from "wouter";
 import ThemeToggle from "./ThemeToggle";
 import { DotPattern } from "./DotPattern";
@@ -73,15 +73,6 @@ export default function Navbar() {
   const toggleMenu = () => setMenuOpen((open) => !open);
 
   const handleNavClick = (href: string, isHash: boolean) => {
-    if (href === "#resume") {
-      window.open(
-        "https://drive.google.com/drive/folders/1uNqBhasvr7ovsl79eEA4_6PkM6cGvN3n?usp=sharing",
-        "_blank"
-      );
-      setMenuOpen(false);
-      return;
-    }
-
     if (isHash && isHomePage) {
       const id = href.substring(1);
       scrollToElement(id);
@@ -307,6 +298,48 @@ export default function Navbar() {
                     const isHovered = hoveredIndex === index;
                     const dimmed =
                       hoveredIndex !== null && hoveredIndex !== index;
+                    const isResume = link.href === "#resume";
+                    const itemClassName = `group relative flex w-full items-center gap-4 py-3 text-left transition-opacity duration-300 sm:gap-6 sm:py-3.5 md:py-4 ${
+                      dimmed ? "opacity-35" : "opacity-100"
+                    } ${isNavigating && !isResume ? "cursor-not-allowed" : ""}`;
+                    const itemInner = (
+                      <>
+                        <span
+                          className={`font-mono text-[10px] tabular-nums transition-colors duration-300 sm:text-xs ${
+                            isHovered
+                              ? "text-primary"
+                              : "text-muted-foreground"
+                          }`}
+                        >
+                          {String(index + 1).padStart(2, "0")}
+                        </span>
+
+                        <span
+                          className={`relative text-2xl font-semibold tracking-tight transition-all duration-300 xs:text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] ${
+                            isHovered
+                              ? "translate-x-2 text-primary sm:translate-x-3"
+                              : "text-foreground"
+                          }`}
+                        >
+                          {link.name}
+                          <span
+                            className={`absolute -bottom-1 left-0 h-px bg-primary transition-all duration-500 ${
+                              isHovered ? "w-full" : "w-0"
+                            }`}
+                          />
+                        </span>
+
+                        <span
+                          className={`ml-auto hidden items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground transition-all duration-300 sm:flex sm:text-xs ${
+                            isHovered
+                              ? "translate-x-0 opacity-100"
+                              : "translate-x-3 opacity-0"
+                          }`}
+                        >
+                          {isResume ? "open ↗" : "scroll →"}
+                        </span>
+                      </>
+                    );
 
                     return (
                       <motion.li
@@ -328,51 +361,32 @@ export default function Navbar() {
                           ease,
                         }}
                       >
-                        <button
-                          type="button"
-                          onClick={() => handleNavClick(link.href, link.isHash)}
-                          onMouseEnter={() => setHoveredIndex(index)}
-                          onFocus={() => setHoveredIndex(index)}
-                          disabled={isNavigating}
-                          className={`group relative flex w-full items-center gap-4 py-3 text-left transition-opacity duration-300 sm:gap-6 sm:py-3.5 md:py-4 ${
-                            dimmed ? "opacity-35" : "opacity-100"
-                          } ${isNavigating ? "cursor-not-allowed" : ""}`}
-                        >
-                          <span
-                            className={`font-mono text-[10px] tabular-nums transition-colors duration-300 sm:text-xs ${
-                              isHovered
-                                ? "text-primary"
-                                : "text-muted-foreground"
-                            }`}
+                        {isResume ? (
+                          <a
+                            href={RESUME_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            onClick={() => setMenuOpen(false)}
+                            onMouseEnter={() => setHoveredIndex(index)}
+                            onFocus={() => setHoveredIndex(index)}
+                            className={itemClassName}
                           >
-                            {String(index + 1).padStart(2, "0")}
-                          </span>
-
-                          <span
-                            className={`relative text-2xl font-semibold tracking-tight transition-all duration-300 xs:text-3xl sm:text-4xl md:text-5xl lg:text-[3.25rem] ${
-                              isHovered
-                                ? "translate-x-2 text-primary sm:translate-x-3"
-                                : "text-foreground"
-                            }`}
+                            {itemInner}
+                          </a>
+                        ) : (
+                          <button
+                            type="button"
+                            onClick={() =>
+                              handleNavClick(link.href, link.isHash)
+                            }
+                            onMouseEnter={() => setHoveredIndex(index)}
+                            onFocus={() => setHoveredIndex(index)}
+                            disabled={isNavigating}
+                            className={itemClassName}
                           >
-                            {link.name}
-                            <span
-                              className={`absolute -bottom-1 left-0 h-px bg-primary transition-all duration-500 ${
-                                isHovered ? "w-full" : "w-0"
-                              }`}
-                            />
-                          </span>
-
-                          <span
-                            className={`ml-auto hidden items-center gap-2 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground transition-all duration-300 sm:flex sm:text-xs ${
-                              isHovered
-                                ? "translate-x-0 opacity-100"
-                                : "translate-x-3 opacity-0"
-                            }`}
-                          >
-                            {link.href === "#resume" ? "open ↗" : "scroll →"}
-                          </span>
-                        </button>
+                            {itemInner}
+                          </button>
+                        )}
                       </motion.li>
                     );
                   })}

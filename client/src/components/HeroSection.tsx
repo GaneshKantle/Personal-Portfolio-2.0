@@ -9,7 +9,7 @@ import {
 } from "framer-motion";
 import { PageShell } from "./layout/PageShell";
 import { DotPattern } from "./DotPattern";
-import { scrollToElement } from "../lib/utils";
+import { scrollToElement, RESUME_URL } from "../lib/utils";
 import { easeOutExpo } from "../lib/motion";
 import profilePic from "../img/profile.jpg";
 
@@ -105,7 +105,7 @@ export default function HeroSection() {
   }, [prefersReducedMotion]);
 
   useEffect(() => {
-    const t = setTimeout(() => setPromptVisible(true), PROMPT_DELAY_MS);
+    const t = setTimeout(() => setPromptFinished(true), PROMPT_DELAY_MS);
     return () => clearTimeout(t);
   }, []);
 
@@ -261,15 +261,16 @@ export default function HeroSection() {
               <Button
                 variant="outline"
                 size="lg"
-                onClick={() =>
-                  window.open(
-                    "https://drive.google.com/drive/folders/1uNqBhasvr7ovsl79eEA4_6PkM6cGvN3n?usp=sharing",
-                    "_blank"
-                  )
-                }
+                asChild
                 className="rounded-full border border-border bg-background px-7 py-3 text-sm font-medium text-foreground transition-colors hover:border-foreground/40 hover:bg-muted hover:text-foreground sm:text-base"
               >
-                Resume
+                <a
+                  href={RESUME_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Resume
+                </a>
               </Button>
             </div>
 

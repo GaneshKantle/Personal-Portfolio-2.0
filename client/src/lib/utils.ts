@@ -1,6 +1,9 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
+export const RESUME_URL =
+  "https://drive.google.com/drive/folders/1uNqBhasvr7ovsl79eEA4_6PkM6cGvN3n?usp=sharing";
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
