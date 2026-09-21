@@ -6,9 +6,86 @@ import parallelYou from "../img/parallelyou.png";
 import liquorHub from "../img/liquorhub.jpeg";
 import Project1 from "../img/project1.png";
 import Project2 from "../img/project2.png";
+import ammasManeTindi from "../img/ammas-mane-tindi.png";
 
 // Unified project data structure with both basic and detailed information
 export const projectsData = [
+  {
+    id: 8,
+    title: "AMMA'S MANE TINDI",
+    tagline: "A brand site for a home kitchen",
+    description:
+      "A client website for a new homemade food brand. It shows their Karnataka kitchen, bulk orders, and tailoring — then sends people to WhatsApp to order.",
+    longDescription:
+      "A bilingual brand website for a home kitchen in Kothanur, Bengaluru. The site introduces AMMA'S MANE TINDI as a takeout-only vegetarian kitchen — everyday Karnataka food, bulk orders for functions, and blouse tailoring alongside the kitchen. There is no online checkout: visitors browse the menu and services, then WhatsApp the kitchen to order and collect. Built as a Next.js brand site with English and Kannada copy, a warm illustrated visual language, and clear paths for food, gatherings, and stitching.",
+    categoryColor: "primary",
+    technologies: [
+      "Next.js",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS",
+      "Motion",
+      "Lucide React",
+    ],
+    githubUrl: "https://github.com/GaneshKantle/Amma-s-Mane-Thindi",
+    liveUrl: "https://ammasmanethindi.vercel.app/",
+    demoUrl: "https://ammasmanethindi.vercel.app/",
+    documentationUrl:
+      "https://github.com/GaneshKantle/Amma-s-Mane-Thindi/blob/main/README.md",
+    features: [
+      "Bilingual English and Kannada brand storytelling",
+      "Food menu, custom cooking, and bulk-order pages",
+      "Tailoring and blouse-work services alongside the kitchen",
+      "WhatsApp-first ordering with no online checkout",
+      "Kitchen hours, location, and takeout-only guidance",
+      "Packaging story and photo gallery of homemade goods",
+      "Warm illustrated visual language for a home brand",
+      "Responsive layout for phones and desktops",
+    ],
+    challenges: [
+      "Translating a home kitchen's trust into a digital brand",
+      "Keeping food, functions, and tailoring in one coherent site",
+      "Designing WhatsApp-first conversion without a cart",
+      "Balancing English and Kannada without crowding the layout",
+      "Making takeout-only collection feel clear and local",
+    ],
+    learnings: [
+      "Client brand sites for local service businesses",
+      "Bilingual content and Kannada typography on the web",
+      "WhatsApp as the primary conversion path",
+      "Next.js App Router for multi-page marketing sites",
+      "Restraint in visual identity for homemade brands",
+    ],
+    screenshots: [
+      {
+        src: ammasManeTindi,
+        alt: "Homepage",
+        caption: "Brand homepage with Kannada tagline and kitchen story",
+      },
+      {
+        src: ammasManeTindi,
+        alt: "Food & bulk orders",
+        caption: "Menu, custom cooking, and function orders via WhatsApp",
+      },
+      {
+        src: ammasManeTindi,
+        alt: "Tailoring",
+        caption: "Blouse stitching and finishing work alongside the kitchen",
+      },
+    ],
+    architecture:
+      "Next.js App Router marketing site with typed pages for food, bulk orders, tailoring, about, and contact",
+    deployment: "Vercel",
+    status: "Live",
+    developmentTime: "1 week",
+    teamSize: "Solo (Freelance)",
+    impact:
+      "Gave a new homemade food and tailoring brand a live web presence that sends neighbours to WhatsApp to order",
+    image: ammasManeTindi,
+    category: "Web Application",
+    difficulty: "Intermediate",
+  },
+
   {
     id: 1,
     title: "Read It Twin",

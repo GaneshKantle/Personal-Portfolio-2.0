@@ -7,7 +7,7 @@ export type ProductionSite = {
 export const productionSites: ProductionSite[] = [
   {
     title: "Influencer X Media",
-    description: "Marketing site for Influencer X Media.",
+    description: "Performance Marketing Site",
     url: "https://influencerxmedia.com",
   },
   {
@@ -30,6 +30,29 @@ export const productionSites: ProductionSite[] = [
     description:
       "Performance marketing site that drives customer acquisition, sales, and measurable growth.",
     url: "https://www.acqoraxmarketing.com/",
+  },
+  {
+    title: "WI Thinkers Services",
+    description:
+      "Magazine service plans for editorial promotion, placement, and brand growth.",
+    url: "https://services.thewithinkers.com/",
+  },
+  {
+    title: "WI Thinkers Exclusive",
+    description:
+      "Exclusive magazine services for editorial-style promotion and brand positioning.",
+    url: "https://exclusive.thewithinkers.com/",
+  },
+  {
+    title: "Blaze Billboard",
+    description:
+      "Times Square billboard campaign with magazine feature and exclusive interview.",
+    url: "https://billboard.blazemagazines.com/",
+  },
+  {
+    title: "The Glam Model",
+    description: "Creator platform for The Glam Model.",
+    url: "https://onlyfans.theglammodel.com/",
   },
 ];
 

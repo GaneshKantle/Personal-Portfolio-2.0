@@ -15,29 +15,27 @@ import {
 } from "../shared/productionSites";
 import { DotPattern } from "./DotPattern";
 
+const SITE_HOSTS = productionSites.map((site) => getHost(site.url));
+
 const CODE_LINES = [
   "// compile reality — ship live products",
   "import { deploy } from \"@wi/ship\";",
   "",
   "const sites = [",
-  "  \"influencerxmedia.com\",",
-  "  \"thewithinkers.com\",",
-  "  \"crm.thewithinkers.com\",",
-  "  \"app.swingboudoirmag.com\",",
-  "  \"acqoraxmarketing.com\",",
+  ...SITE_HOSTS.map((host) => `  "${host}",`),
   "];",
   "",
   "await Promise.all(",
   "  sites.map((host) => deploy({ host, live: true }))",
   ");",
   "",
-  "// ✓ five products online",
+  `// ✓ ${SITE_HOSTS.length} products online`,
 ];
 
 const DEPLOY_LINES = [
   { text: "$ npm run build", tone: "cmd" as const },
   { text: "✓ Compiled successfully in 1.8s", tone: "ok" as const },
-  { text: "$ deploy --prod --sites=5", tone: "cmd" as const },
+  { text: `$ deploy --prod --sites=${SITE_HOSTS.length}`, tone: "cmd" as const },
   { text: "→ uploading assets…", tone: "dim" as const },
   { text: "✓ DNS healthy · TLS active · LIVE", tone: "ok" as const },
 ];
@@ -92,11 +90,6 @@ function WindowChrome({
             {host}
           </span>
         </div>
-        {showLiveBadge ? (
-          <span className="hidden shrink-0 rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-700 sm:inline dark:text-emerald-400">
-            Live
-          </span>
-        ) : null}
       </div>
 
       <div
@@ -106,15 +99,12 @@ function WindowChrome({
       >
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -right-3 -top-4 text-6xl font-semibold leading-none tracking-tighter text-slate-900/[0.07] sm:-right-2.5 sm:-top-5 sm:text-7xl md:text-8xl dark:text-foreground/[0.08]"
+          className="pointer-events-none absolute -right-2 -top-3 text-5xl font-semibold leading-none tracking-tighter text-slate-900/[0.07] sm:-right-1.5 sm:-top-4 sm:text-6xl dark:text-foreground/[0.08]"
         >
           {String(index + 1).padStart(2, "0")}
         </div>
 
-        <div className="relative min-w-0 pr-10 sm:pr-14">
-          <p className="mb-1 text-[10px] font-medium uppercase tracking-[0.16em] text-primary sm:mb-1.5 sm:text-xs">
-            Live product
-          </p>
+        <div className="relative min-w-0 pr-8 sm:pr-12">
           <h3
             className={`truncate font-semibold tracking-tight text-slate-900 group-hover:text-primary dark:text-foreground ${
               featured ? "text-base sm:text-lg md:text-xl" : "text-sm sm:text-base"
@@ -123,7 +113,7 @@ function WindowChrome({
             {site.title}
           </h3>
           <p
-            className={`mt-1.5 line-clamp-2 text-slate-600 dark:text-muted-foreground ${
+            className={`mt-1 line-clamp-2 text-slate-600 dark:text-muted-foreground ${
               featured ? "text-xs sm:text-sm" : "text-xs"
             }`}
           >
@@ -131,7 +121,7 @@ function WindowChrome({
           </p>
         </div>
 
-        <div className="relative mt-3 flex items-center justify-between gap-2 sm:mt-4">
+        <div className="relative mt-2 flex items-center justify-between gap-2 sm:mt-3">
           <span className="truncate font-mono text-xs text-slate-500 dark:text-muted-foreground">
             {host}
           </span>
@@ -183,8 +173,9 @@ function AnimatedLiveWindow({
   onHover?: (index: number | null) => void;
   showLive: boolean;
 }) {
-  const spawnStart = 0.52 + index * 0.04;
-  const spawnEnd = Math.min(0.82, spawnStart + 0.1);
+  const stagger = 0.26 / Math.max(productionSites.length, 1);
+  const spawnStart = 0.52 + index * stagger;
+  const spawnEnd = Math.min(0.88, spawnStart + 0.08);
 
   const opacity = useTransform(progress, [spawnStart, spawnEnd], [0, 1]);
   const y = useTransform(progress, [spawnStart, spawnEnd], [20, 0]);
@@ -259,8 +250,6 @@ function ProductionHeading({
 }
 
 function StaticDock() {
-  const [featured, ...rest] = productionSites;
-
   return (
     <section
       id="production"
@@ -272,16 +261,10 @@ function StaticDock() {
           <ProductionHeading subtitle="Live products shipped at WI Thinkers — open any window." />
         </div>
 
-        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-6 3xl:max-w-7xl">
-          <div className="min-h-[10rem] md:col-span-2 lg:col-span-6 sm:min-h-[11rem]">
-            <StaticLiveWindow site={featured} index={0} featured />
-          </div>
-          {rest.map((site, i) => (
-            <div
-              key={site.url}
-              className="min-h-[9rem] md:col-span-1 lg:col-span-3 sm:min-h-[10rem]"
-            >
-              <StaticLiveWindow site={site} index={i + 1} />
+        <div className="mx-auto grid max-w-6xl grid-cols-1 gap-3 sm:gap-4 md:grid-cols-2 lg:grid-cols-3 3xl:max-w-7xl">
+          {productionSites.map((site, i) => (
+            <div key={site.url} className="min-h-[9rem] sm:min-h-[10rem]">
+              <StaticLiveWindow site={site} index={i} />
             </div>
           ))}
         </div>
@@ -401,7 +384,7 @@ function IdePanel({
       <div className="relative min-h-0 flex-1 overflow-hidden">
         <pre
           ref={codeRef}
-          className="h-full overflow-hidden p-3 font-mono text-[11px] leading-5 sm:p-3.5 sm:text-xs sm:leading-5"
+          className="h-full overflow-hidden p-2.5 font-mono text-[10px] leading-4 sm:p-3 sm:text-[11px] sm:leading-[1.15rem]"
         >
           {CODE_LINES.map((line, i) => (
             <div key={i} style={{ opacity: 0.12 }}>
@@ -479,7 +462,6 @@ function CompileStage({ progress }: { progress: MotionValue<number> }) {
   const [hovered, setHovered] = useState<number | null>(null);
   const [showLive, setShowLive] = useState(false);
   const isMd = useIsMdUp();
-  const [featured, ...rest] = productionSites;
 
   const progressWidth = useTransform(progress, [0, 1], ["0%", "100%"]);
   const windowsOpacity = useTransform(progress, [0.48, 0.56], [0, 1]);
@@ -512,32 +494,21 @@ function CompileStage({ progress }: { progress: MotionValue<number> }) {
 
       {isMd ? (
         <div className="relative z-10 mx-auto flex min-h-0 w-full max-w-6xl flex-1 gap-3 px-4 pb-4 pt-3 3xl:max-w-7xl lg:gap-4 lg:px-8 lg:pb-5">
-          <div className="h-full w-[36%] min-h-0 shrink-0 lg:w-[38%]">
+          <div className="h-full w-[32%] min-h-0 shrink-0 lg:w-[34%]">
             <IdePanel progress={progress} />
           </div>
 
           <motion.div
-            className="grid h-full min-h-0 min-w-0 flex-1 grid-cols-2 grid-rows-3 gap-3 lg:gap-3.5"
+            className="grid h-full min-h-0 min-w-0 flex-1 grid-cols-3 grid-rows-3 gap-2.5 lg:gap-3"
             style={{ opacity: windowsOpacity }}
           >
-            <div className="col-span-2 row-span-1 min-h-0">
-              <AnimatedLiveWindow
-                site={featured}
-                index={0}
-                featured
-                progress={progress}
-                dimmed={hovered !== null && hovered !== 0}
-                onHover={setHovered}
-                showLive={showLive}
-              />
-            </div>
-            {rest.map((site, i) => (
+            {productionSites.map((site, i) => (
               <div key={site.url} className="min-h-0">
                 <AnimatedLiveWindow
                   site={site}
-                  index={i + 1}
+                  index={i}
                   progress={progress}
-                  dimmed={hovered !== null && hovered !== i + 1}
+                  dimmed={hovered !== null && hovered !== i}
                   onHover={setHovered}
                   showLive={showLive}
                 />
@@ -548,34 +519,23 @@ function CompileStage({ progress }: { progress: MotionValue<number> }) {
       ) : (
         <div className="relative z-10 flex min-h-0 flex-1 flex-col px-3 pb-4 pt-2">
           <motion.div
-            className="mb-2 h-[32%] min-h-0 shrink-0"
+            className="mb-2 h-[28%] min-h-0 shrink-0"
             style={{ opacity: mobileIdeOpacity }}
           >
             <IdePanel progress={progress} />
           </motion.div>
 
           <motion.div
-            className="grid min-h-0 flex-1 grid-cols-2 grid-rows-3 gap-2.5"
+            className="grid min-h-0 flex-1 grid-cols-2 grid-rows-5 gap-2 sm:grid-cols-3 sm:grid-rows-3"
             style={{ opacity: windowsOpacity }}
           >
-            <div className="col-span-2 min-h-0">
-              <AnimatedLiveWindow
-                site={featured}
-                index={0}
-                featured
-                progress={progress}
-                dimmed={hovered !== null && hovered !== 0}
-                onHover={setHovered}
-                showLive={showLive}
-              />
-            </div>
-            {rest.map((site, i) => (
+            {productionSites.map((site, i) => (
               <div key={site.url} className="min-h-0">
                 <AnimatedLiveWindow
                   site={site}
-                  index={i + 1}
+                  index={i}
                   progress={progress}
-                  dimmed={hovered !== null && hovered !== i + 1}
+                  dimmed={hovered !== null && hovered !== i}
                   onHover={setHovered}
                   showLive={showLive}
                 />
