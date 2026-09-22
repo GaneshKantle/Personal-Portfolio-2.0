@@ -112,8 +112,6 @@ Getting started with **Personal-Portfolio-2.0** is easy and straightforward.
 ### Installation Guide
 Follow the [Quick Start](#quick-start) section for a seamless setup.
 
-### Configuration Options
-Edit the `config.json` file to customize your portfolio settings.
 
 ### API Documentation
 Refer to the `api` directory for detailed API endpoints and usage.
