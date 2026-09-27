@@ -111,10 +111,6 @@ Getting started with **Personal-Portfolio-2.0** is easy and straightforward.
 ## 📖 Detailed Documentation
 ### Installation Guide
 Follow the [Quick Start](#quick-start) section for a seamless setup.
-
-### API Documentation
-Refer to the `api` directory for detailed API endpoints and usage.
-
 ### Usage Examples
 ```ts
 import React from 'react';
