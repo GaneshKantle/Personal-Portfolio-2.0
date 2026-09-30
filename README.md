@@ -39,7 +39,7 @@ Welcome to **Personal-Portfolio-2.0**, a modern and professional solution for de
 ## ✨ Key Features
 - **🌟 Responsive Design:** Ensures your portfolio looks great on all devices.
 - **💼 Project Showcase:** Easily display your projects with detailed descriptions and links.
-- **📈 Analytics:** Track views and interactions to understand your audience better.
+- **📈 Analytics:** Track views and interactions to understand your audience better
 - **🔒 Secure:** Built with security best practices in mind.
 - **💡 Custom Themes:** Choose from multiple themes or create your own.
 
