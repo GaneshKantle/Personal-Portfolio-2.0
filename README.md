@@ -45,9 +45,7 @@ Welcome to **Personal-Portfolio-2.0**, a modern and professional solution for de
 
 ---
 
-## 🚀 Quick Start
-Getting started with **Personal-Portfolio-2.0** is easy and straightforward.
-
+ 
 **Prerequisites:**
 - Node.js (v14.x or later)
 - npm (v6.x or later)
