@@ -43,12 +43,8 @@ Welcome to **Personal-Portfolio-2.0**, a modern and professional solution for de
 - **🔒 Secure:** Built with security best practices in mind.
 - **💡 Custom Themes:** Choose from multiple themes or create your own.
 
----
 
  
-**Prerequisites:**
-- Node.js (v14.x or later)
-- npm (v6.x or later)
 
 **Steps:**
 1. **Clone the Repository:**
