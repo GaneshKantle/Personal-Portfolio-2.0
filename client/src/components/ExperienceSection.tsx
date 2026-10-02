@@ -12,6 +12,7 @@ const experiences = [
     title: "AI Web Developer",
     company: "@WI Thinkers",
     period: "July 2025 – Present",
+    startDate: new Date(2025, 6, 7),
     description:
       "Build and manage production websites from development through deployment. Successfully shipped 5 production sites so far — see Production Work below.",
     skills: [
@@ -105,30 +106,54 @@ function calculateMonths(period: string) {
   return totalMonths;
 }
 
-function getPrimaryExperienceMonths(exps: typeof experiences) {
-  const validRoles = exps.filter(
+const MS_PER_YEAR = 365.25 * 24 * 60 * 60 * 1000;
+
+function calculateMonthsFromDate(start: Date, now = new Date()) {
+  let months =
+    (now.getFullYear() - start.getFullYear()) * 12 +
+    (now.getMonth() - start.getMonth());
+  if (now.getDate() < start.getDate()) months -= 1;
+  return Math.max(months, 0);
+}
+
+function getExperienceMonths(exp: (typeof experiences)[number]) {
+  return exp.startDate
+    ? calculateMonthsFromDate(exp.startDate)
+    : calculateMonths(exp.period);
+}
+
+function getPrimaryRole(exps: typeof experiences) {
+  return exps.find(
     (exp) =>
       exp.period.includes("Present") &&
       !exp.company.toLowerCase().includes("self")
   );
+}
 
-  if (validRoles.length === 0) return 0;
+function getPrimaryExperience(exps: typeof experiences) {
+  const role = getPrimaryRole(exps);
+  if (!role) return { months: 0, years: 0 };
 
-  return calculateMonths(validRoles[0].period);
+  const months = getExperienceMonths(role);
+  const years = role.startDate
+    ? Math.max(Date.now() - role.startDate.getTime(), 0) / MS_PER_YEAR
+    : months / 12;
+
+  return { months, years };
 }
 
 export default function ExperienceSection() {
   const prefersReducedMotion = useReducedMotion();
-  const totalMonths = useMemo(
-    () => getPrimaryExperienceMonths(experiences),
+  const { months: totalMonths, years: preciseYears } = useMemo(
+    () => getPrimaryExperience(experiences),
     []
   );
-  const experienceYears = Math.round((totalMonths / 12) * 10) / 10;
-  const showAsYears = totalMonths >= 12;
+  const experienceYears = Math.floor(preciseYears * 10) / 10;
+  const showAsYears = preciseYears >= 1;
 
   const timelineData = useMemo(() => {
     return experiences.map((exp) => {
-      const duration = formatDuration(calculateMonths(exp.period));
+      const duration = formatDuration(getExperienceMonths(exp));
 
       const yearMatch = exp.period.match(/\d{4}/);
       const year = yearMatch ? yearMatch[0] : exp.period.split(" ")[0];
