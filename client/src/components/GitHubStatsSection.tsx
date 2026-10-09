@@ -4,7 +4,28 @@ import { AnimatedCounter } from "./motion/AnimatedCounter";
 import { DotPattern } from "./DotPattern";
 
 const GITHUB_USER = "ganeshkantle";
-const CONTRIBUTIONS_API = `https://github-contributions-api.jogruber.de/v4/${GITHUB_USER}`;
+// Primary: our serverless proxy to GitHub GraphQL (api/github-contributions.ts).
+// Fallback: public scraper API, which times out when GitHub's contributions page is slow.
+const CONTRIBUTIONS_APIS = [
+  "/api/github-contributions",
+  `https://github-contributions-api.jogruber.de/v4/${GITHUB_USER}`,
+];
+
+async function fetchContributions(): Promise<ContributionsResponse> {
+  let lastError: unknown;
+  for (const url of CONTRIBUTIONS_APIS) {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`Stats request failed (${res.status})`);
+      const data = (await res.json()) as ContributionsResponse;
+      if (!Array.isArray(data.contributions)) throw new Error("Bad stats payload");
+      return data;
+    } catch (err) {
+      lastError = err;
+    }
+  }
+  throw lastError;
+}
 
 type ContributionDay = {
   date: string;
@@ -394,9 +415,7 @@ export default function GitHubStatsSection() {
       setError(null);
 
       try {
-        const res = await fetch(CONTRIBUTIONS_API);
-        if (!res.ok) throw new Error(`Stats request failed (${res.status})`);
-        const data = (await res.json()) as ContributionsResponse;
+        const data = await fetchContributions();
         if (cancelled) return;
         setStats(computeStreakStats(data));
       } catch {

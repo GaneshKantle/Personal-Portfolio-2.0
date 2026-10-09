@@ -1,6 +1,7 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
 import { storage } from "./storage";
+import { fetchGithubContributions } from "../shared/githubContributions";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // API routes for contact form
@@ -26,6 +27,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
         success: false, 
         message: "An error occurred while processing your request." 
       });
+    }
+  });
+
+  // Mirrors api/github-contributions.ts (Vercel) for local dev
+  app.get("/api/github-contributions", async (_req, res) => {
+    const token = process.env.GITHUB_TOKEN;
+    if (!token) {
+      return res.status(500).json({ error: "GITHUB_TOKEN is not configured" });
+    }
+    try {
+      const data = await fetchGithubContributions("GaneshKantle", token);
+      return res.json(data);
+    } catch (error) {
+      console.error("github-contributions error:", error);
+      return res.status(502).json({ error: "Failed to load contributions" });
     }
   });
 
