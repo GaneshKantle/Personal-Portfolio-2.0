@@ -26,7 +26,7 @@
 ---
 
 ## 🎯 Project Overview
-Welcome to **Personal-Portfolio-2.0**, a modern and professional solution for developers to showcase their work effortlessly. Built with TypeScript, this project offers a clean, responsive design and a suite of powerful features to help you stand out in the crowd. Ideal for developers seeking to create a polished, personal portfolio.
+Welcome to **Personal-Portfolio-2.0**, a modern and professional solution for developers to showcase their work effortlessly. Built with TypeScript, this project offers a clean, responsive design and a suite of powerful features to help you stand out in the crowd. Ideal for developers seeking to create a polished, personal portfolio
 
 - **Key Value Propositions:**
   - **Modern Design:** Sleek, professional, and responsive layout.
