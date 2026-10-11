@@ -148,7 +148,7 @@ export default function ExperienceSection() {
     () => getPrimaryExperience(experiences),
     []
   );
-  const experienceYears = Math.floor(preciseYears * 10) / 10;
+  const experienceYears = Math.round(preciseYears * 10) / 10;
   const showAsYears = preciseYears >= 1;
 
   const timelineData = useMemo(() => {
