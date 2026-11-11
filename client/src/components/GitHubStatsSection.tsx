@@ -437,7 +437,7 @@ export default function GitHubStatsSection() {
   const ghUrl = useMemo(() => {
     const ringHex = cssVarHex("--ring") ?? "#3b82f6";
     const ring = ringHex.replace("#", "");
-    return `https://ghchart.rshah.org/${ring}/${GITHUB_USER}`;
+    return `https://ghchart.rshah.org/${ring}/${GITHUB_USER}?theme=${mode}`;
   }, [mode]);
 
   return (

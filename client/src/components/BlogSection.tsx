@@ -1,7 +1,6 @@
-import React from "react";
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { useScrollAnimation } from "../hooks/useScrollAnimation";
-import { useEffect } from "react";
 import { Button } from "../components/ui/button";
 import { Badge } from "../components/ui/badge";
 

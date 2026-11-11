@@ -1,4 +1,3 @@
-import React from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
 export interface SpecimenProject {

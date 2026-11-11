@@ -67,10 +67,7 @@ export default function HeroSection() {
   const opacity = useTransform(scrollYProgress, [0, 0.72], [1, 0]);
 
   useEffect(() => {
-    if (prefersReducedMotion) {
-      setDisplay(roles[roleIndex]);
-      return;
-    }
+    if (prefersReducedMotion) return;
 
     const full = roles[roleIndex];
     const typeSpeed = isDeleting ? 36 : 70;
@@ -327,8 +324,8 @@ export default function HeroSection() {
               onClick={finishPrompt}
             />
 
-            <motion.div
-              role="dialog"
+            <motion.dialog
+              open
               aria-modal="true"
               aria-labelledby="hero-face-prompt-title"
               className="relative z-10 w-full max-w-[17.5rem] sm:max-w-[19rem]"
@@ -489,7 +486,7 @@ export default function HeroSection() {
                   transition={{ duration: 0.75, delay: 0.15, ease: easeOutExpo }}
                 />
               </div>
-            </motion.div>
+            </motion.dialog>
           </motion.div>
         )}
       </AnimatePresence>
@@ -510,8 +507,8 @@ export default function HeroSection() {
               aria-label="Close portrait"
               onClick={closePortrait}
             />
-            <motion.div
-              role="dialog"
+            <motion.dialog
+              open
               aria-modal="true"
               aria-label="Portrait"
               className="relative z-10 w-full max-w-[min(100%,22rem)] sm:max-w-[24rem]"
@@ -591,7 +588,7 @@ export default function HeroSection() {
               >
                 Bangalore · Remote-ready
               </motion.p>
-            </motion.div>
+            </motion.dialog>
           </motion.div>
         )}
       </AnimatePresence>

@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { scrollToElement, RESUME_URL } from "../lib/utils";
 import { useLocation } from "wouter";
@@ -24,10 +24,10 @@ export default function Navbar() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [location, setLocation] = useLocation();
   const prefersReducedMotion = useReducedMotion();
-  const previousLocation = useRef(location);
+  const [menuLocation, setMenuLocation] = useState(location);
 
-  if (previousLocation.current !== location) {
-    previousLocation.current = location;
+  if (menuLocation !== location) {
+    setMenuLocation(location);
     setMenuOpen(false);
   }
 
@@ -51,12 +51,7 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
-    if (menuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "unset";
-      setHoveredIndex(null);
-    }
+    document.body.style.overflow = menuOpen ? "hidden" : "unset";
 
     return () => {
       document.body.style.overflow = "unset";
@@ -72,7 +67,10 @@ export default function Navbar() {
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [menuOpen]);
 
-  const toggleMenu = () => setMenuOpen((open) => !open);
+  const toggleMenu = () => {
+    setHoveredIndex(null);
+    setMenuOpen((open) => !open);
+  };
 
   const handleNavClick = (href: string, isHash: boolean) => {
     if (isHash && isHomePage) {
@@ -216,11 +214,12 @@ export default function Navbar() {
 
       <AnimatePresence>
         {menuOpen && (
-          <motion.div
-            className="fixed inset-0 z-[60] flex flex-col overflow-hidden bg-background"
-            role="dialog"
+          <motion.dialog
+            open
+            className="fixed inset-0 z-[60] m-0 flex h-full max-h-none w-full max-w-none flex-col overflow-hidden bg-background p-0"
             aria-modal="true"
             aria-label="Site navigation"
+            onMouseLeave={() => setHoveredIndex(null)}
             initial={
               prefersReducedMotion
                 ? { opacity: 0 }
@@ -294,7 +293,6 @@ export default function Navbar() {
               <nav
                 className="flex min-h-0 flex-1 flex-col justify-center overflow-hidden"
                 aria-label="Primary"
-                onMouseLeave={() => setHoveredIndex(null)}
               >
                 <ul className="divide-y divide-border/60 border-y border-border/60">
                   {navLinks.map((link, index) => {
@@ -448,7 +446,7 @@ export default function Navbar() {
                 </div>
               </motion.div>
             </div>
-          </motion.div>
+          </motion.dialog>
         )}
       </AnimatePresence>
     </>
