@@ -67,12 +67,10 @@ function WindowChrome({
   site,
   index,
   featured,
-  showLiveBadge = false,
 }: {
   site: ProductionSite;
   index: number;
   featured: boolean;
-  showLiveBadge?: boolean;
 }) {
   const host = getHost(site.url);
 
@@ -151,7 +149,7 @@ function StaticLiveWindow({
       rel="noopener noreferrer"
       className={windowClassName(featured, false)}
     >
-      <WindowChrome site={site} index={index} featured={featured} showLiveBadge />
+      <WindowChrome site={site} index={index} featured={featured} />
     </a>
   );
 }
@@ -194,7 +192,6 @@ function AnimatedLiveWindow({
         site={site}
         index={index}
         featured={featured}
-        showLiveBadge={showLive}
       />
     </motion.a>
   );

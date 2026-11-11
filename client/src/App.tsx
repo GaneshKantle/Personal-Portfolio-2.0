@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Switch, Route, useLocation } from "wouter";
+import React from "react";
+import { Switch, Route } from "wouter";
 import { Toaster } from "./components/ui/toaster";
 import { TooltipProvider } from "./components/ui/tooltip";
 import { SpeedInsights } from "@vercel/speed-insights/react"

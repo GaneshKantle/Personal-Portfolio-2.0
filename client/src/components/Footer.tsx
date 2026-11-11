@@ -11,6 +11,8 @@ const socialLinks = [
   { icon: "fab fa-instagram", url: "https://www.instagram.com/ganeshkantle", label: "Instagram" },
 ];
 
+const COPYRIGHT_YEAR = new Date().getFullYear();
+
 const footerNav = [
   { name: "About", id: "about" },
   { name: "Projects", id: "projects" },
@@ -89,7 +91,7 @@ export default function Footer() {
 
         {/* Copyright bar */}
         <div className="flex flex-col items-center justify-between gap-3 border-t border-border py-5 text-xs text-muted-foreground sm:flex-row sm:py-6 sm:text-sm">
-          <p>&copy; {new Date().getFullYear()} Ganesh Kantle. All rights reserved.</p>
+          <p>&copy; {COPYRIGHT_YEAR} Ganesh Kantle. All rights reserved.</p>
           <p className="text-center sm:text-right">
             AI Web Developereloper · Web3 Explorer · Tech Writer
           </p>

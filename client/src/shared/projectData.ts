@@ -5,7 +5,6 @@ import readItTwin from "../img/readittwin.png";
 import parallelYou from "../img/parallelyou.png";
 import liquorHub from "../img/liquorhub.jpeg";
 import Project1 from "../img/project1.png";
-import Project2 from "../img/project2.png";
 import ammasManeTindi from "../img/ammas-mane-tindi.png";
 
 // Unified project data structure with both basic and detailed information

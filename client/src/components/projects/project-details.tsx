@@ -6,34 +6,6 @@ import Footer from "../Footer";
 import { getProjectById } from "../../shared/projectData";
 import { DotPattern } from "../DotPattern";
 
-// Define the project type
-interface Project {
-  id: number;
-  title: string;
-  tagline: string;
-  description: string;
-  longDescription: string;
-  technologies: string[];
-  githubUrl: string;
-  liveUrl: string;
-  demoUrl?: string;
-  documentationUrl?: string;
-  features: string[];
-  challenges: string[];
-  learnings: string[];
-  screenshots: Array<{ src: string; alt: string; caption: string }>;
-  architecture: string;
-  deployment: string;
-  status: string;
-  developmentTime: string;
-  teamSize: string;
-  impact: string;
-  image: string;
-  category: string;
-  difficulty: string;
-}
-
-
 export default function ProjectDetails() {
   const [, params] = useRoute("/project/:id");
   const [, setLocation] = useLocation();

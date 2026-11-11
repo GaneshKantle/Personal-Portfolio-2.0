@@ -41,12 +41,7 @@ export function AnimatedCounter({
   );
 
   useEffect(() => {
-    if (!inView) return;
-
-    if (prefersReducedMotion) {
-      setDisplay(formatValue(value, decimals));
-      return;
-    }
+    if (!inView || prefersReducedMotion) return;
 
     const controls = animate(0, value, {
       duration,
@@ -63,6 +58,7 @@ export function AnimatedCounter({
     return () => controls.stop();
   }, [inView, value, duration, decimals, delay, prefersReducedMotion]);
 
+  const shown = prefersReducedMotion ? formatValue(value, decimals) : display;
   const label = `${prefix}${formatValue(value, decimals)}${suffix}`;
 
   return (
@@ -72,7 +68,7 @@ export function AnimatedCounter({
       aria-label={label}
     >
       {prefix}
-      {display}
+      {shown}
       {suffix}
     </span>
   );

@@ -76,25 +76,22 @@ export function ProjectSpecimenCard({
         }
       >
         {/* FRONT */}
-        <article
-          role="button"
-          tabIndex={flipped ? -1 : 0}
-          aria-pressed={flipped}
-          aria-hidden={flipped}
-          aria-label={`${project.title}. Click to flip for details.`}
-          onClick={onFlip}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              onFlip();
-            }
-          }}
+        <div
           style={{
             ...faceStyle,
             transform: "rotateY(0deg) translateZ(1px)",
             pointerEvents: flipped ? "none" : "auto",
           }}
-          className="group absolute inset-0 flex cursor-pointer flex-col overflow-hidden rounded-none border border-foreground/15 bg-card shadow-[0_18px_50px_-28px_rgba(0,0,0,0.45)] transition-[border-color,box-shadow] duration-300 ease-out hover:border-foreground/40 hover:shadow-[0_28px_60px_-30px_rgba(0,0,0,0.55)]"
+          className="group absolute inset-0 flex flex-col overflow-hidden rounded-none border border-foreground/15 bg-card shadow-[0_18px_50px_-28px_rgba(0,0,0,0.45)] transition-[border-color,box-shadow] duration-300 ease-out hover:border-foreground/40 hover:shadow-[0_28px_60px_-30px_rgba(0,0,0,0.45)]"
+        >
+        <button
+          type="button"
+          tabIndex={flipped ? -1 : 0}
+          aria-pressed={flipped}
+          aria-hidden={flipped}
+          aria-label={`${project.title}. Click to flip for details.`}
+          onClick={onFlip}
+          className="flex min-h-0 w-full flex-1 cursor-pointer flex-col border-0 bg-transparent p-0 text-left font-inherit text-inherit"
         >
           <span
             aria-hidden
@@ -137,7 +134,7 @@ export function ProjectSpecimenCard({
             </div>
           </div>
 
-          <div className="relative z-10 flex min-h-0 flex-1 flex-col px-4 pb-4 pt-3 sm:px-5">
+          <div className="relative z-10 flex min-h-0 flex-1 flex-col px-4 pt-3 sm:px-5">
             <div className="mb-1.5 flex items-center justify-between gap-3 font-mono text-[10px] uppercase tracking-[0.16em] text-muted-foreground">
               <span className="truncate">
                 {metaBits.join(" / ") || "Archive"}
@@ -160,12 +157,9 @@ export function ProjectSpecimenCard({
                   : ""}
               </p>
             </div>
-
-            <div
-              className="mt-3 flex shrink-0 items-center gap-2"
-              onClick={(e) => e.stopPropagation()}
-              onKeyDown={(e) => e.stopPropagation()}
-            >
+          </div>
+        </button>
+            <div className="flex shrink-0 items-center gap-2 px-4 pb-4 sm:px-5">
               <a
                 href={project.liveUrl}
                 target="_blank"
@@ -185,28 +179,21 @@ export function ProjectSpecimenCard({
                 <i className="fab fa-github" />
               </a>
             </div>
-          </div>
-        </article>
+        </div>
 
         {/* BACK — clear story plate: title + simple sentences */}
-        <article
-          role="button"
+        <button
+          type="button"
           tabIndex={flipped ? 0 : -1}
           aria-hidden={!flipped}
           aria-label={`${project.title} details. Click to flip back.`}
           onClick={onFlip}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              e.preventDefault();
-              onFlip();
-            }
-          }}
           style={{
             ...faceStyle,
             transform: "rotateY(180deg) translateZ(1px)",
             pointerEvents: flipped ? "auto" : "none",
           }}
-          className="absolute inset-0 flex cursor-pointer flex-col overflow-hidden rounded-none border border-foreground/20 bg-card shadow-[0_18px_50px_-28px_rgba(0,0,0,0.45)]"
+          className="absolute inset-0 flex cursor-pointer flex-col overflow-hidden rounded-none border border-foreground/20 bg-card p-0 text-left font-inherit text-inherit shadow-[0_18px_50px_-28px_rgba(0,0,0,0.45)]"
         >
           <div
             aria-hidden
@@ -260,7 +247,7 @@ export function ProjectSpecimenCard({
               Tap to flip back
             </p>
           </div>
-        </article>
+        </button>
       </motion.div>
     </div>
   );

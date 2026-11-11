@@ -11,7 +11,7 @@ export function log(message: string) {
 }
 
 // Setup Vite in development mode
-export async function setupVite(app: Express, server: Server) {
+export async function setupVite(app: Express, _server: Server) {
   try {
     // Create Vite server in middleware mode with config file
     // This ensures path aliases from vite.config.ts are properly resolved

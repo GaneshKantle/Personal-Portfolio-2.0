@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { scrollToElement, RESUME_URL } from "../lib/utils";
 import { useLocation } from "wouter";
@@ -24,6 +24,12 @@ export default function Navbar() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [location, setLocation] = useLocation();
   const prefersReducedMotion = useReducedMotion();
+  const previousLocation = useRef(location);
+
+  if (previousLocation.current !== location) {
+    previousLocation.current = location;
+    setMenuOpen(false);
+  }
 
   const isHomePage = location === "/";
 
@@ -43,10 +49,6 @@ export default function Navbar() {
     handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [location]);
 
   useEffect(() => {
     if (menuOpen) {
@@ -125,8 +127,9 @@ export default function Navbar() {
         <DotPattern />
         <div className="page-shell relative z-10">
           <div className="flex h-14 items-center sm:h-16 lg:h-20">
-            <div
-              className={`group flex min-w-0 cursor-pointer items-center transition-all duration-300 hover:scale-105 ${
+            <button
+              type="button"
+              className={`group flex min-w-0 cursor-pointer items-center border-0 bg-transparent p-0 text-left transition-all duration-300 hover:scale-105 ${
                 isNavigating ? "opacity-70" : ""
               }`}
               onClick={handleLogoClick}
@@ -143,7 +146,7 @@ export default function Navbar() {
               {isNavigating && (
                 <div className="ml-2 h-3 w-3 shrink-0 animate-spin rounded-full border-2 border-primary border-t-transparent sm:h-4 sm:w-4" />
               )}
-            </div>
+            </button>
 
             <div className="ml-auto flex items-center gap-2 sm:gap-3">
               <ThemeToggle />
