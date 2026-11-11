@@ -419,7 +419,7 @@ export default function HeroSection() {
               >
                 Open
               </Button>
-            </motion.div>
+            </motion.dialog>
           </motion.div>
         )}
       </AnimatePresence>
@@ -486,7 +486,7 @@ export default function HeroSection() {
                   transition={{ duration: 0.75, delay: 0.15, ease: easeOutExpo }}
                 />
               </div>
-            </motion.dialog>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>
