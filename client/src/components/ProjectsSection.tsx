@@ -16,6 +16,23 @@ import {
 
 const projects = getAllProjects();
 
+function SpecimensHeading({ lede }: { lede: string }) {
+  return (
+    <div className="mb-2 text-center sm:mb-3 md:mb-4">
+      <p className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground sm:mb-2 sm:text-[11px]">
+        Selected work
+      </p>
+      <h2 className="text-title mb-1.5 font-semibold tracking-tight text-foreground sm:mb-2">
+        Project <span className="text-primary">Specimens</span>
+      </h2>
+      <div className="mx-auto mb-1.5 h-1 w-16 rounded-full bg-primary sm:mb-2 sm:w-20" />
+      <p className="mx-auto max-w-2xl px-2 text-sm text-muted-foreground sm:text-base">
+        {lede}
+      </p>
+    </div>
+  );
+}
+
 /** Vertical scroll distance per 1px of horizontal travel — slows the gallery. */
 const SCROLL_PX_PER_TRAVEL = 2.4;
 /** Hold first cards still at the start so momentum from prior sections doesn't skip them. */
@@ -41,18 +58,7 @@ function ReducedMotionGallery() {
     <section id="projects" className="section-y relative overflow-hidden bg-background">
       <DotPattern />
       <div className="page-shell relative z-10">
-        <div className="mb-8 text-center">
-          <p className="mb-2 font-mono text-[11px] uppercase tracking-[0.22em] text-muted-foreground">
-            Selected work
-          </p>
-          <h2 className="text-title mb-3 font-semibold tracking-tight text-foreground">
-            Project <span className="text-primary">Specimens</span>
-          </h2>
-          <div className="mx-auto mb-4 h-1 w-16 rounded-full bg-primary sm:w-20" />
-          <p className="mx-auto max-w-2xl text-sm text-muted-foreground sm:text-base">
-            Swipe the archive — click a plate to flip it open.
-          </p>
-        </div>
+        <SpecimensHeading lede="Swipe the archive — click a plate to flip it open." />
         <div className="-mx-1 flex gap-4 overflow-x-auto px-1 pb-4 snap-x snap-mandatory sm:gap-5">
           {projects.map((project, index) => (
             <div key={project.id} className="snap-start">
@@ -166,19 +172,7 @@ export default function ProjectsSection() {
         >
           <DotPattern />
           <div className="page-shell relative z-10 shrink-0 pt-14 sm:pt-16 md:pt-20">
-            <div className="mb-2 text-center sm:mb-3 md:mb-4">
-              <p className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-muted-foreground sm:mb-2 sm:text-[11px]">
-                Selected work
-              </p>
-              <h2 className="text-title mb-1.5 font-semibold tracking-tight text-foreground sm:mb-2">
-                Project <span className="text-primary">Specimens</span>
-              </h2>
-              <div className="mx-auto mb-1.5 h-1 w-16 rounded-full bg-primary sm:mb-2 sm:w-20" />
-              <p className="mx-auto max-w-2xl px-2 text-sm text-muted-foreground sm:text-base">
-                Keep scrolling — the archive slides sideways. Click a plate to
-                flip it open.
-              </p>
-            </div>
+            <SpecimensHeading lede="Keep scrolling — the archive slides sideways. Click a plate to flip it open." />
 
             <div className="mx-auto mb-3 h-1 max-w-[10rem] overflow-hidden rounded-full bg-muted sm:mb-4 sm:max-w-xs md:mb-5">
               <motion.div

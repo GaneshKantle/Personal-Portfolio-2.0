@@ -197,6 +197,35 @@ function AnimatedLiveWindow({
   );
 }
 
+function LiveWindows({
+  progress,
+  hovered,
+  onHover,
+  showLive,
+}: {
+  progress: MotionValue<number>;
+  hovered: number | null;
+  onHover: (index: number | null) => void;
+  showLive: boolean;
+}) {
+  return (
+    <>
+      {productionSites.map((site, i) => (
+        <div key={site.url} className="min-h-0">
+          <AnimatedLiveWindow
+            site={site}
+            index={i}
+            progress={progress}
+            dimmed={hovered !== null && hovered !== i}
+            onHover={onHover}
+            showLive={showLive}
+          />
+        </div>
+      ))}
+    </>
+  );
+}
+
 function ProductionHeading({
   compact = false,
   subtitle,
@@ -499,18 +528,12 @@ function CompileStage({ progress }: { progress: MotionValue<number> }) {
             className="grid h-full min-h-0 min-w-0 flex-1 grid-cols-3 grid-rows-3 gap-2.5 lg:gap-3"
             style={{ opacity: windowsOpacity }}
           >
-            {productionSites.map((site, i) => (
-              <div key={site.url} className="min-h-0">
-                <AnimatedLiveWindow
-                  site={site}
-                  index={i}
-                  progress={progress}
-                  dimmed={hovered !== null && hovered !== i}
-                  onHover={setHovered}
-                  showLive={showLive}
-                />
-              </div>
-            ))}
+            <LiveWindows
+              progress={progress}
+              hovered={hovered}
+              onHover={setHovered}
+              showLive={showLive}
+            />
           </motion.div>
         </div>
       ) : (
@@ -526,18 +549,12 @@ function CompileStage({ progress }: { progress: MotionValue<number> }) {
             className="grid min-h-0 flex-1 grid-cols-2 grid-rows-5 gap-2 sm:grid-cols-3 sm:grid-rows-3"
             style={{ opacity: windowsOpacity }}
           >
-            {productionSites.map((site, i) => (
-              <div key={site.url} className="min-h-0">
-                <AnimatedLiveWindow
-                  site={site}
-                  index={i}
-                  progress={progress}
-                  dimmed={hovered !== null && hovered !== i}
-                  onHover={setHovered}
-                  showLive={showLive}
-                />
-              </div>
-            ))}
+            <LiveWindows
+              progress={progress}
+              hovered={hovered}
+              onHover={setHovered}
+              showLive={showLive}
+            />
           </motion.div>
         </div>
       )}

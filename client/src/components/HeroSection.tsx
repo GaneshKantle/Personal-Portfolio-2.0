@@ -12,6 +12,7 @@ import { DotPattern } from "./DotPattern";
 import { scrollToElement, RESUME_URL } from "../lib/utils";
 import { easeOutExpo } from "../lib/motion";
 import profilePic from "../img/profile.jpg";
+import { PortraitDock, SweepLine } from "./hero/PortraitDock";
 
 const roles = [
   "AI Web Developer",
@@ -383,19 +384,11 @@ export default function HeroSection() {
                     }}
                     aria-hidden="true"
                   />
-                  <motion.div
+                  <SweepLine
                     className="absolute inset-x-0 h-px bg-primary/50"
-                    animate={
-                      prefersReducedMotion
-                        ? undefined
-                        : { top: ["8%", "92%", "8%"] }
-                    }
-                    transition={{
-                      duration: 3.2,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                    }}
-                    aria-hidden="true"
+                    reduced={prefersReducedMotion}
+                    duration={3.2}
+                    travel={["8%", "92%", "8%"]}
                   />
 
                   {/* Seal band */}
@@ -593,109 +586,11 @@ export default function HeroSection() {
         )}
       </AnimatePresence>
 
-      {/* Bottom recovery — portrait ticket dock */}
       <AnimatePresence>
         {dockVisible && !photoOpen && revealPhase !== "wipe" && (
-          <motion.div
-            className="pointer-events-none fixed inset-x-0 bottom-0 z-40 flex justify-center px-4 pb-[max(1.1rem,env(safe-area-inset-bottom))]"
-            initial={prefersReducedMotion ? false : { y: 36, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 18, opacity: 0 }}
-            transition={{ duration: 0.5, ease: easeOutExpo }}
-          >
-            <motion.button
-              type="button"
-              onClick={openPortrait}
-              className="pointer-events-auto group relative flex w-full max-w-[18.5rem] items-stretch overflow-hidden border border-foreground/15 bg-card shadow-[0_18px_50px_-28px_rgba(0,0,0,0.55)]"
-              whileHover={prefersReducedMotion ? undefined : { y: -4 }}
-              whileTap={prefersReducedMotion ? undefined : { scale: 0.985 }}
-              aria-label="Show photo"
-            >
-              {/* Corner marks */}
-              <span
-                className="pointer-events-none absolute left-1.5 top-1.5 h-2 w-2 border-l border-t border-foreground/40"
-                aria-hidden="true"
-              />
-              <span
-                className="pointer-events-none absolute right-1.5 top-1.5 h-2 w-2 border-r border-t border-foreground/40"
-                aria-hidden="true"
-              />
-              <span
-                className="pointer-events-none absolute bottom-1.5 left-1.5 h-2 w-2 border-b border-l border-foreground/40"
-                aria-hidden="true"
-              />
-              <span
-                className="pointer-events-none absolute bottom-1.5 right-1.5 h-2 w-2 border-b border-r border-foreground/40"
-                aria-hidden="true"
-              />
-
-              {/* Film strip thumb */}
-              <span className="relative flex w-14 shrink-0 flex-col justify-between border-r border-dashed border-border bg-muted py-2">
-                {Array.from({ length: 4 }).map((_, i) => (
-                  <span
-                    key={i}
-                    className="mx-auto block h-1.5 w-2.5 rounded-[1px] bg-background/90"
-                    aria-hidden="true"
-                  />
-                ))}
-                <span
-                  className="absolute inset-2 border border-border/70 bg-background/40"
-                  aria-hidden="true"
-                />
-                <motion.span
-                  className="absolute inset-x-2 h-px bg-foreground/40"
-                  animate={
-                    prefersReducedMotion
-                      ? undefined
-                      : { top: ["18%", "82%", "18%"] }
-                  }
-                  transition={{
-                    duration: 2.6,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  aria-hidden="true"
-                />
-              </span>
-
-              <span className="flex min-w-0 flex-1 flex-col justify-center px-3.5 py-3 text-left">
-                <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-muted-foreground">
-                  Portrait · sealed
-                </span>
-                <span className="mt-1 text-sm font-semibold tracking-tight text-foreground">
-                  Wanna see how I look?
-                </span>
-              </span>
-
-              <span className="flex shrink-0 items-center border-l border-border bg-foreground px-3.5 text-background transition-opacity group-hover:opacity-90">
-                <span className="flex flex-col items-center gap-1">
-                  <i className="fas fa-arrow-up-right text-[10px]" aria-hidden="true" />
-                  <span className="font-mono text-[9px] uppercase tracking-[0.18em]">
-                    Open
-                  </span>
-                </span>
-              </span>
-            </motion.button>
-          </motion.div>
+          <PortraitDock reduced={prefersReducedMotion} onOpen={openPortrait} />
         )}
       </AnimatePresence>
-
-      <style>{`
-        @keyframes hero-caret {
-          0%, 100% { opacity: 1; }
-          50% { opacity: 0; }
-        }
-        @keyframes hero-glitch {
-          0% { transform: translate(0); }
-          25% { transform: translate(-2px, 1px); }
-          50% { transform: translate(2px, -1px); }
-          75% { transform: translate(-1px, 0); }
-          100% { transform: translate(0); }
-        }
-        .hero-role-glitch {
-          animation: hero-glitch 0.18s steps(2) 1;
-        }
-      `}</style>
     </section>
   );
 }

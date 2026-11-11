@@ -6,6 +6,39 @@ import Footer from "../Footer";
 import { getProjectById } from "../../shared/projectData";
 import { DotPattern } from "../DotPattern";
 
+function ResourceLink({
+  href,
+  icon,
+  title,
+  text,
+  delay,
+}: {
+  href: string;
+  icon: string;
+  title: string;
+  text: string;
+  delay: number;
+}) {
+  return (
+    <motion.a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group p-6 bg-card rounded-2xl border border-border hover:border-primary/40 transition-all duration-300 ease-in-out hover:shadow-md"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, delay }}
+    >
+      <div className="text-center">
+        <i className={`${icon} text-3xl text-primary mb-4 group-hover:scale-110 transition-transform duration-200`} />
+        <h3 className="text-xl font-semibold mb-2 text-foreground">{title}</h3>
+        <p className="text-muted-foreground text-sm">{text}</p>
+      </div>
+    </motion.a>
+  );
+}
+
 export default function ProjectDetails() {
   const [, params] = useRoute("/project/:id");
   const [, setLocation] = useLocation();
@@ -318,39 +351,20 @@ export default function ProjectDetails() {
               </motion.a>
             )}
 
-            <motion.a
+            <ResourceLink
               href={project.githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group p-6 bg-card rounded-2xl border border-border hover:border-primary/40 transition-all duration-300 ease-in-out hover:shadow-md"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-            >
-              <div className="text-center">
-                <i className="fab fa-github text-3xl text-primary mb-4 group-hover:scale-110 transition-transform duration-200"></i>
-                <h3 className="text-xl font-semibold mb-2 text-foreground">Source Code</h3>
-                <p className="text-muted-foreground text-sm">Browse the complete source code and contribute</p>
-              </div>
-            </motion.a>
-
-            <motion.a
+              icon="fab fa-github"
+              title="Source Code"
+              text="Browse the complete source code and contribute"
+              delay={0.1}
+            />
+            <ResourceLink
               href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group p-6 bg-card rounded-2xl border border-border hover:border-primary/40 transition-all duration-300 ease-in-out hover:shadow-md"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-            >
-              <div className="text-center">
-                <i className="fas fa-external-link-alt text-3xl text-primary mb-4 group-hover:scale-110 transition-transform duration-200"></i>
-                <h3 className="text-xl font-semibold mb-2 text-foreground">Live Demo</h3>
-                <p className="text-muted-foreground text-sm">Experience the project in action</p>
-              </div>
-            </motion.a>
+              icon="fas fa-external-link-alt"
+              title="Live Demo"
+              text="Experience the project in action"
+              delay={0.2}
+            />
           </div>
         </div>
       </section>

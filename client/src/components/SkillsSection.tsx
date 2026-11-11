@@ -102,6 +102,44 @@ function TechIcon({ tech }: { tech: TechItem }) {
   );
 }
 
+function MarqueeRow({
+  items,
+  reverse,
+  paused,
+  onPause,
+}: {
+  items: TechItem[];
+  reverse?: boolean;
+  paused: boolean;
+  onPause: (paused: boolean) => void;
+}) {
+  return (
+    <div className="relative w-full overflow-hidden">
+      <div
+        className={`marquee-row${reverse ? " reverse" : ""}${paused ? " paused" : ""}`}
+        onMouseEnter={() => onPause(true)}
+        onMouseLeave={() => onPause(false)}
+      >
+        <div className="marquee-track">
+          {[...items, ...items].map((tech, index) => (
+            <div
+              key={tech.name + index}
+              className="marquee-icon mx-2 flex cursor-pointer flex-col items-center sm:mx-4"
+            >
+              <div className="marquee-icon-inner flex items-center justify-center rounded-full border border-border bg-card p-3 shadow-sm transition-all duration-300 ease-in-out hover:scale-[1.02] hover:border-primary hover:shadow-md sm:p-4">
+                <TechIcon tech={tech} />
+              </div>
+              <div className="mt-1 text-center text-xs font-medium text-muted-foreground sm:mt-2 sm:text-sm">
+                {tech.name}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function SkillPlate({
   name,
   percentage,
@@ -244,53 +282,8 @@ export default function SkillsSection() {
             </motion.div>
 
             <div className="w-full space-y-6 overflow-x-clip sm:space-y-8">
-              <div className="relative w-full overflow-hidden">
-                <div
-                  className={`marquee-row reverse${marqueePaused ? " paused" : ""}`}
-                  onMouseEnter={() => setIsPaused(true)}
-                  onMouseLeave={() => setIsPaused(false)}
-                >
-                  <div className="marquee-track">
-                    {[...row1, ...row1].map((tech, index) => (
-                      <div
-                        key={tech.name + index}
-                        className="marquee-icon mx-2 flex cursor-pointer flex-col items-center sm:mx-4"
-                      >
-                        <div className="marquee-icon-inner flex items-center justify-center rounded-full border border-border bg-card p-3 shadow-sm transition-all duration-300 ease-in-out hover:scale-[1.02] hover:border-primary hover:shadow-md sm:p-4">
-                          <TechIcon tech={tech} />
-                        </div>
-                        <div className="mt-1 text-center text-xs font-medium text-muted-foreground sm:mt-2 sm:text-sm">
-                          {tech.name}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="relative w-full overflow-hidden">
-                <div
-                  className={`marquee-row${marqueePaused ? " paused" : ""}`}
-                  onMouseEnter={() => setIsPaused(true)}
-                  onMouseLeave={() => setIsPaused(false)}
-                >
-                  <div className="marquee-track">
-                    {[...row2, ...row2].map((tech, index) => (
-                      <div
-                        key={tech.name + index}
-                        className="marquee-icon mx-2 flex cursor-pointer flex-col items-center sm:mx-4"
-                      >
-                        <div className="marquee-icon-inner flex items-center justify-center rounded-full border border-border bg-card p-3 shadow-sm transition-all duration-300 ease-in-out hover:scale-[1.02] hover:border-primary hover:shadow-md sm:p-4">
-                          <TechIcon tech={tech} />
-                        </div>
-                        <div className="mt-1 text-center text-xs font-medium text-muted-foreground sm:mt-2 sm:text-sm">
-                          {tech.name}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
+              <MarqueeRow items={row1} reverse paused={marqueePaused} onPause={setIsPaused} />
+              <MarqueeRow items={row2} paused={marqueePaused} onPause={setIsPaused} />
             </div>
           </div>
         </PageShell>

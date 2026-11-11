@@ -26,15 +26,14 @@ export default function ContactSection() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const requireField = (value: string, title: string, description: string) => {
+    if (value.trim()) return true;
+    toast({ title, description, variant: "destructive" });
+    return false;
+  };
+
   const validateEmailForm = () => {
-    if (!formData.name.trim()) {
-      toast({
-        title: "Name is required",
-        description: "Please enter your name",
-        variant: "destructive",
-      });
-      return false;
-    }
+    if (!requireField(formData.name, "Name is required", "Please enter your name")) return false;
     if (!formData.email.trim() || !isValidEmail(formData.email)) {
       toast({
         title: "Valid email is required",
@@ -43,81 +42,52 @@ export default function ContactSection() {
       });
       return false;
     }
-    if (!formData.message.trim()) {
-      toast({
-        title: "Message is required",
-        description: "Please enter your message",
-        variant: "destructive",
-      });
-      return false;
-    }
-    return true;
+    return requireField(formData.message, "Message is required", "Please enter your message");
   };
 
-  const validateWhatsAppForm = () => {
-    if (!formData.name.trim()) {
-      toast({
-        title: "Name is required",
-        description: "Please enter your name",
-        variant: "destructive",
-      });
-      return false;
-    }
-    if (!formData.message.trim()) {
-      toast({
-        title: "Message is required",
-        description: "Please enter your message",
-        variant: "destructive",
-      });
-      return false;
-    }
-    return true;
-  };
+  const validateWhatsAppForm = () =>
+    requireField(formData.name, "Name is required", "Please enter your name") &&
+    requireField(formData.message, "Message is required", "Please enter your message");
 
-  const handleSendEmail = async () => {
-    if (!validateEmailForm()) return;
+  const openChannel = (ready: boolean, open: () => void, success: string, failure: string) => {
+    if (!ready) return;
     setIsSubmitting(true);
     try {
-      const mailtoLink = `mailto:${EMAIL}?subject=Message from ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(formData.message)}%0A%0AFrom: ${encodeURIComponent(formData.name)}%0AEmail: ${encodeURIComponent(formData.email)}`;
-      window.open(mailtoLink);
-      toast({
-        title: "Email client opened",
-        description: "Your message has been prepared in your default email client.",
-      });
+      open();
+      toast({ title: success, description: "Your message has been prepared." });
     } catch {
-      toast({
-        title: "Error sending email",
-        description: "There was an error preparing your email. Please try again.",
-        variant: "destructive",
-      });
+      toast({ title: failure, description: "Please try again.", variant: "destructive" });
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleSendEmail = () => {
+    openChannel(
+      validateEmailForm(),
+      () => {
+        const mailtoLink = `mailto:${EMAIL}?subject=Message from ${encodeURIComponent(formData.name)}&body=${encodeURIComponent(formData.message)}%0A%0AFrom: ${encodeURIComponent(formData.name)}%0AEmail: ${encodeURIComponent(formData.email)}`;
+        window.open(mailtoLink);
+      },
+      "Email client opened",
+      "Error sending email"
+    );
   };
 
   const handleSendWhatsApp = () => {
-    if (!validateWhatsAppForm()) return;
-    setIsSubmitting(true);
-    try {
-      const whatsappText = `Hi, I'm ${formData.name}. ${formData.message}`;
-      window.open(
-        `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(whatsappText)}`,
-        "_blank",
-        "noopener,noreferrer"
-      );
-      toast({
-        title: "WhatsApp opened",
-        description: "Your message has been prepared in WhatsApp.",
-      });
-    } catch {
-      toast({
-        title: "Error opening WhatsApp",
-        description: "There was an error preparing your WhatsApp message. Please try again.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsSubmitting(false);
-    }
+    openChannel(
+      validateWhatsAppForm(),
+      () => {
+        const whatsappText = `Hi, I'm ${formData.name}. ${formData.message}`;
+        window.open(
+          `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(whatsappText)}`,
+          "_blank",
+          "noopener,noreferrer"
+        );
+      },
+      "WhatsApp opened",
+      "Error opening WhatsApp"
+    );
   };
 
   const fieldShell = (name: string) =>
