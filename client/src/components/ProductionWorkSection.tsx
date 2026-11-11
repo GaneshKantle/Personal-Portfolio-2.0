@@ -161,7 +161,6 @@ function AnimatedLiveWindow({
   progress,
   dimmed = false,
   onHover,
-  showLive,
 }: {
   site: ProductionSite;
   index: number;
@@ -169,7 +168,6 @@ function AnimatedLiveWindow({
   progress: MotionValue<number>;
   dimmed?: boolean;
   onHover?: (index: number | null) => void;
-  showLive: boolean;
 }) {
   const stagger = 0.26 / Math.max(productionSites.length, 1);
   const spawnStart = 0.52 + index * stagger;
@@ -201,15 +199,17 @@ function LiveWindows({
   progress,
   hovered,
   onHover,
-  showLive,
+  className,
+  style,
 }: {
   progress: MotionValue<number>;
   hovered: number | null;
   onHover: (index: number | null) => void;
-  showLive: boolean;
+  className: string;
+  style: { opacity: MotionValue<number> };
 }) {
   return (
-    <>
+    <motion.div className={className} style={style}>
       {productionSites.map((site, i) => (
         <div key={site.url} className="min-h-0">
           <AnimatedLiveWindow
@@ -218,11 +218,10 @@ function LiveWindows({
             progress={progress}
             dimmed={hovered !== null && hovered !== i}
             onHover={onHover}
-            showLive={showLive}
           />
         </div>
       ))}
-    </>
+    </motion.div>
   );
 }
 
@@ -486,7 +485,6 @@ function useIsMdUp() {
 
 function CompileStage({ progress }: { progress: MotionValue<number> }) {
   const [hovered, setHovered] = useState<number | null>(null);
-  const [showLive, setShowLive] = useState(false);
   const isMd = useIsMdUp();
 
   const progressWidth = useTransform(progress, [0, 1], ["0%", "100%"]);
@@ -496,11 +494,6 @@ function CompileStage({ progress }: { progress: MotionValue<number> }) {
     [0, 0.06, 0.48, 0.58],
     [0, 1, 1, 0]
   );
-
-  useMotionValueEvent(progress, "change", (v) => {
-    const next = v >= 0.82;
-    setShowLive((prev) => (prev === next ? prev : next));
-  });
 
   return (
     <div className="relative flex h-full flex-col overflow-hidden bg-background">
@@ -524,17 +517,13 @@ function CompileStage({ progress }: { progress: MotionValue<number> }) {
             <IdePanel progress={progress} />
           </div>
 
-          <motion.div
+          <LiveWindows
             className="grid h-full min-h-0 min-w-0 flex-1 grid-cols-3 grid-rows-3 gap-2.5 lg:gap-3"
             style={{ opacity: windowsOpacity }}
-          >
-            <LiveWindows
-              progress={progress}
-              hovered={hovered}
-              onHover={setHovered}
-              showLive={showLive}
-            />
-          </motion.div>
+            progress={progress}
+            hovered={hovered}
+            onHover={setHovered}
+          />
         </div>
       ) : (
         <div className="relative z-10 flex min-h-0 flex-1 flex-col px-3 pb-4 pt-2">
@@ -545,17 +534,13 @@ function CompileStage({ progress }: { progress: MotionValue<number> }) {
             <IdePanel progress={progress} />
           </motion.div>
 
-          <motion.div
+          <LiveWindows
             className="grid min-h-0 flex-1 grid-cols-2 grid-rows-5 gap-2 sm:grid-cols-3 sm:grid-rows-3"
             style={{ opacity: windowsOpacity }}
-          >
-            <LiveWindows
-              progress={progress}
-              hovered={hovered}
-              onHover={setHovered}
-              showLive={showLive}
-            />
-          </motion.div>
+            progress={progress}
+            hovered={hovered}
+            onHover={setHovered}
+          />
         </div>
       )}
     </div>

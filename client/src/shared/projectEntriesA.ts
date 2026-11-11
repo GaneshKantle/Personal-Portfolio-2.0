@@ -1,9 +1,10 @@
+import { projectEntry, shot } from "./projectShape";
 import ammasManeTindi from "../img/ammas-mane-tindi.png";
 import readItTwin from "../img/readittwin.png";
 import brainWMe from "../img/brainwme.png";
 import parallelYou from "../img/parallelyou.png";
 
-export const projectEntriesA = [
+const projectEntriesRawA = [
   {
     id: 8,
     title: "AMMA'S MANE TINDI",
@@ -12,7 +13,6 @@ export const projectEntriesA = [
       "A client website for a new homemade food brand. It shows their Karnataka kitchen, bulk orders, and tailoring — then sends people to WhatsApp to order.",
     longDescription:
       "A bilingual brand website for a home kitchen in Kothanur, Bengaluru. The site introduces AMMA'S MANE TINDI as a takeout-only vegetarian kitchen — everyday Karnataka food, bulk orders for functions, and blouse tailoring alongside the kitchen. There is no online checkout: visitors browse the menu and services, then WhatsApp the kitchen to order and collect. Built as a Next.js brand site with English and Kannada copy, a warm illustrated visual language, and clear paths for food, gatherings, and stitching.",
-    categoryColor: "primary",
     technologies: [
       "Next.js",
       "React 19",
@@ -51,32 +51,17 @@ export const projectEntriesA = [
       "Restraint in visual identity for homemade brands",
     ],
     screenshots: [
-      {
-        src: ammasManeTindi,
-        alt: "Homepage",
-        caption: "Brand homepage with Kannada tagline and kitchen story",
-      },
-      {
-        src: ammasManeTindi,
-        alt: "Food & bulk orders",
-        caption: "Menu, custom cooking, and function orders via WhatsApp",
-      },
-      {
-        src: ammasManeTindi,
-        alt: "Tailoring",
-        caption: "Blouse stitching and finishing work alongside the kitchen",
-      },
+      shot(ammasManeTindi, "Homepage", "Brand homepage with Kannada tagline and kitchen story"),
+      shot(ammasManeTindi, "Food & bulk orders", "Menu, custom cooking, and function orders via WhatsApp"),
+      shot(ammasManeTindi, "Tailoring", "Blouse stitching and finishing work alongside the kitchen"),
     ],
     architecture:
       "Next.js App Router marketing site with typed pages for food, bulk orders, tailoring, about, and contact",
-    deployment: "Vercel",
-    status: "Live",
     developmentTime: "1 week",
     teamSize: "Solo (Freelance)",
     impact:
       "Gave a new homemade food and tailoring brand a live web presence that sends neighbours to WhatsApp to order",
     image: ammasManeTindi,
-    category: "Web Application",
     difficulty: "Intermediate",
   },
 
@@ -88,7 +73,6 @@ export const projectEntriesA = [
       "Read a story as fast as you can. Play alone or race a friend. Then answer a few questions to see who did better.",
     longDescription:
       "Read It Twin is a polished multiplayer reading competition app where players race through passages and take comprehension quizzes. It supports solo runs with local passage seeds and synchronized two-player rooms with authoritative server-side scoring, lobby flow, countdown sync, results, and rematch. Built as a React SPA with a Supabase (PostgreSQL + Realtime) backend, anonymous sessions, and production hardening for live deployment.",
-    categoryColor: "primary",
     technologies: [
       "TypeScript",
       "React 19",
@@ -129,32 +113,16 @@ export const projectEntriesA = [
       "Production hardening for SPA + Postgres backends",
     ],
     screenshots: [
-      {
-        src: readItTwin,
-        alt: "Landing Page",
-        caption: "Product landing with solo and challenge entry points",
-      },
-      {
-        src: readItTwin,
-        alt: "Race Lobby",
-        caption: "Two-player room lobby with ready states",
-      },
-      {
-        src: readItTwin,
-        alt: "Results View",
-        caption: "WPM, comprehension, and rematch results screen",
-      },
+      shot(readItTwin, "Landing Page", "Product landing with solo and challenge entry points"),
+      shot(readItTwin, "Race Lobby", "Two-player room lobby with ready states"),
+      shot(readItTwin, "Results View", "WPM, comprehension, and rematch results screen"),
     ],
     architecture:
       "React SPA with Vite, synchronized via Supabase Realtime and Postgres RPCs for authoritative multiplayer scoring",
-    deployment: "Vercel",
-    status: "Live",
     developmentTime: "2 weeks",
-    teamSize: "Solo",
     impact:
       "Turns reading practice into a competitive, shareable challenge that scores both speed and understanding",
     image: readItTwin,
-    category: "Web Application",
     difficulty: "Advanced",
   },
 
@@ -166,7 +134,6 @@ export const projectEntriesA = [
       "A simple picture book of JavaScript tools. See what each tool is for, and try building your own stack like putting puzzle pieces together.",
     longDescription:
       "BrainWMe is an illustrated learning map of the JS/TS ecosystem. It organizes tools into volumes and job-based categories so learners can see what each piece is for, when it’s needed, and what it’s often confused with. An interactive workshop lets you explode a stack in 3D, dock one tool per job, and enforce needs-React wiring rules. A language-model view shows the TypeScript trunk versus UI and runtime branches. Built as a modern Next.js app with custom ink-style illustrations and motion.",
-    categoryColor: "primary",
     technologies: [
       "TypeScript",
       "Next.js",
@@ -205,32 +172,16 @@ export const projectEntriesA = [
       "Explaining complex ecosystems through progressive disclosure",
     ],
     screenshots: [
-      {
-        src: brainWMe,
-        alt: "Encyclopedia Home",
-        caption: "Volume-based encyclopedia of the JS/TS ecosystem",
-      },
-      {
-        src: brainWMe,
-        alt: "Category View",
-        caption: "Tools grouped by job with illustrated part cards",
-      },
-      {
-        src: brainWMe,
-        alt: "Workshop",
-        caption: "Interactive stack assembly with wiring rules",
-      },
+      shot(brainWMe, "Encyclopedia Home", "Volume-based encyclopedia of the JS/TS ecosystem"),
+      shot(brainWMe, "Category View", "Tools grouped by job with illustrated part cards"),
+      shot(brainWMe, "Workshop", "Interactive stack assembly with wiring rules"),
     ],
     architecture:
       "Next.js App Router content site with typed tool/category catalog and client-side workshop state",
-    deployment: "Vercel",
-    status: "Live",
     developmentTime: "1 week",
-    teamSize: "Solo",
     impact:
       "Helps developers understand the JS/TS map without treating React as the whole language",
     image: brainWMe,
-    category: "Web Application",
     difficulty: "Intermediate",
   },
 
@@ -242,7 +193,6 @@ export const projectEntriesA = [
       "Type in your birthday. Then scroll through the sky, Earth, and history from that exact moment. Only real facts — no made-up stuff.",
     longDescription:
       "Parallel You turns a real date, time, and place of birth into a continuous scroll experience. It moves from the exact night you arrived — moon, sun, location, life-in-numbers — through world context, a birthplace map, age capsules, and life alongside history, then zooms out through civilization, Earth, and the cosmos. Built for restraint: calculated and curated facts only, uncertainty labeled, empty when unknown. No astrology, no invented people, no signup.",
-    categoryColor: "primary",
     technologies: [
       "Next.js",
       "React",
@@ -290,32 +240,18 @@ export const projectEntriesA = [
       "Next.js App Router composition for multi-section exhibitions",
     ],
     screenshots: [
-      {
-        src: parallelYou,
-        alt: "Landing Input",
-        caption: "Enter date, time, and place of birth",
-      },
-      {
-        src: parallelYou,
-        alt: "Exact Moment",
-        caption: "Sky and place for that instant",
-      },
-      {
-        src: parallelYou,
-        alt: "Human Scale",
-        caption: "One life zoomed out through cosmic time",
-      },
+      shot(parallelYou, "Landing Input", "Enter date, time, and place of birth"),
+      shot(parallelYou, "Exact Moment", "Sky and place for that instant"),
+      shot(parallelYou, "Human Scale", "One life zoomed out through cosmic time"),
     ],
     architecture:
       "Next.js App Router exhibition: landing birth input → /explore sections powered by curated catalogs and calculated resolvers",
-    deployment: "Vercel",
-    status: "Live",
     developmentTime: "1–2 months",
-    teamSize: "Solo",
     impact:
       "Makes one real birth night feel specific — then quietly shows how small one life is against history and the universe",
     image: parallelYou,
-    category: "Web Application",
     difficulty: "Intermediate",
   },
 ];
+
+export const projectEntriesA = projectEntriesRawA.map(projectEntry);

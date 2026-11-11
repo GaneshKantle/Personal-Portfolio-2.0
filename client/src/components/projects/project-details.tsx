@@ -1,10 +1,32 @@
-import React from "react";
+import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import { useRoute, useLocation } from "wouter";
 import Navbar from "../Navbar";
 import Footer from "../Footer";
 import { getProjectById } from "../../shared/projectData";
 import { DotPattern } from "../DotPattern";
+
+function Reveal({
+  children,
+  className,
+  delay = 0,
+}: {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+}) {
+  return (
+    <motion.div
+      className={className}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8, delay }}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 function ResourceLink({
   href,
@@ -318,37 +340,22 @@ export default function ProjectDetails() {
       <section className="relative overflow-hidden bg-muted py-20">
         <DotPattern />
         <div className="page-shell relative z-10">
-          <motion.div
-            className="mb-16 text-center"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
+          <Reveal className="mb-16 text-center">
             <h2 className="text-3xl md:text-4xl font-semibold text-foreground mb-6">Additional Resources</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               Explore more about this project through documentation and related resources
             </p>
-          </motion.div>
+          </Reveal>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {project.documentationUrl && (
-              <motion.a
+              <ResourceLink
                 href={project.documentationUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group p-6 bg-card rounded-2xl border border-border hover:border-primary/40 transition-all duration-300 ease-in-out hover:shadow-md"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8 }}
-              >
-                <div className="text-center">
-                  <i className="fas fa-book text-3xl text-primary mb-4 group-hover:scale-110 transition-transform duration-200"></i>
-                  <h3 className="text-xl font-semibold mb-2 text-foreground">Documentation</h3>
-                  <p className="text-muted-foreground text-sm">Comprehensive project documentation and setup guides</p>
-                </div>
-              </motion.a>
+                icon="fas fa-book"
+                title="Documentation"
+                text="Comprehensive project documentation and setup guides"
+                delay={0}
+              />
             )}
 
             <ResourceLink

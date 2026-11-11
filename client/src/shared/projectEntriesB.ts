@@ -1,16 +1,16 @@
+import { projectEntry, shot } from "./projectShape";
 import eyeDentify from "../img/eye-dentify.png";
 import openDraft from "../img/opendraft.png";
 import Project1 from "../img/project1.png";
 import liquorHub from "../img/liquorhub.jpeg";
 
-export const projectEntriesB = [
+const projectEntriesRawB = [
   {
     id: 4,
     title: "EYE'dentify",
     tagline: "Draw a face and find a match",
     description: "Draw a face or upload a photo. The app looks for a matching person in a list, like a digital detective game.",
     longDescription: "EYE'dentify is a comprehensive forensic investigation tool that combines advanced computer vision with user-friendly interfaces to assist law enforcement agencies in criminal identification. The system can process both hand-drawn sketches and real photographs, using sophisticated algorithms to match faces against criminal databases with high accuracy.",
-    categoryColor: "primary",
     technologies: [
       "Zustand",
       "Zod",
@@ -56,9 +56,7 @@ export const projectEntriesB = [
     ],
     architecture: "Full-stack web application with React frontend, Flask backend, and OpenCV for image processing",
     deployment: "Vercel (Frontend) + Heroku (Backend)",
-    status: "Live",
     developmentTime: "3 months",
-    teamSize: "Solo",
     impact: "Potential to revolutionize forensic investigation workflows",
     image: eyeDentify,
     category: "AI/ML",
@@ -70,7 +68,6 @@ export const projectEntriesB = [
     tagline: "Make a resume in minutes",
     description: "Fill in your details and watch your resume appear right away. When you are done, download it as a PDF. No sign-up needed.",
     longDescription: "OpenDraft is a sophisticated resume builder that leverages AI to help users create professional, ATS-friendly resumes. The application features real-time preview, multiple professional templates, and seamless PDF export functionality. Built with modern web technologies, it provides an intuitive user experience without requiring user registration.",
-    categoryColor: "primary",
     technologies: [
       "TypeScript",
       "Vite",
@@ -115,13 +112,9 @@ export const projectEntriesB = [
       { src: openDraft, alt: "Export Options", caption: "PDF export and download options" }
     ],
     architecture: "Single-page React application with TypeScript and modern UI components",
-    deployment: "Vercel",
-    status: "Live",
     developmentTime: "2 months",
-    teamSize: "Solo",
     impact: "Simplified resume creation for job seekers worldwide",
     image: openDraft,
-    category: "Web Application",
     difficulty: "Intermediate"
   },
   {
@@ -130,7 +123,6 @@ export const projectEntriesB = [
     tagline: "A showcase site for a client",
     description: "A clean website I built for a client. It shows their video work in a simple, easy-to-browse layout.",
     longDescription: "A modern, responsive portfolio website designed for a professional video editor. The project showcases creative work through an elegant interface with smooth animations, dark mode support, and integration with Google Drive for content management. Built with performance and user experience as top priorities.",
-    categoryColor: "primary",
     technologies: [
       "React.js",
       "TypeScript",
@@ -174,8 +166,6 @@ export const projectEntriesB = [
       { src: Project1, alt: "Contact Form", caption: "Professional contact form" }
     ],
     architecture: "Next.js application with React and TypeScript",
-    deployment: "Vercel",
-    status: "Live",
     developmentTime: "1.5 months",
     teamSize: "Solo (Freelance)",
     impact: "Enhanced client's online presence and professional image",
@@ -191,7 +181,6 @@ export const projectEntriesB = [
       "An online store where you can browse drinks, save favorites, fill a cart, and place an order. Built like a real shopping website.",
     longDescription:
       "LiquorHub is a J2EE e-commerce web application for browsing, carting, and ordering spirits. Built with Java Servlets, JSP, JDBC, and MySQL on Apache Tomcat, it features account management, category catalogues, wishlist, cart/checkout with payment records, order history, and a rare collection of collector bottles. An age gate and liquor quiz gate first-time visitors. Designed as an educational full-stack demo of classic layered Java web architecture.",
-    categoryColor: "primary",
     technologies: [
       "Java 17",
       "Jakarta Servlets",
@@ -233,31 +222,19 @@ export const projectEntriesB = [
       "Tomcat deployment and Dynamic Web Project setup",
     ],
     screenshots: [
-      {
-        src: liquorHub,
-        alt: "Home Catalogue",
-        caption: "Curated home shelves and category browse",
-      },
-      {
-        src: liquorHub,
-        alt: "Cart & Checkout",
-        caption: "Cart management and buy-now checkout",
-      },
-      {
-        src: liquorHub,
-        alt: "Rare Collection",
-        caption: "Collector bottle dossiers with tasting notes",
-      },
+      shot(liquorHub, "Home Catalogue", "Curated home shelves and category browse"),
+      shot(liquorHub, "Cart & Checkout", "Cart management and buy-now checkout"),
+      shot(liquorHub, "Rare Collection", "Collector bottle dossiers with tasting notes"),
     ],
     architecture: "Layered J2EE app: JSP views → HttpServlets → DAO/JDBC → MySQL",
     deployment: "Apache Tomcat 10+",
     status: "Demo / Educational",
     developmentTime: "2–3 months",
-    teamSize: "Solo",
     impact:
       "Hands-on full-stack e-commerce demo covering auth, catalogue, cart, and orders",
     image: liquorHub,
-    category: "Web Application",
     difficulty: "Intermediate",
   },
 ];
+
+export const projectEntriesB = projectEntriesRawB.map(projectEntry);

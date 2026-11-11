@@ -7,8 +7,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.post("/api/contact", async (req, res) => {
     try {
       const { name, email, message } = req.body;
-      
-      // Validate inputs
+
       if (!name || !email || !message) {
         return res.status(400).json({ message: "All fields are required" });
       }

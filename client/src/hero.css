@@ -237,11 +237,6 @@
     }
   }
   
-  /* Remove any existing background effects */
-  .matrix-bg {
-    display: none !important;
-  }
-  
   /* Override any existing button styles */
   .apple-btn-primary.apple-btn-primary,
   .apple-btn-secondary.apple-btn-secondary {

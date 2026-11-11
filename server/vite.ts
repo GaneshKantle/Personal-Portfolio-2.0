@@ -4,13 +4,11 @@ import express, { Express } from "express";
 import path from "path";
 import fs from "fs";
 
-// Setup logger function
 export function log(message: string) {
   const timestamp = new Date().toLocaleTimeString();
-  console.log(`${timestamp} [express] ${message}`);
+  process.stdout.write(`${timestamp} [express] ${message}\n`);
 }
 
-// Setup Vite in development mode
 export async function setupVite(app: Express, _server: Server) {
   try {
     // Create Vite server in middleware mode with config file
