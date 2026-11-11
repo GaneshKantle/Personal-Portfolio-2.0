@@ -39,12 +39,14 @@ const experiences = [
 function formatDuration(totalMonths: number) {
   if (totalMonths <= 0) return "0 months";
 
-  if (totalMonths < 12) {
-    return totalMonths === 1 ? "1 month" : `${totalMonths} months`;
-  }
+  const years = Math.floor(totalMonths / 12);
+  const months = totalMonths % 12;
+  const parts: string[] = [];
 
-  const years = Math.round((totalMonths / 12) * 10) / 10;
-  return years === 1 ? "1 year" : `${years} years`;
+  if (years > 0) parts.push(years === 1 ? "1 year" : `${years} years`);
+  if (months > 0) parts.push(months === 1 ? "1 month" : `${months} months`);
+
+  return parts.join(" ");
 }
 
 function calculateMonths(period: string) {
@@ -106,14 +108,16 @@ function calculateMonths(period: string) {
   return totalMonths;
 }
 
-const MS_PER_YEAR = 365.25 * 24 * 60 * 60 * 1000;
-
 function calculateMonthsFromDate(start: Date, now = new Date()) {
   let months =
     (now.getFullYear() - start.getFullYear()) * 12 +
     (now.getMonth() - start.getMonth());
   if (now.getDate() < start.getDate()) months -= 1;
   return Math.max(months, 0);
+}
+
+function yearsFromMonths(months: number) {
+  return Math.round((months / 12) * 100) / 100;
 }
 
 function getExperienceMonths(exp: (typeof experiences)[number]) {
@@ -135,11 +139,7 @@ function getPrimaryExperience(exps: typeof experiences) {
   if (!role) return { months: 0, years: 0 };
 
   const months = getExperienceMonths(role);
-  const years = role.startDate
-    ? Math.max(Date.now() - role.startDate.getTime(), 0) / MS_PER_YEAR
-    : months / 12;
-
-  return { months, years };
+  return { months, years: yearsFromMonths(months) };
 }
 
 export default function ExperienceSection() {
@@ -210,7 +210,7 @@ export default function ExperienceSection() {
               {showAsYears ? (
                 <AnimatedCounter
                   value={experienceYears}
-                  decimals={1}
+                  decimals={2}
                   duration={1.8}
                 />
               ) : (

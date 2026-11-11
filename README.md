@@ -20,6 +20,9 @@
     <a href="https://github.com/GaneshKantle/Personal-Portfolio-2.0/releases">
       <img src="https://img.shields.io/github/release/GaneshKantle/Personal-Portfolio-2.0?style=for-the-badge&color=00F260" alt="Release">
     </a>
+    <a href="https://scanaislop.com/GaneshKantle/Personal-Portfolio-2.0">
+      <img src="https://badges.scanaislop.com/score/GaneshKantle/Personal-Portfolio-2.0.svg" alt="aislop">
+    </a>
   </p>
 </div>
 
