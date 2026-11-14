@@ -116,8 +116,12 @@ function calculateMonthsFromDate(start: Date, now = new Date()) {
   return Math.max(months, 0);
 }
 
-function yearsFromMonths(months: number) {
-  return Math.round((months / 12) * 100) / 100;
+const MS_PER_YEAR = 365.2425 * 24 * 60 * 60 * 1000;
+
+function yearsFromStart(start: Date, now = new Date()) {
+  const elapsed = now.getTime() - start.getTime();
+  if (elapsed <= 0) return 0;
+  return Math.round((elapsed / MS_PER_YEAR) * 10) / 10;
 }
 
 function getExperienceMonths(exp: (typeof experiences)[number]) {
@@ -139,7 +143,10 @@ function getPrimaryExperience(exps: typeof experiences) {
   if (!role) return { months: 0, years: 0 };
 
   const months = getExperienceMonths(role);
-  return { months, years: yearsFromMonths(months) };
+  const years = role.startDate
+    ? yearsFromStart(role.startDate)
+    : Math.round((months / 12) * 10) / 10;
+  return { months, years };
 }
 
 export default function ExperienceSection() {
@@ -148,7 +155,7 @@ export default function ExperienceSection() {
     () => getPrimaryExperience(experiences),
     []
   );
-  const experienceYears = Math.round(preciseYears * 10) / 10;
+  const experienceYears = preciseYears;
   const showAsYears = preciseYears >= 1;
 
   const timelineData = useMemo(() => {
@@ -210,7 +217,7 @@ export default function ExperienceSection() {
               {showAsYears ? (
                 <AnimatedCounter
                   value={experienceYears}
-                  decimals={2}
+                  decimals={1}
                   duration={1.8}
                 />
               ) : (
